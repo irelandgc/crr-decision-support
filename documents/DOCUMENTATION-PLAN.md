@@ -1,6 +1,6 @@
 # CRR Tool Suite — Documentation plan (ARCH-MIG-01 and after)
 
-**Purpose:** one place that says which documents exist, what each is generated from, and when each is updated — so that nothing built during the migration is lost when the document set is brought up to date. Companion to `ARCHITECTURE_DECISIONS.md`, `SECURITY_DECISIONS.md`, `instructions/arch-mig-known-issues.md` and `CHANGE-LOG.md`.
+**Purpose:** one place that says which documents exist, what each is generated from, and when each is updated — so that nothing built during the migration is lost when the document set is brought up to date. Companion to `ARCHITECTURE_DECISIONS.md`, `SECURITY_DECISIONS.md`, `documents/arch-mig-known-issues.md` and `CHANGE-LOG.md`.
 
 **Principle:** registers are kept live at the moment of change (Claude Code does this as part of every slice); documents are generated from the registers at defined points, not maintained by hand in parallel. A document that is maintained separately from its source drifts within weeks — the September 2026 documentation audit found exactly that pattern in the pre-migration set.
 
@@ -11,8 +11,8 @@
 | `documents/CHANGE-LOG.md` | **What changed, for whom** — every behaviour or requirement change, in plain language, tagged with the documents it lands in | Every slice that changes behaviour adds rows; the AD entry points to them |
 | `documents/ARCHITECTURE_DECISIONS.md` (AD) | **Why** — design decisions, status, enforcement | Every design call |
 | `documents/SECURITY_DECISIONS.md` (SD/SR) | Security decisions and open risks | Every security-relevant call |
-| `instructions/arch-mig-known-issues.md` (KI) | Defects, gaps, dispositions | As found |
-| `instructions/arch-mig-plan.md` | Slice status, cut-over checklist | Every slice |
+| `documents/arch-mig-known-issues.md` (KI) | Defects, gaps, dispositions | As found |
+| `documents/arch-mig-plan.md` | Slice status, cut-over checklist | Every slice |
 | `documents/CRR_Release_Log.md` | **When it shipped** — deployments to users | At deploy (slice 10 onward) |
 | `tooling/criteria-bundle/benchmark/FINDINGS.md` + `results/` | Extraction quality evidence | Every benchmark run |
 

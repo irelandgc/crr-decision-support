@@ -1,6 +1,6 @@
 # CRR Tool Suite — Architecture Decisions Register (ARCH-MIG-01)
 
-**Purpose:** the durable record of design decisions made during the rules-bundle migration, so they do not live only in chat history, PR descriptions or one session's notes. Companion to `SECURITY_DECISIONS.md` (SD/SR) and `instructions/arch-mig-known-issues.md` (KI).
+**Purpose:** the durable record of design decisions made during the rules-bundle migration, so they do not live only in chat history, PR descriptions or one session's notes. Companion to `SECURITY_DECISIONS.md` (SD/SR) and `arch-mig-known-issues.md` (KI).
 
 **How to use this file:**
 - Append-only. Supersede, don't rewrite (`Superseded by AD-xx`).

@@ -3,7 +3,7 @@
 **Brief:** ARCH-MIG-01 v1.0.0 · **Phase:** 2 · **Date:** 5 September 2026
 **Status:** STOP — awaiting Gary's approval before Phase 3 (BRD redline) and any Phase 4 implementation
 **Author:** Claude Fable 5 (design session; read-only on the repository)
-**Inputs:** `arch-mig-gap-analysis.md` (approved with decisions below), `arch-mig-known-issues.md`, `arch-mig-prompt-decomposition.md`, `tooling/criteria-bundle/` (26/26).
+**Inputs:** `instructions/arch-mig-gap-analysis.md` (approved with decisions below), `arch-mig-known-issues.md`, `instructions/arch-mig-prompt-decomposition.md`, `tooling/criteria-bundle/` (26/26).
 **Decisions applied:** D1–D8 (Phase 0) · E1 pipeline in the API worker, fronted same-origin by a service binding from the main worker · E2 structured audit record; redacted note in a separate table, off by default, retention configurable (default 6 months), purge job · E3 national indicator vocabulary adopted now, versioned, linkIds immutable once published · E4 tabletop/benchmark mode may evaluate `signed-off` bundles · E5 sign-off recorded as a per-bundle file and as Admin Tool state · E6 terminology validation wired when NZHTS access exists; placeholders flagged until then · Admin Tool criteria editing **disabled** for the pilot; all criteria changes (text and logic) via Claude Code sessions against the repo with build gates and diff review · Entra ID for admin auth is a later item, noted so nothing here blocks it.
 
 ---

@@ -55,6 +55,28 @@ Always `npx wrangler`, never bare `wrangler`.
 During the migration a recorded fix the target supersedes is not built unless
 the plan names it as an interim with a retirement date.
 
+## Where state lives
+Three ledgers. Each fact has one home; the others point at it.
+- **Requirements → the BRD** (`documents/…Business_Requirements_…docx` +
+  `BRD-change-log-vX.md`). Changed only by versioned redline from CHANGE-LOG
+  rows tagged `BRD:`.
+- **Decisions and rationale → `documents/` registers**: AD (design), SD/SR
+  (security), CHANGE-LOG (what changed, for whom), Release Log (when it
+  reached users), KI (`arch-mig-known-issues.md`, defects and dispositions),
+  the migration plan (`arch-mig-plan.md`, slice status and cut-over checklist).
+- **State → `STATUS.md`**: what is done, queued or blocked — nothing else.
+  One line per item, tagged `@claude` (Claude can pick it up now), `@gary`
+  (needs Gary's decision or action), or `@blocked` (waits on someone else or
+  a precondition; name it). Every line cites the file or AD/SD/SR/KI/CL id
+  holding the rationale. No rationale, history or narrative in STATUS.md.
+  Done items drop off 30 days after they are marked done.
+- If STATUS.md and a register disagree, the register wins; correct STATUS.md.
+
+**Definition of done:** a change is done when the same commit updates
+STATUS.md (plus CHANGE-LOG, AD/SD and the release log where the rules below
+require). A commit that changes state without touching STATUS.md is
+incomplete.
+
 ## Registers — conventions
 - `documents/ARCHITECTURE_DECISIONS.md` (AD) and `documents/SECURITY_DECISIONS.md`
   (SD = decision, SR = open risk/gate): append-only; supersede, never rewrite.
@@ -111,8 +133,8 @@ it and raise it with Gary.
 ## Key documents — read when relevant
 | Read | When |
 |---|---|
-| `instructions/arch-mig-plan.md` | Starting or resuming any slice (status, cut-over checklist) |
-| `instructions/arch-mig-known-issues.md` | Before fixing a defect — it may already be dispositioned |
+| `documents/arch-mig-plan.md` | Starting or resuming any slice (status, cut-over checklist) |
+| `documents/arch-mig-known-issues.md` | Before fixing a defect — it may already be dispositioned |
 | `documents/ARCHITECTURE_DECISIONS.md` | Before any design call |
 | `documents/SECURITY_DECISIONS.md` | Touching auth, routes, PII, secrets, public exposure |
 | `documents/CHANGE-LOG.md`, `DOCUMENTATION-PLAN.md` | Any user-, operator- or requirement-visible change |

@@ -1,6 +1,6 @@
 # ARCH-MIG-01 — Known-issues register and disposition
 
-**Brief:** ARCH-MIG-01 v1.0.0 · **Phase:** 1 · **Date:** 5 September 2026 · **Status:** for review (with `arch-mig-gap-analysis.md`)
+**Brief:** ARCH-MIG-01 v1.0.0 · **Phase:** 1 · **Date:** 5 September 2026 · **Status:** for review (with `instructions/arch-mig-gap-analysis.md`)
 **Rule applied:** the backlog is a list of problems, not of work. Each row names the *recorded fix* (what a document says should be done) and the *target fix* (what resolves it in the rules-bundle architecture). A recorded fix the target supersedes is **not implemented**. Decision D1 (tabletop runs on the pipeline; no date) means **no interim fixes are built** — every "superseded" row is retired unbuilt.
 
 **Statuses:** RESOLVED BY DESIGN (the failure cannot occur in the target) · MITIGATED (reduced; residual stated) · OPEN (migration does not address it; owner named) · OUT OF SCOPE (reason) · CARRY (unchanged, still required).
