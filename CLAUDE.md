@@ -1,143 +1,128 @@
 # CLAUDE.md
 
-## Project Overview
-Vite/React project hosting the CRR (Community Radiology Referral) clinical decision support tools. Main application code lives in `public/crr-criteria/`. Supporting documents in `documents/` and `instructions/`.
+CRR (Community Radiology Referral) decision-support tools — Criteria Viewer,
+Triage Advisor, Admin Tool — on Cloudflare Workers. App: `public/crr-criteria/`.
+Rules bundles: `tooling/criteria-bundle/`.
 
-See @README.md for project overview. See @documents/CRR_Architecture_Briefing.md for architecture.
+## Working rules
+- **Code is liability.** Build the minimum; every abstraction traces to a
+  concrete, existing need. When in doubt, build less.
+- State assumptions (signatures, data shapes, clinical logic) before coding;
+  ask if unsure. Never guess silently.
+- Surgical changes only. Flag adjacent problems — don't fix them. Ask before
+  new files, modules, abstractions or dependencies, or reorganising structure.
+- State what "done" looks like first; run the tests.
+- Same error twice → STOP, explain what you tried, let Gary redirect.
+- Style: vanilla CSS, no CSS-in-JS; standalone HTML tools keep CSS/JS in one
+  file; destructure imports.
 
-## Guiding Principle
-**Code is liability.** Every line carries maintenance cost. Target the minimum structure a future developer can understand without original context. Every abstraction must trace to a concrete, existing need — never a speculative one. When in doubt, build less.
+## Commands
+Root: `npm run dev` · `npm run build` · `npm run lint` · `npm test` (Vitest,
+main worker) · `npm run test:api-worker` · `npm run check` (tsc + build +
+deploy dry-run)
+Bundles (`cd tooling/criteria-bundle/tooling`): `npm run build && npm test &&
+npm run check` — all three green before any bundle change is done;
+`npm run publish -- <examSite>`
+Deploy: main worker `npm run build && npx wrangler deploy`; API worker
+`npx wrangler deploy --config public/crr-criteria/wrangler.json`
+Always `npx wrangler`, never bare `wrangler`.
 
-## Behavioural Rules — ALWAYS FOLLOW
+## Briefs and STOP gates
+- DESIGN ONLY briefs produce markdown only: no code, no schema changes.
+- A STOP gate is literal: end the turn and wait for review. Never continue
+  because the next phase seems obvious.
+- Every proposed schema feature or abstraction cites the named item in the
+  codebase or criteria data it serves. Include a real non-goals section.
+- Claude Fable sessions: design and complex data work only. Never modify
+  production Worker routes, the deployed system prompt, or deployed assets.
 
-1. **State assumptions explicitly.** Before writing code, list every assumption about function signatures, API shapes, data structures, or clinical logic. Ask for confirmation if uncertain. NEVER guess silently.
-
-2. **Write minimum code.** Implement only what was requested. No speculative additions, no "while I'm here" refactors, no future-proofing unless explicitly asked.
-
-3. **Make surgical changes.** Do not modify code outside the scope of the request. If adjacent code needs changing, flag it and ask first. NEVER refactor files you weren't asked to touch.
-
-4. **Define success criteria before writing code.** State what "done" looks like. If tests exist, run them. If they don't, suggest what to test.
-
-5. **When you hit an error twice, STOP.** Explain the issue and your failed approaches. Do not keep trying variations. Let me redirect.
-
-6. **Ask before creating new abstractions, modules, or files.** Don't reorganise file structure without approval.
-
-7. **Ask before installing new dependencies.**
-
-## Design Briefs (briefs marked DESIGN ONLY)
-
-- Produce markdown documents only — zero implementation code, zero schema changes
-- Treat STOP gates literally: end the turn at a STOP and wait for review. Do not continue past a gate because the next phase seems obvious
-- Every proposed schema feature or abstraction must trace to a specific, named item in the actual codebase or criteria data — cite it
-- A thin "non-goals" section is a warning sign of over-design; state clearly what you decided NOT to build and why
-
-## Model Boundaries
-
-- Claude Fable 5 sessions: design work and complex data tasks only. Never modify production Worker routes, the deployed system prompt, or deployed assets in a Fable session
-- The production Triage Advisor model is a governance-controlled setting. NEVER change it, even in dev/test code paths, without an explicit instruction referencing sign-off — changing models mid-evaluation affects evaluator attribution
-- Note: newer Sonnet versions may reject `temperature: 0.1` (400 error) — flag, don't silently work around
-
-## Production Safety — CRR-Specific
-
-- **Prompt activation goes through the admin API endpoint, never raw SQL.** Raw SQL writes bypass the KV cache publish step and leave stale prompts live (this happened — evaluators unknowingly tested on an old version for days)
-- **All regression and test assessments go through the Worker API endpoint**, never direct Anthropic API calls. Direct calls bypass the system prompt assembly, post-processing, and D1 audit logging — invalidating the run
-- A single publish action updates KV for all consumer tools; if you change criteria data or prompts, confirm the publish step ran and verify what's live
-
-## Clinical Data Rules
-
-- **Criteria fidelity:** never alter clinical meaning when restructuring, migrating, or reformatting criteria data. If a transformation is ambiguous, stop and ask
-- **Priority code suppression:** internal codes (P2, P3, S2 etc.) must never appear in referrer-facing UI or output text — timeframe language only
-- **Not-funded items are never tickable/selectable** — informational display only
-- No patient-identifiable data in any test fixture, log, example, or commit
-
-## Environment
-- macOS / zsh / Terminal.app (not VS Code integrated terminal)
-- ALWAYS use `npx wrangler` — never bare `wrangler`
-- Instruction files for Claude Code go in `instructions/` at project root (NOT inside `public/`)
-
-## Code Style
-- ES modules (import/export), not CommonJS
-- Destructure imports when possible
-- Prefer vanilla CSS — avoid CSS-in-JS
-- When writing standalone HTML tools, keep CSS/JS in a single file unless complexity demands separation
-
-## Target architecture (ARCH-MIG-01)
-
-The tool suite is migrating to the rules-bundle architecture (see
-documents/reference/architecture/). Invariants that hold from now on:
-
-1. The LLM never decides. No prompt may ask for a verdict, priority,
-   eligibility judgement or advice. Its output is a QuestionnaireResponse.
-2. Every LLM-produced answer carries evidence: status (documented|inferred)
-   and a verbatim quote. The validation gate rejects the whole response on
-   any unquotable value, unknown linkId or type mismatch.
-3. Criteria logic lives only in the published bundle, loaded by version at
-   runtime. No criteria logic in application code, prompts or constants.
+## Target architecture invariants (ARCH-MIG-01)
+1. The LLM never decides — no verdict, priority, eligibility or advice. Its
+   output is a QuestionnaireResponse.
+2. Every LLM answer carries status (documented|inferred) and a verbatim quote;
+   the gate rejects the whole response on any unquotable value, unknown linkId
+   or type mismatch.
+3. Criteria logic lives only in the published bundle, loaded by version. None
+   in application code, prompts or constants.
 4. Strict documentation standard by default; inferred answers are surfaced,
    not used, unless the parameter says otherwise.
-5. Retrieval from referrer systems is designed in and dormant; enabling a
-   tier is a governance event (PTA / IPP 3A, terminology validation).
-6. Terminology is validated against NZHTS in the build, never authored by a
-   model. Placeholders are marked and listed.
-7. Regional overlays add delivery information only; the build rejects an
-   overlay carrying logic.
-8. Bundle version, engine version, model identifier and prompt version are
-   stamped on every assessment.
+5. Retrieval from referrer systems is dormant; enabling a tier is a governance
+   event (PTA / IPP 3A, terminology validation).
+6. Terminology is validated against NZHTS in the build, never model-authored;
+   placeholders are marked and listed.
+7. Regional overlays carry delivery information only; the build rejects logic.
+8. Bundle, engine, model and prompt versions are stamped on every assessment.
+During the migration a recorded fix the target supersedes is not built unless
+the plan names it as an interim with a retirement date.
 
-Design decisions are recorded in `documents/ARCHITECTURE_DECISIONS.md` (AD-xx),
-append-only, same rules as `SECURITY_DECISIONS.md`. Add an entry whenever a
-design call is made; cite AD ids in briefs and PR descriptions.
-
-During the migration, a recorded fix that the target supersedes is not
-implemented unless the plan names it as an interim with a retirement date.
+## Registers — conventions
+- `documents/ARCHITECTURE_DECISIONS.md` (AD) and `documents/SECURITY_DECISIONS.md`
+  (SD = decision, SR = open risk/gate): append-only; supersede, never rewrite.
+  Add an entry whenever a design or security-relevant call is made. A
+  production change gated on a risk cites the SR id. Cite AD/SD ids in briefs
+  and PR descriptions.
+- Behaviour a referrer, triager, admin, operator or requirement can see →
+  add `documents/CHANGE-LOG.md` rows (status `built`) before filing the brief;
+  the AD entry names its `CL-nn` rows.
+- **BRD sync:** any requirement-affecting change carries a `BRD:<req id|NEW>`
+  token on its CL row. The BRD is redlined from those rows at the points in
+  `documents/DOCUMENTATION-PLAN.md` (v3.3 after slice 5, v3.4 at slice 10),
+  with a `BRD-change-log-vX.md` companion.
+- Deployed behaviour changes → `documents/CRR_Release_Log.md` entry at the
+  time, not retrospectively. (Change log = what changed; release log = when
+  it reached users.)
 
 ## Instruction file lifecycle
-
-Files in `instructions/` are pending work. If a file is in `instructions/`, it is
-still to be done. Registers and reference material live in `documents/` and
-`documents/reference/`, never in `instructions/`.
-
-When the work described by an instruction file is finished, file it in the same
-session, as part of the same commit as the work itself:
-
-1. Prepend a filing tag to the top of the file:
+`instructions/` holds pending work only. Finished → same commit as the work:
+prepend the tag below, then `git mv` to `instructions.complete/`. Superseded →
+`instructions/archive/` with `[SUPERSEDED — YYYY-MM-DD]`, reason, replacement.
 
    > **[COMPLETE — YYYY-MM-DD]** <one line: what was done>
-   > Verification: <one of — "verified: <specific evidence, e.g. commit hash, test
-   > output, live API check>" | "not independently verified: <what could not be
-   > confirmed and why>">
+   > Verification: "verified: <commit hash, test output, live API check>" |
+   > "not independently verified: <what could not be confirmed and why>"
    > Filed by: <Claude Code | Gary>
 
-2. `git mv` it to `instructions.complete/`.
+The verification line is mandatory and must not be softened. Never tag or
+move a file whose completion you are inferring rather than observing — leave
+it and raise it with Gary.
 
-Superseded or obsolete files go to `instructions/archive/` instead, with the same
-tag but `[SUPERSEDED — YYYY-MM-DD]` and a one-line reason plus what replaced them.
+## Pitfalls
+- Prompt activation only through the admin API, never raw SQL (raw SQL skips
+  the KV publish; evaluators once tested a stale prompt for days).
+- Regression/test assessments only through the Worker endpoint, never the
+  Anthropic API directly (bypasses prompt assembly, post-processing, D1 audit).
+- One publish updates KV for every tool: after changing criteria or prompts,
+  confirm the publish ran and check what is live.
+- The production Triage Advisor model is governance-controlled. Never change
+  it, even in dev/test paths, without an instruction citing sign-off.
+- Newer Sonnet versions may 400 on `temperature: 0.1` — flag, don't work
+  around silently.
+- Local two-worker dev: the two wrangler configs persist to different dirs.
+  Use `--persist-to ./public/crr-criteria/.wrangler/state` (KI-54).
+- Before any admin write in local dev, confirm it targets the local worker,
+  not production (SR-14).
+- Anything under `public/crr-criteria/` is served unless `postbuild:clean`
+  strips it (KI-38).
+- Clinical data: never alter clinical meaning when restructuring criteria —
+  ambiguous → stop and ask. Priority codes (P2, P3, S2…) never appear in
+  referrer-facing UI or text. Not-funded items are never tickable. No
+  patient-identifiable data or secrets in any fixture, log, example or commit.
 
-**The verification line is not optional and must not be softened.** "Not
-independently verified" is an acceptable and often correct answer — a file's
-presence in `instructions.complete/` records that the work was carried out, never
-that its outcome was confirmed. A future session must be able to tell those apart
-from the file alone, without re-running an audit.
+## Key documents — read when relevant
+| Read | When |
+|---|---|
+| `instructions/arch-mig-plan.md` | Starting or resuming any slice (status, cut-over checklist) |
+| `instructions/arch-mig-known-issues.md` | Before fixing a defect — it may already be dispositioned |
+| `documents/ARCHITECTURE_DECISIONS.md` | Before any design call |
+| `documents/SECURITY_DECISIONS.md` | Touching auth, routes, PII, secrets, public exposure |
+| `documents/CHANGE-LOG.md`, `DOCUMENTATION-PLAN.md` | Any user-, operator- or requirement-visible change |
+| `documents/reference/architecture/` | Target architecture |
+| `tooling/criteria-bundle/README.md`, `extraction/extraction-contract.md` | Bundle, transcription or extraction work |
+| `documents/CRR-admin-reference.md` | Deploy, publish, admin API |
+| `documents/CRR-integration-guide.md` | URL params, postMessage, `/api/assess` contracts |
+| BRD `documents/CRR_Tool_Suite_Business_Requirements_DRAFT_v3.2.docx` + `BRD-change-log-v3.2.md` | Requirement ids and wording |
+| `documents/CRR_Architecture_Briefing.md` | Only when touching legacy paths (`/api/triage/assess`, `EMBEDDED_MATCH_DATA`, system prompt v2.3.0) — describes pre-migration production |
 
-**Do not tag or move a file whose completion you are inferring rather than
-observing.** If evidence is absent, leave it in `instructions/` and raise it with
-Gary. Absence of a release-log entry is not evidence work was skipped; equally,
-having written the code is not evidence the outcome was verified.
-
-A slice (or any change) that alters behaviour a referrer, triager, admin,
-operator, or requirement can see adds its rows to `documents/CHANGE-LOG.md`
-**before filing its brief** — status `built` — and the `ARCHITECTURE_DECISIONS.md`
-entry behind the change names those `CL-nn` rows. The change log records *what
-changed and which documents must reflect it*; see `documents/DOCUMENTATION-PLAN.md`.
-
-Add a corresponding entry to `documents/CRR_Release_Log.md` for any change that
-alters deployed behaviour, at the time it happens, not retrospectively. (The
-change log records that a behaviour changed; the release log records the date it
-reached users — they are different things.)
-
-## Before Committing
-- Do not commit secrets, API keys, or credentials
-- Do not commit node_modules or .wrangler directories
-
-## When Compacting
-Preserve: list of modified files, current task status, any pending constraints discussed in this session, and which STOP gate (if any) the session is holding at.
+## When compacting
+Preserve: modified files, task status, pending constraints, and which STOP
+gate (if any) the session is holding at.
