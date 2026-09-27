@@ -20,7 +20,7 @@
 > logic decides. For the **target** architecture and the decisions behind it, see:
 > - `CLAUDE.md` → *Target architecture (ARCH-MIG-01)* — the eight invariants
 > - `documents/ARCHITECTURE_DECISIONS.md` (AD register) and `documents/CHANGE-LOG.md`
-> - `instructions/arch-mig-plan.md` — slice-by-slice status
+> - `documents/arch-mig-plan.md` — slice-by-slice status
 >
 > Per `documents/DOCUMENTATION-PLAN.md`, this briefing is either regenerated from
 > those sources or moved to `documents/archive/` at the slice 10/11 cut-over. The

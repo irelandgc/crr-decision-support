@@ -7,7 +7,7 @@
 // Advisory renderer holds (advisory-render.test.ts).
 import { describe, expect, it } from "vitest";
 // @ts-expect-error -- plain .js ESM module, no type declarations
-import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, CHROME_STRINGS } from "../../shared/criteria-render.js";
+import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, flattenQrValues, CHROME_STRINGS } from "../../shared/criteria-render.js";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
 import ctCapOverlay from "../../../../tooling/criteria-bundle/fhir/RegionalOverlay-CRR-CT-CAP-Adult-te-waipounamu.json";
@@ -97,16 +97,77 @@ describe("criteria-render — referrer view (GEN-004)", () => {
     // funding.unfitOrUnwilling never gets a checkbox / data-linkid
     expect(html).not.toContain('data-linkid="funding.unfitOrUnwilling"');
   });
-  it("only single-boolean leaves are tickable; compound rows (B1, B3) are not", () => {
-    // criterion-A's five boolean leaves + the six lab booleans are checkboxes
+  it("single-boolean leaves are checkboxes; a compound criterion (B1, B3) is not one tick but a typed input per linkId (AD-27)", () => {
+    // criterion-A's five boolean leaves + the six lab booleans are single-tick cards
     for (const id of ["workup.bloods", "workup.urinalysis", "workup.cxr", "workup.strongSuspicionMalignancy", "workup.localisingFeatures", "lab.crp.raised", "lab.hb.low", "lab.alp.high"]) {
       expect(html).toContain(`<input type="checkbox" class="crit-card-check" data-linkid="${id}"`);
     }
-    // B1 (age + sex + % + period) and B3 (advice + name) are compound — no single checkbox
-    expect(html).not.toContain('data-linkid="patient.age"');
-    expect(html).not.toContain('data-linkid="advice.adviserNameRole"');
-    // …but their published wording still renders
+    // B1 / B3 are never a single tick over the whole criterion: each renders as a
+    // typed-inputs row with no single-tick checkbox inside it
+    for (const id of ["b1", "b3"]) {
+      const row = html.match(new RegExp(`<div class="cr-row cr-inputs-row" data-action="${id}">[\\s\\S]*?<div class="cr-inputs">[\\s\\S]*?</div>`));
+      expect(row, id).not.toBeNull();
+      expect(row![0]).not.toContain("crit-card-check");
+    }
+    // B1: number for age, select for sex, checkbox for present/measured, number for weights/period/percent
+    expect(html).toMatch(/<input type="number"[^>]*data-linkid="patient\.age"/);
+    expect(html).toMatch(/<select data-linkid="patient\.sex">/);
+    expect(html).toContain('<option value="male">Male</option>');
+    expect(html).toMatch(/<input type="checkbox" data-linkid="weightloss\.present"/);
+    expect(html).toMatch(/<input type="checkbox" data-linkid="weightloss\.measured"/);
+    for (const id of ["weightloss.weightBefore", "weightloss.weightNow", "weightloss.periodMonths", "weightloss.percent"]) {
+      expect(html).toMatch(new RegExp(`<input type="number"[^>]*data-linkid="${id.replace(".", "\\.")}"`));
+    }
+    // the fallback (percent) is the last of the weight-loss inputs (PlanDefinition order)
+    expect(html.indexOf('data-linkid="weightloss.weightBefore"')).toBeLessThan(html.indexOf('data-linkid="weightloss.percent"'));
+    // B3: checkbox for the advice boolean, text for the adviser name/role
+    expect(html).toMatch(/<input type="checkbox" data-linkid="advice\.urgentCTRecommended"/);
+    expect(html).toMatch(/<input type="text" data-linkid="advice\.adviserNameRole"/);
+    // published wording of the criterion still leads the row
     expect(html).toContain("Male over 50 years of age or female over 60 years");
+    // unit chips come from the Questionnaire's questionnaire-unit extension
+    expect(html).toContain('<span class="cr-unit">kg</span>');
+    expect(html).toContain('<span class="cr-unit">years</span>');
+  });
+
+  it("read-only (Triage reference column): compound inputs show the value from the merged QR, no entry", () => {
+    const ro = criteriaHtml(resolveCriteria(bundle, {
+      context: "referrer", layout: "indication", readOnly: true,
+      ticks: { "patient.age": 62, "patient.sex": "male", "weightloss.weightBefore": 84, "weightloss.weightNow": 77, "weightloss.periodMonths": 4, "weightloss.present": true },
+    }));
+    expect(ro).not.toContain('<input type="number"');
+    expect(ro).not.toContain("<select");
+    expect(ro).toContain('<span class="cr-input-value">84 kg</span>');
+    expect(ro).toContain('<span class="cr-input-value">62 years</span>');
+    expect(ro).toContain('<span class="cr-input-value">Male</span>');
+    // a boolean shows a disabled checked box, not editable
+    expect(ro).toMatch(/<input type="checkbox" disabled checked>/);
+  });
+
+  it("read-only values come only from answers the engine used: inferred answers are skipped unless the standard is inferred (invariant 4)", () => {
+    // merged-QR answer shape from merge.ts: extracted answers carry answer-evidence
+    // (status + quote); a context answer carries none (engine treats it as documented)
+    const ev = (status: string) => [{ url: "http://crr.health.nz/fhir/StructureDefinition/answer-evidence", extension: [{ url: "status", valueCode: status }, { url: "quote", valueString: "q" }] }];
+    const merged = {
+      resourceType: "QuestionnaireResponse",
+      item: [
+        { linkId: "patient", item: [{ linkId: "patient.age", answer: [{ valueInteger: 62 }] }] },
+        { linkId: "weightloss", item: [
+          { linkId: "weightloss.present", answer: [{ valueBoolean: true, extension: ev("inferred") }] },
+          { linkId: "weightloss.weightBefore", answer: [{ valueDecimal: 84, extension: ev("inferred") }] },
+          { linkId: "weightloss.weightNow", answer: [{ valueDecimal: 77, extension: ev("documented") }] },
+        ] },
+      ],
+    };
+    for (const std of ["strict", undefined]) {
+      expect(flattenQrValues(merged, std)).toEqual({ "patient.age": 62, "weightloss.weightNow": 77 });
+    }
+    expect(flattenQrValues(merged, "inferred")).toEqual({ "patient.age": 62, "weightloss.present": true, "weightloss.weightBefore": 84, "weightloss.weightNow": 77 });
+    // and in the reference column under strict: the inferred weight is not shown, the inferred box is not ticked
+    const ro = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication", readOnly: true, ticks: flattenQrValues(merged, "strict") }));
+    expect(ro).toContain('<span class="cr-input-value">77 kg</span>');
+    expect(ro).not.toContain('<span class="cr-input-value">84 kg</span>');
+    expect(ro).not.toMatch(/<input type="checkbox" disabled checked>/);
   });
 });
 
