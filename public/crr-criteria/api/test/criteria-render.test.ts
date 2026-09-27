@@ -7,7 +7,7 @@
 // Advisory renderer holds (advisory-render.test.ts).
 import { describe, expect, it } from "vitest";
 // @ts-expect-error -- plain .js ESM module, no type declarations
-import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, CHROME_STRINGS } from "../../shared/criteria-render.js";
+import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, flattenQrValues, CHROME_STRINGS } from "../../shared/criteria-render.js";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
 import ctCapOverlay from "../../../../tooling/criteria-bundle/fhir/RegionalOverlay-CRR-CT-CAP-Adult-te-waipounamu.json";
@@ -102,9 +102,13 @@ describe("criteria-render — referrer view (GEN-004)", () => {
     for (const id of ["workup.bloods", "workup.urinalysis", "workup.cxr", "workup.strongSuspicionMalignancy", "workup.localisingFeatures", "lab.crp.raised", "lab.hb.low", "lab.alp.high"]) {
       expect(html).toContain(`<input type="checkbox" class="crit-card-check" data-linkid="${id}"`);
     }
-    // B1 / B3 are never a single tick over the whole criterion
-    expect(html).not.toContain('data-linkid="b1"');
-    expect(html).not.toContain('data-linkid="b3"');
+    // B1 / B3 are never a single tick over the whole criterion: each renders as a
+    // typed-inputs row with no single-tick checkbox inside it
+    for (const id of ["b1", "b3"]) {
+      const row = html.match(new RegExp(`<div class="cr-row cr-inputs-row" data-action="${id}">[\\s\\S]*?<div class="cr-inputs">[\\s\\S]*?</div>`));
+      expect(row, id).not.toBeNull();
+      expect(row![0]).not.toContain("crit-card-check");
+    }
     // B1: number for age, select for sex, checkbox for present/measured, number for weights/period/percent
     expect(html).toMatch(/<input type="number"[^>]*data-linkid="patient\.age"/);
     expect(html).toMatch(/<select data-linkid="patient\.sex">/);
@@ -138,6 +142,32 @@ describe("criteria-render — referrer view (GEN-004)", () => {
     expect(ro).toContain('<span class="cr-input-value">Male</span>');
     // a boolean shows a disabled checked box, not editable
     expect(ro).toMatch(/<input type="checkbox" disabled checked>/);
+  });
+
+  it("read-only values come only from answers the engine used: inferred answers are skipped unless the standard is inferred (invariant 4)", () => {
+    // merged-QR answer shape from merge.ts: extracted answers carry answer-evidence
+    // (status + quote); a context answer carries none (engine treats it as documented)
+    const ev = (status: string) => [{ url: "http://crr.health.nz/fhir/StructureDefinition/answer-evidence", extension: [{ url: "status", valueCode: status }, { url: "quote", valueString: "q" }] }];
+    const merged = {
+      resourceType: "QuestionnaireResponse",
+      item: [
+        { linkId: "patient", item: [{ linkId: "patient.age", answer: [{ valueInteger: 62 }] }] },
+        { linkId: "weightloss", item: [
+          { linkId: "weightloss.present", answer: [{ valueBoolean: true, extension: ev("inferred") }] },
+          { linkId: "weightloss.weightBefore", answer: [{ valueDecimal: 84, extension: ev("inferred") }] },
+          { linkId: "weightloss.weightNow", answer: [{ valueDecimal: 77, extension: ev("documented") }] },
+        ] },
+      ],
+    };
+    for (const std of ["strict", undefined]) {
+      expect(flattenQrValues(merged, std)).toEqual({ "patient.age": 62, "weightloss.weightNow": 77 });
+    }
+    expect(flattenQrValues(merged, "inferred")).toEqual({ "patient.age": 62, "weightloss.present": true, "weightloss.weightBefore": 84, "weightloss.weightNow": 77 });
+    // and in the reference column under strict: the inferred weight is not shown, the inferred box is not ticked
+    const ro = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication", readOnly: true, ticks: flattenQrValues(merged, "strict") }));
+    expect(ro).toContain('<span class="cr-input-value">77 kg</span>');
+    expect(ro).not.toContain('<span class="cr-input-value">84 kg</span>');
+    expect(ro).not.toMatch(/<input type="checkbox" disabled checked>/);
   });
 });
 

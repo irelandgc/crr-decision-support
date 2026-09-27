@@ -550,3 +550,32 @@ export function buildQuestionnaireResponse(questionnaire, ticks) {
     item: [...groups.entries()].map(([linkId, item]) => ({ linkId, item })),
   };
 }
+
+// The inverse, for read-only display: a QuestionnaireResponse → linkId -> value
+// (boolean / number / coding code / string). The Triage reference column shows
+// the compound-criterion inputs (B1, B3) from the merged QR. Only values the
+// engine used: unless the documentation standard is "inferred", an answer whose
+// answer-evidence status is `inferred` is skipped (invariant 4; the engine
+// treats a missing standard as strict).
+const ANSWER_EVIDENCE_EXT = "http://crr.health.nz/fhir/StructureDefinition/answer-evidence";
+export function flattenQrValues(qr, documentationStandard) {
+  const out = {};
+  if (!qr || !Array.isArray(qr.item)) return out;
+  const useInferred = documentationStandard === "inferred";
+  (function walk(items) {
+    for (const i of items || []) {
+      if (Array.isArray(i.item)) walk(i.item);
+      if (!i.linkId || !Array.isArray(i.answer) || !i.answer[0]) continue;
+      const a = i.answer[0];
+      if (!useInferred) {
+        const ev = (a.extension || []).find((e) => e.url === ANSWER_EVIDENCE_EXT);
+        if (ev && (ev.extension || []).some((s) => s.url === "status" && s.valueCode === "inferred")) continue;
+      }
+      const vk = Object.keys(a).find((k) => k.startsWith('value'));
+      let v = vk ? a[vk] : undefined;
+      if (v && typeof v === 'object' && 'code' in v) v = v.code;
+      out[i.linkId] = v;
+    }
+  })(qr.item);
+  return out;
+}

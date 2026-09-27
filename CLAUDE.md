@@ -35,6 +35,7 @@ Always `npx wrangler`, never bare `wrangler`.
   codebase or criteria data it serves. Include a real non-goals section.
 - Claude Fable sessions: design and complex data work only. Never modify
   production Worker routes, the deployed system prompt, or deployed assets.
+- Every PR is reviewed before merge by a session that did not author it.
 
 ## Target architecture invariants (ARCH-MIG-01)
 1. The LLM never decides — no verdict, priority, eligibility or advice. Its
@@ -86,6 +87,8 @@ incomplete.
   Add an entry whenever a design or security-relevant call is made. A
   production change gated on a risk cites the SR id. Cite AD/SD ids in briefs
   and PR descriptions.
+- Sessions record decisions and propose AD status; only Gary sets an AD to
+  Accepted.
 - Behaviour a referrer, triager, admin, operator or requirement can see →
   add `documents/CHANGE-LOG.md` rows (status `built`) before filing the brief;
   the AD entry names its `CL-nn` rows.
