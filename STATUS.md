@@ -15,6 +15,7 @@ days after their date. [U] = inferred, not found.
 - 2026-09-27 Phase 0/1/2 headers corrected to reflect slices 0–6 ran — instructions/arch-mig-01-brief.md, instructions/arch-mig-gap-analysis.md, documents/arch-mig-plan.md line 4
 - 2026-09-27 Wrangler persist path recorded/closed: `./public/crr-criteria/.wrangler/state` (matches existing tests) — KI-54; CLAUDE.md pitfalls
 - 2026-09-27 UX-03 filed, not implemented — prototype scope (AD-30) — instructions/archive/claude-code-plan-ux-enhancements.md
+- 2026-09-27 KI-64 added (local dev `ASSESS_PIPELINE_ENABLED=true` vs committed `false` — intentional, now documented); README gains a two-worker dev section; both `.dev.vars.example` persist-to commands corrected to match KI-54 — README.md; documents/arch-mig-known-issues.md KI-54, KI-64; .dev.vars.example; public/crr-criteria/.dev.vars.example
 
 ## Queued
 - @claude Raise SR-11 (terminology placeholders) in SECURITY_DECISIONS.md — OVERDUE: due at slice 1, merged 2026-09-05 — documents/arch-mig-plan.md §5
@@ -31,9 +32,11 @@ days after their date. [U] = inferred, not found.
 - @claude Correct stale register lines: plan slice 5 "PR open" (merged PR #15), KI-37 CARRY (schema.sql current to 0011) — documents/arch-mig-plan.md; documents/arch-mig-known-issues.md KI-37
 - @claude Archive superseded instructions/ files: claude-code-brief-role-aware-view-step1.md, prompt-v2.3.0-* results/runner/prompt text — instructions.complete/arch-mig-01-slice5-pipeline-brief.md; CLAUDE.md lifecycle
 - @claude SD-13 (Entra ID / admin approval workflow) is cited at documents/arch-mig-plan.md line 177 with no matching row in SECURITY_DECISIONS.md — raise the row or correct the citation — documents/arch-mig-plan.md line 177; AD-30
+- @claude Unify `prefillDemographicsFromMerge` with `flattenQrValues` (next brief) — documents/arch-mig-known-issues.md KI-63
 
 ## Needs Gary
 - @gary Review/merge PR #23 (Viewer typed inputs, AD-27 option a) — AD-27; CL-44–45
+- @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
 - @gary Clinical review pack (D1–D6) cited in ARCHITECTURE_DECISIONS.md but not in repo — decide: pointer to M365 location, or copy in — AD-03/04/05/06/07/10/11/17/23/26
 - @gary Load NZHTS credentials into env/secrets — documents/arch-mig-plan.md E6; CL-19
 - @gary Locate BRD v3.1.1 — KI-42

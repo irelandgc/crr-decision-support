@@ -3,7 +3,7 @@
 #
 # ARCH-MIG-01 slice 3 — the assessment pipeline. Needed only when running the
 # two-worker dev round trip:
-#   npx wrangler dev -c wrangler.json -c public/crr-criteria/wrangler.json --persist-to ./.wrangler/state
+#   npx wrangler dev -c wrangler.json -c public/crr-criteria/wrangler.json --persist-to ./public/crr-criteria/.wrangler/state
 # `ASSESS_INTERNAL_KEY` must be the SAME value here and in the root
 # `.dev.vars` — /api/assess/evaluate 403s unless the forwarded `x-assess-internal`
 # header matches it, and 404s unless `ASSESS_PIPELINE_ENABLED` is "true" (SD-11).

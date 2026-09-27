@@ -56,6 +56,37 @@ npm run dev
 
 Your application will be available at [http://localhost:5173](http://localhost:5173).
 
+## Local dev: the two-worker assessment pipeline (ARCH-MIG-01)
+
+Running the assessment pipeline locally needs two workers together: this
+repo's root worker (`vite-react-template`, `wrangler.json`) and the API
+worker (`crr-criteria-api`, `public/crr-criteria/wrangler.json`), forwarding
+over a Cloudflare service binding — no public HTTP hop (SD-11).
+
+Copy each `.dev.vars.example` to `.dev.vars` (both gitignored) and fill in
+`ASSESS_INTERNAL_KEY` — the **same** value in both files. Both examples set
+`ASSESS_PIPELINE_ENABLED=true`. This is intentional and does **not** match
+the committed `wrangler.json` default of `"false"` (the production-safe
+value, unchanged until the slice 10 cut-over): a `.dev.vars` value always
+overrides the committed config locally, so with both files in place the
+pipeline runs ON in local dev even though every committed config reads OFF.
+If you only check `wrangler.json`, you'll get the wrong answer for what's
+running locally (KI-54, KI-64).
+
+Launch the two-worker dev with a single shared persist path so the server,
+the seed commands and `run-pipeline-e2e.mjs` all read/write the same local
+D1 + KV (KI-54 — the two configs default to different directories if you
+don't):
+
+```bash
+npx wrangler dev -c wrangler.json -c public/crr-criteria/wrangler.json \
+  --persist-to ./public/crr-criteria/.wrangler/state
+```
+
+See `tooling/criteria-bundle/benchmark/run-pipeline-e2e.mjs`'s header for
+the full local seed sequence (schema, migrations, publishing
+`national-redflags` + a site bundle to local KV/D1).
+
 ## Production
 
 Build your project for production:
