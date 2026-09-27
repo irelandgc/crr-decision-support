@@ -42,6 +42,8 @@ days after their date. [U] = inferred, not found.
 - @gary SR-03 Origin/Referer gate — confirm — SECURITY_DECISIONS.md SR-03
 - @gary UX plan: UX-03 has no commit (10 of 11 done) — finish or file — instructions/claude-code-plan-ux-enhancements.md [U]
 - @gary Phase 0/1/2 headers still read "STOP — awaiting approval" though slices ran — instructions/arch-mig-01-brief.md, instructions/arch-mig-gap-analysis.md, documents/arch-mig-plan.md line 4
+- @gary Set tabletop evaluation date (runs on new pipeline post-cutover) — documents/arch-mig-plan.md §Slice 10
+- @gary Confirm assessment_notes retention period / privacy-office sign-off before AUDIT_STORE_REDACTED_NOTE is enabled (default 180 days already in code) — KI-34; SD-12
 
 ## Blocked
 - @blocked Clinical rulings AD-03/AD-04 (review pack D4/D5), AD-16 equivalence list, AD-23 wordings — ARCHITECTURE_DECISIONS.md
