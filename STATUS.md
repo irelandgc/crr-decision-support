@@ -16,6 +16,8 @@ days after their date. [U] = inferred, not found.
 - 2026-09-27 Wrangler persist path recorded/closed: `./public/crr-criteria/.wrangler/state` (matches existing tests) — KI-54; CLAUDE.md pitfalls
 - 2026-09-27 UX-03 filed, not implemented — prototype scope (AD-30) — instructions/archive/claude-code-plan-ux-enhancements.md
 - 2026-09-27 KI-64 added (local dev `ASSESS_PIPELINE_ENABLED=true` vs committed `false` — intentional, now documented); README gains a two-worker dev section; both `.dev.vars.example` persist-to commands corrected to match KI-54 — README.md; documents/arch-mig-known-issues.md KI-54, KI-64; .dev.vars.example; public/crr-criteria/.dev.vars.example
+- 2026-09-27 PR #23 merged (Viewer typed inputs, AD-27 option a) — merge commit 96a6562 — AD-27; CL-44–45
+- 2026-09-27 AD-27 Accepted (Gary, on merge of PR #23) — AD-27
 
 ## Queued
 - @claude Raise SR-11 (terminology placeholders) in SECURITY_DECISIONS.md — OVERDUE: due at slice 1, merged 2026-09-05 — documents/arch-mig-plan.md §5
@@ -35,7 +37,6 @@ days after their date. [U] = inferred, not found.
 - @claude Unify `prefillDemographicsFromMerge` with `flattenQrValues` (next brief) — documents/arch-mig-known-issues.md KI-63
 
 ## Needs Gary
-- @gary Review/merge PR #23 (Viewer typed inputs, AD-27 option a) — AD-27; CL-44–45
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
 - @gary Clinical review pack (D1–D6) cited in ARCHITECTURE_DECISIONS.md but not in repo — decide: pointer to M365 location, or copy in — AD-03/04/05/06/07/10/11/17/23/26
 - @gary Load NZHTS credentials into env/secrets — documents/arch-mig-plan.md E6; CL-19
