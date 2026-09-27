@@ -2,7 +2,7 @@
 
 **Model:** Claude Sonnet · **Branch:** from main, before CT AP transcription in slice 7 (this brief's completion is a precondition of that transcription, not a parallel task).
 
-**STOP gate — read before doing anything else:** AD-31 is **Proposed**, not Accepted. This brief documents the design for review. Do not write any schema, `check` rule or code against it until Gary marks AD-31 **Accepted** in `ARCHITECTURE_DECISIONS.md`. If you are a session picking this up and AD-31 still reads Proposed, stop and say so — do not treat "the brief exists" as authorisation to build.
+**Gate cleared:** AD-31 is **Accepted** (Gary, 2026-09-27). The build may proceed.
 
 ## Read first
 
