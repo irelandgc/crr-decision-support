@@ -12,6 +12,9 @@ days after their date. [U] = inferred, not found.
 - 2026-09-07 Slice 6 Viewer on bundles merged (PR #21), flags off — instructions.complete/arch-mig-01-slice6-viewer-brief.md
 - 2026-09-25 CLAUDE.md thinned; KI register and plan moved to documents/; ledger rule added (5a533ce, 153cb4b)
 - 2026-09-27 Slice 6 marked Done (AD-05 provisional keep, pending D1) — documents/arch-mig-plan.md §Slice 6; AD-05; CL-46
+- 2026-09-27 Phase 0/1/2 headers corrected to reflect slices 0–6 ran — instructions/arch-mig-01-brief.md, instructions/arch-mig-gap-analysis.md, documents/arch-mig-plan.md line 4
+- 2026-09-27 Wrangler persist path recorded/closed: `./public/crr-criteria/.wrangler/state` (matches existing tests) — KI-54; CLAUDE.md pitfalls
+- 2026-09-27 UX-03 filed, not implemented — prototype scope (AD-30) — instructions/archive/claude-code-plan-ux-enhancements.md
 
 ## Queued
 - @claude Raise SR-11 (terminology placeholders) in SECURITY_DECISIONS.md — OVERDUE: due at slice 1, merged 2026-09-05 — documents/arch-mig-plan.md §5
@@ -32,11 +35,7 @@ days after their date. [U] = inferred, not found.
 - @gary Review/merge PR #23 (Viewer typed inputs, AD-27 option a) — AD-27; CL-44–45
 - @gary Clinical review pack (D1–D6) cited in ARCHITECTURE_DECISIONS.md but not in repo — decide: pointer to M365 location, or copy in — AD-03/04/05/06/07/10/11/17/23/26
 - @gary Load NZHTS credentials into env/secrets — documents/arch-mig-plan.md E6; CL-19
-- @gary Confirm whether creatinine unit erratum was sent to the document owner — KI-47 (review pack D3)
-- @gary Pick a single wrangler persist path — KI-54
 - @gary Locate BRD v3.1.1 — KI-42
-- @gary UX plan: UX-03 has no commit (10 of 11 done) — finish or file — instructions/claude-code-plan-ux-enhancements.md [U]
-- @gary Phase 0/1/2 headers still read "STOP — awaiting approval" though slices ran — instructions/arch-mig-01-brief.md, instructions/arch-mig-gap-analysis.md, documents/arch-mig-plan.md line 4
 - @gary Set tabletop evaluation date (runs on new pipeline post-cutover) — documents/arch-mig-plan.md §Slice 10
 
 ## Pre-tabletop gate
@@ -61,7 +60,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @blocked Vocabulary v1 clinical review — documents/arch-mig-plan.md §Slice 1
 - @blocked W1 clinical sign-off per site (signoff.md) — documents/arch-mig-plan.md §Slice 7 step 4
 - @blocked Clinician labelling of 37 matrix cases — documents/arch-mig-plan.md §Slice 9
-- @blocked Creatinine unit erratum — on the national document owner (after Gary confirms it was sent) — KI-47
+- @blocked Creatinine unit erratum (review pack D3) — sent to James and Louise 2026-09-05, awaiting their answer; once answered, a published correction to the national document is still required before the bundle can cite it — KI stays open until then — KI-47
 - @blocked Slice 10 cut-over — on 5, 6, 7-W1, 9, SD-11/12 sign-off, remote national-redflags publish, remote migration 0009, ASSESS_INTERNAL_KEY secrets, prompt v3.0.0 activation — documents/arch-mig-plan.md §Slice 10
 - @blocked Slice 11 documents — alongside slice 10 — documents/arch-mig-plan.md §Slice 11
 - @blocked Open SRs (SR-01 cost sink, SR-05 model alias drift, SR-09 extraction drift) close at slice 9/10 — SECURITY_DECISIONS.md

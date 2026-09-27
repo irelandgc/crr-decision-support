@@ -1,7 +1,7 @@
 # ARCH-MIG-01 Phase 1 — Gap analysis
 
 **Brief:** ARCH-MIG-01 v1.0.0 · **Phase:** 1 · **Date:** 5 September 2026
-**Status:** STOP — awaiting Gary's review before the Phase 2 plan
+**Status:** Approved — superseded as the live plan by `arch-mig-plan.md` (Phase 2) and STATUS.md (current state); kept for the Phase 1 decision record (D1–D8).
 **Author:** Claude Fable 5 (design session; read-only on the repository)
 **Companions:** `arch-mig-known-issues.md` (44 issues, dispositioned), `arch-mig-prompt-decomposition.md` (41 clauses), `arch-mig-phase0-findings.md`. Template scenarios from the results matrix added to `tooling/criteria-bundle/tests/scenarios.mjs` (26/26 passing).
 **Decisions applied:** D1 tabletop on the pipeline, no date, no interims · D2 sign-off not sent, fold into REVIEW Qn · D3 whole criteria set, sign-off as the sequencing lever · D4 BRD v3.1.1 unavailable, work against v2 · D5 template at `tooling/criteria-bundle/`, page and README at `documents/reference/architecture/` · D6 drop `suggested_wording`, keep advisory "what to add" · D7 stay on Cloudflare · D8 audit record redesign proposed (§6), server-side PII gate is a new requirement.

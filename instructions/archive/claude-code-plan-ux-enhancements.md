@@ -1,3 +1,17 @@
+> **[SUPERSEDED — 2026-09-27]** UX-03 (merge `missing_criteria`/`add_to_note` into one
+> "what's missing" section) is filed, not finished — deferred as prototype scope (AD-30
+> pre-pilot gate), closing this plan's one open item (STATUS.md carried it as "10 of 11
+> done", itself marked `[U]`, inferred not found). UX-03's target data shape
+> (`missing_criteria`/`add_to_note` from the old free-text JSON output) is also technically
+> superseded in substance: ARCH-MIG-01's structured Advisory (AD-21, CL-03, CL-04,
+> `advisory-render.js`) already produces a "what to add" list from bundle artefacts. A
+> future "what's missing" enhancement, if wanted, should be scoped against that renderer,
+> not this brief.
+> Verification: not independently verified — the checklist below shows every item
+> unchecked except UX-12; this filing does not confirm the other 10 items were built or
+> deployed as described, only that UX-03 is dispositioned (deferred, not built).
+> Filed by: Claude Code
+
 # Claude Code Plan: CRR UI/UX Enhancements — Implementation Brief
 
 **Date:** 28 May 2026  

@@ -4,7 +4,7 @@
 **Version:** 1.0.0
 **Date:** 5 September 2026
 **Model:** Phases 0–3 Claude Fable 5 (design and discovery only — no production changes). Phase 4 slices: Claude Code on Sonnet, except prompt decomposition (slice 4) and criteria transcription (slice 1b) which go to Opus.
-**Status:** Phase 0 complete (`arch-mig-phase0-findings.md`, STOP). Phase 1 awaits decisions D1–D8.
+**Status:** Phase 0 complete (`arch-mig-phase0-findings.md`). Decisions D1–D8 made; Phase 1 (`arch-mig-gap-analysis.md`) and Phase 2 (`arch-mig-plan.md`) complete. Phase 4 implementation is underway — slices 0–6 merged; STATUS.md carries current state, not this header.
 **Depends on:** target architecture as built in `~/Projects/CRR Criteria/CRR_Desision_Support/` (`ct-cap-template/`, published page *CRR Decision Support Architecture*, `migration/CLAUDE.md`, `migration/MIGRATION_REVIEW_BRIEF.md`); NAIAEAG informal approach summary; CC-DESIGN-01 and TA-SRC-01 (both ACCEPTED, both superseded in part — see findings §4–§5).
 **Deployment gated on:** Phase 2 plan approval; per slice, the bundle tooling's `npm run build && npm test && npm run check` green plus existing runners; SD/SR entries recorded before anything reaches production.
 
