@@ -69,7 +69,10 @@ Three ledgers. Each fact has one home; the others point at it.
   (needs Gary's decision or action), or `@blocked` (waits on someone else or
   a precondition; name it). Every line cites the file or AD/SD/SR/KI/CL id
   holding the rationale. No rationale, history or narrative in STATUS.md.
-  Done items drop off 30 days after they are marked done.
+  Done items drop off 30 days after they are marked done. A `## Pre-pilot
+  gate` section holds production-readiness decisions gated at the pre-pilot
+  review, not at slice completion (AD-30) — items there are not blockers
+  for slice work; do not stall a slice on one.
 - If STATUS.md and a register disagree, the register wins; correct STATUS.md.
 
 **Definition of done:** a change is done when the same commit updates
