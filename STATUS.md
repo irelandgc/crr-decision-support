@@ -18,10 +18,10 @@ days after their date. [U] = inferred, not found.
 - 2026-09-27 KI-64 added (local dev `ASSESS_PIPELINE_ENABLED=true` vs committed `false` — intentional, now documented); README gains a two-worker dev section; both `.dev.vars.example` persist-to commands corrected to match KI-54 — README.md; documents/arch-mig-known-issues.md KI-54, KI-64; .dev.vars.example; public/crr-criteria/.dev.vars.example
 - 2026-09-27 PR #23 merged (Viewer typed inputs, AD-27 option a) — merge commit 96a6562 — AD-27; CL-44–45
 - 2026-09-27 AD-27 Accepted (Gary, on merge of PR #23) — AD-27
+- 2026-09-29 SR-11 (terminology placeholders) raised in the register, Open — SECURITY_DECISIONS.md SR-11
 
 ## Queued
-- @claude Raise SR-11 (terminology placeholders) in SECURITY_DECISIONS.md — OVERDUE: due at slice 1, merged 2026-09-05 — documents/arch-mig-plan.md §5
-- @claude E6 terminology validation against NZHTS (after credentials are loaded) — documents/arch-mig-plan.md §Slice 1, E6; CL-19
+- @claude E6 terminology validation against NZHTS, incl. a publish-time refusal of unvalidated codes (none exists today) — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Build AD-31 source errata handling (`errata[]` schema, `check` rule, KI-47's entry, Advisory note) — before CT AP transcription; gate cleared, AD-31 Accepted 2026-09-27 — instructions/arch-mig-01-errata-brief.md; AD-31
