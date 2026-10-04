@@ -112,7 +112,7 @@ Effort is relative (S/M/L) — no dates were given (D1). Dependencies name the s
 **Done:** CT CAP renders from its bundle with visual parity to today (screenshots in the PR); all other sites unchanged; QA viewer review still works; `checkSafetyText()` resolved per D1, not carried forward unexamined.
 
 ### Slice 7 — Criteria transcription programme (waves) · L overall · Opus per site · after 1; runs alongside 2–6
-**Status: not started.**
+**Status: in progress.** W1: CT Colonography artefacts written 2026-10-04 under `tooling/criteria-bundle/sites/ct-colonography-adult/` (AD-33); SOURCE quotes reviewed by a second session 2026-10-04 (all verbatim), `transcribed` waits on the step 3 gates; CT AP blocked on a clean source (STATUS). `sites/` is not yet wired into `build && test && check`.
 Protocol per exam/site (one Claude Code session each, Opus):
 1. Inputs: PDF pages for the site (`documents/reference/` copy of the April 2026 PDF), `pdf-criteria-all.json` entry and current published JSON as cross-checks, CC-DESIGN-01 census entry, vocabulary.
 2. Outputs into `tooling/criteria-bundle/sites/<examSite>/`: `<Site>.cql` (verbatim `SOURCE:` on every clinical define; REVIEW Qn list), `Questionnaire-*.json` (vocabulary linkIds where shared; site-specific ones proposed to the vocabulary as additions), `PlanDefinition-*.json` (published wording verbatim, badges, `source-page`), `scenarios.mjs` (every matrix case for the site first, then the STEP-3 worked examples where they apply, then coverage of each pathway/redirect/boundary), `population.cql` where labs/imaging history apply, `signoff.md` template.
