@@ -22,7 +22,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-04 AD-31 errata[]: publish.mjs carries it, `check --bundle` and the publish route enforce the rule, KI-47 entry in the national-redflags manifest; Advisory note dropped by decision — AD-31; AD-32; CL-47; instructions.complete/arch-mig-01-errata-brief.md
 - 2026-10-04 CT Colonography transcribed into sites/ (unconditional alternative management; not yet published or live) — AD-33; CL-48; sites/ct-colonography-adult/
 - 2026-10-04 CT Colonography SOURCE quotes reviewed against the 27/08/26 draft by a second session: all verbatim — PR #26 review comment; documents/arch-mig-plan.md §Slice 7 step 3
-- 2026-10-04 `sites/` wired into `npm run build` / `npm test` (run-tests-sites.mjs) / `npm run check` (rule 14); rule 7 accepts `draft-reference` — documents/arch-mig-plan.md §Slice 7; AD-33
+- 2026-10-04 `sites/` wired into `npm run build` / `npm test` (run-tests-sites.mjs) / `npm run check` (rule 14, which accepts `draft-reference`; rule 7 unchanged, page-only) — documents/arch-mig-plan.md §Slice 7; AD-33
 - 2026-10-04 AD-32 Accepted (Gary; PR #25 merged) — AD-32
 - 2026-10-04 AD-33 Accepted (Gary; PR #26 merged) — AD-33
 
