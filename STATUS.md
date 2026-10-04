@@ -22,6 +22,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-04 AD-31 errata[]: publish.mjs carries it, `check --bundle` and the publish route enforce the rule, KI-47 entry in the national-redflags manifest; Advisory note dropped by decision — AD-31; AD-32; CL-47; instructions.complete/arch-mig-01-errata-brief.md
 - 2026-10-04 CT Colonography transcribed into sites/ (unconditional alternative management; not yet published or live) — AD-33; CL-48; sites/ct-colonography-adult/
 - 2026-10-04 CT Colonography SOURCE quotes reviewed against the 27/08/26 draft by a second session: all verbatim — PR #26 review comment; documents/arch-mig-plan.md §Slice 7 step 3
+- 2026-10-04 `sites/` wired into `npm run build` / `npm test` (run-tests-sites.mjs) / `npm run check` (rule 14); rule 7 accepts `draft-reference` — documents/arch-mig-plan.md §Slice 7; AD-33
 - 2026-10-04 AD-32 Accepted (Gary; PR #25 merged) — AD-32
 - 2026-10-04 AD-33 Accepted (Gary; PR #26 merged) — AD-33
 
@@ -29,7 +30,7 @@ days after their date. [U] = inferred, not found.
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
-- @claude Wire `sites/` into `npm run build`, `npm test` and `npm run check`, incl. teaching check rule 7 to accept `draft-reference` for approved-draft bundles (CT Colonography verified ad hoc only) — documents/arch-mig-plan.md §Slice 7; sites/ct-colonography-adult/transcription-notes.md §6; AD-33
+- @claude Publish CT Colonography to the local registry as `transcribed` (add its publish.mjs manifest entry; source type approved-draft) — documents/arch-mig-plan.md §Slice 7 step 3; sites/ct-colonography-adult/
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Transcribe remaining W1 sites (CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) — documents/arch-mig-plan.md §Slice 7
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
@@ -69,7 +70,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 ## Blocked
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
 - @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
-- @blocked CT Colonography: publish as `transcribed` (needs a publish manifest entry and `sites/` wired into the gates — see Queued) and clinical sign-off of REVIEW Q1-Q5; SOURCE quotes reviewed verbatim 2026-10-04 — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 steps 3-4; AD-33
+- @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
 - @blocked Clinical rulings AD-03/AD-04 (review pack D4/D5), AD-16 equivalence list, AD-23 wordings — ARCHITECTURE_DECISIONS.md
 - @blocked Vocabulary v1 clinical review — documents/arch-mig-plan.md §Slice 1
 - @blocked W1 clinical sign-off per site (signoff.md) — documents/arch-mig-plan.md §Slice 7 step 4
