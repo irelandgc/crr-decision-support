@@ -1,0 +1,80 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-CT-Colonography-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-CT-Colonography-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTColonography_Adult",
+  "title": "CT Colonography - Adult",
+  "type": {
+    "coding": [
+      { "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type", "code": "eca-rule", "display": "ECA Rule" }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-04",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the CT Colonography (Adult) community referral criteria, transcribed from the final draft updated 27/08/2026. The draft removes every criterion row and leaves a Guidance block, so the only action carrying logic is the alternative-management outcome. This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire (no items) carries the input contract.",
+  "useContext": [
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "focus" },
+      "valueCodeableConcept": { "text": "Community-referred radiology, adult" }
+    },
+    {
+      "code": { "system": "http://terminology.hl7.org/CodeSystem/usage-context-type", "code": "user" },
+      "valueCodeableConcept": { "text": "GP & UC Doctors / NPs" }
+    }
+  ],
+  "jurisdiction": [{ "coding": [{ "system": "urn:iso:std:iso:3166", "code": "NZ" }] }],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "CT Colonography and CT AP community referred criteria - final draft, updated 27/08/2026, CT Colonography - Adult",
+      "document": { "title": "CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx" }
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [{ "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id", "valueString": "TBC-page-id" }]
+    },
+    {
+      "type": "citation",
+      "label": "HNZ Referral Criteria Guidelines for lower GI investigations for symptomatic patients",
+      "url": "https://www.healthnz.govt.nz/health-professionals/guidance-standards/topic/conditions/cancer/cancer-investigations/lower-bowel-investigations-for-patients-symptoms"
+    }
+  ],
+  "library": ["http://crr.health.nz/fhir/Library/CRR_CTColonography_Adult"],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance",
+      "description": "Following the introduction of faecal immune-chemical testing (FIT) for symptomatic patients, direct access for CT Colonography (CTC) is being removed as a first line investigation.\n\nPrimary care referrals for all lower GI investigations including CTC and Colonoscopy will be via a single point of referral and triage as outlined in the guidance. Most patients will have a FIT test.  Where appropriate, CTC will be requested and appropriate actions taken by the secondary care team. In particular, the secondary care team will be responsible for any follow-up actions based on the results (which includes, but is not limited to, any findings of cancer, polyps or incidental findings).\n\nPlease follow the Colorectal Symptoms HealthPathway for local guidance and follow local processes .",
+      "code": [{ "coding": [{ "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block", "code": "guidance" }] }],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "Final draft updated 27/08/2026 — CT Colonography - Adult, Guidance",
+          "extension": [{ "url": "http://crr.health.nz/fhir/StructureDefinition/draft-reference", "valueString": "documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx#CT Colonography - Adult" }]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Primary care referrals for all lower GI investigations including CTC and Colonoscopy will be via a single point of referral and triage as outlined in the guidance.",
+      "code": [{ "coding": [{ "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block", "code": "alternative-management" }] }],
+      "condition": [
+        { "kind": "applicability", "expression": { "language": "text/cql-identifier", "expression": "Alternative Management Recommended" } }
+      ],
+      "action": [
+        { "id": "am-healthpathway", "title": "Please follow the Colorectal Symptoms HealthPathway for local guidance and follow local processes ." }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "Final draft updated 27/08/2026 — CT Colonography - Adult, Guidance (REVIEW Q2: presented as the alternative-management outcome)",
+          "extension": [{ "url": "http://crr.health.nz/fhir/StructureDefinition/draft-reference", "valueString": "documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx#CT Colonography - Adult" }]
+        }
+      ]
+    }
+  ]
+}

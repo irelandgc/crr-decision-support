@@ -1,0 +1,13 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-CT-Colonography-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Colonography-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTColonography_Adult_Indicators",
+  "title": "CT Colonography - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-04",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Indicators for the CT Colonography (Adult) community referral criteria (final draft updated 27/08/2026). The draft removes every criterion row, so there is nothing to extract: this Questionnaire has no items and the CQL library CRR_CTColonography_Adult returns alternative management for every request.",
+  "item": []
+}
