@@ -16,7 +16,7 @@ The draft section has no criterion row. Every sentence is guidance; none names a
 | "Where appropriate, CTC will be requested and appropriate actions taken by the secondary care team. In particular, the secondary care team will be responsible for any follow-up actions based on the results (which includes, but is not limited to, any findings of cancer, polyps or incidental findings)." | none | Describes secondary-care responsibility; not a referral condition |
 | "Please follow the Colorectal Symptoms HealthPathway for local guidance and follow local processes ." | none | Used verbatim as the redirect (REVIEW Q2, Q4) |
 
-No attestation / clinical-judgement indicators (AD-17). No vocabulary additions.
+No attestation / clinical-judgement indicators (AD-17). No vocabulary additions. Five existing vocabulary entries still list `ct-colonography-adult` in their `sites[]` for the old criteria (p17/p18: `lab.hb.low`, `lab.ferritin.low`, `lab.unexplained`, `advice.urgentImagingRecommended`, `advice.nonUrgentImagingRecommended`); the draft makes them stale. The brief forbids vocabulary edits here, so this is a STATUS follow-up.
 
 Source column: "HNZ Referral Criteria Guidelines for lower GI investigations for symptomatic patients" (healthnz.govt.nz link) → `PlanDefinition.relatedArtifact` citation. Referrers: "GP & UC Doctors / NPs" → `useContext`.
 

@@ -12,7 +12,7 @@ Transcribed by: Claude Code, 2026-10-04   Engineering review of SOURCE quotes by
 ## REVIEW questions (answer each)
 Q1 "is being removed" (tracked change from "has been removed") describes removal in progress — reading encoded: every CT Colonography request is redirected, i.e. direct access is treated as already closed — ruling: ________  by: ________
 Q2 The draft prints no timeframe row and no "Alternative management" heading — reading encoded: the Guidance block is presented as the alternative-management outcome, with the "single point of referral" sentence as the outcome wording and the HealthPathway sentence as the redirect (both verbatim) — ruling: ________  by: ________
-Q3 The section carries four unaccepted tracked changes — reading encoded: all accepted ("has been" → "is being"; "see" → "follow"; added "and follow local processes"; "CT C" → "CTC") — ruling: ________  by: ________
+Q3 The section carries four unaccepted tracked changes (the "CT C" → "CTC" edit occurs twice) — reading encoded: all accepted ("has been" → "is being"; "see" → "follow"; added "and follow local processes"; "CT C" → "CTC") — ruling: ________  by: ________
 Q4 Typography in the source: "local processes ." (space before the full stop) and a double space after "FIT test." — reading encoded: kept verbatim (the stray space comes from the tracked insertion ending in a space before the original full stop, i.e. an editing slip in the draft) — ruling: ________  by: ________
 Q5 The section is headed "Adult" but prints no age criterion — reading encoded: no age gate; every request is redirected whatever the age — ruling: ________  by: ________
 
