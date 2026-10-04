@@ -96,6 +96,26 @@ describe("publish validation", () => {
     const body: any = await res.json();
     expect(body.problems.some((p: string) => p.includes("not in this bundle") && p.includes("not.a.real.linkid"))).toBe(true);
   });
+
+  // AD-31 errata rule. errata[] is metadata (not in logicHash), so the real hash still matches
+  // and only the errata problem is reported.
+  const erratum = (over: Record<string, unknown>) => ({
+    conceptId: "X", sourceText: ["q"], correctedReading: "r", decisionRef: "KI-47, review pack D3", status: "flagged", clearedBy: null, ...over,
+  });
+  it.each([
+    ["7b. an entry with no decisionRef", { decisionRef: "" }, "decisionRef is required"],
+    ["7c. a cleared entry with clearedBy null", { status: "cleared", clearedBy: null }, "requires clearedBy"],
+    ["7d. a flagged entry carrying a clearedBy", { clearedBy: "NZ correction 2026-10" }, "must have clearedBy null"],
+  ])("%s is rejected (AD-31)", async (_name, over, expected) => {
+    const b = realBundle();
+    b.version = "1.0.0-errata-test";
+    b.errata = [erratum(over as Record<string, unknown>)];
+    const res = await publish(b);
+    expect(res.status).toBe(422);
+    const body = (await res.json()) as { problems: string[] };
+    expect(body.problems).toHaveLength(1);
+    expect(body.problems[0]).toContain(expected);
+  });
 });
 
 // 8-11: real publish, immutability, both AD-02 guard directions

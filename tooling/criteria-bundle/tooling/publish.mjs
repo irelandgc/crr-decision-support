@@ -45,6 +45,22 @@ const MANIFESTS = {
       date: "2026-04-09",
       pages: "acute-assessment rows across all exam/sites; Overview p3; X-ray Spine - Adult p73",
     },
+    // AD-31 source errata: metadata only (not in logicHash). KI-47: the printed unit
+    // label is the defect, not the CQL constant; stays "flagged" until a published
+    // correction to the national document exists to cite in `clearedBy`.
+    errata: [
+      {
+        conceptId: "Renal Colic Creatinine Or eGFR Threshold",
+        sourceText: [
+          "CT KUB - Adult p25/p26 footnote: \"Creatinine greater than 160 mmol/L or eGFR less than 45 ml/min\"",
+          "US Renal - Adult p55: \"Creatinine > 160 micromol/L\"",
+        ],
+        correctedReading: "160 µmol/L (unit label only — the numeric value and the CQL comparison are unchanged; CT KUB's printed \"mmol/L\" is the defect, not the CQL)",
+        decisionRef: "KI-47, review pack D3",
+        status: "flagged",
+        clearedBy: null,
+      },
+    ],
   },
   "ct-chest-abdomen-pelvis-adult": {
     cql: "cql/CRR_CTChestAbdomenPelvis_Adult.cql",
@@ -206,6 +222,7 @@ const bundle = {
   ...(isNational ? { kind: "national" } : {}),
   vocabularyVersion: vocabulary.version,
   source: manifest.source,
+  ...(manifest.errata ? { errata: manifest.errata } : {}),
   logicHash: `sha256:${logicHash}`,
   publishedAt: new Date().toISOString(),
   library: isNational

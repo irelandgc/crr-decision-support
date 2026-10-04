@@ -1486,6 +1486,19 @@ app.post('/api/admin/bundles/publish', requireAccess, async (c) => {
     const hasPageRef = bundle.source.type === 'pdf' ? !!bundle.source.pages : !!(bundle.source.pages || bundle.source.draftRef);
     if (!hasPageRef) problems.push('source carries neither a page nor a draft reference');
   }
+  // AD-31 source errata (same rule as `check --bundle`): a flagged entry cannot
+  // carry a citation; a cleared entry must.
+  if ('errata' in bundle) {
+    if (!Array.isArray(bundle.errata)) problems.push('errata must be an array');
+    else bundle.errata.forEach((e: Record<string, unknown> | null, n: number) => {
+      const label = `errata[${n}]${e?.conceptId ? ` (${e.conceptId})` : ''}`;
+      const filled = (v: unknown) => typeof v === 'string' && v.trim() !== '';
+      if (!filled(e?.decisionRef)) problems.push(`${label}: decisionRef is required`);
+      if (e?.status !== 'flagged' && e?.status !== 'cleared') problems.push(`${label}: status "${e?.status}" is not "flagged" or "cleared"`);
+      else if (e.status === 'cleared' && !filled(e.clearedBy)) problems.push(`${label}: a cleared entry requires clearedBy (a published-correction citation)`);
+      else if (e.status === 'flagged' && e.clearedBy !== null) problems.push(`${label}: a flagged entry must have clearedBy null`);
+    });
+  }
   if (bundle.library?.site) {
     const recomputed = await computeLogicHash(bundle.library.site, bundle.library.population);
     if (recomputed !== bundle.logicHash) problems.push(`logicHash mismatch: bundle says ${bundle.logicHash}, recomputed is ${recomputed}`);

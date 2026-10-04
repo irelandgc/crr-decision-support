@@ -19,12 +19,12 @@ days after their date. [U] = inferred, not found.
 - 2026-09-27 PR #23 merged (Viewer typed inputs, AD-27 option a) — merge commit 96a6562 — AD-27; CL-44–45
 - 2026-09-27 AD-27 Accepted (Gary, on merge of PR #23) — AD-27
 - 2026-09-29 SR-11 (terminology placeholders) raised in the register, Open — SECURITY_DECISIONS.md SR-11
+- 2026-10-04 AD-31 errata[]: publish.mjs carries it, `check --bundle` and the publish route enforce the rule, KI-47 entry in the national-redflags manifest; Advisory note dropped by decision — AD-31; AD-32; CL-47; instructions.complete/arch-mig-01-errata-brief.md
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
-- @claude Build AD-31 source errata handling (`errata[]` schema, `check` rule, KI-47's entry, Advisory note) — before CT AP transcription; gate cleared, AD-31 Accepted 2026-09-27 — instructions/arch-mig-01-errata-brief.md; AD-31
 - @claude Transcribe CT AP (W1, approved draft 27/08/26) first — documents/arch-mig-plan.md §Slice 7; KI-52
 - @claude Transcribe remaining W1 sites (CTC, CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) — documents/arch-mig-plan.md §Slice 7
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8

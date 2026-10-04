@@ -1,3 +1,7 @@
+> **[COMPLETE — 2026-10-04]** AD-31 errata handling built on `claude/status-check-hcapoe`: `errata[]` carried by `publish.mjs`, `check --bundle` + publish-route rule, KI-47 entry. Brief §4 (Advisory note) deliberately not built — superseded by AD-32 (Gary, 2026-10-04).
+> Verification: verified: commit 6815149 — tooling `npm run build && npm test && npm run check` green (errata check 8/8); api-worker `bundle-registry` 21/21 and `tsc` clean. Full suite: CI run 37172371390 on head 5c69b87 (Vitest Workers runtime and tooling build/test/check both green); commits after 6815149 are docs-only.
+> Filed by: Claude Code
+
 # Claude Code Brief: Source errata handling (AD-31), and the KI-47 creatinine/eGFR erratum
 
 **Model:** Claude Sonnet · **Branch:** from main, before CT AP transcription in slice 7 (this brief's completion is a precondition of that transcription, not a parallel task).
