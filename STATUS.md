@@ -25,7 +25,6 @@ days after their date. [U] = inferred, not found.
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
-- @claude Transcribe CT AP (W1, approved draft 27/08/26) first — documents/arch-mig-plan.md §Slice 7; KI-52
 - @claude Transcribe remaining W1 sites (CTC, CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) — documents/arch-mig-plan.md §Slice 7
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
@@ -37,6 +36,7 @@ days after their date. [U] = inferred, not found.
 - @claude Unify `prefillDemographicsFromMerge` with `flattenQrValues` (next brief) — documents/arch-mig-known-issues.md KI-63
 
 ## Needs Gary
+- @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
 - @gary Clinical review pack (D1–D6) cited in ARCHITECTURE_DECISIONS.md but not in repo — decide: pointer to M365 location, or copy in — AD-03/04/05/06/07/10/11/17/23/26
 - @gary Load NZHTS credentials into env/secrets — documents/arch-mig-plan.md E6; CL-19
@@ -61,6 +61,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 
 ## Blocked
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
+- @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
 - @blocked Clinical rulings AD-03/AD-04 (review pack D4/D5), AD-16 equivalence list, AD-23 wordings — ARCHITECTURE_DECISIONS.md
 - @blocked Vocabulary v1 clinical review — documents/arch-mig-plan.md §Slice 1
 - @blocked W1 clinical sign-off per site (signoff.md) — documents/arch-mig-plan.md §Slice 7 step 4
