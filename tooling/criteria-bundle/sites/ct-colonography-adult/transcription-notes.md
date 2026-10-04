@@ -50,4 +50,4 @@ None. The results matrix (`documents/CRR_Test_Case_Results_Matrix_v2.xlsx`, all 
 
 ## 6. Build gates
 
-`npm run build / test / check` do not cover `sites/` yet: CT Colonography is the first site under the `sites/<examSite>/` convention and the brief's guardrail allows edits only inside this folder. Verification for this transcription was run ad hoc (compile, the three scenarios through the engine path, the shared Advisory and criteria renderers); wiring `sites/` into the gates is a separate change.
+At transcription the gates did not cover `sites/` (this was the first site under the convention, and the brief limited edits to this folder), so the transcription was verified ad hoc. Since 2026-10-04 they do: `npm run build` compiles `CRR_CTColonography_Adult`, `npm test` runs the scenarios (`run-tests-sites.mjs`) and `npm run check` applies rule 14 to this site.

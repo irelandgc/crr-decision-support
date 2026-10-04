@@ -4,8 +4,8 @@
   "type": "module",
   "description": "Translate CRR criteria CQL to ELM (@cqframework/cql, pure JS) and run scenario tests (cql-execution).",
   "scripts": {
-    "build": "node translate.mjs libraries/FHIRHelpers-4.0.1.cql ../elm/FHIRHelpers-4.0.1.json && node translate.mjs ../cql/CRR_CTChestAbdomenPelvis_Adult.cql ../elm/CRR_CTChestAbdomenPelvis_Adult.json && node translate.mjs ../cql/CRR_CTCAP_Population.cql ../elm/CRR_CTCAP_Population.json && node translate.mjs ../cql/CRR_RedFlags.cql ../elm/CRR_RedFlags.json",
-    "test": "node run-tests.mjs && node run-tests-redflags.mjs && node test-cross-bundle-include.mjs && node test-errata-check.mjs && node run-ground-truth.mjs",
+    "build": "node translate.mjs libraries/FHIRHelpers-4.0.1.cql ../elm/FHIRHelpers-4.0.1.json && node translate.mjs ../cql/CRR_CTChestAbdomenPelvis_Adult.cql ../elm/CRR_CTChestAbdomenPelvis_Adult.json && node translate.mjs ../cql/CRR_CTCAP_Population.cql ../elm/CRR_CTCAP_Population.json && node translate.mjs ../cql/CRR_RedFlags.cql ../elm/CRR_RedFlags.json && node translate.mjs ../sites/ct-colonography-adult/CRR_CTColonography_Adult.cql ../elm/CRR_CTColonography_Adult.json",
+    "test": "node run-tests.mjs && node run-tests-redflags.mjs && node run-tests-sites.mjs && node test-cross-bundle-include.mjs && node test-errata-check.mjs && node run-ground-truth.mjs",
     "check": "node check-consistency.mjs",
     "publish": "node publish.mjs"
   },
