@@ -20,7 +20,8 @@ days after their date. [U] = inferred, not found.
 - 2026-09-27 AD-27 Accepted (Gary, on merge of PR #23) — AD-27
 - 2026-09-29 SR-11 (terminology placeholders) raised in the register, Open — SECURITY_DECISIONS.md SR-11
 - 2026-10-04 AD-31 errata[]: publish.mjs carries it, `check --bundle` and the publish route enforce the rule, KI-47 entry in the national-redflags manifest; Advisory note dropped by decision — AD-31; AD-32; CL-47; instructions.complete/arch-mig-01-errata-brief.md
-- 2026-10-04 CT Colonography transcribed into sites/ (unconditional alternative management; not yet reviewed, published or live) — AD-33; CL-48; sites/ct-colonography-adult/
+- 2026-10-04 CT Colonography transcribed into sites/ (unconditional alternative management; not yet published or live) — AD-33; CL-48; sites/ct-colonography-adult/
+- 2026-10-04 CT Colonography SOURCE quotes reviewed against the 27/08/26 draft by a second session: all verbatim — PR #26 review comment; documents/arch-mig-plan.md §Slice 7 step 3
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
