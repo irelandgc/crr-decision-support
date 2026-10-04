@@ -351,6 +351,55 @@ for (const jsonFile of promptFiles) {
   console.log(`Extraction prompt v${prompt.version}: ${body.length} chars in ${prompt.parts.length} parts; md matches json${prompt.outputTool ? `; outputTool ${prompt.outputTool.name}` : ""}; equivalence list ${prompt.equivalenceListVersion}`);
 }
 
+// 14. (slice 7) Transcribed sites under sites/<examSite>/: the protocol's files exist, the
+// compiled library is built, and rules 5, 7, 7b and 8 hold for each site. Scenario answers may
+// use any vocabulary linkId: one QuestionnaireResponse carries every selected site's answers.
+const sitesDir = path.join(root, "sites");
+// Rule 7 stays page-only (the national PlanDefinition is PDF-sourced, KI-20). A site's source
+// type is not declared in sites/<examSite>/, so here a draft reference also counts (AD-33).
+const hasPageOrDraftRef = (a) => (a.documentation || []).some(d => (d.extension || []).some(e => e.url.endsWith("source-page") || e.url.endsWith("draft-reference")));
+for (const site of fs.existsSync(sitesDir) ? fs.readdirSync(sitesDir, { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name) : []) {
+  const dir = path.join(sitesDir, site);
+  const files = fs.readdirSync(dir);
+  const libFiles = files.filter(f => f.endsWith(".cql") && f !== "population.cql");
+  const missing = [`PlanDefinition-${site}.json`, `Questionnaire-${site}.json`, "scenarios.mjs", "signoff.md"].filter(f => !files.includes(f));
+  if (libFiles.length !== 1) problems.push(`sites/${site}: expected exactly one library .cql (besides population.cql), found ${libFiles.length}`);
+  for (const f of missing) problems.push(`sites/${site}: missing ${f}`);
+  if (libFiles.length !== 1 || missing.length) continue;
+  const siteCql = fs.readFileSync(path.join(dir, libFiles[0]), "utf8");
+  const libName = siteCql.match(/^library\s+(\w+)/m)?.[1];
+  const siteElmPath = path.join(root, "elm", `${libName}.json`);
+  if (!libName || !fs.existsSync(siteElmPath)) { problems.push(`sites/${site}: compiled library elm/${libName}.json not found (add the site to npm run build)`); continue; }
+  const siteDefines = new Set(JSON.parse(fs.readFileSync(siteElmPath, "utf8")).library.statements.def.map(d => d.name));
+  const sitePd = JSON.parse(fs.readFileSync(path.join(dir, `PlanDefinition-${site}.json`), "utf8"));
+  const siteQ = JSON.parse(fs.readFileSync(path.join(dir, `Questionnaire-${site}.json`), "utf8"));
+  const siteLinkIds = new Set();
+  (function walkQ(items) { for (const i of items || []) {
+    siteLinkIds.add(i.linkId);
+    const siteLocal = (i.extension || []).some(e => e.url === SITE_LOCAL_EXT && e.valueBoolean === true);
+    if (i.type !== "group" && !siteLocal && !vocabByLinkId.has(i.linkId)) problems.push(`sites/${site}: Questionnaire item "${i.linkId}" is neither in the national vocabulary nor declared site-local`);
+    walkQ(i.item);
+  } })(siteQ.item);
+  (function walkPd(actions, inIndication) { for (const a of actions || []) {
+    for (const c of a.condition || []) {
+      const e = c.expression;
+      if (e?.language === "text/cql-identifier" && !siteDefines.has(e.expression)) problems.push(`sites/${site}: PlanDefinition action ${a.id}: expression "${e.expression}" not defined in ${libName}`);
+    }
+    for (const inp of a.input || []) for (const p of inp.profile || []) {
+      const id = p.split("#")[1];
+      if (id && !siteLinkIds.has(id)) problems.push(`sites/${site}: PlanDefinition action ${a.id}: linkId "${id}" not in the site Questionnaire`);
+    }
+    if (a.condition && !hasPageOrDraftRef(a)) problems.push(`sites/${site}: PlanDefinition action ${a.id}: has a condition but no source-page or draft-reference documentation`);
+    const here = inIndication || isIndicationBlock(a);
+    if (here && !isIndicationBlock(a) && a.condition && !hasTheme(a)) problems.push(`sites/${site}: PlanDefinition action ${a.id}: logic-carrying action inside an indication block has no valid indication-theme extension`);
+    walkPd(a.action, here);
+  } })(sitePd.action, false);
+  for (const [, id] of siteCql.matchAll(/'([a-z]+\.[A-Za-z0-9.]+)'/g)) if (!siteLinkIds.has(id)) problems.push(`sites/${site}: ${libFiles[0]} references linkId "${id}" not in the site Questionnaire`);
+  const { scenarios: siteScenarios } = await import(path.join(dir, "scenarios.mjs"));
+  for (const s of siteScenarios) for (const id of Object.keys(s.answers)) if (!siteLinkIds.has(id) && !vocabByLinkId.has(id)) problems.push(`sites/${site}: scenario ${s.id}: linkId "${id}" is neither in the site Questionnaire nor the vocabulary`);
+  console.log(`Site ${site}: ${libName} (${siteDefines.size} defines), ${siteLinkIds.size} Questionnaire items, ${siteScenarios.length} scenarios`);
+}
+
 const unusedLinkIds = [...linkIds].filter(id => id.includes(".") && !usedInCql.has(id));
 console.log(`Library defines: ${defines.size}; population defines: ${popDefines.size}; Questionnaire linkIds: ${linkIds.size}; used in criteria CQL: ${usedInCql.size}; populatable: ${initialExprs.length}`);
 if (unusedLinkIds.length) console.log(`Info - Questionnaire items not used by logic (documentation only): ${unusedLinkIds.join(", ")}`);
