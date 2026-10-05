@@ -1,0 +1,13 @@
+{
+  "examSite": "ct-colonography-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-05T23:05:12.012Z",
+      "logicHash": "sha256:b56c9abb3827b461f72bcc5d5a795f1da72cb21f2a5b8b8fc366a40e4e9a2ccf",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

@@ -4,7 +4,6 @@ State only — rules in CLAUDE.md "Where state lives". Done items drop off 30
 days after their date. [U] = inferred, not found.
 
 ## Done
-- 2026-09-05 Slices 0–2 merged (PRs #1–#6) — documents/arch-mig-plan.md §2
 - 2026-09-06 Slices 3, 4a, 4b merged (PRs #7–#14); benchmark run 1 recorded — documents/arch-mig-plan.md §2
 - 2026-09-06 Slice 5 pipeline + thin Triage page merged (PR #15), flag off, not deployed — documents/arch-mig-plan.md §Slice 5; CRR_Release_Log.md (DRAFT 2026-09-07)
 - 2026-09-06 SR-14 dev→prod admin proxy closed (PR #18) — SECURITY_DECISIONS.md SR-14
@@ -26,12 +25,12 @@ days after their date. [U] = inferred, not found.
 - 2026-10-04 AD-32 Accepted (Gary; PR #25 merged) — AD-32
 - 2026-10-04 AD-33 Accepted (Gary; PR #26 merged) — AD-33
 - 2026-10-05 AD-32 corrected in place: the KI-47 error is not yet raised with the document owner (Gary) — AD-32; KI-47
+- 2026-10-05 CT Colonography published to the local registry as `transcribed` (v1.0.0, approved-draft source; not in remote KV, not live) — tooling/criteria-bundle/registry/ct-colonography-adult/; AD-33
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
-- @claude Publish CT Colonography to the local registry as `transcribed` (add its publish.mjs manifest entry; source type approved-draft) — documents/arch-mig-plan.md §Slice 7 step 3; sites/ct-colonography-adult/
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Transcribe remaining W1 sites (CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) — documents/arch-mig-plan.md §Slice 7
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
