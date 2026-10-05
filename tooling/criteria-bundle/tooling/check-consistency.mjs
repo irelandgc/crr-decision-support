@@ -357,6 +357,9 @@ for (const jsonFile of promptFiles) {
 // compiled library is built, and rules 5, 7, 7b and 8 hold for each site. Scenario answers may
 // use any vocabulary linkId: one QuestionnaireResponse carries every selected site's answers.
 const sitesDir = path.join(root, "sites");
+// Rule 7 stays page-only (the national PlanDefinition is PDF-sourced, KI-20). A site's source
+// type is not declared in sites/<examSite>/, so here a draft reference also counts (AD-33).
+const hasPageOrDraftRef = (a) => (a.documentation || []).some(d => (d.extension || []).some(e => e.url.endsWith("source-page") || e.url.endsWith("draft-reference")));
 for (const site of fs.existsSync(sitesDir) ? fs.readdirSync(sitesDir, { withFileTypes: true }).filter(d => d.isDirectory()).map(d => d.name) : []) {
   const dir = path.join(sitesDir, site);
   const files = fs.readdirSync(dir);
