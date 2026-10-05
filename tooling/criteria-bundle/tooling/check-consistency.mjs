@@ -141,11 +141,9 @@ for (const f of fs.readdirSync(path.join(root, "fhir")).filter(f => f.startsWith
     walkOv(a.action);
   } })(ov.action);
 }
-// 7. Page references: every national action that carries logic also carries a source page,
-// or for an approved-draft bundle a draft reference (plan §2 "page or draft reference"; AD-33).
-const hasPageOrDraftRef = (a) => (a.documentation || []).some(d => (d.extension || []).some(e => e.url.endsWith("source-page") || e.url.endsWith("draft-reference")));
+// 7. Page references: every national action that carries logic also carries a source page.
 (function pages(actions) { for (const a of actions || []) {
-  if (a.condition && !hasPageOrDraftRef(a)) problems.push(`PlanDefinition action ${a.id}: has a condition but no source-page or draft-reference documentation`);
+  if (a.condition && !(a.documentation || []).some(d => (d.extension || []).some(e => e.url.endsWith("source-page")))) problems.push(`PlanDefinition action ${a.id}: has a condition but no source-page documentation`);
   pages(a.action);
 } })(pd.action);
 
