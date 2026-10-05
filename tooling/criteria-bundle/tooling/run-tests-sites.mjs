@@ -22,6 +22,7 @@ for (const site of fs.existsSync(sitesDir) ? fs.readdirSync(sitesDir, { withFile
   const elm = JSON.parse(fs.readFileSync(path.join(root, "elm", `${libName}.json`), "utf8"));
   const lib = new cql.Library(elm, new cql.Repository({ FHIRHelpers: helpers }));
   const { scenarios, toQuestionnaireResponse } = await import(path.join(dir, "scenarios.mjs"));
+  const rows = [];
   for (const s of scenarios) {
     if (s.record) throw new Error(`${site} ${s.id}: record-backed scenarios are not supported by run-tests-sites.mjs yet`);
     const ps = cqlfhir.PatientSource.FHIRv401();
@@ -37,7 +38,10 @@ for (const site of fs.existsSync(sitesDir) ? fs.readdirSync(sitesDir, { withFile
     total++;
     if (f.length) failed++;
     console.log(`${f.length ? "FAIL" : "PASS"}  ${site.padEnd(28)} ${s.id.padEnd(30)} -> ${adv.determination}${f.length ? "  " + f.join("; ") : ""}`);
+    rows.push(`| ${s.id} | ${s.runWith?.["Documentation Standard"] ?? "strict"} | ${adv.determination}${adv.priorityCode ? ` (${adv.priorityCode})` : ""} | ${(adv.missingInformation || []).join(", ") || "-"} | ${f.length ? "FAIL" : "PASS"} |`);
   }
+  // Generated per site; publish.mjs summarises it into the bundle's testResults.
+  fs.writeFileSync(path.join(dir, "results.md"), `# Scenario results - ${libName}\n\n| Scenario | Standard | Determination | Missing information | Result |\n|---|---|---|---|---|\n${rows.join("\n")}\n`);
 }
 console.log(`\nSites: ${total - failed}/${total} scenario runs passed`);
 process.exit(failed ? 1 : 0);

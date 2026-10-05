@@ -83,6 +83,22 @@ const MANIFESTS = {
       pages: "10-11",
     },
   },
+  // First site under sites/<examSite>/ (slice 7). An approved draft, not the PDF:
+  // no page references; the draft reference stands in (plan §2; AD-33).
+  "ct-colonography-adult": {
+    cql: "sites/ct-colonography-adult/CRR_CTColonography_Adult.cql",
+    elm: "elm/CRR_CTColonography_Adult.json",
+    planDefinition: "sites/ct-colonography-adult/PlanDefinition-ct-colonography-adult.json",
+    questionnaire: "sites/ct-colonography-adult/Questionnaire-ct-colonography-adult.json",
+    results: "sites/ct-colonography-adult/results.md",
+    source: {
+      type: "approved-draft",
+      title: "CT Colonography and CT AP community referred criteria - final draft",
+      identifier: "Updated 27/08/2026",
+      date: "2026-08-27",
+      draftRef: "documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx#CT Colonography - Adult",
+    },
+  },
 };
 
 // The KV/admin-route target (`bundle:<examSite>:<version>` in the API worker's KV,
@@ -169,16 +185,18 @@ const logicHash = crypto.createHash("sha256")
 // that must already be green, per the plan's own gate ordering).
 function summariseResults(rel) {
   if (!fs.existsSync(path.join(root, rel))) return { file: rel, summary: "not found - run npm test first" };
-  const rows = readText(rel).split("\n").filter((l) => /^\|\s*(?:S\d|RF-S\d|RM-)/.test(l));
+  const rows = readText(rel).split("\n").filter((l) => /^\|\s*(?:S\d|RM-|[A-Z]+-S\d)/.test(l));
   const pass = rows.filter((l) => / PASS \|$/.test(l)).length;
   return { file: rel, summary: rows.length ? `${pass}/${rows.length} passed` : "see file" };
 }
 const testResults = isNational
   ? { redFlags: summariseResults("tests/results-redflags.md") }
-  : {
-      ctCap: summariseResults("tests/results.md"),
-      redFlags: summariseResults("tests/results-redflags.md"),
-    };
+  : manifest.results
+    ? { site: summariseResults(manifest.results), redFlags: summariseResults("tests/results-redflags.md") }
+    : {
+        ctCap: summariseResults("tests/results.md"),
+        redFlags: summariseResults("tests/results-redflags.md"),
+      };
 
 // Bundle version is a publish-history concept, independent of the FHIR resource's own
 // `version` field (PlanDefinition.version tracks the *template's* iteration, not how
@@ -256,4 +274,4 @@ fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
 console.log(`Published ${examSite} v${bundle.version} (state: ${bundle.state}) -> ${path.relative(root, bundlePath)}`);
 console.log(`  vocabularyVersion ${bundle.vocabularyVersion} · logicHash ${bundle.logicHash.slice(0, 15)}... · source ${bundle.source.type} ${bundle.source.pages ? "p" + bundle.source.pages : bundle.source.draftRef ?? ""}`);
 console.log(`  dependencies: ${bundle.dependencies.length ? bundle.dependencies.map((d) => d.name).join(", ") : "none"}`);
-console.log(`  test results: ${bundle.testResults.ctCap ? `CT CAP ${bundle.testResults.ctCap.summary}; ` : ""}red-flags ${bundle.testResults.redFlags.summary}`);
+console.log(`  test results: ${bundle.testResults.ctCap ? `CT CAP ${bundle.testResults.ctCap.summary}; ` : ""}${bundle.testResults.site ? `site ${bundle.testResults.site.summary}; ` : ""}red-flags ${bundle.testResults.redFlags.summary}`);
