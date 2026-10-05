@@ -25,6 +25,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-04 `sites/` wired into `npm run build` / `npm test` (run-tests-sites.mjs) / `npm run check` (rule 14, which accepts `draft-reference`; rule 7 unchanged, page-only) — documents/arch-mig-plan.md §Slice 7; AD-33
 - 2026-10-04 AD-32 Accepted (Gary; PR #25 merged) — AD-32
 - 2026-10-04 AD-33 Accepted (Gary; PR #26 merged) — AD-33
+- 2026-10-05 AD-32 corrected in place: the KI-47 error is not yet raised with the document owner (Gary) — AD-32; KI-47
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
