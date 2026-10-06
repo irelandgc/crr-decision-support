@@ -47,7 +47,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary Check whether `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` and the Workers Builds preview hostnames are behind Access, then pick SR-15's fix — SECURITY_DECISIONS.md SR-15
+- @gary SR-15: previews are off, but `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` is still not behind Access. Either get Access to cover that path, or approve the proxy code fix (verified Access token) and send the Access app's AUD tag — SECURITY_DECISIONS.md SR-15
 - @gary Decide AD-34 (staging); if accepted, create the staging D1 database and KV namespace, set staging secrets, add the staging Access app — AD-34
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
