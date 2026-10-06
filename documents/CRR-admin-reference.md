@@ -70,13 +70,16 @@ The admin tool never sends an admin key from the browser. The proxy injects it s
 | Auth method | Email OTP |
 | Policy | CRR Admin Users (4 email addresses, 0 exclusions) |
 
-**Public hostnames covered by the Access app (all three are required):**
+**Public hostnames covered by the Access app (all four are required):**
 
 | Hostname | Path |
 |----------|------|
 | `vite-react-template.fk4dsrmq5r.workers.dev` | `/crr-criteria/admin` |
 | `iteratio.nz` | `/crr-criteria/admin` |
 | `iteratio.nz` | `/crr-api/*` |
+| `vite-react-template.fk4dsrmq5r.workers.dev` | `/crr-api/*` |
+
+The fourth row was added on 2026-10-06 (SR-15). Its Subdomain box must read `vite-react-template`; left empty, it protects the bare `fk4dsrmq5r.workers.dev`, not the app. Workers Builds Preview URLs are turned off on `vite-react-template` (SR-15). They carry the production worker's bindings and secrets and are not covered by Access.
 
 The third row (`/crr-api/*`) is critical — it ensures CF Access injects the email header on the proxy requests that the admin tool makes. Without it, every API call gets redirected to the Access login page with a CORS error. Use the broader `/crr-api/*` wildcard, not `/crr-api/api/*` — CF Access wildcard matching does not reliably cover nested paths with the narrower pattern.
 

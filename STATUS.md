@@ -28,6 +28,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-05 CT Colonography published to the local registry as `transcribed` (v1.0.0, approved-draft source; not in remote KV, not live) — tooling/criteria-bundle/registry/ct-colonography-adult/; AD-33
 - 2026-10-05 Local demo run (two-worker dev, bundles published locally, synthetic cases): engine and Viewer work end to end; KI-65 and KI-66 logged — documents/arch-mig-known-issues.md KI-65, KI-66
 - 2026-10-05 AD-34 (staging environment) proposed; SR-15 (admin proxy trusts `x-admin-email` on hosts Access does not front) raised, Open — AD-34; SECURITY_DECISIONS.md SR-15
+- 2026-10-06 SR-15 mitigated by configuration: Preview URLs off; Access now covers `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` (checked by Gary) — SECURITY_DECISIONS.md SR-15; documents/CRR-admin-reference.md
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -47,7 +48,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary SR-15: previews are off, but `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` is still not behind Access. Either get Access to cover that path, or approve the proxy code fix (verified Access token) and send the Access app's AUD tag — SECURITY_DECISIONS.md SR-15
+- @gary SR-15 residual: decide whether to harden the admin proxy to accept only a verified Access token (if yes, send the Access app's AUD tag) — SECURITY_DECISIONS.md SR-15
 - @gary Decide AD-34 (staging); if accepted, create the staging D1 database and KV namespace, set staging secrets, add the staging Access app — AD-34
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
