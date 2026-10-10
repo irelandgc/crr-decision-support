@@ -30,9 +30,10 @@ days after their date. [U] = inferred, not found.
 - 2026-10-05 AD-34 (staging environment) proposed; SR-15 (admin proxy trusts `x-admin-email` on hosts Access does not front) raised, Open — AD-34; SECURITY_DECISIONS.md SR-15
 - 2026-10-06 SR-15 mitigated by configuration: Preview URLs off; Access now covers `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` (checked by Gary) — SECURITY_DECISIONS.md SR-15; documents/CRR-admin-reference.md
 - 2026-10-06 AD-34 (staging environment) Accepted (Gary) — AD-34
-- 2026-10-10 Admin Tool blank page fixed and deployed; `preview_urls: false` keeps Preview URLs off across deploys (PR #34, `3c4a441`) — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15; CRR_Release_Log.md 2026-10-10
+- 2026-10-10 Admin Tool blank page fixed and deployed; `preview_urls: false` deployed (PR #34, `3c4a441`) — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15; CRR_Release_Log.md 2026-10-10
 
 ## Queued
+- @claude Confirm the next PR build lists no preview URL, then record it on SR-15 — SECURITY_DECISIONS.md SR-15
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
@@ -50,6 +51,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
+- @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary SR-15 residual: decide whether to harden the admin proxy to accept only a verified Access token (if yes, send the Access app's AUD tag) — SECURITY_DECISIONS.md SR-15
 - @gary Create the staging D1 database and KV namespace (both named `crr-criteria-staging`) and send their ids; staging secrets and the staging Access app come after the first staging deploy — AD-34
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
