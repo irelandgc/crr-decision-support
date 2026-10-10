@@ -4,6 +4,18 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-10 — Admin proxy verifies the Cloudflare Access token (SD-14, SR-15 closed)
+
+**Status:** Deployed. PR #35 was merged to `main` (merge commit `f5eea53`) and Workers Builds deployed `vite-react-template`. Gary confirmed on 2026-10-10 that the Admin Tool loads and the Versions tab (an admin route) works through the new check.
+
+**Workers:** `vite-react-template` only. `crr-criteria-api` is unchanged.
+
+- **Admin Tool (admin users):** no visible change for anyone signed in through Access. Admin requests are now accepted only with a verified Access token; identity headers alone are refused (SD-14, CL-50).
+- **Operators:** local two-worker dev needs `ACCESS_DEV_BYPASS=true` in `.dev.vars` for local admin paths. `ACCESS_AUD` must be updated if the Access application is recreated.
+- The Bundles tab still fails in production (KI-68). It predates this release: the production API worker most likely has no `/api/bundles` route yet. That is inferred, not probed (see the KI).
+
+---
+
 ## 2026-10-10 — Admin Tool restored (KI-67); Preview URLs kept off (SR-15)
 
 **Status:** Deployed. PR #34 was merged to `main` (merge commit `3c4a441`) and Workers Builds deployed `vite-react-template`. Gary confirmed on 2026-10-10 that `iteratio.nz/crr-criteria/admin` loads.
