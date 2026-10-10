@@ -9,7 +9,8 @@
 //  toggles a CSS class on the button when there is unread content.
 // ═══════════════════════════════════════════════════════════════
 (function (global) {
-  var API_BASE = 'https://crr-criteria-api.fk4dsrmq5r.workers.dev';
+  // AD-34 / KI-39: non-production hosts (local dev, staging) reach their own API worker same-origin via /crr-api; every other host keeps the production API.
+  var API_BASE = /^(localhost|127\.0\.0\.1|vite-react-template-staging\.fk4dsrmq5r\.workers\.dev)$/.test(location.hostname) ? '/crr-api' : 'https://crr-criteria-api.fk4dsrmq5r.workers.dev';
   var RELEASES_URL = '/crr-criteria/releases/';
 
   function storageKey(app) { return 'crr-lastSeenReleaseId-' + app; }
