@@ -11,7 +11,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 **Workers:** `vite-react-template` only. `crr-criteria-api` is unchanged.
 
 - **Admin Tool (admin users):** the page had been rendering blank because one JSX attribute in `admin/index.html` failed to compile (KI-67). It now loads with every tab. No behaviour change beyond the restore.
-- **Preview URLs (operators):** `"preview_urls": false` in `wrangler.json`, so a production deploy no longer re-enables Workers Builds Preview URLs. They carried production secrets without Access (SR-15). PR builds should stop getting preview links; this is not yet observed and will be confirmed on the next PR build.
+- **Preview URLs (operators):** `"preview_urls": false` in `wrangler.json`, so a production deploy no longer re-enables Workers Builds Preview URLs. They carried production secrets without Access (SR-15). PR builds no longer get preview links: observed on the PR #35 build of `7b6d7d5`.
 - No change for referrers or triagers.
 
 ---
