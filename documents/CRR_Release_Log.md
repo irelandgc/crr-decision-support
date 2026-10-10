@@ -4,6 +4,18 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-10 — Admin Tool restored (KI-67); Preview URLs kept off (SR-15)
+
+**Status:** Deployed. PR #34 was merged to `main` (merge commit `3c4a441`) and Workers Builds deployed `vite-react-template`. Gary confirmed on 2026-10-10 that `iteratio.nz/crr-criteria/admin` loads.
+
+**Workers:** `vite-react-template` only. `crr-criteria-api` is unchanged.
+
+- **Admin Tool (admin users):** the page had been rendering blank because one JSX attribute in `admin/index.html` failed to compile (KI-67). It now loads with every tab. No behaviour change beyond the restore.
+- **Preview URLs (operators):** `"preview_urls": false` in `wrangler.json`, so a production deploy no longer re-enables Workers Builds Preview URLs. They carried production secrets without Access (SR-15). PR builds no longer get preview links: observed on the PR #35 build of `7b6d7d5`.
+- No change for referrers or triagers.
+
+---
+
 ## [DRAFT — not deployed] 2026-09-07 — ARCH-MIG-01 slice 5: assessment pipeline + thin Triage page (flag off)
 
 **Status:** DRAFT. Merged to `main` behind `ASSESS_PIPELINE_ENABLED` (off in both

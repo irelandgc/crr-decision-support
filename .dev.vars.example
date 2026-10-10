@@ -33,3 +33,12 @@ ADMIN_PROXY_KEY=
 # ADMIN_KEY — mirror of the API worker's ADMIN_KEY; the proxy forwards it. In
 #   production: `npx wrangler secret put ADMIN_KEY`.
 ADMIN_KEY=
+
+# ── SR-15 · admin proxy identity ──────────────────────────────────────────────
+# In production the proxy accepts an admin request only with a Cloudflare Access
+# JWT it verifies against ACCESS_AUD / ACCESS_TEAM_DOMAIN (vars in wrangler.json).
+# localhost has no Access in front of it, so the local admin tool would get 401.
+# ACCESS_DEV_BYPASS=true lets it identify itself with `x-admin-email` instead —
+# honoured ONLY when the request host is localhost or 127.0.0.1. Never put it in
+# wrangler.json.
+ACCESS_DEV_BYPASS=true
