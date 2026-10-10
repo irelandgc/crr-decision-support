@@ -103,6 +103,16 @@ describe("SR-15 — admin proxy identity", () => {
     expect(seen).toHaveLength(0);
   });
 
+  it("refuses an unsigned token (alg none)", async () => {
+    const { seen, call } = harness();
+    const [, body] = (await jwt({})).split(".");
+    const res = await call("/crr-api/api/admin/versions", {
+      "cf-access-jwt-assertion": `${enc({ alg: "none", kid: KID, typ: "JWT" })}.${body}.`,
+    });
+    expect(res.status).toBe(401);
+    expect(seen).toHaveLength(0);
+  });
+
   it("refuses a token signed by a key that is not in the team's certs", async () => {
     const { seen, call } = harness();
     const other = (await crypto.subtle.generateKey(

@@ -48,15 +48,23 @@ const app = new Hono<{ Bindings: Bindings }>();
 // carries, so this is the only identity the admin proxy trusts.
 let certCache: { domain: string; at: number; keys: JsonWebKey[] } | null = null;
 
+// Keys are cached for an hour. An unknown `kid` forces a refresh at most once a
+// minute (so random kids cannot drive a fetch per request), and a failed fetch
+// falls back to the cached keys.
 async function accessKeys(domain: string, refresh: boolean): Promise<JsonWebKey[]> {
-  if (!refresh && certCache && certCache.domain === domain && Date.now() - certCache.at < 3_600_000) {
-    return certCache.keys;
+  const cached = certCache && certCache.domain === domain ? certCache : null;
+  const age = cached ? Date.now() - cached.at : Infinity;
+  if (cached && (refresh ? age < 60_000 : age < 3_600_000)) return cached.keys;
+  try {
+    const res = await fetch(`${domain}/cdn-cgi/access/certs`);
+    if (!res.ok) throw new Error(`Access certs fetch failed: ${res.status}`);
+    const { keys } = (await res.json()) as { keys: JsonWebKey[] };
+    certCache = { domain, at: Date.now(), keys };
+    return keys;
+  } catch (e) {
+    if (cached) return cached.keys;
+    throw e;
   }
-  const res = await fetch(`${domain}/cdn-cgi/access/certs`);
-  if (!res.ok) throw new Error(`Access certs fetch failed: ${res.status}`);
-  const { keys } = (await res.json()) as { keys: JsonWebKey[] };
-  certCache = { domain, at: Date.now(), keys };
-  return keys;
 }
 
 const b64urlBytes = (s: string) =>
@@ -64,7 +72,7 @@ const b64urlBytes = (s: string) =>
 const b64urlJson = (s: string) => JSON.parse(new TextDecoder().decode(b64urlBytes(s)));
 
 // Returns the verified email, or null for any invalid, expired or foreign token.
-export async function verifyAccessJwt(
+async function verifyAccessJwt(
   token: string | undefined,
   env: Pick<Bindings, "ACCESS_AUD" | "ACCESS_TEAM_DOMAIN">,
 ): Promise<string | null> {
@@ -74,7 +82,7 @@ export async function verifyAccessJwt(
     const [h, p, sig] = token.split(".");
     const header = b64urlJson(h);
     const payload = b64urlJson(p);
-    if (header.alg !== "RS256" || !sig) return null;
+    if (header.alg !== "RS256" || typeof header.kid !== "string" || !sig) return null;
     const byKid = (k: JsonWebKey & { kid?: string }) => k.kid === header.kid;
     let jwk = (await accessKeys(domain, false)).find(byKid);
     if (!jwk) jwk = (await accessKeys(domain, true)).find(byKid);
