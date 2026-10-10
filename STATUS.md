@@ -31,6 +31,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-06 SR-15 mitigated by configuration: Preview URLs off; Access now covers `vite-react-template.fk4dsrmq5r.workers.dev/crr-api/*` (checked by Gary) — SECURITY_DECISIONS.md SR-15; documents/CRR-admin-reference.md
 - 2026-10-06 AD-34 (staging environment) Accepted (Gary) — AD-34
 - 2026-10-10 Admin Tool blank page fixed and deployed; `preview_urls: false` deployed and Preview URLs observed off (PR #34, `3c4a441`) — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15; CRR_Release_Log.md 2026-10-10
+- 2026-10-10 SR-15 closed: admin proxy verifies the Access token, deployed and confirmed (PR #35, `f5eea53`) — SECURITY_DECISIONS.md SD-14, SR-15; CRR_Release_Log.md 2026-10-10
 
 ## Queued
 - @claude Build staging (`env.staging` in both wrangler configs with D1 `2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d` and KV `6eebb130a23c4046baf3e48cdc32058f`; pages pick `/crr-api` on non-production hosts) as its own PR after PR #35 merges — AD-34; KI-39; SR-15
@@ -52,7 +53,6 @@ days after their date. [U] = inferred, not found.
 
 ## Needs Gary
 - @gary Decide when to close SR-16 (admin reads on the public API origin accept a bare header; assess audit identity is client-supplied) — SECURITY_DECISIONS.md SR-16
-- @gary Merge PR #35 (records + SR-15 code fix, SD-14), then confirm iteratio.nz/crr-criteria/admin still loads and lists criteria (closes SR-15) — SECURITY_DECISIONS.md SD-14, SR-15
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
@@ -79,6 +79,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @gary Admin Tool structured editor with roles/approval workflow and Entra ID auth — documents/arch-mig-plan.md line 7; SD-13 as cited at documents/arch-mig-plan.md line 177 (register row missing — see Queued: raise SD-13 or correct citation)
 
 ## Blocked
+- @blocked Admin Tool Bundles tab 404s in production until the API worker is deployed (slice 10 cut-over) — documents/arch-mig-known-issues.md KI-68
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
 - @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
 - @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
