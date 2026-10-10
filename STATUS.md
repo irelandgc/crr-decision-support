@@ -34,7 +34,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-10 SR-15 closed: admin proxy verifies the Access token, deployed and confirmed (PR #35, `f5eea53`) — SECURITY_DECISIONS.md SD-14, SR-15; CRR_Release_Log.md 2026-10-10
 
 ## Queued
-- @claude Build staging (`env.staging` in both wrangler configs with D1 `2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d` and KV `6eebb130a23c4046baf3e48cdc32058f`; pages pick `/crr-api` on non-production hosts) as its own PR after PR #35 merges — AD-34; KI-39; SR-15
+- @claude Build staging (`env.staging` in both wrangler configs with D1 `2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d` and KV `6eebb130a23c4046baf3e48cdc32058f`; pages pick `/crr-api` on non-production hosts) as its own PR — AD-34; KI-39; SR-15
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)

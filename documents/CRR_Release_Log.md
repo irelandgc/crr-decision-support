@@ -12,7 +12,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 - **Admin Tool (admin users):** no visible change for anyone signed in through Access. Admin requests are now accepted only with a verified Access token; identity headers alone are refused (SD-14, CL-50).
 - **Operators:** local two-worker dev needs `ACCESS_DEV_BYPASS=true` in `.dev.vars` for local admin paths. `ACCESS_AUD` must be updated if the Access application is recreated.
-- The Bundles tab still fails in production (KI-68). It predates this release: the production API worker has no `/api/bundles` route yet.
+- The Bundles tab still fails in production (KI-68). It predates this release: the production API worker most likely has no `/api/bundles` route yet. That is inferred, not probed (see the KI).
 
 ---
 
