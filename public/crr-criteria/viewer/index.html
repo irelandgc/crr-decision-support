@@ -327,7 +327,8 @@ body { display:flex; flex-direction:column; height:100vh; overflow:hidden; }
 
 <script>
 var VER = "v1.0.0 DEV";
-var API_BASE = "https://crr-criteria-api.fk4dsrmq5r.workers.dev";
+// AD-34 / KI-39: non-production hosts (local dev, staging) reach their own API worker same-origin via /crr-api; every other host keeps the production API.
+var API_BASE = /^(localhost|127\.0\.0\.1|vite-react-template-staging\.fk4dsrmq5r\.workers\.dev)$/.test(location.hostname) ? '/crr-api' : 'https://crr-criteria-api.fk4dsrmq5r.workers.dev';
 
 // ── UX Feature flags ──────────────────────────────────────────────────────────
 var UX11_EXPANDABLE_SECTIONS = false;
@@ -359,7 +360,7 @@ function logViewerEvent(eventType, data) {
     user_name: (function(){ try { return sessionStorage.getItem('crr_viewer_user_name') || null; } catch(e) { return null; } })(),
     user_role: (function(){ try { return sessionStorage.getItem('crr_viewer_user_role') || null; } catch(e) { return null; } })()
   });
-  var url = 'https://crr-criteria-api.fk4dsrmq5r.workers.dev/api/viewer-event';
+  var url = API_BASE + '/api/viewer-event';
   try {
     fetch(url, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' }, keepalive: true }).catch(function(){});
   } catch(e) {}
@@ -2819,7 +2820,7 @@ function submitVqaEntry() {
 
   showToolStatus('&#10003; QA review submitted. ' + vqaSessionCount + (vqaSessionCount === 1 ? ' review' : ' reviews') + ' this session.', 'success');
 
-  fetch('https://crr-criteria-api.fk4dsrmq5r.workers.dev/api/qa-viewer-review', {
+  fetch(API_BASE + '/api/qa-viewer-review', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)

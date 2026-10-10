@@ -290,7 +290,8 @@ function getSites(e) { return {us:HL_US,ct:HL_CT,xr:HL_XR,mri:HL_MRI}[e]||HL_US;
 var EL = {us:'Ultrasound',ct:'CT Scan',xr:'X-ray',mri:'MRI'};
 var RN = {aucklandregion:'Auckland Region',northland:'Northland',midland:'Midland',hawkesbay:"Hawke's Bay",'3d':'3D Health Pathways',canterbury:'Waitaha Canterbury',southern:'Southern',ccp:'Whanganui & MidCentral CHP'};
 var RN_SHORT = {aucklandregion:'Auckland',northland:'Northland',midland:'Midland',hawkesbay:"Hawke's Bay",'3d':'3D',canterbury:'Canterbury',southern:'Southern',ccp:'Whanganui & MidCentral'};
-var API_BASE = 'https://crr-criteria-api.fk4dsrmq5r.workers.dev';
+// AD-34 / KI-39: non-production hosts (local dev, staging) reach their own API worker same-origin via /crr-api; every other host keeps the production API.
+var API_BASE = /^(localhost|127\.0\.0\.1|vite-react-template-staging\.fk4dsrmq5r\.workers\.dev)$/.test(location.hostname) ? '/crr-api' : 'https://crr-criteria-api.fk4dsrmq5r.workers.dev';
 var REGIONS = {
     aucklandregion: {domain:'aucklandregion.communityhealthpathways.org'},
     northland:      {domain:'northland.communityhealthpathways.org'},

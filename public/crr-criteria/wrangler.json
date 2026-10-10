@@ -27,5 +27,34 @@
   },
   "triggers": {
     "crons": ["0 3 * * *"]
+  },
+  "env": {
+    "staging": {
+      "name": "crr-criteria-api-staging",
+      "workers_dev": false,
+      "preview_urls": false,
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "crr-criteria-staging",
+          "database_id": "2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "KV",
+          "id": "6eebb130a23c4046baf3e48cdc32058f"
+        }
+      ],
+      "vars": {
+        "ASSESS_PIPELINE_ENABLED": "true",
+        "ASSESS_ALLOW_SIGNED_OFF": "false",
+        "AUDIT_STORE_REDACTED_NOTE": "false",
+        "AUDIT_NOTE_RETENTION_DAYS": "180",
+        "EXTRACTION_PROVIDER": "anthropic",
+        "EXTRACTION_MODEL": "claude-sonnet-4-6",
+        "EXTRACTION_MAX_TOKENS": "8000"
+      }
+    }
   }
 }

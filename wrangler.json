@@ -17,6 +17,20 @@
 	],
 	"upload_source_maps": true,
 	"preview_urls": false,
+	"env": {
+		// AD-34 staging: deployed by hand (`CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy`), never by Workers Builds.
+		"staging": {
+			"name": "vite-react-template-staging",
+			"vars": {
+				"ASSESS_PIPELINE_ENABLED": "true",
+				"ACCESS_AUD": "3f02b724d2d9c56c101fc8042cbdeefad03ccb7cd539d400c1777e1eff699e80",
+				"ACCESS_TEAM_DOMAIN": "https://crr-admin.cloudflareaccess.com"
+			},
+			"services": [
+				{ "binding": "CRR_API", "service": "crr-criteria-api-staging" }
+			]
+		}
+	},
 	"assets": {
 		"directory": "./dist/client",
 		"not_found_handling": "single-page-application",

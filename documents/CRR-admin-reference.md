@@ -312,6 +312,53 @@ npx wrangler deploy --config public/crr-criteria/wrangler.json
 
 The main site build uploads all static files under `public/crr-criteria/` as Cloudflare Pages assets and deploys `src/worker/index.ts` as the edge worker (which includes the `/crr-api/*` proxy). The API worker compiles `api/worker.ts` separately.
 
+### Staging (AD-34)
+
+A second copy of both workers for side-by-side evaluation with synthetic cases only. It has its own D1 (`crr-criteria-staging`), KV and secrets. Workers Builds never deploys it; deploy it by hand from the repo root.
+
+| | Production | Staging |
+|---|---|---|
+| Main worker | `vite-react-template` | `vite-react-template-staging` (`https://vite-react-template-staging.fk4dsrmq5r.workers.dev`) |
+| API worker | `crr-criteria-api` (public workers.dev) | `crr-criteria-api-staging` (no public URL; reached only over the binding) |
+| Pipeline flag | off | on (`ASSESS_PIPELINE_ENABLED=true`) |
+| Access | admin paths only | the whole hostname |
+
+Pages pick their API by hostname: on localhost, 127.0.0.1 and the staging host they call `/crr-api` (their own API worker). Every other host calls the production API URL (KI-39).
+
+**First-time setup** (in order):
+
+1. **Access first**, so the host is never public. Add `vite-react-template-staging.fk4dsrmq5r.workers.dev` with an **empty path** (the whole host) to the existing CRR admin Access application. Check the Subdomain box reads `vite-react-template-staging`. Using the same application keeps one AUD, which is why staging's `ACCESS_AUD` equals production's. The production workers.dev host already works this way in the same application (rows checked 2026-10-06). If you use a separate application instead, copy its AUD into `env.staging.vars.ACCESS_AUD` in `wrangler.json`, or admin calls get 401.
+
+```bash
+# 2. API worker
+npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging
+# 3. Database: schema (current to migration 0011), then the exam_sites seed, which lives only in 0008.
+#    Run 0008 ONCE: its CREATEs are IF NOT EXISTS, but its INSERTs are plain.
+npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/schema.sql
+npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/migrations/0008_bundle_registry.sql
+# 4. Main worker (the vite plugin picks the environment at build time)
+CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy
+npm run build   # rebuild for production so a later plain deploy is not staging
+# 5. Secrets: new random values, NOT production's. Each command prompts for the value.
+npx wrangler secret put ADMIN_KEY           --config public/crr-criteria/wrangler.json --env staging
+npx wrangler secret put ADMIN_PROXY_KEY     --config public/crr-criteria/wrangler.json --env staging
+npx wrangler secret put ASSESS_INTERNAL_KEY --config public/crr-criteria/wrangler.json --env staging
+npx wrangler secret put ANTHROPIC_API_KEY   --config public/crr-criteria/wrangler.json --env staging
+npx wrangler secret put ADMIN_KEY           --name vite-react-template-staging   # same value as the API worker's
+npx wrangler secret put ADMIN_PROXY_KEY     --name vite-react-template-staging   # same value as the API worker's
+npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging   # same value as the API worker's
+```
+
+6. **Seed** the legacy criteria, the active system prompt and the bundles through the staging admin API (never raw SQL: see Pitfalls in CLAUDE.md).
+
+Notes:
+- The staging API worker inherits the production cron (`0 3 * * *`, purging expired notes and stale proposals in the staging DB), which is intended.
+- With an `env` block defined, every production deploy prints "Multiple environments are defined … no target environment specified". It is a warning only; the production config is used.
+
+**Redeploy after a change:** step 2 and/or step 4 (with the production rebuild after it).
+
+**Do not** copy production D1 rows into staging: they include audit data (AD-34).
+
 ---
 
 ## LocalStorage keys
