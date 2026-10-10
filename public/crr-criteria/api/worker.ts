@@ -52,6 +52,8 @@ const ALLOWED_ORIGINS = [
   'http://localhost:5173',
   'http://localhost:8787',
   'http://127.0.0.1:5173',
+  // AD-34 staging (whole host behind Access). Its pages call /crr-api, so the proxy forwards this Origin.
+  'https://vite-react-template-staging.fk4dsrmq5r.workers.dev',
 ];
 app.use('*', cors({
   origin: (origin) => (origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]),

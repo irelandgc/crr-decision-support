@@ -51,7 +51,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary After the staging PR merges, run the first-time staging setup steps 1–5 (deploy, schema, secrets, Access) — documents/CRR-admin-reference.md §Deployment › Staging; AD-34
+- @gary After the staging PR merges, run the first-time staging setup steps 1–5 (Access, deploy, schema + exam_sites seed, secrets) — documents/CRR-admin-reference.md §Deployment › Staging; AD-34
 - @gary Decide when to close SR-16 (admin reads on the public API origin accept a bare header; assess audit identity is client-supplied) — SECURITY_DECISIONS.md SR-16
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
