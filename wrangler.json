@@ -14,6 +14,7 @@
 		{ "binding": "CRR_API", "service": "crr-criteria-api" }
 	],
 	"upload_source_maps": true,
+	"preview_urls": false,
 	"assets": {
 		"directory": "./dist/client",
 		"not_found_handling": "single-page-application",

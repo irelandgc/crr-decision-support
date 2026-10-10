@@ -1303,7 +1303,7 @@ function BundlesTab(){
             return(
               <tr key={key} style={{borderBottom:`1px solid ${C.rule}`}}>
                 <td style={{padding:'8px 10px',fontFamily:mono,fontWeight:600}}>
-                  {key}{liveKeys.has(key)&&<span title='This bundle key is the engine\'s live source for at least one exam/site id' style={{marginLeft:6,fontSize:10,background:'#dcfce7',color:'#166534',padding:'1px 6px',borderRadius:2,fontWeight:700}}>LIVE</span>}
+                  {key}{liveKeys.has(key)&&<span title="This bundle key is the engine's live source for at least one exam/site id" style={{marginLeft:6,fontSize:10,background:'#dcfce7',color:'#166534',padding:'1px 6px',borderRadius:2,fontWeight:700}}>LIVE</span>}
                 </td>
                 <td style={{padding:'8px 10px',fontFamily:mono,fontSize:11,color:C.mid}}>{ids.join(', ')}</td>
                 {latest ? (<>

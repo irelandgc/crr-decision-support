@@ -49,6 +49,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
+- @gary Review and merge PR #34 (KI-67 Admin Tool blank page; `preview_urls: false` so deploys stop re-enabling Preview URLs), then confirm iteratio.nz/crr-criteria/admin loads and the next PR build shows no preview URL — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15
 - @gary SR-15 residual: decide whether to harden the admin proxy to accept only a verified Access token (if yes, send the Access app's AUD tag) — SECURITY_DECISIONS.md SR-15
 - @gary Create the staging D1 database and KV namespace (both named `crr-criteria-staging`) and send their ids; staging secrets and the staging Access app come after the first staging deploy — AD-34
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
