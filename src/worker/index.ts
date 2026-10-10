@@ -29,9 +29,74 @@ type Bindings = {
   CRR_API: Fetcher;
   ASSESS_PIPELINE_ENABLED?: string;
   ASSESS_INTERNAL_KEY?: string;
+  // SR-15 — the admin proxy accepts only a Cloudflare Access JWT it has verified
+  // against this Access application (AUD tag) and team domain. Not secrets; set
+  // as vars in wrangler.json. Unset → admin requests are refused (fail closed).
+  ACCESS_AUD?: string;
+  ACCESS_TEAM_DOMAIN?: string;
+  // SR-15 — LOCAL DEV ONLY, and honoured only on localhost: lets the two-worker
+  // `wrangler dev` admin tool identify itself with `x-admin-email` (there is no
+  // Access in front of localhost). Set in .dev.vars, never in wrangler.json.
+  ACCESS_DEV_BYPASS?: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
+
+// ── SR-15: verify the Cloudflare Access JWT ──────────────────────────────────
+// Access sends `cf-access-jwt-assertion` on every request it fronts. A request
+// that did not pass through Access has no valid token, whatever other headers it
+// carries, so this is the only identity the admin proxy trusts.
+let certCache: { domain: string; at: number; keys: JsonWebKey[] } | null = null;
+
+async function accessKeys(domain: string, refresh: boolean): Promise<JsonWebKey[]> {
+  if (!refresh && certCache && certCache.domain === domain && Date.now() - certCache.at < 3_600_000) {
+    return certCache.keys;
+  }
+  const res = await fetch(`${domain}/cdn-cgi/access/certs`);
+  if (!res.ok) throw new Error(`Access certs fetch failed: ${res.status}`);
+  const { keys } = (await res.json()) as { keys: JsonWebKey[] };
+  certCache = { domain, at: Date.now(), keys };
+  return keys;
+}
+
+const b64urlBytes = (s: string) =>
+  Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/")), (ch) => ch.charCodeAt(0));
+const b64urlJson = (s: string) => JSON.parse(new TextDecoder().decode(b64urlBytes(s)));
+
+// Returns the verified email, or null for any invalid, expired or foreign token.
+export async function verifyAccessJwt(
+  token: string | undefined,
+  env: Pick<Bindings, "ACCESS_AUD" | "ACCESS_TEAM_DOMAIN">,
+): Promise<string | null> {
+  if (!token || !env.ACCESS_AUD || !env.ACCESS_TEAM_DOMAIN) return null;
+  const domain = env.ACCESS_TEAM_DOMAIN.replace(/\/+$/, "");
+  try {
+    const [h, p, sig] = token.split(".");
+    const header = b64urlJson(h);
+    const payload = b64urlJson(p);
+    if (header.alg !== "RS256" || !sig) return null;
+    const byKid = (k: JsonWebKey & { kid?: string }) => k.kid === header.kid;
+    let jwk = (await accessKeys(domain, false)).find(byKid);
+    if (!jwk) jwk = (await accessKeys(domain, true)).find(byKid);
+    if (!jwk) return null;
+    const key = await crypto.subtle.importKey(
+      "jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"],
+    );
+    const ok = await crypto.subtle.verify(
+      "RSASSA-PKCS1-v1_5", key, b64urlBytes(sig), new TextEncoder().encode(`${h}.${p}`),
+    );
+    if (!ok) return null;
+    const now = Math.floor(Date.now() / 1000);
+    const aud = Array.isArray(payload.aud) ? payload.aud : [payload.aud];
+    if (!aud.includes(env.ACCESS_AUD)) return null;
+    if (payload.iss !== domain) return null;
+    if (typeof payload.exp !== "number" || payload.exp <= now) return null;
+    if (typeof payload.nbf === "number" && payload.nbf > now) return null;
+    return typeof payload.email === "string" && payload.email ? payload.email : null;
+  } catch {
+    return null;
+  }
+}
 
 // Dispatch a proxied / forwarded request to the crr-criteria-api worker.
 // Default and only sanctioned path: the CRR_API service binding — the LOCAL API
@@ -106,18 +171,26 @@ app.all("/api/assess/*", forwardAssess);
 // ── Same-origin proxy to the CRR API worker ───────────────────────────────────
 // The Admin tool calls /crr-api/... rather than crossing origins, so the
 // Cloudflare Access cookie set for iteratio.nz/crr-criteria/admin/* travels
-// with each request. Admin paths require a CF Access JWT or
-// authenticated-user-email header — configure CF Access on iteratio.nz to
-// cover /crr-api/api/admin/* so those headers are injected automatically.
+// with each request. Admin paths require a CF Access JWT that verifies against
+// ACCESS_AUD / ACCESS_TEAM_DOMAIN (SR-15) — identity headers alone are never
+// trusted, so a host Access does not front cannot reach admin routes.
 // Public paths (criteria, regions, etc.) pass through with no auth check.
+
+type IdentityContext = { req: { url: string; header: (name: string) => string | undefined }; env: Bindings };
+
+async function adminIdentity(c: IdentityContext): Promise<string | null> {
+  const host = new URL(c.req.url).hostname;
+  if (c.env.ACCESS_DEV_BYPASS === "true" && (host === "localhost" || host === "127.0.0.1")) {
+    return c.req.header("x-admin-email") || null;
+  }
+  return verifyAccessJwt(c.req.header("cf-access-jwt-assertion"), c.env);
+}
 
 async function proxy(c: any, requireAdmin: boolean): Promise<Response> {
   const inUrl = new URL(c.req.url);
   const downstreamPath = inUrl.pathname.replace(/^\/crr-api/, "");
 
-  const email =
-    c.req.header("cf-access-authenticated-user-email") ||
-    c.req.header("x-admin-email");
+  const email = requireAdmin ? await adminIdentity(c) : null;
 
   if (requireAdmin && !email) {
     return c.json(
@@ -137,7 +210,10 @@ async function proxy(c: any, requireAdmin: boolean): Promise<Response> {
       lk === "connection" ||
       lk === "content-length" ||
       lk === "x-admin-key" || // never trust an x-admin-key from the browser
-      lk === "x-admin-proxy" // nor a forged "came via the proxy" marker (SR-14)
+      lk === "x-admin-proxy" || // nor a forged "came via the proxy" marker (SR-14)
+      lk === "x-admin-email" || // nor any identity the proxy has not verified (SR-15)
+      lk === "cf-access-authenticated-user-email" ||
+      lk === "cf-access-jwt-assertion"
     )
       return;
     fwdHeaders.set(k, v);

@@ -45,11 +45,13 @@ Browser (iteratio.nz/crr-criteria/admin)
     │  Same-origin fetch to /crr-api/api/...
     ▼
 Cloudflare Access (iteratio.nz)
-    │  Injects cf-access-authenticated-user-email header
+    │  Injects cf-access-jwt-assertion (signed Access token)
     │  Returns 302 to login if no valid session
     ▼
 Main worker proxy  (src/worker/index.ts)
-    │  Checks email header — 401 if absent on admin paths
+    │  Verifies the token (signature against the team certs, ACCESS_AUD,
+    │  issuer, expiry) — 401 on admin paths if it does not verify (SR-15)
+    │  Strips client identity headers; forwards the token's email
     │  Injects x-admin-key from ADMIN_KEY secret
     ▼
 API worker  (crr-criteria-api.fk4dsrmq5r.workers.dev)
@@ -59,6 +61,8 @@ D1 / KV
 ```
 
 The admin tool never sends an admin key from the browser. The proxy injects it server-side from the `ADMIN_KEY` secret. The browser only needs a valid Cloudflare Access session.
+
+`ACCESS_AUD` (the Access application's Audience tag) and `ACCESS_TEAM_DOMAIN` (`https://crr-admin.cloudflareaccess.com`) are vars in `wrangler.json`. If the Access application is ever recreated, its AUD tag changes, and `ACCESS_AUD` must be updated before admin works again. Local two-worker dev has no Access, so `.dev.vars` sets `ACCESS_DEV_BYPASS=true`. The proxy then takes `x-admin-email` instead, on localhost only (SR-15).
 
 ### Cloudflare Access application
 

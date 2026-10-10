@@ -8,7 +8,9 @@
 		"enabled": true
 	},
 	"vars": {
-		"ASSESS_PIPELINE_ENABLED": "false"
+		"ASSESS_PIPELINE_ENABLED": "false",
+		"ACCESS_AUD": "3f02b724d2d9c56c101fc8042cbdeefad03ccb7cd539d400c1777e1eff699e80",
+		"ACCESS_TEAM_DOMAIN": "https://crr-admin.cloudflareaccess.com"
 	},
 	"services": [
 		{ "binding": "CRR_API", "service": "crr-criteria-api" }

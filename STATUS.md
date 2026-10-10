@@ -33,6 +33,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-10 Admin Tool blank page fixed and deployed; `preview_urls: false` deployed and Preview URLs observed off (PR #34, `3c4a441`) — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15; CRR_Release_Log.md 2026-10-10
 
 ## Queued
+- @claude Build staging (`env.staging` in both wrangler configs with D1 `2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d` and KV `6eebb130a23c4046baf3e48cdc32058f`; pages pick `/crr-api` on non-production hosts) as its own PR after PR #35 merges — AD-34; KI-39; SR-15
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
@@ -50,9 +51,8 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
+- @gary Merge PR #35 (records + SR-15 code fix, SD-14), then confirm iteratio.nz/crr-criteria/admin still loads and lists criteria (closes SR-15) — SECURITY_DECISIONS.md SD-14, SR-15
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
-- @gary SR-15 residual: decide whether to harden the admin proxy to accept only a verified Access token (if yes, send the Access app's AUD tag) — SECURITY_DECISIONS.md SR-15
-- @gary Create the staging D1 database and KV namespace (both named `crr-criteria-staging`) and send their ids; staging secrets and the staging Access app come after the first staging deploy — AD-34
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
 - @gary Clinical review pack (D1–D6) cited in ARCHITECTURE_DECISIONS.md but not in repo — decide: pointer to M365 location, or copy in — AD-03/04/05/06/07/10/11/17/23/26
@@ -78,7 +78,6 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @gary Admin Tool structured editor with roles/approval workflow and Entra ID auth — documents/arch-mig-plan.md line 7; SD-13 as cited at documents/arch-mig-plan.md line 177 (register row missing — see Queued: raise SD-13 or correct citation)
 
 ## Blocked
-- @blocked Build staging (`env.staging` in both wrangler configs; pages pick `/crr-api` on non-production hosts) — waits on the staging D1 and KV ids — AD-34; KI-39; SR-15
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
 - @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
 - @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
