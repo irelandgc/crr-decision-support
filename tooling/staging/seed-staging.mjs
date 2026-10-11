@@ -84,7 +84,9 @@ const json = (out) => {
 const kvGetAll = (target, keys) => {
   const f = path.join(tmp, `keys-${crypto.randomUUID()}.json`);
   fs.writeFileSync(f, JSON.stringify(keys));
-  return json(wrangler(["kv", "bulk", "get", f, "--namespace-id", KV_ID, ...target]));
+  // Local returns { key: { value } }, remote returns { key: value }: normalise to strings.
+  const got = json(wrangler(["kv", "bulk", "get", f, "--namespace-id", KV_ID, ...target]));
+  return Object.fromEntries(Object.entries(got).map(([k, v]) => [k, typeof v === "string" ? v : v?.value]));
 };
 const d1 = (target, sql) => json(wrangler(["d1", "execute", DB_NAME, ...target, "--config", CONFIG, "--env", "staging", "--command", sql, "--json"]))[0].results;
 const kvKeys = (target) => json(wrangler(["kv", "key", "list", "--namespace-id", KV_ID, ...target])).map((k) => k.name);
@@ -265,8 +267,8 @@ try {
   const keys = kvKeys(local);
   const kvFile = path.join(tmp, "kv.json");
   const vals = kvGetAll(local, keys);
-  if (keys.some((k) => typeof vals[k]?.value !== "string")) fail("Could not read every local KV value; nothing copied.");
-  fs.writeFileSync(kvFile, JSON.stringify(keys.map((key) => ({ key, value: vals[key].value }))));
+  if (keys.some((k) => typeof vals[k] !== "string")) fail("Could not read every local KV value; nothing copied.");
+  fs.writeFileSync(kvFile, JSON.stringify(keys.map((key) => ({ key, value: vals[key] }))));
 
   const recovery = `To retry, empty remote staging first:
   npx wrangler d1 execute ${DB_NAME} --remote --config ${CONFIG} --env staging --command "${TABLES.map((t) => `DELETE FROM ${t};`).join(" ")}"
@@ -288,12 +290,12 @@ try {
   let back = {};
   for (let i = 0; i < 6; i++) {
     back = kvGetAll(remote, keys);
-    if (keys.every((k) => back[k]?.value === vals[k].value)) break;
+    if (keys.every((k) => back[k] === vals[k])) break;
     await new Promise((r) => setTimeout(r, 5000));
   }
-  const differ = keys.filter((k) => back[k]?.value !== vals[k].value);
+  const differ = keys.filter((k) => back[k] !== vals[k]);
   if (differ.length) console.warn(`! ${differ.length} KV value(s) not yet visible as written (${differ.join(", ")}). Re-check in a minute; if they stay wrong:\n${recovery}`);
-  const pub = JSON.parse((back["criteria:published"] ?? vals["criteria:published"]).value);
+  const pub = JSON.parse(back["criteria:published"] ?? vals["criteria:published"]);
   const states = d1(remote, "SELECT exam_site, version, state FROM bundles ORDER BY exam_site").map((b) => `${b.exam_site} ${b.version} ${b.state}`);
   if (pub.version !== src.version || states.length !== BUNDLES.length) fail("Remote staging check failed after the copy; inspect it before re-running.");
   console.log(`✓ remote staging: criteria ${pub.version}; bundles: ${states.join("; ")}`);
