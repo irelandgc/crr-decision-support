@@ -4,6 +4,18 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-11 — Staging environment available (AD-34)
+
+**Status:** Deployed by Gary from the repo runbook (`CRR-admin-reference.md` §Deployment › Staging) and seeded with `tooling/staging/seed-staging.mjs --demo-published`. Gary checked it in the browser: criteria, bundles and the Viewer load.
+
+**Workers:** new staging copies only: the staging main worker and `crr-criteria-api-staging`, with their own D1 and KV. Production is unchanged.
+
+- **Evaluators and the programme:** a staging copy of the tools behind Cloudflare Access, for synthetic cases only. On staging the Triage page runs the new assessment pipeline; production still runs the legacy Triage Advisor, so old and new are compared across the two.
+- **Content:** production's published criteria v4.1.2, region overrides and system prompt 2.3.0. The national red-flag, CT CAP and CT Colonography bundles are marked published **as a staging demo only**, with sign-off reference "STAGING DEMO ONLY: not clinically signed off" (AD-35); none is clinically signed off.
+- No change for referrers or triagers on production.
+
+---
+
 ## 2026-10-10 — Admin proxy verifies the Cloudflare Access token (SD-14, SR-15 closed)
 
 **Status:** Deployed. PR #35 was merged to `main` (merge commit `f5eea53`) and Workers Builds deployed `vite-react-template`. Gary confirmed on 2026-10-10 that the Admin Tool loads and the Versions tab (an admin route) works through the new check.
