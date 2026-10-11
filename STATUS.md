@@ -38,9 +38,9 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Staging workers redeployed after PR #43 merged (Gary's dashboard) — SECURITY_DECISIONS.md SD-15
 - 2026-10-11 Production admin login on workers.dev fixed: stale staging row removed from the production Access application (Gary) — documents/arch-mig-known-issues.md KI-70
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
+- 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
 
 ## Queued
-- @claude Drop the unreachable `cf-access-authenticated-user-email` fallbacks in the API worker's internal assess routes (performedBy, ~L1795/2418/2501); the main worker no longer forwards that header — SECURITY_DECISIONS.md SD-15
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
