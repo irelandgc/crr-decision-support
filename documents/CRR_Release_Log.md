@@ -10,8 +10,10 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 **Workers:** new staging copies only: the staging main worker and `crr-criteria-api-staging`, with their own D1 and KV. Production is unchanged.
 
-- **Evaluators and the programme:** a staging copy of the tools behind Cloudflare Access, for synthetic cases only. On staging the Triage page runs the new assessment pipeline; production still runs the legacy Triage Advisor, so old and new are compared across the two.
-- **Content:** production's published criteria v4.1.2, region overrides and system prompt 2.3.0. The national red-flag, CT CAP and CT Colonography bundles are marked published **as a staging demo only**, with sign-off reference "STAGING DEMO ONLY: not clinically signed off" (AD-35); none is clinically signed off.
+- **Evaluators and the programme:** a staging copy of the tools behind Cloudflare Access, for synthetic cases only. On staging, the Triage page runs the new assessment pipeline.
+  - The legacy Triage Advisor is not reachable on staging: the page switches itself to the new pipeline whenever it is on.
+  - This falls short of AD-34 (3), which has both on one host. Until Gary decides on a switch (STATUS), the legacy path is seen on production.
+- **Content** (from the seed script's output): production's published criteria as served at the time (label v4.1.2), its 6 region override sets and its active system prompt 2.3.0. The national red-flag, CT CAP and CT Colonography bundles are marked published **as a staging demo only**, with sign-off reference "STAGING DEMO ONLY: not clinically signed off (AD-10, AD-34)" (AD-35); none is clinically signed off.
 - No change for referrers or triagers on production.
 
 ---
