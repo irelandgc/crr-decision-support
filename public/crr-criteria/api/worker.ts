@@ -293,38 +293,32 @@ app.get('/api/bundles', async (c) => {
 //  ADMIN ROUTES (Cloudflare Access required)
 // ══════════════════════════════════════════════════════════════
 
-// Middleware: check admin access
-// Accepts either a Cloudflare Access JWT (set when CF Access fronts a request, or
-// forwarded by the iteratio.nz same-origin proxy), OR a service-token x-admin-key
-// header (kept for Claude Code / scripted use). Either is sufficient.
+// Middleware: check admin access.
+// SR-16 — identity headers (`x-admin-email`, `cf-access-authenticated-user-email`,
+// `cf-access-jwt-assertion`) are NOT credentials here: anyone can send them to this
+// worker's public workers.dev origin. An admin request, read or write, must carry
+// proof instead: the main worker's proxy marker (ADMIN_PROXY_KEY, injected by the
+// proxy after it has verified the Access token, SD-14) or a valid x-admin-key
+// (scripted use). The identity headers are still used, but only for attribution
+// (actorFrom), after this check.
 async function requireAccess(c: any, next: any) {
-  const jwt = c.req.header('cf-access-jwt-assertion');
-  const email = c.req.header('cf-access-authenticated-user-email') || c.req.header('x-admin-email');
   const adminKey = c.req.header('x-admin-key');
-  if (!jwt && !adminKey && !email) {
+  const viaProxy = !!c.env.ADMIN_PROXY_KEY && c.req.header('x-admin-proxy') === c.env.ADMIN_PROXY_KEY;
+  const validKey = !!adminKey && !!c.env.ADMIN_KEY && adminKey === c.env.ADMIN_KEY;
+  if (!viaProxy && !validKey) {
     return c.json({ error: 'Unauthorized' }, 401);
-  }
-  if (adminKey && c.env.ADMIN_KEY && adminKey !== c.env.ADMIN_KEY) {
-    return c.json({ error: 'Unauthorized — invalid admin key' }, 401);
   }
 
   // SR-14 — dev/prod isolation. A MUTATING admin request must either have
-  // reached this worker through the main worker's admin proxy (proven by the
-  // shared ADMIN_PROXY_KEY, which that proxy injects and strips from client
-  // requests), or carry a valid x-admin-key AND find ADMIN_WRITES_ENABLED
-  // === 'true' on this deployment (the production scripted-publish path). A
-  // request to the API worker's public origin with only an x-admin-email header
-  // — the shape of the recorded near miss — is refused. Reads are never gated.
+  // reached this worker through the main worker's admin proxy, or carry a valid
+  // x-admin-key AND find ADMIN_WRITES_ENABLED === 'true' on this deployment (the
+  // production scripted-publish path).
   const isMutating = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(c.req.method);
-  if (isMutating) {
-    const viaProxy = !!c.env.ADMIN_PROXY_KEY && c.req.header('x-admin-proxy') === c.env.ADMIN_PROXY_KEY;
-    const scriptedWrite = !!adminKey && !!c.env.ADMIN_KEY && adminKey === c.env.ADMIN_KEY && c.env.ADMIN_WRITES_ENABLED === 'true';
-    if (!viaProxy && !scriptedWrite) {
-      return c.json({
-        error: 'Admin writes are not enabled on this deployment (SR-14).',
-        detail: 'A mutating /api/admin request must arrive via the main-worker service binding, or carry a valid x-admin-key with ADMIN_WRITES_ENABLED=true.',
-      }, 403);
-    }
+  if (isMutating && !viaProxy && !(validKey && c.env.ADMIN_WRITES_ENABLED === 'true')) {
+    return c.json({
+      error: 'Admin writes are not enabled on this deployment (SR-14).',
+      detail: 'A mutating /api/admin request must arrive via the main-worker service binding, or carry a valid x-admin-key with ADMIN_WRITES_ENABLED=true.',
+    }, 403);
   }
 
   await next();
