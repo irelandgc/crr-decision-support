@@ -325,20 +325,28 @@ A second copy of both workers for side-by-side evaluation with synthetic cases o
 
 Pages pick their API by hostname: on localhost, 127.0.0.1 and the staging host they call `/crr-api` (their own API worker). Every other host calls the production API URL (KI-39).
 
-**First-time setup** (in order):
-
-1. **Access.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**. This creates a Worker-level Access application with its own AUD, which goes in `env.staging.vars.ACCESS_AUD` in `wrangler.json` (`b5160ef3…`, set 2026-10-11). If that application is ever recreated, copy its new AUD (Access tab → Application values → AUD tag) into the config and redeploy step 4. A hostname row for `/crr-criteria/admin` on the staging host also exists in the production CRR admin application; it covers only the admin page and does not change the AUD the proxy needs. In a new environment, do this step right after step 4. Until the secrets in step 5 are set, nothing is exposed: there is no Anthropic key, and admin calls fail closed.
+**First-time setup** (in order; the worker-level Access switch only exists once the worker is deployed):
 
 ```bash
-# 2. API worker
+# 1. API worker
 npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging
-# 3. Database: schema (current to migration 0011), then the exam_sites seed, which lives only in 0008.
+# 2. Database: schema (current to migration 0011), then the exam_sites seed, which lives only in 0008.
 #    Run 0008 ONCE: its CREATEs are IF NOT EXISTS, but its INSERTs are plain.
 npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/schema.sql
 npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/migrations/0008_bundle_registry.sql
-# 4. Main worker (the vite plugin picks the environment at build time)
+# 3. Main worker. The vite plugin picks the environment at build time and redirects
+#    `wrangler deploy` to the built staging config.
 CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy
 npm run build   # rebuild for production so a later plain deploy is not staging
+```
+
+4. **Access, straight after step 3.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**.
+   - This creates a Worker-level Access application with its own AUD. That AUD goes in `env.staging.vars.ACCESS_AUD` in `wrangler.json` (`b5160ef3…`, set 2026-10-11).
+   - If the application is ever recreated, copy its new AUD (Access tab → Application values → AUD tag) into the config and redo step 3.
+   - Between steps 3 and 4 the host is public, but nothing is exposed: there is no Anthropic key yet, and admin calls fail closed.
+   - A hostname row for `/crr-criteria/admin` on the staging host also exists in the production CRR admin application. It covers only the admin page and does not change the AUD the proxy needs.
+
+```bash
 # 5. Secrets: new random values, NOT production's. Each command prompts for the value.
 npx wrangler secret put ADMIN_KEY           --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ADMIN_PROXY_KEY     --config public/crr-criteria/wrangler.json --env staging
@@ -355,7 +363,7 @@ Notes:
 - The staging API worker inherits the production cron (`0 3 * * *`, purging expired notes and stale proposals in the staging DB), which is intended.
 - With an `env` block defined, every production deploy prints "Multiple environments are defined … no target environment specified". It is a warning only; the production config is used.
 
-**Redeploy after a change:** step 2 and/or step 4 (with the production rebuild after it).
+**Redeploy after a change:** step 1 and/or step 3 (with the production rebuild after it).
 
 **Do not** copy production D1 rows into staging: they include audit data (AD-34).
 
