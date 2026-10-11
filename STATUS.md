@@ -35,9 +35,9 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Staging deployed, behind Access and seeded; checked by Gary in the browser — AD-34; AD-35; CRR_Release_Log.md 2026-10-11
 - 2026-10-11 Staging main worker renamed `crr-tools-staging` in Cloudflare (Gary); no legacy Triage on staging, legacy is compared on production (Gary) — AD-34
 - 2026-10-11 SR-16 closed: SD-15 deployed to both production workers (PR #43, `7882c2a`); `ADMIN_PROXY_KEY` set on both; forged-header read 401 and Admin Tool checked by Gary — SECURITY_DECISIONS.md SR-16; CRR_Release_Log.md 2026-10-11
-- 2026-10-11 Staging redeployed with the SR-16 fix (both staging workers deployed after the PR #43 merge, per Gary's dashboard) — SECURITY_DECISIONS.md SD-15
+- 2026-10-11 Staging workers redeployed after PR #43 merged (Gary's dashboard) — SECURITY_DECISIONS.md SD-15
 - 2026-10-11 Production admin login on workers.dev fixed: stale staging row removed from the production Access application (Gary) — documents/arch-mig-known-issues.md KI-70
-- 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; registry empty — documents/arch-mig-known-issues.md KI-68, KI-69
+- 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 
 ## Queued
 - @claude Drop the unreachable `cf-access-authenticated-user-email` fallbacks in the API worker's internal assess routes (performedBy, ~L1795/2418/2501); the main worker no longer forwards that header — SECURITY_DECISIONS.md SD-15
