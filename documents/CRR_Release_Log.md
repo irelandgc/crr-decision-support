@@ -4,6 +4,23 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-11 — Identity headers are no longer credentials (SD-15, SR-16 closed); production API worker redeployed
+
+**Status:** Deployed by Gary after PR #43 was merged (merge commit `7882c2a`). Production main worker deployed with `npm run build && npx wrangler deploy`; production `crr-criteria-api` deployed with `npx wrangler deploy --config public/crr-criteria/wrangler.json` (version `eac63220-fd6e-48c2-9b59-92871e536493`). `ADMIN_PROXY_KEY` set on both production workers with one value; both secret lists show it. Gary confirmed that a request carrying only a forged `x-admin-email` gets 401, and that the Admin Tool works.
+
+**Workers:** `vite-react-template` and `crr-criteria-api`.
+
+- **Admin Tool (admin users):** no visible change for anyone signed in through Access. Admin requests to the API worker's public workers.dev origin with only an identity header are refused, reads included (SD-15, CL-53).
+- **This was the first production API worker deploy since 2026-05-18,** so it carried every API worker change merged since then, not only SR-16. All of it was already on `main` and reviewed. What reaches users:
+  - The assessment pipeline routes (`/api/assess*`) are present but off (`ASSESS_PIPELINE_ENABLED=false`) and internal-only (SD-11). Referrers and triagers see no change; the legacy Triage Advisor is untouched.
+  - SR-14's write gate on the API worker reaches production for the first time. Admin Tool writes go through the proxy marker, now that `ADMIN_PROXY_KEY` is set.
+  - The snapshot-publish route no longer writes the stub `criteria:match-data` (TA-SRC-01 §6.1, `2cc1f38`); production Triage reads the embedded constant, not that key.
+  - The bundle registry routes are present. The remote D1 most likely has no `bundles` table yet (migration 0008, a slice 10 step; recorded under SR-14 on 2026-09-07, not probed since), in which case they fail (KI-68).
+  - The nightly 03:00 UTC purge cron now runs and fails until migrations 0009–0011 are applied remotely; it deletes nothing and changes nothing (KI-69).
+- Deploying production's API worker was planned for the slice 10 cut-over. It went out now so SR-16 (2) could close; the cut-over still applies the remote migrations and the other pre-conditions.
+
+---
+
 ## 2026-10-11 — Staging environment available (AD-34)
 
 **Status:** Deployed by Gary from the repo runbook (`CRR-admin-reference.md` §Deployment › Staging) and seeded with `tooling/staging/seed-staging.mjs --demo-published`. Gary checked it in the browser: criteria, bundles and the Viewer load.

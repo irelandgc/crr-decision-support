@@ -34,6 +34,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-10 SR-15 closed: admin proxy verifies the Access token, deployed and confirmed (PR #35, `f5eea53`) — SECURITY_DECISIONS.md SD-14, SR-15; CRR_Release_Log.md 2026-10-10
 - 2026-10-11 Staging deployed, behind Access and seeded; checked by Gary in the browser — AD-34; AD-35; CRR_Release_Log.md 2026-10-11
 - 2026-10-11 Staging main worker renamed `crr-tools-staging` in Cloudflare (Gary); no legacy Triage on staging, legacy is compared on production (Gary) — AD-34
+- 2026-10-11 SR-16 closed: SD-15 deployed to both production workers (PR #43, `7882c2a`); `ADMIN_PROXY_KEY` set on both; forged-header read 401 and Admin Tool checked by Gary. First production API worker deploy since 2026-05 — SECURITY_DECISIONS.md SR-16; CRR_Release_Log.md 2026-10-11
 
 ## Queued
 - @claude Drop the unreachable `cf-access-authenticated-user-email` fallbacks in the API worker's internal assess routes (performedBy, ~L1795/2418/2501); the main worker no longer forwards that header — SECURITY_DECISIONS.md SD-15
@@ -54,7 +55,8 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary After the SR-16 PR merges: redeploy staging (runbook steps 1 and 3) and check staging admin still loads; production's API worker gets the fix at cut-over — SECURITY_DECISIONS.md SR-16, SD-15
+- @gary Confirm staging was redeployed with PR #43 (runbook steps 1 and 3) and staging admin still loads — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
+- @gary Say what the production Bundles tab shows now the API worker is deployed — documents/arch-mig-known-issues.md KI-68
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
@@ -91,6 +93,6 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @blocked W1 clinical sign-off per site (signoff.md) — documents/arch-mig-plan.md §Slice 7 step 4
 - @blocked Clinician labelling of 37 matrix cases — documents/arch-mig-plan.md §Slice 9
 - @blocked Creatinine unit erratum (review pack D3) — sent to James and Louise 2026-09-05, awaiting their answer; once answered, a published correction to the national document is still required before the bundle can cite it — KI stays open until then — KI-47
-- @blocked Slice 10 cut-over — on 5, 6, 7-W1, 9, SD-11/12 sign-off, remote national-redflags publish, remote migration 0009, ASSESS_INTERNAL_KEY and ADMIN_PROXY_KEY secrets, prompt v3.0.0 activation — documents/arch-mig-plan.md §Slice 10
+- @blocked Slice 10 cut-over — on 5, 6, 7-W1, 9, SD-11/12 sign-off, remote national-redflags publish, ASSESS_INTERNAL_KEY secret, remote migrations 0008–0011 (KI-68, KI-69), prompt v3.0.0 activation — documents/arch-mig-plan.md §Slice 10
 - @blocked Slice 11 documents — alongside slice 10 — documents/arch-mig-plan.md §Slice 11
 - @blocked Open SRs (SR-01 cost sink, SR-05 model alias drift, SR-09 extraction drift) close at slice 9/10 — SECURITY_DECISIONS.md
