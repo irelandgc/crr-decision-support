@@ -20,7 +20,7 @@
 	"env": {
 		// AD-34 staging: deployed by hand (`CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy`), never by Workers Builds.
 		"staging": {
-			"name": "vite-react-template-staging",
+			"name": "crr-tools-staging",
 			"vars": {
 				"ASSESS_PIPELINE_ENABLED": "true",
 				"ACCESS_AUD": "b5160ef386ea8abb94387d3dbd7aec53237524185f0677ff4b5b84950e96e320",
