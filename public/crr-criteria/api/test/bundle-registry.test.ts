@@ -59,12 +59,26 @@ describe("publish validation", () => {
       headers: { "content-type": "application/json", "x-admin-email": "someone@example.com" },
       body: JSON.stringify(realBundle()),
     });
-    expect(res.status).toBe(403);
-    const body: any = await res.json();
-    expect(body.error).toMatch(/SR-14|not enabled/i);
+    // SR-16: refused as unauthenticated (401) before the SR-14 write gate is reached.
+    expect(res.status).toBe(401);
     // nothing was written — the registry is exactly as it was
     const after = await (await SELF.fetch("http://worker/api/bundles")).json();
     expect((after as any).bundles).toEqual((before as any).bundles);
+  });
+
+  it("4c. SR-16 — an admin READ with only identity headers is refused; via the proxy marker it is allowed", async () => {
+    for (const forged of [
+      { "x-admin-email": "someone@example.com" },
+      { "cf-access-authenticated-user-email": "someone@example.com" },
+      { "cf-access-jwt-assertion": "not-a-real-token" },
+    ]) {
+      const res = await SELF.fetch("http://worker/api/admin/versions", { headers: forged });
+      expect(res.status).toBe(401);
+    }
+    const wrongMarker = await SELF.fetch("http://worker/api/admin/versions", { headers: { "x-admin-proxy": "wrong" } });
+    expect(wrongMarker.status).toBe(401);
+    const viaProxy = await SELF.fetch("http://worker/api/admin/versions", { headers: AUTH });
+    expect(viaProxy.status).toBe(200);
   });
 
   it("5. rejects a bundle missing required keys", async () => {

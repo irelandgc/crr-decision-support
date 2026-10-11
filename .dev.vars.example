@@ -26,8 +26,8 @@ ASSESS_PIPELINE_ENABLED=true
 #   public/crr-criteria/.dev.vars). The proxy injects it as `x-admin-proxy`;
 #   the API worker treats a match as proof the request came via the binding and
 #   lets a mutating /api/admin request through without ADMIN_WRITES_ENABLED.
-#   Optional in dev (a two-worker `wrangler dev` still reaches the local API
-#   worker); needed if you want the local admin tool's writes to work. In
+#   Needed in dev for any admin route, reads included (SR-16): the API worker
+#   accepts an admin request only with this marker or a valid x-admin-key. In
 #   production: `npx wrangler secret put ADMIN_PROXY_KEY` on BOTH workers.
 ADMIN_PROXY_KEY=
 # ADMIN_KEY — mirror of the API worker's ADMIN_KEY; the proxy forwards it. In

@@ -150,11 +150,46 @@ describe("SR-15 — admin proxy identity", () => {
       "x-admin-email": "attacker@example.com",
       "cf-access-authenticated-user-email": "attacker@example.com",
       "cf-access-jwt-assertion": "not-a-token",
+      "x-assess-identity": "attacker@example.com",
+      "x-assess-internal": "guess",
     });
     expect(res.status).toBe(200);
+    expect(seen[0].headers.get("x-assess-identity")).toBeNull();
+    expect(seen[0].headers.get("x-assess-internal")).toBeNull();
     expect(seen[0].headers.get("x-admin-email")).toBeNull();
     expect(seen[0].headers.get("cf-access-authenticated-user-email")).toBeNull();
     expect(seen[0].headers.get("cf-access-jwt-assertion")).toBeNull();
     expect(seen[0].headers.get("x-admin-key")).toBeNull();
+  });
+});
+
+describe("SR-16 — assessment audit identity", () => {
+  const assess = { ASSESS_PIPELINE_ENABLED: "true", ASSESS_INTERNAL_KEY: "server-internal-key" };
+
+  it("forwards no identity when the client only sends identity headers", async () => {
+    const { seen, call } = harness(assess);
+    const res = await call("/api/assess/status", {
+      "cf-access-authenticated-user-email": "attacker@example.com",
+      "x-assess-identity": "attacker@example.com",
+      "x-assess-internal": "guess",
+    });
+    expect(res.status).toBe(200);
+    expect(seen[0].headers.get("x-assess-identity")).toBeNull();
+    expect(seen[0].headers.get("cf-access-authenticated-user-email")).toBeNull();
+    expect(seen[0].headers.get("x-assess-internal")).toBe("server-internal-key");
+  });
+
+  it("forwards the verified token's email as the identity", async () => {
+    const { seen, call } = harness(assess);
+    const res = await call("/api/assess/status", { "cf-access-jwt-assertion": await jwt({ email: "triager@example.com" }) });
+    expect(res.status).toBe(200);
+    expect(seen[0].headers.get("x-assess-identity")).toBe("triager@example.com");
+    expect(seen[0].headers.get("cf-access-jwt-assertion")).toBeNull();
+  });
+
+  it("forwards no identity for a token that does not verify", async () => {
+    const { seen, call } = harness(assess);
+    await call("/api/assess/status", { "cf-access-jwt-assertion": await jwt({ aud: ["another-app"] }) });
+    expect(seen[0].headers.get("x-assess-identity")).toBeNull();
   });
 });

@@ -26,8 +26,9 @@ ASSESS_PIPELINE_ENABLED=true
 #   a secret). Absent here so a dev API worker refuses scripted admin writes;
 #   seed a local D1/KV with `wrangler d1 execute --local` / `wrangler kv key put
 #   --local` instead.
-# ADMIN_PROXY_KEY — SAME value as the root .dev.vars. Set it if you want the
-#   local admin tool's writes (via the local proxy) to work. Production:
+# ADMIN_PROXY_KEY — SAME value as the root .dev.vars. Needed for ANY local admin
+#   route, reads included (SR-16): this worker accepts an admin request only with
+#   the proxy marker or a valid x-admin-key, never on identity headers. Production:
 #   `npx wrangler secret put ADMIN_PROXY_KEY --config public/crr-criteria/wrangler.json`.
 ADMIN_PROXY_KEY=
 # ADMIN_KEY=

@@ -150,6 +150,8 @@ async function forwardAssess(c: any): Promise<Response> {
       lk === "x-admin-key" ||
       lk === "x-admin-email" ||
       lk === "x-assess-internal" || // never trust an internal key from the browser
+      lk === "x-assess-identity" || // nor an identity the proxy has not verified (SR-16)
+      lk === "cf-access-authenticated-user-email" ||
       lk === "cf-access-jwt-assertion" ||
       lk === "cookie"
     )
@@ -158,7 +160,8 @@ async function forwardAssess(c: any): Promise<Response> {
   });
   const cfip = c.req.header("cf-connecting-ip");
   if (cfip) fwd.set("cf-connecting-ip", cfip);
-  const email = c.req.header("cf-access-authenticated-user-email");
+  // SR-16: the audit identity is the email in a verified Access token, or nothing.
+  const email = await verifyAccessJwt(c.req.header("cf-access-jwt-assertion"), c.env);
   if (email) fwd.set("x-assess-identity", email);
   // The API worker's evaluate route is internal — it requires this shared secret.
   if (c.env.ASSESS_INTERNAL_KEY) fwd.set("x-assess-internal", c.env.ASSESS_INTERNAL_KEY);
@@ -221,7 +224,9 @@ async function proxy(c: any, requireAdmin: boolean): Promise<Response> {
       lk === "x-admin-proxy" || // nor a forged "came via the proxy" marker (SR-14)
       lk === "x-admin-email" || // nor any identity the proxy has not verified (SR-15)
       lk === "cf-access-authenticated-user-email" ||
-      lk === "cf-access-jwt-assertion"
+      lk === "cf-access-jwt-assertion" ||
+      lk === "x-assess-identity" || // SR-16
+      lk === "x-assess-internal"
     )
       return;
     fwdHeaders.set(k, v);
