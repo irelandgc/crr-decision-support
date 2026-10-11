@@ -327,7 +327,7 @@ Pages pick their API by hostname: on localhost, 127.0.0.1 and the staging host t
 
 **First-time setup** (in order):
 
-1. **Access first**, so the host is never public. Add `vite-react-template-staging.fk4dsrmq5r.workers.dev` with an **empty path** (the whole host) to the existing CRR admin Access application. Check the Subdomain box reads `vite-react-template-staging`. Using the same application keeps one AUD, which is why staging's `ACCESS_AUD` equals production's. The production workers.dev host already works this way in the same application (rows checked 2026-10-06). If you use a separate application instead, copy its AUD into `env.staging.vars.ACCESS_AUD` in `wrangler.json`, or admin calls get 401.
+1. **Access.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**. This creates a Worker-level Access application with its own AUD, which goes in `env.staging.vars.ACCESS_AUD` in `wrangler.json` (`b5160ef3…`, set 2026-10-11). If that application is ever recreated, copy its new AUD (Access tab → Application values → AUD tag) into the config and redeploy step 4. A hostname row for `/crr-criteria/admin` on the staging host also exists in the production CRR admin application; it covers only the admin page and does not change the AUD the proxy needs. In a new environment, do this step right after step 4. Until the secrets in step 5 are set, nothing is exposed: there is no Anthropic key, and admin calls fail closed.
 
 ```bash
 # 2. API worker
