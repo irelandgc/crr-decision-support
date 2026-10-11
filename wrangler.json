@@ -23,7 +23,7 @@
 			"name": "vite-react-template-staging",
 			"vars": {
 				"ASSESS_PIPELINE_ENABLED": "true",
-				"ACCESS_AUD": "3f02b724d2d9c56c101fc8042cbdeefad03ccb7cd539d400c1777e1eff699e80",
+				"ACCESS_AUD": "b5160ef386ea8abb94387d3dbd7aec53237524185f0677ff4b5b84950e96e320",
 				"ACCESS_TEAM_DOMAIN": "https://crr-admin.cloudflareaccess.com"
 			},
 			"services": [

@@ -325,28 +325,43 @@ A second copy of both workers for side-by-side evaluation with synthetic cases o
 
 Pages pick their API by hostname: on localhost, 127.0.0.1 and the staging host they call `/crr-api` (their own API worker). Every other host calls the production API URL (KI-39).
 
-**First-time setup** (in order):
-
-1. **Access first**, so the host is never public. Add `vite-react-template-staging.fk4dsrmq5r.workers.dev` with an **empty path** (the whole host) to the existing CRR admin Access application. Check the Subdomain box reads `vite-react-template-staging`. Using the same application keeps one AUD, which is why staging's `ACCESS_AUD` equals production's. The production workers.dev host already works this way in the same application (rows checked 2026-10-06). If you use a separate application instead, copy its AUD into `env.staging.vars.ACCESS_AUD` in `wrangler.json`, or admin calls get 401.
+**First-time setup** (in order; the worker-level Access switch only exists once the worker is deployed):
 
 ```bash
-# 2. API worker
+# 1. API worker
 npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging
-# 3. Database: schema (current to migration 0011), then the exam_sites seed, which lives only in 0008.
+# 2. Database: schema (current to migration 0011), then the exam_sites seed, which lives only in 0008.
 #    Run 0008 ONCE: its CREATEs are IF NOT EXISTS, but its INSERTs are plain.
 npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/schema.sql
 npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criteria/wrangler.json --env staging --file public/crr-criteria/api/migrations/0008_bundle_registry.sql
-# 4. Main worker (the vite plugin picks the environment at build time)
+# 3. Main worker. The vite plugin picks the environment at build time and redirects
+#    `wrangler deploy` to the built staging config.
 CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy
-npm run build   # rebuild for production so a later plain deploy is not staging
-# 5. Secrets: new random values, NOT production's. Each command prompts for the value.
+# Rebuild for production so a later plain deploy is not staging:
+npm run build
+```
+
+4. **Access, straight after step 3.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**.
+   - This creates a Worker-level Access application with its own AUD. That AUD goes in `env.staging.vars.ACCESS_AUD` in `wrangler.json` (`b5160ef3…`, set 2026-10-11).
+   - If the application is ever recreated, copy its new AUD (Access tab → Application values → AUD tag) into the config and redo step 3.
+   - Between steps 3 and 4 the host is public, but nothing is exposed: there is no Anthropic key yet, and admin calls fail closed.
+   - A hostname row for `/crr-criteria/admin` on the staging host also exists in the production CRR admin application. It covers only the admin page and does not change the AUD the proxy needs.
+
+```bash
+# 5. Secrets: new random values (e.g. `openssl rand -hex 32`), NOT production's.
+#    Each command prompts for the value. Paste one command at a time: zsh does not
+#    treat `#` as a comment in pasted commands, so never paste these comment lines.
 npx wrangler secret put ADMIN_KEY           --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ADMIN_PROXY_KEY     --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ASSESS_INTERNAL_KEY --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ANTHROPIC_API_KEY   --config public/crr-criteria/wrangler.json --env staging
-npx wrangler secret put ADMIN_KEY           --name vite-react-template-staging   # same value as the API worker's
-npx wrangler secret put ADMIN_PROXY_KEY     --name vite-react-template-staging   # same value as the API worker's
-npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging   # same value as the API worker's
+# The next three take the SAME values as the API worker's above.
+npx wrangler secret put ADMIN_KEY --name vite-react-template-staging
+npx wrangler secret put ADMIN_PROXY_KEY --name vite-react-template-staging
+npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging
+# Check (names only): the main worker lists 3, the API worker lists 4.
+npx wrangler secret list --name vite-react-template-staging
+npx wrangler secret list --config public/crr-criteria/wrangler.json --env staging
 ```
 
 6. **Seed** the legacy criteria, the active system prompt and the bundles through the staging admin API (never raw SQL: see Pitfalls in CLAUDE.md).
@@ -355,7 +370,7 @@ Notes:
 - The staging API worker inherits the production cron (`0 3 * * *`, purging expired notes and stale proposals in the staging DB), which is intended.
 - With an `env` block defined, every production deploy prints "Multiple environments are defined … no target environment specified". It is a warning only; the production config is used.
 
-**Redeploy after a change:** step 2 and/or step 4 (with the production rebuild after it).
+**Redeploy after a change:** step 1 and/or step 3 (with the production rebuild after it).
 
 **Do not** copy production D1 rows into staging: they include audit data (AD-34).
 
