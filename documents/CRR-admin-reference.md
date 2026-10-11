@@ -364,7 +364,17 @@ npx wrangler secret list --name vite-react-template-staging
 npx wrangler secret list --config public/crr-criteria/wrangler.json --env staging
 ```
 
-6. **Seed** the legacy criteria, the active system prompt and the bundles through the staging admin API (never raw SQL: see Pitfalls in CLAUDE.md).
+6. **Seed** from the repo root:
+   ```bash
+   node tooling/staging/seed-staging.mjs
+   ```
+   - It runs the staging API worker code locally (`wrangler dev --env staging --remote`, on 127.0.0.1 only, with a one-off admin key) and loads everything through the real admin routes:
+     - production's published criteria, match data and region overrides, read from production's public endpoints (production is never written);
+     - production's active system prompt, created then activated so KV is updated;
+     - the latest national-redflags, CT CAP and CT Colonography bundles from the registry, in their real state (`transcribed`).
+   - Add `--demo-published` to also move those bundles to `published` on staging. Each gets the sign-off reference "STAGING DEMO ONLY: not clinically signed off". The new pipeline only evaluates published bundles. Never do this on production (AD-10).
+   - Safe to re-run: completed steps are skipped.
+   - No audit, usage, QA or assessment rows are copied.
 
 Notes:
 - The staging API worker inherits the production cron (`0 3 * * *`, purging expired notes and stale proposals in the staging DB), which is intended.
