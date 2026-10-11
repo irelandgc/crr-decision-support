@@ -37,13 +37,15 @@
         {
           "binding": "DB",
           "database_name": "crr-criteria-staging",
-          "database_id": "2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d"
+          "database_id": "2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d",
+          "preview_database_id": "2b0fdd0d-afa4-4f82-92c6-d7b6b85e8d3d"
         }
       ],
       "kv_namespaces": [
         {
           "binding": "KV",
-          "id": "6eebb130a23c4046baf3e48cdc32058f"
+          "id": "6eebb130a23c4046baf3e48cdc32058f",
+          "preview_id": "6eebb130a23c4046baf3e48cdc32058f"
         }
       ],
       "vars": {

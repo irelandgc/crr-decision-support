@@ -372,7 +372,8 @@ npx wrangler secret list --config public/crr-criteria/wrangler.json --env stagin
      - production's published criteria, match data and region overrides, read from production's public endpoints (production is never written);
      - production's active system prompt, created then activated so KV is updated;
      - the latest national-redflags, CT CAP and CT Colonography bundles from the registry, in their real state (`transcribed`).
-   - Add `--demo-published` to also move those bundles to `published` on staging. Each gets the sign-off reference "STAGING DEMO ONLY: not clinically signed off". The new pipeline only evaluates published bundles. Never do this on production (AD-10).
+   - Needs `npx wrangler login`, steps 1–5 done, and port 8799 free.
+   - Add `--demo-published` (AD-35; Gary must accept it first) to also move those bundles to `published` on staging. Each gets the sign-off reference "STAGING DEMO ONLY: not clinically signed off". The new pipeline only evaluates published bundles. Never do this on production (AD-10).
    - Safe to re-run: completed steps are skipped.
    - No audit, usage, QA or assessment rows are copied.
 
