@@ -318,7 +318,7 @@ The main site build uploads all static files under `public/crr-criteria/` as Clo
 1. Workers & Pages → `vite-react-template-staging` → **Settings** → **General** → change the Worker name to `crr-tools-staging`, if your dashboard offers it. Renaming in place keeps the worker's secrets and its Worker Access policy, and the AUD should stay `b5160ef3…`: check it on the Access tab and tell Claude if it changed.
 2. If renaming isn't offered: run step 3 (which creates `crr-tools-staging`), step 4 (Worker Access on the new worker; its new AUD goes into `env.staging.vars.ACCESS_AUD`) and step 5's three main-worker secrets, then delete `vite-react-template-staging`.
 3. Either way, redeploy the API worker (step 1) so its allowed-origins list has the new host, then step 3.
-4. Remove the old `/crr-criteria/admin` row for `vite-react-template-staging` from the production Access application as part of the rename. Left in place, it sent production admin logins on workers.dev to the dead old hostname (KI-70; removed 2026-10-11).
+4. Remove the old `/crr-criteria/admin` row for `vite-react-template-staging` from the production Access application as part of the rename. Left in place, it sent production admin logins on workers.dev to the old hostname (KI-70; removed 2026-10-11).
 
 A second copy of both workers for side-by-side evaluation with synthetic cases only. It has its own D1 (`crr-criteria-staging`), KV and secrets. Workers Builds never deploys it; deploy it by hand from the repo root.
 
