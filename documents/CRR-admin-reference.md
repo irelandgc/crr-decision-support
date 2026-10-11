@@ -337,7 +337,8 @@ npx wrangler d1 execute crr-criteria-staging --remote --config public/crr-criter
 # 3. Main worker. The vite plugin picks the environment at build time and redirects
 #    `wrangler deploy` to the built staging config.
 CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy
-npm run build   # rebuild for production so a later plain deploy is not staging
+# Rebuild for production so a later plain deploy is not staging:
+npm run build
 ```
 
 4. **Access, straight after step 3.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**.
@@ -347,14 +348,20 @@ npm run build   # rebuild for production so a later plain deploy is not staging
    - A hostname row for `/crr-criteria/admin` on the staging host also exists in the production CRR admin application. It covers only the admin page and does not change the AUD the proxy needs.
 
 ```bash
-# 5. Secrets: new random values, NOT production's. Each command prompts for the value.
+# 5. Secrets: new random values (e.g. `openssl rand -hex 32`), NOT production's.
+#    Each command prompts for the value. Paste one command at a time: zsh does not
+#    treat `#` as a comment in pasted commands, so never paste these comment lines.
 npx wrangler secret put ADMIN_KEY           --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ADMIN_PROXY_KEY     --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ASSESS_INTERNAL_KEY --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ANTHROPIC_API_KEY   --config public/crr-criteria/wrangler.json --env staging
-npx wrangler secret put ADMIN_KEY           --name vite-react-template-staging   # same value as the API worker's
-npx wrangler secret put ADMIN_PROXY_KEY     --name vite-react-template-staging   # same value as the API worker's
-npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging   # same value as the API worker's
+# The next three take the SAME values as the API worker's above.
+npx wrangler secret put ADMIN_KEY --name vite-react-template-staging
+npx wrangler secret put ADMIN_PROXY_KEY --name vite-react-template-staging
+npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging
+# Check (names only): the main worker lists 3, the API worker lists 4.
+npx wrangler secret list --name vite-react-template-staging
+npx wrangler secret list --config public/crr-criteria/wrangler.json --env staging
 ```
 
 6. **Seed** the legacy criteria, the active system prompt and the bundles through the staging admin API (never raw SQL: see Pitfalls in CLAUDE.md).
