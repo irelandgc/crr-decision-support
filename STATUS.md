@@ -33,6 +33,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-10 Admin Tool blank page fixed and deployed; `preview_urls: false` deployed and Preview URLs observed off (PR #34, `3c4a441`) — documents/arch-mig-known-issues.md KI-67; SECURITY_DECISIONS.md SR-15; CRR_Release_Log.md 2026-10-10
 - 2026-10-10 SR-15 closed: admin proxy verifies the Access token, deployed and confirmed (PR #35, `f5eea53`) — SECURITY_DECISIONS.md SD-14, SR-15; CRR_Release_Log.md 2026-10-10
 - 2026-10-11 Staging deployed, behind Access and seeded; checked by Gary in the browser — AD-34; AD-35; CRR_Release_Log.md 2026-10-11
+- 2026-10-11 Staging main worker renamed `crr-tools-staging` in Cloudflare (Gary); no legacy Triage on staging, legacy is compared on production (Gary) — AD-34
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -52,8 +53,6 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary Rename the staging main worker in Cloudflare to `crr-tools-staging` (the config already uses that name, PR #39), then redo runbook steps 1 and 3; not yet confirmed done — documents/CRR-admin-reference.md §Deployment › Staging; AD-34
-- @gary Decide whether staging should also serve the legacy Triage Advisor (e.g. a `?legacy=1` switch). Today the Triage page switches to the new pipeline whenever it is on, so legacy is only reachable on production — AD-34 (3); CRR_Release_Log.md 2026-10-11
 - @gary Decide when to close SR-16 (admin reads on the public API origin accept a bare header; assess audit identity is client-supplied) — SECURITY_DECISIONS.md SR-16
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52

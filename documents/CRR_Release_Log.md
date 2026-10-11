@@ -12,7 +12,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 - **Evaluators and the programme:** a staging copy of the tools behind Cloudflare Access, for synthetic cases only. On staging, the Triage page runs the new assessment pipeline.
   - The legacy Triage Advisor is not reachable on staging: the page switches itself to the new pipeline whenever it is on.
-  - This falls short of AD-34 (3), which has both on one host. Until Gary decides on a switch (STATUS), the legacy path is seen on production.
+  - This departs from AD-34 (3), which has both on one host. Gary decided (2026-10-11) not to add a legacy switch on staging, so the legacy path is seen on production.
 - **Content** (from the seed script's output): production's published criteria as served at the time (label v4.1.2), its 6 region override sets and its active system prompt 2.3.0. The national red-flag, CT CAP and CT Colonography bundles are marked published **as a staging demo only**, with sign-off reference "STAGING DEMO ONLY: not clinically signed off (AD-10, AD-34)" (AD-35); none is clinically signed off.
 - No change for referrers or triagers on production.
 
