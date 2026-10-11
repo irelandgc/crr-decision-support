@@ -129,9 +129,10 @@ async function prod(p) {
   if (!r.ok) fail(`Production ${p} returned ${r.status}; not seeding from a partial read.`);
   return r.json();
 }
+let stageB = false;
 function fail(msg) {
   console.error(`\n✘ ${msg}`);
-  console.error("Last wrangler output:\n" + devLog.filter(Boolean).slice(-25).join("\n"));
+  if (!stageB) console.error("Last wrangler output:\n" + devLog.filter(Boolean).slice(-25).join("\n"));
   stopDev();
   process.exit(1);
 }
@@ -233,14 +234,32 @@ try {
   await new Promise((r) => setTimeout(r, 1500));
 
   // Stage B: copy the local result to remote staging.
-  const q = (v) => v === null ? "NULL" : typeof v === "number" ? String(v) : `'${String(v).replace(/'/g, "''")}'`;
+  stageB = true;
+  // `d1 execute --local --json` returns SQL NULL as the string "null", so ask the
+  // database which fields are NULL instead of trusting the value.
+  const q = (v) => typeof v === "number" ? String(v) : `'${String(v).replace(/'/g, "''")}'`;
+  const CHUNK = 20000; // chars per literal: well under D1's 100 KB statement limit
   const lines = [];
   for (const t of TABLES) {
-    for (const row of d1(local, `SELECT * FROM ${t} ORDER BY rowid`)) {
-      const cols = Object.keys(row);
-      lines.push(`INSERT INTO ${t} (${cols.join(", ")}) VALUES (${cols.map((c) => q(row[c])).join(", ")});`);
+    const cols = d1(local, `PRAGMA table_info(${t})`).map((c) => c.name);
+    const rows = d1(local, `SELECT ${cols.join(", ")}, ${cols.map((c) => `(${c} IS NULL) AS "__null_${c}"`).join(", ")} FROM ${t} ORDER BY id`);
+    for (const row of rows) {
+      const val = (c) => (row[`__null_${c}`] ? null : row[c]);
+      const tails = []; // long text goes in as a first chunk plus UPDATE ... || appends
+      const first = cols.map((c) => {
+        const v = val(c);
+        if (v === null) return "NULL";
+        if (typeof v === "string" && v.length > CHUNK) {
+          for (let i = CHUNK; i < v.length; i += CHUNK) tails.push(`UPDATE ${t} SET ${c} = ${c} || ${q(v.slice(i, i + CHUNK))} WHERE id = ${row.id};`);
+          return q(v.slice(0, CHUNK));
+        }
+        return q(v);
+      });
+      lines.push(`INSERT INTO ${t} (${cols.join(", ")}) VALUES (${first.join(", ")});`, ...tails);
     }
   }
+  const tooBig = lines.find((l) => Buffer.byteLength(l) > 90_000);
+  if (tooBig) fail(`A generated statement is ${Buffer.byteLength(tooBig)} bytes, over D1's limit. Nothing copied.`);
   const sqlFile = path.join(tmp, "rows.sql");
   fs.writeFileSync(sqlFile, lines.join("\n") + "\n");
   const keys = kvKeys(local);
@@ -248,14 +267,33 @@ try {
   const vals = kvGetAll(local, keys);
   if (keys.some((k) => typeof vals[k]?.value !== "string")) fail("Could not read every local KV value; nothing copied.");
   fs.writeFileSync(kvFile, JSON.stringify(keys.map((key) => ({ key, value: vals[key].value }))));
-  console.log(`Copying ${lines.length} D1 row(s) and ${keys.length} KV key(s) to remote staging…`);
-  wrangler(["d1", "execute", DB_NAME, ...remote, "--config", CONFIG, "--env", "staging", "--file", sqlFile, "--yes"]);
-  wrangler(["kv", "bulk", "put", kvFile, "--namespace-id", KV_ID, ...remote]);
+
+  const recovery = `To retry, empty remote staging first:
+  npx wrangler d1 execute ${DB_NAME} --remote --config ${CONFIG} --env staging --command "${TABLES.map((t) => `DELETE FROM ${t};`).join(" ")}"
+  then delete its KV keys (list them with: npx wrangler kv key list --namespace-id ${KV_ID} --remote).`;
+  console.log(`Copying ${lines.length} D1 statement(s) and ${keys.length} KV key(s) to remote staging…`);
+  try {
+    wrangler(["d1", "execute", DB_NAME, ...remote, "--config", CONFIG, "--env", "staging", "--file", sqlFile, "--yes"]);
+  } catch (e) {
+    fail(`D1 copy failed; D1 import is all-or-nothing, so remote staging is unchanged.\n${e.stderr || e.message}`);
+  }
+  try {
+    wrangler(["kv", "bulk", "put", kvFile, "--namespace-id", KV_ID, ...remote]);
+  } catch (e) {
+    fail(`D1 rows were copied, but the KV copy failed.\n${e.stderr || e.message}\n${recovery}`);
+  }
 
   // Verify on remote.
-  const back = kvGetAll(remote, keys);
-  if (keys.some((k) => back[k]?.value !== vals[k].value)) fail("Remote KV values differ from the local seed after the copy; inspect staging before re-running.");
-  const pub = JSON.parse(back["criteria:published"].value);
+  // Remote KV is eventually consistent: allow a short settle before comparing.
+  let back = {};
+  for (let i = 0; i < 6; i++) {
+    back = kvGetAll(remote, keys);
+    if (keys.every((k) => back[k]?.value === vals[k].value)) break;
+    await new Promise((r) => setTimeout(r, 5000));
+  }
+  const differ = keys.filter((k) => back[k]?.value !== vals[k].value);
+  if (differ.length) console.warn(`! ${differ.length} KV value(s) not yet visible as written (${differ.join(", ")}). Re-check in a minute; if they stay wrong:\n${recovery}`);
+  const pub = JSON.parse((back["criteria:published"] ?? vals["criteria:published"]).value);
   const states = d1(remote, "SELECT exam_site, version, state FROM bundles ORDER BY exam_site").map((b) => `${b.exam_site} ${b.version} ${b.state}`);
   if (pub.version !== src.version || states.length !== BUNDLES.length) fail("Remote staging check failed after the copy; inspect it before re-running.");
   console.log(`✓ remote staging: criteria ${pub.version}; bundles: ${states.join("; ")}`);

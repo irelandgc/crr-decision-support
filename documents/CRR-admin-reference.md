@@ -380,10 +380,10 @@ npx wrangler secret list --config public/crr-criteria/wrangler.json --env stagin
      - the latest national-redflags, CT CAP and CT Colonography bundles from the registry, in their real state (`transcribed`).
    - **Stage B:** it copies the resulting D1 rows and KV values to remote staging with wrangler, then checks that every copied KV value matches.
      - `wrangler dev --remote` cannot open a preview session on this account, which is why the work happens locally first.
-   - It refuses if remote staging already holds seeded rows or KV keys, so it never loads on top. To re-seed, empty staging first.
+   - It refuses if remote staging already holds seeded rows or KV keys, so it never loads on top. If a copy fails part-way, it says which half finished and prints the commands to empty staging and retry.
+   - If your Cloudflare login covers more than one account, set `CLOUDFLARE_ACCOUNT_ID=13d95cc559c1c6a7e6808d279d668b75` first.
    - Needs `npx wrangler login`, steps 1–5 done, and port 8799 free.
    - Add `--demo-published` (AD-35; Gary must accept it first) to also move those bundles to `published` on staging. Each gets the sign-off reference "STAGING DEMO ONLY: not clinically signed off". The new pipeline only evaluates published bundles. Never do this on production (AD-10).
-   - Safe to re-run: completed steps are skipped.
    - No audit, usage, QA or assessment rows are copied.
 
 Notes:
