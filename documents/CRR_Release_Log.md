@@ -17,6 +17,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
   - The snapshot-publish route no longer writes the stub `criteria:match-data` (TA-SRC-01 §6.1, `2cc1f38`); production Triage reads the embedded constant, not that key.
   - The bundle registry routes are present. The remote D1 most likely has no `bundles` table yet (migration 0008, a slice 10 step; recorded under SR-14 on 2026-09-07, not probed since), in which case they fail (KI-68).
   - The nightly 03:00 UTC purge cron (added in slice 3) now runs in production. If the remote D1 lacks the assessment tables it fails each night; if it has them, they should be empty, since the pipeline has never run in production. Either way it is expected to delete nothing. Inferred, not checked (KI-69).
+- **Access (later the same day):** production admin logins on `vite-react-template.fk4dsrmq5r.workers.dev` were ending at the old staging hostname after the staging rename. Gary removed the stale `vite-react-template-staging` row from the production Access application, and the login works again (KI-70). Gary's checks also confirmed the remote D1 has no bundle-registry or assessment tables (KI-68, KI-69).
 - Deploying production's API worker was planned for the slice 10 cut-over. It went out now so SR-16 (2) could close; the cut-over still applies the remote migrations and the other pre-conditions.
 
 ---

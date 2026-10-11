@@ -35,6 +35,9 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Staging deployed, behind Access and seeded; checked by Gary in the browser — AD-34; AD-35; CRR_Release_Log.md 2026-10-11
 - 2026-10-11 Staging main worker renamed `crr-tools-staging` in Cloudflare (Gary); no legacy Triage on staging, legacy is compared on production (Gary) — AD-34
 - 2026-10-11 SR-16 closed: SD-15 deployed to both production workers (PR #43, `7882c2a`); `ADMIN_PROXY_KEY` set on both; forged-header read 401 and Admin Tool checked by Gary — SECURITY_DECISIONS.md SR-16; CRR_Release_Log.md 2026-10-11
+- 2026-10-11 Staging redeployed with the SR-16 fix (both staging workers deployed after the PR #43 merge, per Gary's dashboard) — SECURITY_DECISIONS.md SD-15
+- 2026-10-11 Production admin login on workers.dev fixed: stale staging row removed from the production Access application (Gary) — documents/arch-mig-known-issues.md KI-70
+- 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; registry empty — documents/arch-mig-known-issues.md KI-68, KI-69
 
 ## Queued
 - @claude Drop the unreachable `cf-access-authenticated-user-email` fallbacks in the API worker's internal assess routes (performedBy, ~L1795/2418/2501); the main worker no longer forwards that header — SECURITY_DECISIONS.md SD-15
@@ -55,8 +58,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary Confirm staging was redeployed with PR #43 (runbook steps 1 and 3) and staging admin still loads — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
-- @gary Say what the production Bundles tab shows now the API worker is deployed — documents/arch-mig-known-issues.md KI-68
+- @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
 - @gary Schedule or decide PR #23 review KIs: latent defects KI-58/59/60, B2 pass KI-61, retro-file brief? KI-62 — documents/arch-mig-known-issues.md KI-58–62
@@ -84,7 +86,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @gary Admin Tool structured editor with roles/approval workflow and Entra ID auth — documents/arch-mig-plan.md line 7; SD-13 as cited at documents/arch-mig-plan.md line 177 (register row missing — see Queued: raise SD-13 or correct citation)
 
 ## Blocked
-- @blocked Admin Tool Bundles tab in production: remote migration 0008 not confirmed applied, and the route returns 500 without it (slice 10 cut-over) — documents/arch-mig-known-issues.md KI-68
+- @blocked Admin Tool Bundles tab in production fails until migration 0008 is applied to the remote D1 (slice 10 cut-over) — documents/arch-mig-known-issues.md KI-68
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
 - @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
 - @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
