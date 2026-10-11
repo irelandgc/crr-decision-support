@@ -81,6 +81,12 @@ describe("publish validation", () => {
     expect(viaProxy.status).toBe(200);
   });
 
+  it("4d. SR-16 — a wrong x-admin-key is refused for reads; with no ADMIN_KEY configured, a key is never accepted", async () => {
+    // The test env sets ADMIN_PROXY_KEY but no ADMIN_KEY, so no x-admin-key value can authenticate.
+    const res = await SELF.fetch("http://worker/api/admin/versions", { headers: { "x-admin-key": "anything" } });
+    expect(res.status).toBe(401);
+  });
+
   it("5. rejects a bundle missing required keys", async () => {
     const res = await publish({ examSite: "x" });
     expect(res.status).toBe(422);
