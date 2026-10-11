@@ -314,11 +314,17 @@ The main site build uploads all static files under `public/crr-criteria/` as Clo
 
 ### Staging (AD-34)
 
+**Renamed 2026-10-11** from `vite-react-template-staging` to `crr-tools-staging`; the staging API worker keeps `crr-criteria-api-staging`. To move an existing deployment:
+1. Workers & Pages → `vite-react-template-staging` → **Settings** → **General** → change the Worker name to `crr-tools-staging`, if your dashboard offers it. Renaming in place keeps the worker's secrets and its Worker Access policy, and the AUD should stay `b5160ef3…`: check it on the Access tab and tell Claude if it changed.
+2. If renaming isn't offered: run step 3 (which creates `crr-tools-staging`), step 4 (Worker Access on the new worker; its new AUD goes into `env.staging.vars.ACCESS_AUD`) and step 5's three main-worker secrets, then delete `vite-react-template-staging`.
+3. Either way, redeploy the API worker (step 1) so its allowed-origins list has the new host, then step 3.
+4. The old `/crr-criteria/admin` row for `vite-react-template-staging` in the production Access application is now unused and can be removed when convenient.
+
 A second copy of both workers for side-by-side evaluation with synthetic cases only. It has its own D1 (`crr-criteria-staging`), KV and secrets. Workers Builds never deploys it; deploy it by hand from the repo root.
 
 | | Production | Staging |
 |---|---|---|
-| Main worker | `vite-react-template` | `vite-react-template-staging` (`https://vite-react-template-staging.fk4dsrmq5r.workers.dev`) |
+| Main worker | `vite-react-template` | `crr-tools-staging` (`https://crr-tools-staging.fk4dsrmq5r.workers.dev`) |
 | API worker | `crr-criteria-api` (public workers.dev) | `crr-criteria-api-staging` (no public URL; reached only over the binding) |
 | Pipeline flag | off | on (`ASSESS_PIPELINE_ENABLED=true`) |
 | Access | admin paths only | the whole hostname |
@@ -341,7 +347,7 @@ CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy
 npm run build
 ```
 
-4. **Access, straight after step 3.** Workers & Pages → `vite-react-template-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**.
+4. **Access, straight after step 3.** Workers & Pages → `crr-tools-staging` → **Access** tab → Worker policies → **Manage access**. Set Scope to **All traffic** and the policy to **CRR Admin Users**.
    - This creates a Worker-level Access application with its own AUD. That AUD goes in `env.staging.vars.ACCESS_AUD` in `wrangler.json` (`b5160ef3…`, set 2026-10-11).
    - If the application is ever recreated, copy its new AUD (Access tab → Application values → AUD tag) into the config and redo step 3.
    - Between steps 3 and 4 the host is public, but nothing is exposed: there is no Anthropic key yet, and admin calls fail closed.
@@ -356,11 +362,11 @@ npx wrangler secret put ADMIN_PROXY_KEY     --config public/crr-criteria/wrangle
 npx wrangler secret put ASSESS_INTERNAL_KEY --config public/crr-criteria/wrangler.json --env staging
 npx wrangler secret put ANTHROPIC_API_KEY   --config public/crr-criteria/wrangler.json --env staging
 # The next three take the SAME values as the API worker's above.
-npx wrangler secret put ADMIN_KEY --name vite-react-template-staging
-npx wrangler secret put ADMIN_PROXY_KEY --name vite-react-template-staging
-npx wrangler secret put ASSESS_INTERNAL_KEY --name vite-react-template-staging
+npx wrangler secret put ADMIN_KEY --name crr-tools-staging
+npx wrangler secret put ADMIN_PROXY_KEY --name crr-tools-staging
+npx wrangler secret put ASSESS_INTERNAL_KEY --name crr-tools-staging
 # Check (names only): the main worker lists 3, the API worker lists 4.
-npx wrangler secret list --name vite-react-template-staging
+npx wrangler secret list --name crr-tools-staging
 npx wrangler secret list --config public/crr-criteria/wrangler.json --env staging
 ```
 

@@ -51,7 +51,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
-- @gary Staging: deployed, Access on (Worker policy), secrets set (2026-10-11). Redo step 3 with PR #38's AUD if not yet done; then run the seed (step 6); decide AD-35 before using `--demo-published` — documents/CRR-admin-reference.md §Deployment › Staging; AD-34; AD-35; AD-10
+- @gary Staging: rename the main worker to `crr-tools-staging` (dashboard rename, or the fallback), redeploy the API worker (step 1) and app (step 3), then run the seed (step 6) with `--demo-published` (AD-35 accepted) — documents/CRR-admin-reference.md §Deployment › Staging; AD-34; AD-35
 - @gary Decide when to close SR-16 (admin reads on the public API origin accept a bare header; assess audit identity is client-supplied) — SECURITY_DECISIONS.md SR-16
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
@@ -69,6 +69,7 @@ Governance posture that must be visibly correct before the tabletop runs — eve
 
 ## Pre-pilot gate
 Production-readiness decisions, gated at the pre-pilot review, not at slice completion — not blockers for slice work (AD-30).
+- @gary Rename the production main worker (`vite-react-template`, a template-derived name) together with the host decision: move routes, Workers Builds, secrets and the Access hostnames/AUD — KI-44; AD-34
 - @gary Production publish policy for criteria updates (e.g. the CT AP revision, approved draft 27/08/26) — open item, no register entry yet — AD-30
 - @gary Decide AD-17 (ask attestation questions at all?) — AD-17 (review pack D6)
 - @gary Overlay authoring granularity — AD-29
