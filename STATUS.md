@@ -84,7 +84,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @gary Admin Tool structured editor with roles/approval workflow and Entra ID auth — documents/arch-mig-plan.md line 7; SD-13 as cited at documents/arch-mig-plan.md line 177 (register row missing — see Queued: raise SD-13 or correct citation)
 
 ## Blocked
-- @blocked Admin Tool Bundles tab in production lists nothing until migration 0008 is applied to the remote D1 (slice 10 cut-over) — documents/arch-mig-known-issues.md KI-68
+- @blocked Admin Tool Bundles tab in production: remote migration 0008 not confirmed applied, and the route returns 500 without it (slice 10 cut-over) — documents/arch-mig-known-issues.md KI-68
 - @blocked AD-05 final ruling (governed national safety addendum vs drop) — review pack D1; provisional keep in force meanwhile (slice 6 marked Done on that basis) — AD-05; KI-51
 - @blocked Transcribe CT AP (W1) — the 27/08/26 draft has unresolved tracked changes and open reviewer comments on criterion B ("and" vs "+/-"); waits on a clean version or ruling (see Needs Gary) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; documents/arch-mig-plan.md §Slice 7; KI-52
 - @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
