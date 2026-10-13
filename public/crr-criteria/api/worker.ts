@@ -1792,7 +1792,7 @@ app.post('/api/assess/evaluate', async (c) => {
   // are the only non-deterministic parts of what leaves this route.
   const assessmentId = crypto.randomUUID();
   const now = new Date().toISOString();
-  const performedBy = c.req.header('x-assess-identity') || c.req.header('cf-access-authenticated-user-email') || (typeof body.performedBy === 'string' ? body.performedBy : null);
+  const performedBy = c.req.header('x-assess-identity') || (typeof body.performedBy === 'string' ? body.performedBy : null);
   try {
     await c.env.DB.prepare(
       `INSERT INTO assessments (id, created_at, bundle_versions, engine_version, vocabulary_version, prompt_version, model_id, documentation_standard, questionnaire_response, advisory, discrepancies, validation_failures, performed_by, regression_run_id)
@@ -2415,7 +2415,7 @@ app.post('/api/assess', async (c) => {
 
   const engine = await import('./engine');
   const docStd = engine.isDocumentationStandard(body.documentationStandard) ? body.documentationStandard : 'strict';
-  const performedBy = c.req.header('x-assess-identity') || c.req.header('cf-access-authenticated-user-email') || (typeof body.performedBy === 'string' ? body.performedBy : null);
+  const performedBy = c.req.header('x-assess-identity') || (typeof body.performedBy === 'string' ? body.performedBy : null);
   const regressionRunId = typeof body.regressionRunId === 'string' ? body.regressionRunId : null;
 
   const core = await runExtractionCore(c, { note, context, requestedExamSite });
@@ -2498,7 +2498,7 @@ app.post('/api/assess/propose', async (c) => {
   const engine = await import('./engine');
   const docStd = engine.isDocumentationStandard(body.documentationStandard) ? body.documentationStandard : 'strict';
   const allowSignedOff = c.env.ASSESS_ALLOW_SIGNED_OFF === 'true';
-  const performedBy = c.req.header('x-assess-identity') || c.req.header('cf-access-authenticated-user-email') || (typeof body.performedBy === 'string' ? body.performedBy : null);
+  const performedBy = c.req.header('x-assess-identity') || (typeof body.performedBy === 'string' ? body.performedBy : null);
 
   const core = await runExtractionCore(c, { note, context, requestedExamSite });
   if (!core.ok) {
