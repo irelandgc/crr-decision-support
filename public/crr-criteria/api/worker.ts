@@ -146,7 +146,7 @@ app.get('/api/criteria/:id', async (c) => {
           key: resolved.bundle.examSite,
           version: resolved.bundle.version,
           sectionTitle: resolved.bundle.planDefinition?.title ?? null,
-          pages: resolved.bundle.source?.pages ?? resolved.bundle.source?.draftRef ?? null,
+          pages: resolved.bundle.source?.pages ?? null, // PDF sources only; an approved draft has no pages (KI-66)
         },
         source: resolved.bundle.source ?? null,
         planDefinition: resolved.bundle.planDefinition,

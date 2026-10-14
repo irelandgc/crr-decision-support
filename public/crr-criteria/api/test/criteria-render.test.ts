@@ -232,4 +232,12 @@ describe("criteria-render — source line (AD-01)", () => {
     expect(html).toContain("CT Chest, Abdomen and Pelvis - Adult");
     expect(html).toContain("page 10-11");
   });
+
+  it("an approved-draft source shows its date, never a page or the repo path (KI-66, AD-33)", () => {
+    const html = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication", sourceLine: { title: "CT Colonography - Adult", pages: null, draftDate: "2026-08-27" } }));
+    const line = html.match(/<div class="cr-source-line">.*?<\/div>/)![0];
+    expect(line).toContain("CT Colonography - Adult");
+    expect(line).toContain("approved draft, 27/08/2026");
+    expect(visibleText(line)).not.toMatch(/page/);
+  });
 });

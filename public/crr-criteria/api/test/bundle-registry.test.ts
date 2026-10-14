@@ -224,6 +224,7 @@ describe("state transitions", () => {
     expect(body.questionnaire).toBeTruthy();
     expect(Array.isArray(body.overlays)).toBe(true); // slice 6 D3 — overlays for the Viewer's region
     expect(body.source).toBeTruthy();
+    expect(body.bundle.pages).toBe(body.source.pages); // PDF source: pages, never a draftRef (KI-66)
     // examId + cohort on the bundle branch too (no snapshot seeded here, so the
     // fallback applies — the id itself, adult)
     expect(body.examId).toBe("ct_cap");

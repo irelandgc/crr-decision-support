@@ -39,6 +39,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Production admin login on workers.dev fixed: stale staging row removed from the production Access application (Gary) — documents/arch-mig-known-issues.md KI-70
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 - 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
+- 2026-10-14 Viewer source line shows an approved draft's date, not its repo path; built, not deployed — documents/arch-mig-known-issues.md KI-66; CL-54
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -55,7 +56,6 @@ days after their date. [U] = inferred, not found.
 - @claude SD-13 (Entra ID / admin approval workflow) is cited at documents/arch-mig-plan.md line 177 with no matching row in SECURITY_DECISIONS.md — raise the row or correct the citation — documents/arch-mig-plan.md line 177; AD-30
 - @claude Unify `prefillDemographicsFromMerge` with `flattenQrValues` (next brief) — documents/arch-mig-known-issues.md KI-63
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
-- @claude Viewer source line: show the draft title/date, not the repo file path, for approved-draft bundles — documents/arch-mig-known-issues.md KI-66; AD-33
 
 ## Needs Gary
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging

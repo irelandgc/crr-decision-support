@@ -25,7 +25,7 @@
 //   const model = resolveCriteria(
 //     { planDefinition, questionnaire, overlays },
 //     { context: 'referrer', layout: 'indication', region: 'te-waipounamu',
-//       regionsConfig, ticks: {}, sourceLine: { title, pages } });
+//       regionsConfig, ticks: {}, sourceLine: { title, pages, draftDate } });
 //   container.innerHTML = criteriaHtml(model);
 
 const BADGE_SYS   = "http://crr.health.nz/fhir/CodeSystem/criteria-badge";
@@ -51,6 +51,7 @@ export const CHROME_STRINGS = [
   "Regional delivery",
   "Local HealthPathways",
   "page",
+  "approved draft",
 ];
 
 function esc(s) {
@@ -266,7 +267,7 @@ export function resolveCriteria(bundle, opts) {
     context: opts.context === "triager" ? "triager" : "referrer",
     readOnly: !!opts.readOnly,
     layout,
-    sourceLine: opts.sourceLine ? { title: opts.sourceLine.title || null, pages: opts.sourceLine.pages || null } : null,
+    sourceLine: opts.sourceLine ? { title: opts.sourceLine.title || null, pages: opts.sourceLine.pages || null, draftDate: opts.sourceLine.draftDate || null } : null,
     guidance: guidanceAction ? {
       text: guidanceAction.a.description || guidanceAction.a.title || "",
       page: pageOf(guidanceAction.a),
@@ -362,8 +363,12 @@ export function criteriaHtml(model) {
       `</div>`;
   };
 
-  if (model.sourceLine && (model.sourceLine.title || model.sourceLine.pages)) {
-    out.push(`<div class="cr-source-line">${esc(model.sourceLine.title || "")}${model.sourceLine.pages ? ` <span class="cr-page">page ${esc(model.sourceLine.pages)}</span>` : ""}</div>`);
+  if (model.sourceLine && (model.sourceLine.title || model.sourceLine.pages || model.sourceLine.draftDate)) {
+    const { title, pages, draftDate } = model.sourceLine;
+    // A PDF source cites its pages; an approved draft (AD-33) cites its date instead (KI-66).
+    const ref = pages ? `page ${esc(pages)}`
+      : draftDate ? `approved draft, ${esc(String(draftDate).replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$3/$2/$1"))}` : "";
+    out.push(`<div class="cr-source-line">${esc(title || "")}${ref ? ` <span class="cr-page">${ref}</span>` : ""}</div>`);
   }
 
   // Acute-assessment banner — above the criteria, wording from the bundle.

@@ -2939,7 +2939,8 @@ window.crrBundlePanelHtml = function (entry, exam, site, passive) {
       regionLegacyId: _rgn.legacyRegionId,
       regionsConfig: CRR_REGIONS_CONFIG,
       ticks: CRR_TICKS[id] || {},
-      sourceLine: { title: (b.bundle && b.bundle.sectionTitle) || title, pages: (b.bundle && b.bundle.pages) || null },
+      sourceLine: { title: (b.bundle && b.bundle.sectionTitle) || title, pages: (b.bundle && b.bundle.pages) || null,
+        draftDate: (b.source && b.source.type === 'approved-draft' && b.source.date) || null },
     },
   );
   const showCheck = CRR_PIPELINE && !passive;
