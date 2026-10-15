@@ -58,7 +58,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71
+- @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
 - @gary Get a clean version or ruling on CT AP criterion B (reviewer comment: "and" vs "+/-"; whether abnormal labs are required and how persistent) and the other unaccepted tracked changes (new exclusions, secondary-care OR pathway, frailty 7-9 pathway) — documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx; KI-52
