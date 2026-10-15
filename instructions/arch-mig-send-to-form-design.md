@@ -46,7 +46,7 @@ Under A, inferred answers are left out under the strict standard (invariant 4). 
 ## 5. Security: origin rule (applies to the Viewer too)
 
 Replace `postMessage(…, '*')` with a send only to an allowed origin (SR-17). The proposal:
-- keep a **separate** list for postMessage. The API worker's CORS `ALLOWED_ORIGINS` (`api/worker.ts` ~46) is not suitable, even though its comment reserves it for partner origins. It also gates the unauthenticated `/api/triage/assess` (403 to any other Origin, ~797; a known cost sink, SR-01). Adding a referral platform there would let that platform's pages call the route cross-origin. Being allowed to receive output text is a different permission from being allowed to call the API;
+- keep a **separate** list for postMessage. The API worker's CORS `ALLOWED_ORIGINS` (`api/worker.ts` ~46) is not suitable, even though its comment reserves it for partner origins. It also gates the unauthenticated `/api/triage/assess` (403 to any other Origin, ~803; a known cost sink, SR-01). Adding a referral platform there would let that platform's pages call the route cross-origin. Being allowed to receive output text is a different permission from being allowed to call the API;
 - hold the postMessage list as a constant in one shared page module (e.g. `shared/integration-origins.js`), used by the Viewer and the Triage page and changed only by a reviewed PR. That needs no new route or variable;
 - take the opener or parent origin from `document.referrer`;
 - send only when that origin is on the list;
@@ -71,5 +71,7 @@ Keep `{type:'crr-output', text, source:'triage'}` and the close-after-send behav
 2. Under A, the exact referrer-facing wording of the determination line and the "To add:" heading. It must contain no priority codes; those are referrer-facing words, so the call is yours.
 3. Origin allowlist: which referral platforms, and should the Viewer change in the same PR?
 4. Is KI-71 a slice 10 cut-over precondition? I recommend yes, because removing a working integration feature is user-visible.
+5. Approve the new shared page module for the origin list (§5, e.g. `shared/integration-origins.js`)? CLAUDE.md asks before new modules.
+6. The legacy Triage page keeps `'*'` until cut-over (SR-17). Accept that, or patch it now as an interim with a retirement date? Either way, I add "remove the legacy send code" to the cut-over checklist.
 
 On your answer I'll record an AD (status Proposed until you accept it), add CL rows (`BRD:NEW` for the Triage requirement), build the change with tests, and add the cut-over checklist line if you answer yes to 4.
