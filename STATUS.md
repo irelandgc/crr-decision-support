@@ -62,6 +62,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
+- @gary Accept or reject the AD-35 amendment (staging seed marks demo-published exam sites live) — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - @gary Check the Cloudflare account's Workers plan and CPU limit (staging `/api/assess` hits "Exceeded CPU Limit"); then Claude profiles and fixes — documents/arch-mig-known-issues.md KI-72
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
