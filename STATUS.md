@@ -40,6 +40,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 - 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
 - 2026-10-14 Viewer source line shows an approved draft's date, not its repo path; built, not deployed — documents/arch-mig-known-issues.md KI-66; CL-54
+- 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71
 
 ## Queued
@@ -62,8 +63,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary Accept or reject the AD-35 amendment (staging seed marks demo-published exam sites live) — ARCHITECTURE_DECISIONS.md AD-35; CL-55
-- @gary Check the Cloudflare account's Workers plan and CPU limit (staging `/api/assess` hits "Exceeded CPU Limit"); then Claude profiles and fixes — documents/arch-mig-known-issues.md KI-72
+- @gary Decide on Workers Paid: the account is on Free (10 ms CPU), and staging `/api/assess` hits "Exceeded CPU Limit"; then Claude profiles and sets the limit — documents/arch-mig-known-issues.md KI-72
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
