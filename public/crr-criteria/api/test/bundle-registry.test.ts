@@ -224,6 +224,7 @@ describe("state transitions", () => {
     expect(body.questionnaire).toBeTruthy();
     expect(Array.isArray(body.overlays)).toBe(true); // slice 6 D3 — overlays for the Viewer's region
     expect(body.source).toBeTruthy();
+    expect(body.bundle.pages).toBe("10-11"); // PDF source: its pages (KI-66; the draft case is 17b)
     // examId + cohort on the bundle branch too (no snapshot seeded here, so the
     // fallback applies — the id itself, adult)
     expect(body.examId).toBe("ct_cap");
@@ -237,6 +238,28 @@ describe("state transitions", () => {
     res = await SELF.fetch("http://worker/api/bundle/ct-chest-abdomen-pelvis-adult/latest");
     const bundleBody: any = await res.json();
     expect(bundleBody.state).toBe("published");
+  });
+
+  it("17b. an approved-draft source gives no pages: the draftRef never reaches the Viewer as a page (KI-66)", async () => {
+    const draft = realBundle();
+    draft.version = "1.0.1"; // the file's earlier tests already hold 1.0.0 (storage is shared); same logic hash -> a patch bump
+    draft.source = { type: "approved-draft", title: "Test approved draft", identifier: "Updated 27/08/2026", date: "2026-08-27", draftRef: "documents/reference/test-draft.docx#CT" };
+    const pub = await publish(draft);
+    expect(pub.status, await pub.clone().text()).toBe(201);
+    for (const body of [
+      { toState: "signed-off", signoffRef: "tooling/criteria-bundle/sites/ct-chest-abdomen-pelvis-adult/signoff.md" },
+      { toState: "published" },
+    ]) {
+      const r = await SELF.fetch("http://worker/api/admin/bundles/ct-chest-abdomen-pelvis-adult/state", {
+        method: "POST", headers: { "content-type": "application/json", ...AUTH }, body: JSON.stringify(body),
+      });
+      expect(r.status).toBe(200);
+    }
+    const res = await SELF.fetch("http://worker/api/criteria/ct_cap");
+    expect(res.status).toBe(200);
+    const got: any = await res.json();
+    expect(got.source.type).toBe("approved-draft");
+    expect(got.bundle.pages).toBeNull();
   });
 });
 

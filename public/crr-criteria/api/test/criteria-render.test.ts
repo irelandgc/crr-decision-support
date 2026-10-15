@@ -43,7 +43,7 @@ function visibleText(html: string): string {
 function untraceable(html: string): string[] {
   const toks = visibleText(html).toLowerCase().split(/[^a-z0-9%/+&.-]+/i)
     .map((w) => w.replace(/^[.-]+|[.-]+$/g, ""))
-    .filter((w) => w.length > 0 && !/^[0-9]+([.-][0-9]+)*$/.test(w));
+    .filter((w) => w.length > 0 && !/^[0-9]+([./-][0-9]+)*$/.test(w)); // numbers, ranges and dates (27/08/2026) are not vocabulary
   return [...new Set(toks)].filter((w) => !ARTEFACT_WORDS.has(w) && !CHROME_WORDS.has(w));
 }
 
@@ -57,6 +57,13 @@ describe("criteria-render — every displayed string traces to a bundle artefact
         });
         const bad = untraceable(criteriaHtml(model));
         expect(bad).toEqual([]);
+      });
+      it(`${ctx} / ${layout} — approved-draft source line (KI-66)`, () => {
+        const model = resolveCriteria(bundle, {
+          context: ctx, layout, region: "te-waipounamu", regionsConfig,
+          sourceLine: { title: ctCapPd.title, pages: null, draftDate: "2026-08-27" },
+        });
+        expect(untraceable(criteriaHtml(model))).toEqual([]);
       });
     }
   }
@@ -231,5 +238,14 @@ describe("criteria-render — source line (AD-01)", () => {
     const html = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication", sourceLine: { title: "CT Chest, Abdomen and Pelvis - Adult", pages: "10-11" } }));
     expect(html).toContain("CT Chest, Abdomen and Pelvis - Adult");
     expect(html).toContain("page 10-11");
+  });
+
+  it("an approved-draft source shows its date, never a page or the repo path (KI-66, AD-33)", () => {
+    const html = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication", sourceLine: { title: "CT Colonography - Adult", pages: null, draftDate: "2026-08-27" } }));
+    const line = html.match(/<div class="cr-source-line">.*?<\/div>/)![0];
+    expect(line).toContain("CT Colonography - Adult");
+    expect(line).toContain("approved draft, 27/08/2026");
+    expect(visibleText(line)).not.toMatch(/page/);
+    expect(line).not.toMatch(/documents\/|\.docx/);
   });
 });
