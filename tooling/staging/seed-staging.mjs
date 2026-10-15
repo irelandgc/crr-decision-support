@@ -298,6 +298,17 @@ try {
   const pub = JSON.parse(back["criteria:published"] ?? vals["criteria:published"]);
   const states = d1(remote, "SELECT exam_site, version, state FROM bundles ORDER BY exam_site").map((b) => `${b.exam_site} ${b.version} ${b.state}`);
   if (pub.version !== src.version || states.length !== BUNDLES.length) fail("Remote staging check failed after the copy; inspect it before re-running.");
+  // AD-35 amendment: the pipeline only evaluates exam/site ids marked live
+  // (worker.ts loadForExamSiteId), and migration 0008 marks only ct_cap live.
+  // On staging, mark live the ids whose bundle is now demo-published.
+  if (demoPublished) {
+    const keys = d1(remote, "SELECT exam_site FROM bundles WHERE state = 'published'").map((b) => b.exam_site);
+    if (keys.length) {
+      d1(remote, `UPDATE exam_sites SET live = 1 WHERE bundle_key IN (${keys.map(q).join(", ")})`);
+      const live = d1(remote, "SELECT id FROM exam_sites WHERE live = 1 ORDER BY id").map((r) => r.id);
+      console.log(`✓ staging exam/site ids live: ${live.join(", ")}`);
+    }
+  }
   console.log(`✓ remote staging: criteria ${pub.version}; bundles: ${states.join("; ")}`);
   console.log(`\nDone.${demoPublished ? " Bundles are marked published as a STAGING DEMO (not clinically signed off, AD-35)." : " Bundles are transcribed, so the new pipeline will not evaluate them."}`);
 } catch (e) {
