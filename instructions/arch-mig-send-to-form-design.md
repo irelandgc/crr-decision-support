@@ -72,6 +72,6 @@ Keep `{type:'crr-output', text, source:'triage'}` and the close-after-send behav
 3. Origin allowlist: which referral platforms, and should the Viewer change in the same PR?
 4. Is KI-71 a slice 10 cut-over precondition? I recommend yes, because removing a working integration feature is user-visible.
 5. Approve the new shared page module for the origin list (§5, e.g. `shared/integration-origins.js`)? CLAUDE.md asks before new modules.
-6. The legacy Triage page keeps `'*'` until cut-over (SR-17). Accept that, or patch it now as an interim with a retirement date? Either way, I add "remove the legacy send code" to the cut-over checklist.
+6. The legacy Triage page keeps `'*'` until cut-over (SR-17). Accept that, or patch it now as an interim with a retirement date? Either way, I add "remove the legacy send code" to the slice 10 pre-conditions in `documents/arch-mig-plan.md` §Slice 10, which serve as the cut-over checklist.
 
-On your answer I'll record an AD (status Proposed until you accept it), add CL rows (`BRD:NEW` for the Triage requirement), build the change with tests, and add the cut-over checklist line if you answer yes to 4.
+On your answer I'll record an AD (status Proposed until you accept it), add CL rows (`BRD:NEW` for the Triage requirement), build the change with tests, and add the line to the slice 10 pre-conditions (`arch-mig-plan.md` §Slice 10) if you answer yes to 4.
