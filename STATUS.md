@@ -40,13 +40,17 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 - 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
 - 2026-10-14 Viewer source line shows an approved draft's date, not its repo path; built, not deployed — documents/arch-mig-known-issues.md KI-66; CL-54
+- 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
-- @claude Transcribe remaining W1 sites (CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) — documents/arch-mig-plan.md §Slice 7
+- @claude Transcribe remaining W1 sites (CT Head, US Pelvis, US Abdomen, US DVT, CT Chest, XR Chest, US Renal) for staging demo publish (Gary, 2026-10-15: do not wait for sign-off) — in progress — documents/arch-mig-plan.md §Slice 7; AD-35
+- @claude Stop the gate rejecting a whole extraction over an unrequired quote on the requested exam — documents/arch-mig-known-issues.md KI-73
+- @claude Extraction misses localising features in the note-4 jaundice case; add it to the benchmark — documents/arch-mig-known-issues.md KI-74
+- @claude Referrer view: duplicated "What to add" lines; page reference run onto the determination — documents/arch-mig-known-issues.md KI-75
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
 - @claude Draft BRD v3.3 redline from CL rows tagged BRD (due after slice 5) — documents/DOCUMENTATION-PLAN.md
@@ -58,6 +62,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
+- @gary Check the Cloudflare account's Workers plan and CPU limit (staging `/api/assess` hits "Exceeded CPU Limit"); then Claude profiles and fixes — documents/arch-mig-known-issues.md KI-72
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
