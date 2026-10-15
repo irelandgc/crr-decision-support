@@ -46,7 +46,8 @@ Under A, inferred answers are left out under the strict standard (invariant 4). 
 ## 5. Security: origin rule (applies to the Viewer too)
 
 Replace `postMessage(…, '*')` with a send only to an allowed origin (SR-17). The proposal:
-- reuse the partner list that already exists. The API worker's CORS `ALLOWED_ORIGINS` (`api/worker.ts` ~46) says partner origins (BPAC, HealthLink, ERMS) are added there when integration is wired up. Keep one list rather than a second one, served to the pages from that single source;
+- keep a **separate** list for postMessage. The API worker's CORS `ALLOWED_ORIGINS` (`api/worker.ts` ~46) is not suitable, even though its comment reserves it for partner origins. It also gates the unauthenticated `/api/triage/assess` (403 to any other Origin, ~797; a known cost sink, SR-01). Adding a referral platform there would let that platform's pages call the route cross-origin. Being allowed to receive output text is a different permission from being allowed to call the API;
+- hold the postMessage list as a constant in one shared page module (e.g. `shared/integration-origins.js`), used by the Viewer and the Triage page and changed only by a reviewed PR. That needs no new route or variable;
 - take the opener or parent origin from `document.referrer`;
 - send only when that origin is on the list;
 - otherwise show "Copy" only.
@@ -55,7 +56,7 @@ Which partner origins go on the list, and changing the Viewer in the same build,
 
 ## 6. Message contract
 
-Keep `{type:'crr-output', text, source:'triage'}` and the close-after-send behaviour (`window.close()`, `triage/index.html` ~2593) unchanged, so existing integrations keep working. (`crr-close` is the Viewer's modal message; the Triage page has no modal mode.) The only change is that `text` is no longer model-authored.
+Keep `{type:'crr-output', text, source:'triage'}` and the close-after-send behaviour (`window.close()`, `triage/index.html` ~2594) unchanged, so existing integrations keep working. (`crr-close` is the Viewer's modal message; the Triage page has no modal mode.) The only change is that `text` is no longer model-authored.
 
 ## 7. Non-goals
 
