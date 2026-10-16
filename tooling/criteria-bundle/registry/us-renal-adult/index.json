@@ -1,0 +1,13 @@
+{
+  "examSite": "us-renal-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:07.869Z",
+      "logicHash": "sha256:765fd3bc71751b9dbb28e295b5044aa68455eecf424f991d9716820c13052bcc",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

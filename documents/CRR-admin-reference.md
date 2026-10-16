@@ -377,7 +377,7 @@ npx wrangler secret list --config public/crr-criteria/wrangler.json --env stagin
    - **Stage A:** it runs the staging API worker code entirely on your machine, against a fresh local copy of the staging schema (127.0.0.1 only, one-off admin key). It loads everything through the real admin routes:
      - production's published criteria, match data and region overrides, read from production's public endpoints (production is never written);
      - production's active system prompt, created then activated;
-     - the latest national-redflags, CT CAP and CT Colonography bundles from the registry, in their real state (`transcribed`).
+     - the latest bundle of each key in the script's `BUNDLES` list (national-redflags, CT CAP, CT Colonography and the seven slice 7 W1 sites) from the registry, in their real state (`transcribed`). With `--demo-published` the script also marks those exam/site ids live on staging (AD-35 amendment) and fails if any stays off.
    - **Stage B:** it copies the resulting D1 rows and KV values to remote staging with wrangler, then checks that every copied KV value matches.
      - `wrangler dev --remote` cannot open a preview session on this account, which is why the work happens locally first.
    - It refuses if remote staging already holds seeded rows or KV keys, so it never loads on top. If a copy fails part-way, it says which half finished and prints the commands to empty staging and retry.

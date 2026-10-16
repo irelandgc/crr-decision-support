@@ -20,7 +20,8 @@
 //   2. The active system prompt: copied from production's public
 //      /api/system-prompt, created then activated through the prompt admin
 //      routes (activation is what updates KV).
-//   3. The latest bundle of national-redflags, CT CAP and CT Colonography from
+//   3. The latest bundle of each key in BUNDLES (national-redflags, CT CAP, CT
+//      Colonography and the seven slice 7 W1 sites) from
 //      tooling/criteria-bundle/registry, through /api/admin/bundles/publish, in
 //      their real state (transcribed). With --demo-published they are then moved
 //      transcribed -> signed-off -> published with a sign-off reference that says
@@ -45,7 +46,9 @@ const CONFIG = "public/crr-criteria/wrangler.json";
 const PORT = 8799;
 const BASE = `http://127.0.0.1:${PORT}`;
 const ACTOR = "seed-staging@local";
-const BUNDLES = ["national-redflags", "ct-chest-abdomen-pelvis-adult", "ct-colonography-adult"];
+const BUNDLES = ["national-redflags", "ct-chest-abdomen-pelvis-adult", "ct-colonography-adult",
+  // Slice 7 W1 (2026-10-16): transcribed, staging demo only (AD-35).
+  "ct-chest-adult", "ct-head-adult", "us-abdomen-adult", "us-dvt-adult", "us-pelvis-adult", "us-renal-adult", "xray-chest-adult"];
 const TABLES = ["versions", "audit_log", "system_prompts", "system_prompt_audit", "bundles"]; // what the routes write
 const DEMO_SIGNOFF = "STAGING DEMO ONLY: not clinically signed off (AD-10, AD-34)";
 const demoPublished = process.argv.includes("--demo-published");
@@ -298,6 +301,20 @@ try {
   const pub = JSON.parse(back["criteria:published"] ?? vals["criteria:published"]);
   const states = d1(remote, "SELECT exam_site, version, state FROM bundles ORDER BY exam_site").map((b) => `${b.exam_site} ${b.version} ${b.state}`);
   if (pub.version !== src.version || states.length !== BUNDLES.length) fail("Remote staging check failed after the copy; inspect it before re-running.");
+  // AD-35 amendment: the pipeline only evaluates exam/site ids marked live
+  // (worker.ts loadForExamSiteId), and migration 0008 marks only ct_cap live.
+  // On staging, mark live the ids whose bundle is now demo-published.
+  if (demoPublished) {
+    const keys = d1(remote, "SELECT exam_site FROM bundles WHERE state = 'published'").map((b) => b.exam_site);
+    if (keys.length) {
+      const inKeys = `bundle_key IN (${keys.map(q).join(", ")})`;
+      d1(remote, `UPDATE exam_sites SET live = 1 WHERE ${inKeys}`);
+      const notLive = d1(remote, `SELECT id FROM exam_sites WHERE ${inKeys} AND live = 0`).map((r) => r.id);
+      if (notLive.length) fail(`exam/site ids still not live after the update: ${notLive.join(", ")}`);
+      const live = d1(remote, "SELECT id FROM exam_sites WHERE live = 1 ORDER BY id").map((r) => r.id);
+      console.log(`✓ staging exam/site ids live: ${live.join(", ")}`);
+    }
+  }
   console.log(`✓ remote staging: criteria ${pub.version}; bundles: ${states.join("; ")}`);
   console.log(`\nDone.${demoPublished ? " Bundles are marked published as a STAGING DEMO (not clinically signed off, AD-35)." : " Bundles are transcribed, so the new pipeline will not evaluate them."}`);
 } catch (e) {

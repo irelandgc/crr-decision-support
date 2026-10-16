@@ -1,0 +1,13 @@
+{
+  "examSite": "ct-head-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:06.941Z",
+      "logicHash": "sha256:44ec5c26a27f992125346c4eb0b2dc5c4aefcc84494048ef6fb240f33767d069",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

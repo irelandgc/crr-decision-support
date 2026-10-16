@@ -1,0 +1,100 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-US-DVT-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USDVT_Adult_Indicators",
+  "title": "US DVT - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the US DVT (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, v2.0, published 09/04/2026, pp.36-37). NOT CLINICALLY SIGNED OFF (demo transcription, AD-35). The LLM extraction step, structured referral forms and the Criteria Viewer tick-list produce a QuestionnaireResponse against this Questionnaire, which the CQL library CRR_USDVT_Adult evaluates. Each answer may carry the answer-evidence extension (status documented|inferred, quote). No item carries an SDC initialExpression: there is no population library for this site. workup.dvtClinicalSuspicionHigh is in the AD-17 attestation category and is answered by the referrer, never the extraction model.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_USDVT_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "extension": [
+            { "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": { "system": "http://unitsofmeasure.org", "code": "a", "display": "years" } }
+          ]
+        },
+        { "linkId": "patient.pregnant", "text": "Patient is pregnant", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "history",
+      "text": "History and current medication",
+      "type": "group",
+      "item": [
+        { "linkId": "history.anticoagulantTherapy", "text": "Currently on anticoagulant therapy", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Presentation",
+      "type": "group",
+      "item": [
+        { "linkId": "symptom.superficialVenousThrombosis", "text": "Superficial venous thrombosis", "type": "boolean" },
+        { "linkId": "symptom.svtProximalLongSaphenousVeinThigh", "text": "The superficial venous thrombosis affects the proximal long saphenous vein in the thigh", "type": "boolean" },
+        { "linkId": "symptom.suspectedDvtUpperLimb", "text": "Clinically suspected upper limb deep vein thrombosis (DVT)", "type": "boolean" },
+        { "linkId": "symptom.suspectedDvtLowerLimb", "text": "Clinically suspected lower limb deep vein thrombosis (DVT)", "type": "boolean" },
+        { "linkId": "symptom.calfDvt", "text": "Calf deep vein thrombosis (DVT) has been diagnosed", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Clinical assessment",
+      "type": "group",
+      "item": [
+        { "linkId": "workup.wellsScoreDvt", "text": "Wells score for DVT, as documented by the referrer", "type": "integer" },
+        { "linkId": "workup.dvtClinicalSuspicionHigh", "text": "Clinical suspicion of deep vein thrombosis (DVT) remains high", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "lab",
+      "text": "Laboratory results",
+      "type": "group",
+      "item": [
+        { "linkId": "lab.ddimer.positive", "text": "D-dimer positive", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "imaging",
+      "text": "Prior imaging",
+      "type": "group",
+      "item": [
+        { "linkId": "imaging.usdvt.initialNegative", "text": "No DVT seen on the initial ultrasound for this presentation", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist advice",
+      "type": "group",
+      "item": [
+        { "linkId": "advice.sameDayImagingRecommended", "text": "A Health NZ Haematology service or other secondary care specialist recommends same day imaging", "type": "boolean" },
+        { "linkId": "advice.followUpImagingRecommendedBySpecialist", "text": "Secondary care clinician or Radiologist advises referral for follow up ultrasound DVT", "type": "boolean" },
+        { "linkId": "advice.postAnticoagulationScanRecommended", "text": "A secondary care specialist recommends a follow-up scan after anticoagulation therapy", "type": "boolean" },
+        { "linkId": "advice.adviserNameRole", "text": "Name and role of the clinician who advised (must be included in the referral)", "type": "string" }
+      ]
+    },
+    {
+      "linkId": "funding",
+      "text": "Not routinely funded",
+      "type": "group",
+      "item": [
+        { "linkId": "funding.routineClotResolutionFollowUp", "text": "The scan is routine follow-up scanning to confirm clot resolution", "type": "boolean" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2521 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-XRay-Chest-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-XRay-Chest-Adult",
+  "version": "1.0.0",
+  "name": "CRR_XRChest_Adult",
+  "title": "X-ray Chest - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the X-ray Chest (Adult) national referral criteria, with each criterion bound to a named expression in the CQL library CRR_XRChest_Adult. NOT CLINICALLY REVIEWED (staging demo, AD-35). This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract. The 'Refer for acute assessment without initial imaging' row is shown for display only: it is evaluated by the national red-flag library CRR_RedFlags (RF-14 to RF-17).",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.62-65",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "Canterbury HealthPathway – Chest X-ray"
+    },
+    {
+      "type": "citation",
+      "label": "BTS quick reference guide: guidelines for the management of community acquired pneumonia in adults",
+      "url": "https://www.brit-thoracic.org.uk/document-library/guidelines/pneumonia-adults/quick-reference-guide-bts-guidelines-for-the-management-of-community-acquired-pneumonia-in-adults/"
+    },
+    {
+      "type": "citation",
+      "label": "Annotated BTS guideline for the management of CAP in adults (2014)",
+      "url": "https://www.brit-thoracic.org.uk/guidelines-and-quality-standards/community-acquired-pneumonia-in-adults-guideline/annotated-bts-guideline-for-the-management-of-cap-in-adults-2014/"
+    },
+    {
+      "type": "citation",
+      "label": "3D, Canterbury HealthPathways (source cited for the alternative management row, p.64)"
+    },
+    {
+      "type": "citation",
+      "label": "MoH Comm Rad Criteria 2015 (source cited for the alternative management and not routinely funded rows, p.64)"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_XRChest_Adult"
+  ],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance",
+      "description": "In patients with an acute lower respiratory tract infection a chest x-ray does not change the management in most cases.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "guidance"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.62 — Guidance box (printed beside the Acute: Within 24 hours row)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-assessment",
+      "title": "Refer for acute assessment without initial imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "acute-assessment"
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "aa-haemoptysis",
+          "title": "Haemoptysis with “red flags” including if",
+          "action": [
+            {
+              "id": "aa-haemoptysis-volume",
+              "title": "Significant (e.g., more than 20ml (1 tablespoon) in a single episode) or life threatening (e.g., more than 100 ml/hour) haemoptysis"
+            },
+            {
+              "id": "aa-haemoptysis-unstable",
+              "title": "Haemodynamically unstable"
+            },
+            {
+              "id": "aa-haemoptysis-hoarseness",
+              "title": "Haemoptysis with hoarseness or stridor"
+            },
+            {
+              "id": "aa-haemoptysis-dyspnoea",
+              "title": "Acute dyspnoea and/or chest pain"
+            }
+          ]
+        },
+        {
+          "id": "aa-respiratory-distress",
+          "title": "Severe respiratory distress"
+        },
+        {
+          "id": "aa-large-pneumothorax",
+          "title": "Suspected large pneumothorax with significant pain, breathlessness, tachycardia"
+        },
+        {
+          "id": "aa-active-tb",
+          "title": "Suspected active Tuberculosis and the patient is acutely unwell – follow the Tuberculosis pathway"
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.62 — Refer for acute assessment without initial imaging row (evaluated by CRR_RedFlags RF-14 to RF-17)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-24h",
+      "title": "Acute: Within 24 hours",
+      "priority": "asap",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A24",
+              "display": "Acute - within 24 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 24h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "a24-cap",
+          "title": "Suspected community-acquired pneumonia (CAP) with unexpectedly severe or atypical presentation, or where the patient is considered at risk of underlying lung pathology (e.g. lung cancer)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A24-1 Suspected CAP Severe Atypical Or At Risk"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.suspectedCommunityAcquiredPneumonia"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.pneumoniaSevereOrAtypicalPresentation"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.atRiskOfUnderlyingLungPathology"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.62 — Acute: Within 24 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 62
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chest-infection",
+                    "display": "Chest infection"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a24-rti-lvf",
+          "title": "Respiratory tract infection with possible left ventricular failure",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A24-2 RTI With Possible LVF"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.respiratoryTractInfection"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.possibleLeftVentricularFailure"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.62 — Acute: Within 24 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 62
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chest-infection",
+                    "display": "Chest infection"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.62 — Acute: Within 24 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "priority": "asap",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "a48-lung-cancer",
+          "title": "One or more of the following symptoms or signs concerning for lung cancer",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A48-1 Symptoms Or Signs Concerning For Lung Cancer"
+              }
+            }
+          ],
+          "selectionBehavior": "one-or-more",
+          "action": [
+            {
+              "id": "lc-01",
+              "title": "Unexplained, new, or worsening dyspnoea",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-01 Unexplained New Or Worsening Dyspnoea"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.dyspnoeaUnexplainedNewOrWorsening"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row, bullet 1, sub-bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 62
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-02",
+              "title": "Unexplained cough, persisting and worsening for more than 3 weeks",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-02 Unexplained Worsening Cough Over 3 Weeks"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.coughUnexplained"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.coughWorsening"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.coughDurationWeeks"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row, bullet 1, sub-bullet 2",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 62
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-03",
+              "title": "Unexplained chest and/or shoulder pain",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-03 Unexplained Chest Or Shoulder Pain"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chestOrShoulderPainUnexplained"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row, bullet 1, sub-bullet 3",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 62
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-04",
+              "title": "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-04 Unexplained Change In Chronic Respiratory Symptoms Over 3 Weeks"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chronicRespiratoryCondition"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chronicRespiratorySymptomChangeUnexplained"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chronicRespiratorySymptomChangeDurationWeeks"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row, bullet 1, sub-bullet 4",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 62
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-05",
+              "title": "Persistent, unexplained hoarseness persisting for more than 3 weeks",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-05 Unexplained Hoarseness Over 3 Weeks"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.hoarsenessUnexplained"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.hoarsenessDurationWeeks"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 5",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-06",
+              "title": "Recurrent or unresolved chest infections",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-06 Recurrent Or Unresolved Chest Infections"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chestInfectionsRepeatedOrUnresolved"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 6",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-07",
+              "title": "Persistent, unexplained haemoptysis in the absence of red flags",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-07 Persistent Unexplained Haemoptysis"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#redflag.haemoptysisPresent"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.haemoptysisPersistentUnexplained"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 7",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-08",
+              "title": "Unexplained weight loss and loss of appetite persisting for more than 3 weeks",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-08 Unexplained Weight Loss And Appetite Loss Over 3 Weeks"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#weightloss.present"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#weightloss.periodMonths"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.appetiteLoss"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.appetiteLossDurationWeeks"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 8",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-09",
+              "title": "unexplained abnormal chest signs persisting more than 3 weeks (e.g. suspected pleural effusion) which have not yet been investigated with imaging",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-09 Unexplained Abnormal Chest Signs Over 3 Weeks Not Yet Imaged"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.abnormalChestSignsUnexplained"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.abnormalChestSignsDurationWeeks"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.abnormalChestSigns.ever"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 9",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-10",
+              "title": "New supraclavicular lymphadenopathy",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-10 New Supraclavicular Lymphadenopathy"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.supraclavicularLymphadenopathyNew"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 10",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-11",
+              "title": "New cervical lymphadenopathy persisting for more than 3 weeks, where the lymph nodes are greater than 1 cm in diameter in a patient with other lung cancer symptoms, signs, or risk factors",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-11 New Cervical Lymphadenopathy Over 3 Weeks Over 1 cm With Other Features"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.cervicalLymphadenopathyNew"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.cervicalLymphadenopathyDurationWeeks"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.cervicalLymphNodeDiameterCm"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.otherLungCancerFeatures"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 11",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lc-12",
+              "title": "Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with painful swollen joints and finger (and toe) clubbing",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "LC-12 Features Suggestive Of Paraneoplastic Syndrome"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.paraneoplasticFeatures"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 1, sub-bullet 12",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 63
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lung-cancer",
+                        "display": "Symptoms or signs concerning for lung cancer"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 62
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-lung-cancer",
+                    "display": "Symptoms or signs concerning for lung cancer"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-subacute-dyspnoea",
+          "title": "Subacute dyspnoea of unknown cause, e.g. suspected pleural effusion or left ventricular failure",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A48-2 Subacute Dyspnoea Of Unknown Cause"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.subacuteDyspnoeaUnknownCause"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "breathlessness",
+                    "display": "Breathlessness"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-lrti",
+          "title": "Lower respiratory tract infection which hasn’t responded as expected after 48 hours of antibiotic treatment",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A48-3 LRTI Not Responding After 48 Hours Of Antibiotics"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.lowerRespiratoryTractInfection"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.noResponseAfter48hAntibiotics"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chest-infection",
+                    "display": "Chest infection"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-small-pneumothorax",
+          "title": "Suspected small pneumothorax",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A48-4 Suspected Small Pneumothorax"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.suspectedSmallPneumothorax"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "pneumothorax",
+                    "display": "Pneumothorax"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for acute x-ray",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "A48-5 Specialist Advises Acute X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.acuteImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — Acute: Within 48 hours row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.62 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=62",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 62
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.",
+      "priority": "urgent",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p2-tb",
+          "title": "Suspected tuberculosis - follow the Tuberculosis pathway and request a CXR if indicated",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2-1 Suspected Tuberculosis"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.suspectedTuberculosis"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "tuberculosis",
+                    "display": "Tuberculosis"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-dild",
+          "title": "Suspected drug induced lung disease in patients who develop new respiratory symptoms while taking medication which can potentially affect the lungs e.g. Amiodarone, nitrofurantoin, methotrexate.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2-2 Suspected Drug Induced Lung Disease"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.suspectedDrugInducedLungDisease"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.newRespiratorySymptoms"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.takingPneumotoxicMedication"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — P2 Urgent row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "other-indications",
+                    "display": "Other indications"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-dvt-pe",
+          "title": "Idiopathic / unprovoked DVT or PE - as required, to exclude underlying malignancy.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2-3 Idiopathic Or Unprovoked DVT Or PE"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.unprovokedDvtOrPe"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — P2 Urgent row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "other-indications",
+                    "display": "Other indications"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-pmr",
+          "title": "Polymyalgia Rheumatica (PMR) - request CXR for all patients prior to starting steroids, to exclude an alternative cause for their presenting symptoms (e.g. pulmonary pathology, chronic infection, malignancy).  Also consider additional targeted imaging if any specific concerns about an underlying malignancy.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2-4 PMR Before Starting Steroids"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.polymyalgiaRheumatica"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.pmrSteroidsStarted"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — P2 Urgent row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "other-indications",
+                    "display": "Other indications"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for urgent x-ray",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2-5 Specialist Advises Urgent X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.63 — P2 Urgent row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 63
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.63 — P2 Urgent row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=63",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 63
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3 Non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P3",
+              "display": "Non-urgent - within six weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p3-asthma",
+          "title": "For investigation of alternative diagnoses or co-morbidities in patients with non-acute asthma and any of - unclear diagnosis, poor control, or frequent exacerbations",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-1 Non-acute Asthma With Unclear Diagnosis Poor Control Or Frequent Exacerbations"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.asthmaNonAcute"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.asthmaDiagnosisUnclear"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.asthmaPoorControl"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.asthmaFrequentExacerbations"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-respiratory-disease",
+                    "display": "Chronic respiratory symptoms and disease"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-chronic-cough",
+          "title": "Chronic cough (more than 8 weeks)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-2 Chronic Cough More Than 8 Weeks"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.coughDurationWeeks"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-respiratory-disease",
+                    "display": "Chronic respiratory symptoms and disease"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-chronic-dyspnoea",
+          "title": "Chronic dyspnoea",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-3 Chronic Dyspnoea"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.chronicDyspnoea"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "breathlessness",
+                    "display": "Breathlessness"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-cardiorespiratory",
+          "title": "Known cardio-respiratory disease unresponsive to treatment, for example COPD, ILD, bronchiectasis, sarcoidosis",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-4 Known Cardio-respiratory Disease Unresponsive To Treatment"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.cardiorespiratoryDiseaseUnresponsiveToTreatment"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-respiratory-disease",
+                    "display": "Chronic respiratory symptoms and disease"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-asbestos",
+          "title": "History of asbestos exposure and no previous chest x-ray",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-5 Asbestos Exposure And No Previous Chest X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.asbestosExposureHistory"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.cxr.ever"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "other-indications",
+                    "display": "Other indications"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for non-urgent x-ray",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3-6 Specialist Advises Non-urgent X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — P3 row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.64 — P3 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "S2 non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S2",
+              "display": "Specified date - within 2 weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "s2-post-infection",
+          "title": "6 week follow up chest X-ray after chest infection if the patient has any of:",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2-1 Follow-up Chest X-ray After Chest Infection"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.followUpAfterChestInfection"
+              ]
+            }
+          ],
+          "selectionBehavior": "any",
+          "action": [
+            {
+              "id": "s2-post-infection-symptoms",
+              "title": "ongoing symptoms or signs",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#symptom.ongoingSymptomsOrSignsAfterChestInfection"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "s2-post-infection-radiology",
+              "title": "suspicious radiological features noted by a radiologist and follow up is recommended",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.radiologistSuspiciousFeaturesFollowUpRecommended"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "s2-post-infection-recommended",
+              "title": "when recommended by secondary care clinician or radiologist",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.followUpImagingRecommendedBySpecialist"
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — S2 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-imaging",
+                    "display": "Follow-up imaging"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-post-cancer",
+          "title": "Post-cancer surveillance with documented specialist recommendation",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2-2 Post-cancer Surveillance With Specialist Recommendation"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.postCancerSurveillance"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.followUpImagingRecommendedBySpecialist"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — S2 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-imaging",
+                    "display": "Follow-up imaging"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-nodules",
+          "title": "Follow-up of nodules detected on chest X-ray or CT, if recommended by a secondary care clinician or radiologist",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2-3 Nodule Follow-up Recommended By Specialist Or Radiologist"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#imaging.noduleFollowUp"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.followUpImagingRecommendedBySpecialist"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — S2 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-imaging",
+                    "display": "Follow-up imaging"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for follow-up x-ray",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2-4 Specialist Advises Follow-up X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.followUpImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-XRay-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — S2 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.64 — S2 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "am-negative-cxr",
+          "title": "Ongoing unexplained respiratory symptoms after a negative chest X-ray result, especially if clinical concern of malignancy, either:",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Ongoing Unexplained Symptoms After Negative Chest X-ray"
+              }
+            }
+          ],
+          "action": [
+            {
+              "id": "am-specialist",
+              "title": "Seek secondary care specialist assessment"
+            },
+            {
+              "id": "am-lung-cancer-hp",
+              "title": "See the local Lung Cancer HealthPathway"
+            },
+            {
+              "id": "am-ctcap-hp",
+              "title": "See the local CT Chest, Abdomen and Pelvis HealthPathway"
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.64 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 64
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.64 — Alternative management or HealthPathway recommended row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 64
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-pneumonia-follow-up",
+          "title": "Routine follow-up of pneumonia findings on chest x-ray, other than in the scenarios specified above under S2 priority imaging"
+        },
+        {
+          "id": "nf-asbestos-surveillance",
+          "title": "Asbestos exposure surveillance"
+        },
+        {
+          "id": "nf-heart-murmur",
+          "title": "Heart murmur, unless signs of complications such as heart failure"
+        },
+        {
+          "id": "nf-lung-cancer-screening",
+          "title": "Lung cancer screening"
+        },
+        {
+          "id": "nf-nodule-follow-up",
+          "title": "Follow-up of nodules detected on chest X-ray or CT, except with documented recommendation of a hospital secondary care clinician or radiologist"
+        },
+        {
+          "id": "nf-tb-screening",
+          "title": "The patient may wish to consider privately funded imaging for TB screening in the absence of a positive skin or blood test - See Tuberculosis pathway for additional management advice"
+        },
+        {
+          "id": "nf-rib-views",
+          "title": "Rib views"
+        },
+        {
+          "id": "nf-immigration",
+          "title": "Chest x-rays for immigration purposes"
+        },
+        {
+          "id": "nf-routine-lateral",
+          "title": "Routine lateral x-ray view when requesting a PA image"
+        },
+        {
+          "id": "nf-hypertension",
+          "title": "Routine investigation of hypertension"
+        },
+        {
+          "id": "nf-drug-monitoring",
+          "title": "Routine monitoring for asymptomatic patients who are taking medications which may cause drug induced lung disease (e.g. amiodarone, nitrofurantoin, methotrexate)."
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.64 — Not routinely funded row (continues on p.65)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=64",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 64
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

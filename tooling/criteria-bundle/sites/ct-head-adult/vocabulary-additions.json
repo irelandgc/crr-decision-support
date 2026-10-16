@@ -1,0 +1,644 @@
+{
+  "_about": "Vocabulary additions proposed by the CT Head - Adult transcription (sites/ct-head-adult, 2026-10-15). NOT CLINICALLY REVIEWED. `add` = new indicators; `addSite` = existing indicators that should list ct-head-adult. `addGroup` = the one new group the `add` entries use (history.*); the indicators.json `groups` map needs it.",
+  "addGroup": {
+    "history": "Past medical history, current medication and care context (history of malignancy, anticoagulant therapy, palliative care)."
+  },
+  "add": [
+    {
+      "linkId": "symptom.tiaDaysSinceEpisode",
+      "text": "Time since the TIA episode, in days",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "CT Head p20 'within 7 days of the TIA episode'. US Carotid p34 states 'within the last 2 weeks' for the same quantity; each site's define asserts its own window."
+    },
+    {
+      "linkId": "symptom.crescendoTIA",
+      "text": "Crescendo TIAs",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head footnote *1 (high risk features for TIA)."
+    },
+    {
+      "linkId": "symptom.tiaSevereOrProlongedDeficit",
+      "text": "Severe or prolonged deficit (hemiparesis longer than 60 minutes)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head footnote *1."
+    },
+    {
+      "linkId": "symptom.focalNeurologicalSigns",
+      "text": "Focal neurological signs",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20, p21, p22"
+        }
+      ],
+      "notes": "CT Head Acute row 'Focal neurologic signs' and *2 'Presence of focal neurological signs' - one concept (KI-01). Distinct from symptom.newFocalNeurologicalDeficit (*3/*4) and symptom.neuroDeficitSpeechOrWeakness (P2 headache) - CT Head REVIEW Q10."
+    },
+    {
+      "linkId": "symptom.seizure",
+      "text": "Seizure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20, p21"
+        }
+      ],
+      "notes": "Any seizure (CT Head 'Seizure in palliative care setting'; 'Seizures with risk factors for intracranial pathology'). symptom.firstSeizure true implies a seizure."
+    },
+    {
+      "linkId": "symptom.headachePatternChangeProgressive",
+      "text": "A change in the pattern of headaches, with a progressive increase in frequency or severity",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "One indicator for the whole stem: 'progressive headache' answers it (prompt decomposition rule 14); 'different to usual' alone does not state a progressive increase (matrix DG-002). 'especially in patients aged 50 years and older' is a modifier, not encoded (KI-05, RP-000)."
+    },
+    {
+      "linkId": "symptom.headacheWorseOnCoughSneezeValsalva",
+      "text": "Headache exacerbated by coughing, sneezing, or Valsalva manoeuvre in a pattern not typical of a migraine",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.headachePersistentNauseaVomiting",
+      "text": "Headache associated with persistent nausea and vomiting (i.e. not typical of a migraine or other primary headache)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "'and' read literally: both nausea and vomiting (CT Head REVIEW Q11)."
+    },
+    {
+      "linkId": "symptom.neuroDeficitSpeechOrWeakness",
+      "text": "Objective neurological deficit causing disturbances of speech, or limb or facial weakness",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.cognitiveImpairment",
+      "text": "Cognitive impairment",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20, p21"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.rapidCognitiveDecline",
+      "text": "Rapid cognitive decline over weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20, p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.gaitAtaxia",
+      "text": "Gait ataxia",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21, p22"
+        }
+      ],
+      "notes": "Narrower than redflag.gaitDisturbance (X-ray Spine p72): ataxia is one kind of gait disturbance, so not reused."
+    },
+    {
+      "linkId": "symptom.firstSeizure",
+      "text": "First seizure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.seizureClearHistory",
+      "text": "There is a clear history of the seizure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ],
+      "notes": "AD-17 attestation candidate: rests on the referrer's clinical judgement. Not added to attestationIndicators here (that list needs AD-23 attestationWording and is a vocabulary-owner decision)."
+    },
+    {
+      "linkId": "symptom.seizureSingle",
+      "text": "Single seizure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.seizureUnprovokedOrSubstanceProvoked",
+      "text": "The seizure was unprovoked, or provoked by a known substance (e.g. drug or alcohol use)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.returnedToNormalHealth",
+      "text": "Patient has since returned to normal health",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.systemicSymptoms",
+      "text": "Systemic symptoms",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head *3/*4 'Fever, systemic symptoms' read as two items (REVIEW Q8). Not the same as redflag.severeSystemicSymptoms (CT Sinus p28, 'severe')."
+    },
+    {
+      "linkId": "symptom.newFocalNeurologicalDeficit",
+      "text": "New focal neurologic deficit",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.seizureFocal",
+      "text": "Focal seizure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.persistentAlteredMentalState",
+      "text": "Persistent altered mental state",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.headachePersistent",
+      "text": "Persistent headache",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.seizuresPoorlyControlledOrRecurrent",
+      "text": "Poorly controlled or recurrent seizures",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.suspectedProlactinoma",
+      "text": "Suspected prolactinoma",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.dementiaUnexpectedChange",
+      "text": "Unexpected change in dementia disease progression",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ],
+      "notes": "Used negated in the CT Head not-funded row ('no unexpected change in disease progression')."
+    },
+    {
+      "linkId": "history.anticoagulantTherapy",
+      "text": "Currently on anticoagulant therapy",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21, p22"
+        }
+      ],
+      "notes": "CT Head *2 'Anticoagulant therapy' and *1 'On anticoagulants' - one concept. US Carotid p34 'is not taking anticoagulants' is the same concept. See history.anticoagulation (CT Head REVIEW Q6)."
+    },
+    {
+      "linkId": "history.anticoagulation",
+      "text": "History of anticoagulation",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head *3/*4 'History of anticoagulation, malignancy'. Kept apart from history.anticoagulantTherapy (current therapy) because 'history of' is broader; current therapy also satisfies it in the CT Head library. Merge is CT Head REVIEW Q6."
+    },
+    {
+      "linkId": "history.malignancy",
+      "text": "History of malignancy",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "history.cancerWithBrainMetastasisPropensity",
+      "text": "History of cancer with propensity to brain metastases",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21, p22"
+        }
+      ],
+      "notes": "Published examples: lung, melanoma, breast ('-' on p21, '(e.g.' on p22 - CT Head REVIEW Q7). Implies history.malignancy."
+    },
+    {
+      "linkId": "history.chronicIllnessWithCerebralInvolvement",
+      "text": "Chronic illness associated with potential cerebral complications or involvement",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "'especially malignancy' is a modifier (KI-05); the published row names malignancy as the main example."
+    },
+    {
+      "linkId": "history.falls",
+      "text": "History of falls",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21, p22"
+        }
+      ]
+    },
+    {
+      "linkId": "history.headInjury",
+      "text": "Head injury",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head *3/*4 risk factor for intracranial pathology in a seizure presentation."
+    },
+    {
+      "linkId": "history.atrialFibrillation",
+      "text": "Atrial fibrillation",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head *1. US Carotid p34 'does not have atrial fibrillation at the time of presentation' is likely the same concept."
+    },
+    {
+      "linkId": "history.carotidStenosis",
+      "text": "Known carotid artery stenosis",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ]
+    },
+    {
+      "linkId": "history.palliativeCare",
+      "text": "Patient is in a palliative care setting",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ]
+    },
+    {
+      "linkId": "history.dementiaEstablishedAdvanced",
+      "text": "Established, advanced dementia",
+      "type": "boolean",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ]
+    },
+    {
+      "linkId": "history.dementiaDurationYears",
+      "text": "Duration of dementia, in years",
+      "type": "decimal",
+      "group": "history",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ],
+      "notes": "CT Head not-funded row 'more than 2 years duration'."
+    },
+    {
+      "linkId": "workup.abcd2Score",
+      "text": "ABCD2 score",
+      "type": "integer",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p22"
+        }
+      ],
+      "notes": "CT Head *1 'ABCD2 greater than 4'."
+    },
+    {
+      "linkId": "workup.suitableForCommunityManagement",
+      "text": "Patient has been assessed as suitable for being managed in the community",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "US Carotid p34 uses the same wording. AD-17 attestation candidate: rests on the referrer's clinical judgement. Not added to attestationIndicators here (that list needs AD-23 attestationWording and is a vocabulary-owner decision)."
+    },
+    {
+      "linkId": "workup.resultMayChangeManagement",
+      "text": "The imaging result may change management",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "AD-17 attestation candidate: rests on the referrer's clinical judgement. Not added to attestationIndicators here (that list needs AD-23 attestationWording and is a vocabulary-owner decision)."
+    },
+    {
+      "linkId": "workup.subtypeDiagnosisAltersManagement",
+      "text": "Establishing the subtype diagnosis will alter management",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ],
+      "notes": "CT Head P4 'establishing the subtype diagnosis will alter management' and not-funded 'establishing the subtype will not alter management' - one concept, both polarities (KI-01). AD-17 attestation candidate: rests on the referrer's clinical judgement. Not added to attestationIndicators here (that list needs AD-23 attestationWording and is a vocabulary-owner decision)."
+    },
+    {
+      "linkId": "advice.strokeSpecialistRecommended",
+      "text": "The requested imaging has been recommended by a Health NZ neurologist / stroke specialist or physician",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p20"
+        }
+      ],
+      "notes": "CT Head p20 'CT +/-CTA recommended by HNZ neurologist / stroke specialist or physician'. US Carotid p34 'recommended by a neurologist or stroke specialist' (no 'or physician') is a candidate for the same indicator. Gateway, scoped to the TIA pathway (KI-07)."
+    },
+    {
+      "linkId": "advice.mriAvailable",
+      "text": "MRI is available for this patient",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-head-adult",
+          "page": "p21"
+        }
+      ],
+      "notes": "CT Head p21 'where MRI (preferred first-line investigation) is not available'. One indicator, used negated (KI-01 pattern of advice.rapidSpecialistCareAccessible)."
+    }
+  ],
+  "addSite": [
+    {
+      "linkId": "redflag.bowelOrBladderIncontinence",
+      "page": "p21, p22"
+    },
+    {
+      "linkId": "symptom.fever",
+      "page": "p22"
+    }
+  ]
+}

@@ -1,0 +1,641 @@
+{
+  "add": [
+    {
+      "linkId": "workup.jaundiceObviousCause",
+      "text": "An obvious cause for the jaundice has been identified",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p30"
+        }
+      ],
+      "notes": "US Abdomen p30 Acute 48 h: 'Painless jaundice without obvious cause'. true = an obvious cause is apparent; the criterion needs false. Clinical judgement - proposed AD-17 attestation candidate (not added to attestationIndicators: no attestationWording drafted). See sites/us-abdomen-adult REVIEW Q2."
+    },
+    {
+      "linkId": "lab.ggt.raised",
+      "text": "GGT raised (higher than the upper limit of normal)",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p30, p32, p33"
+        }
+      ],
+      "notes": "Boolean flag (KI-06). US Abdomen p30 'GGT higher than the ULN' / 'raised ALP and GGT'; p32-33 'raised GGT', 'normal GGT'."
+    },
+    {
+      "linkId": "lab.ggt.timesULN",
+      "text": "GGT as a multiple of the upper limit of normal reported by the laboratory",
+      "type": "decimal",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "KI-13, same pattern as lab.alp.timesULN. US Abdomen p32 'Isolated raised GGT more than 5 times the ULN' (P3) and 'less than 5 times the ULN' (alternative management)."
+    },
+    {
+      "linkId": "lab.ggt.repeatRaised",
+      "text": "GGT remains higher than the upper limit of normal on repeat testing",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'Repeat GGT remains higher than the ULN'. The repeat-test counterpart of lab.ggt.raised."
+    },
+    {
+      "linkId": "lab.ggt.repeatTimesULN",
+      "text": "GGT on repeat testing as a multiple of the upper limit of normal reported by the laboratory",
+      "type": "decimal",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3: 'Isolated raised GGT more than 5 times the ULN and persists on re-testing after 3 months' (REVIEW Q11 reads 'persists' as still above 5 x ULN)."
+    },
+    {
+      "linkId": "lab.alp.repeatHigh",
+      "text": "ALP remains higher than the upper limit of normal on repeat testing",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'Repeat ALP remains higher than the ULN'. Named after the published lab.alp.high (REVIEW Q15 of the vocabulary notes)."
+    },
+    {
+      "linkId": "lab.repeatAfter3Months",
+      "text": "Liver blood tests have been repeated 3 months or more after the initial presentation",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31, p32"
+        }
+      ],
+      "notes": "US Abdomen p31 'repeat testing 3 months or more after the initial presentation'; p32 're-testing after 3 months'. Not lab.repeatConfirmed, whose text fixes a three-week interval and a persistence judgement across several analytes."
+    },
+    {
+      "linkId": "lab.isolatedLftAbnormality",
+      "text": "The raised liver blood test result is isolated (the other liver blood tests are normal)",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32, p33"
+        }
+      ],
+      "notes": "US Abdomen p32 'Isolated raised GGT'; p33 'Isolated raised bilirubin'. One concept for both (KI-01)."
+    },
+    {
+      "linkId": "lab.bilirubin.raised",
+      "text": "Bilirubin raised",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 'Isolated raised bilirubin'. P2 bullet 2's '+/- bilirubin' is modifier wording (KI-05) and does not use it."
+    },
+    {
+      "linkId": "lab.alt.value",
+      "text": "ALT value (IU/L)",
+      "type": "quantity",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "KI-06/KI-13: a .value sibling exists because the criterion states a numeric threshold: US Abdomen p31 'ALT greater than 120 IU/L'."
+    },
+    {
+      "linkId": "symptom.biliaryColicOrCholecystitis",
+      "text": "Suspected acute biliary colic or cholecystitis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p30, p31"
+        }
+      ],
+      "notes": "US Abdomen p30 P2 'Suspected acute cholecystitis / biliary colic ... where symptoms settle with analgesia'; p31 P3 'Suspected resolved acute biliary colic or cholecystitis'. Distinct from redflag.cholecystitisOrCholangitis (intractable, not relieved by simple analgesia)."
+    },
+    {
+      "linkId": "symptom.settlesWithAnalgesia",
+      "text": "Symptoms settle with analgesia",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p30"
+        }
+      ],
+      "notes": "US Abdomen p30 P2: 'where symptoms settle with analgesia'."
+    },
+    {
+      "linkId": "symptom.biliaryColicResolved",
+      "text": "The suspected acute biliary colic or cholecystitis has resolved",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'Suspected resolved acute biliary colic or cholecystitis'."
+    },
+    {
+      "linkId": "symptom.recurrentRUQOrEpigastricPain",
+      "text": "Recurrent right upper quadrant or epigastric pain",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'Recurrent right upper quadrant / epigastric, non-dyspepsia pain'. 'non-dyspepsia' is symptom.dyspepsia = false."
+    },
+    {
+      "linkId": "symptom.dyspepsia",
+      "text": "Dyspepsia",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31, p33"
+        }
+      ],
+      "notes": "One concept, two roles (KI-01): negated in US Abdomen p31 P3 ('non-dyspepsia pain') and a redirect at p33 ('Dyspepsia – See local HealthPathway')."
+    },
+    {
+      "linkId": "symptom.aaaNewlySuspected",
+      "text": "Newly suspected abdominal aortic aneurysm",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3: 'Asymptomatic, newly suspected abdominal aortic aneurysm'. Distinct from redflag.rupturedAAA and from known AAA under surveillance (advice.aaaSurveillance)."
+    },
+    {
+      "linkId": "symptom.aaaAsymptomatic",
+      "text": "The suspected abdominal aortic aneurysm is asymptomatic",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3: 'Asymptomatic, newly suspected abdominal aortic aneurysm'."
+    },
+    {
+      "linkId": "symptom.abdominalMassNonPulsatile",
+      "text": "Non-pulsatile abdominal mass",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3 'Non-pulsatile abdominal mass and suspected enlarged liver on examination' and alternative management 'Upper abdominal non-pulsatile mass, not consistent with hepatomegaly'."
+    },
+    {
+      "linkId": "symptom.abdominalMassUpper",
+      "text": "The abdominal mass is in the upper abdomen",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 alternative management: 'Upper abdominal non-pulsatile mass'."
+    },
+    {
+      "linkId": "symptom.hepatomegalySuspected",
+      "text": "Suspected enlarged liver on examination",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3 'suspected enlarged liver on examination'; answered false for the alternative-management item 'not consistent with hepatomegaly'."
+    },
+    {
+      "linkId": "symptom.colorectalNeoplasmSuspected",
+      "text": "Suspected colorectal neoplasm",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 alternative management (Colorectal Symptoms HealthPathway)."
+    },
+    {
+      "linkId": "symptom.unilateralLymphoedemaNew",
+      "text": "New unilateral lymphoedema",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 alternative management."
+    },
+    {
+      "linkId": "symptom.chronicPancreatitis",
+      "text": "Suspected or symptomatic chronic pancreatitis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 alternative management ('request acute general surgery assessment'). Not a national red flag: it is printed in the alternative-management row."
+    },
+    {
+      "linkId": "symptom.urinaryTractPresentation",
+      "text": "Urinary tract presentations and suspected renal abnormality",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 alternative management, published wording kept as one indicator (see sites/us-abdomen-adult REVIEW Q21). US Renal may hold the underlying concepts."
+    },
+    {
+      "linkId": "symptom.isolatedBloating",
+      "text": "Isolated bloating",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33: alternative management ('Isolated bloating with associated clinical symptoms') and not routinely funded ('Isolated bloating with no other features of concern'); the two differ only in workup.clinicalFeaturesOfConcern."
+    },
+    {
+      "linkId": "imaging.presentingProblem.ever",
+      "text": "The presenting problem has previously been imaged",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'non-dyspepsia pain without previous imaging' - no modality or region is printed (REVIEW Q6). Breaks the imaging.<examSlug>.<window> shape because the source names no exam."
+    },
+    {
+      "linkId": "imaging.gallstones.ever",
+      "text": "Previous imaging has shown gallstones",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3: 'without previous imaging which showed gallstones'."
+    },
+    {
+      "linkId": "workup.cholecystectomyCandidate",
+      "text": "The patient is a potential candidate for and would accept a cholecystectomy",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p31"
+        }
+      ],
+      "notes": "US Abdomen p31 P3. Clinical judgement plus patient preference - proposed AD-17 attestation candidate."
+    },
+    {
+      "linkId": "workup.conservativeMethodsUnsuccessful",
+      "text": "Conservative methods (e.g. weight loss and lifestyle alterations or medication change) have been unsuccessful",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3 (ALT bullet). The 'e.g.' list is illustrative (KI-05)."
+    },
+    {
+      "linkId": "workup.clinicalFeaturesOfConcern",
+      "text": "Clinical features of concern are present",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32, p33"
+        }
+      ],
+      "notes": "US Abdomen p32 P3 'No clinical features of concern' (answered false); p33 bloating items ('with associated clinical symptoms' / 'with no other features of concern'), REVIEW Q20. Clinical judgement - proposed AD-17 attestation candidate."
+    },
+    {
+      "linkId": "workup.suspicionMalignancy",
+      "text": "Suspicion of underlying malignancy",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 alternative management. Not workup.strongSuspicionMalignancy: the source says 'suspicion', not 'strong suspicion' (REVIEW Q19). Vocabulary owner to rule whether this is a near-duplicate (KI-01). Proposed AD-17 attestation candidate."
+    },
+    {
+      "linkId": "patient.liverRiskFactors",
+      "text": "High risk factors present (diabetes, obesity, medications that affect the liver, e.g. statins)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 P3 (ALT bullet): 'in patients with high risk factors (diabetes, obesity, medications that affect the liver, e.g. statins)'. One indicator for the printed group (REVIEW Q9). The `patient` group description says demographics; there is no history group."
+    },
+    {
+      "linkId": "advice.hccSurveillance",
+      "text": "HCC surveillance using liver ultrasound has been recommended by a gastroenterologist or other secondary care specialist, as part of long-term monitoring by Hepatitis Foundation of NZ, or by an agreed local pathway",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 S3 bullet 1, one indicator for the bullet."
+    },
+    {
+      "linkId": "advice.aaaSurveillance",
+      "text": "Surveillance of a known abdominal aortic aneurysm is due according to local HealthPathway, New Zealand Vascular Society guidelines or secondary care specialist advice",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 S3 bullet 2, one indicator for the bullet."
+    },
+    {
+      "linkId": "advice.incidentalFindingFollowUp",
+      "text": "Follow up of an incidental finding on imaging (including gallbladder polyps) is due according to the Incidental Findings on Imaging HealthPathway or radiology report advice",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p32"
+        }
+      ],
+      "notes": "US Abdomen p32 S3 bullet 3, one indicator for the bullet. Other sites with incidental-finding follow-up rows may share it."
+    },
+    {
+      "linkId": "funding.hernia",
+      "text": "Hernia in adults",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded. Read as the reason for the request (REVIEW Q18)."
+    },
+    {
+      "linkId": "funding.infectiveHepatitis",
+      "text": "Infective hepatitis",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded. Read as the reason for the request (REVIEW Q18); interacts with S3 HCC surveillance under Hepatitis Foundation monitoring."
+    },
+    {
+      "linkId": "funding.gallstonesFollowUpAsymptomatic",
+      "text": "Follow-up imaging of previously diagnosed gallstones in asymptomatic patients",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded. A scenario marker (the purpose of the request), not imaging.gallstones.ever + asymptomatic."
+    },
+    {
+      "linkId": "funding.simpleCystFollowUp",
+      "text": "Follow up imaging of simple renal or hepatic cysts",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded."
+    },
+    {
+      "linkId": "funding.screeningAorticAneurysm",
+      "text": "Screening for aortic aneurysm",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded ('Screening for: aortic aneurysm')."
+    },
+    {
+      "linkId": "funding.screeningFattyLiver",
+      "text": "Screening for fatty liver",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-abdomen-adult",
+          "page": "p33"
+        }
+      ],
+      "notes": "US Abdomen p33 not routinely funded ('Screening for: fatty liver')."
+    }
+  ],
+  "addSite": [
+    {
+      "linkId": "patient.age",
+      "page": "p30"
+    },
+    {
+      "linkId": "symptom.fatigue",
+      "page": "p32"
+    },
+    {
+      "linkId": "symptom.abdominalPain",
+      "page": "p32"
+    },
+    {
+      "linkId": "weightloss.present",
+      "page": "p32"
+    },
+    {
+      "linkId": "advice.adviserNameRole",
+      "page": "p30"
+    }
+  ]
+}

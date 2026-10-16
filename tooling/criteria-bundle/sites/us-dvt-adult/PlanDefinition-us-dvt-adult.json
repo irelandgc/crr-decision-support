@@ -1,0 +1,1128 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-US-DVT-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-US-DVT-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USDVT_Adult",
+  "title": "US DVT - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the US DVT (Adult) national referral criteria (National ID 15372 v2.0, pp.36-37), with each criterion bound to a named expression in the CQL library CRR_USDVT_Adult. NOT CLINICALLY SIGNED OFF: demo transcription for staging (AD-35); REVIEW questions are in signoff.md. This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.36-37",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "Well’s Criteria for DVT (mdcalc.com)",
+      "url": "https://www.mdcalc.com/calc/362/wells-criteria-dvt"
+    },
+    {
+      "type": "citation",
+      "label": "HealthNZ Haematologist advice (E. Merriman, L. Young, O’Keefe)"
+    },
+    {
+      "type": "citation",
+      "label": "Recommendations | Venous thromboembolic diseases: diagnosis, management and thrombophilia testing | Guidance | NICE",
+      "url": "https://www.nice.org.uk/guidance/ng158/chapter/recommendations#diagnosis-and-initial-management"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_USDVT_Adult"
+  ],
+  "action": [
+    {
+      "id": "acute-24h",
+      "title": "Acute:  Within 24 hours",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A24",
+              "display": "Acute - within 24 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 24h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "a24-svt",
+          "title": "Superficial venous thrombosis affecting the proximal long saphenous vein in the thigh,",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 24h: SVT Affecting Proximal Long Saphenous Vein In Thigh"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#symptom.superficialVenousThrombosis"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#symptom.svtProximalLongSaphenousVeinThigh"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Acute 24 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "superficial-venous-thrombosis",
+                    "display": "Superficial venous thrombosis"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a24-upper-limb",
+          "title": "Clinically suspected upper limb DVT",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 24h: Clinically Suspected Upper Limb DVT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#symptom.suspectedDvtUpperLimb"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Acute 24 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-upper-limb-dvt",
+                    "display": "Suspected upper limb DVT"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a24-same-day-advice",
+          "title": "Same day DVT US recommended by Health NZ Haematology service or other secondary care specialist",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 24h: Same Day DVT US Recommended By Specialist"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.sameDayImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Acute 24 hours row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.36 — Acute: Within 24 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "all",
+      "action": [
+        {
+          "id": "a48-lower-limb",
+          "title": "Clinically suspected lower limb DVT and one or more of the following:",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Meets Acute 48h Criteria"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "a48-suspected",
+              "title": "Clinically suspected lower limb DVT",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "mandatory",
+                      "display": "MANDATORY"
+                    }
+                  ]
+                }
+              ],
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Clinically Suspected Lower Limb DVT"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#symptom.suspectedDvtLowerLimb"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.36 — Acute 48 hours row, bullet 1 stem",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 36
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "suspected-lower-limb-dvt",
+                        "display": "Suspected lower limb DVT"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "a48-options",
+              "title": "one or more of the following:",
+              "selectionBehavior": "one-or-more",
+              "action": [
+                {
+                  "id": "a48-wells-2-or-greater",
+                  "title": "Well’s score of 2 or greater",
+                  "condition": [
+                    {
+                      "kind": "applicability",
+                      "expression": {
+                        "language": "text/cql-identifier",
+                        "expression": "Acute 48h Option: Wells Score 2 Or Greater"
+                      }
+                    }
+                  ],
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#workup.wellsScoreDvt"
+                      ]
+                    }
+                  ],
+                  "documentation": [
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.36 — Acute 48 hours row, sub-bullet 1",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 36
+                        }
+                      ]
+                    }
+                  ],
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                            "code": "suspected-lower-limb-dvt",
+                            "display": "Suspected lower limb DVT"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "a48-wells-under-2-ddimer",
+                  "title": "Well’s score less than 2 and positive D-dimer",
+                  "code": [
+                    {
+                      "coding": [
+                        {
+                          "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                          "code": "lab-value",
+                          "display": "LAB VALUE REQUIRED"
+                        }
+                      ]
+                    }
+                  ],
+                  "condition": [
+                    {
+                      "kind": "applicability",
+                      "expression": {
+                        "language": "text/cql-identifier",
+                        "expression": "Acute 48h Option: Wells Score Less Than 2 And Positive D-dimer"
+                      }
+                    }
+                  ],
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#workup.wellsScoreDvt"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#lab.ddimer.positive"
+                      ]
+                    }
+                  ],
+                  "documentation": [
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.36 — Acute 48 hours row, sub-bullet 2",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 36
+                        }
+                      ]
+                    }
+                  ],
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                            "code": "suspected-lower-limb-dvt",
+                            "display": "Suspected lower limb DVT"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Acute 48 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-lower-limb-dvt",
+                    "display": "Suspected lower limb DVT"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.36 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "title": "S1: Time sensitive imaging that must be completed within 1 week of a specified target date.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S1",
+              "display": "Time sensitive - within 1 week of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S1 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "s1-negative-initial-us",
+          "title": "No DVT seen on initial ultrasound but where clinical suspicion remains high AND there is high likelihood on Well’s score (i.e. 2 or higher). Arrange the follow-up scan for 5 - 8 days after the initial scan.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S1: No DVT On Initial US, Suspicion High, Wells 2 Or Higher"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#imaging.usdvt.initialNegative"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#workup.dvtClinicalSuspicionHigh"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#workup.wellsScoreDvt"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — S1 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "dvt-follow-up",
+                    "display": "DVT follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s1-calf-dvt",
+          "title": "To check for proximal clot extension in a calf DVT not being treated with anticoagulation, between 5 - 8 days after initial scan.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S1: Calf DVT Not Treated With Anticoagulation"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#symptom.calfDvt"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#history.anticoagulantTherapy"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — S1 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "dvt-follow-up",
+                    "display": "DVT follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s1-follow-up-advice",
+          "title": "Secondary care clinician or Radiologist advises referral for follow up ultrasound DVT",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S1: Secondary Care Clinician Or Radiologist Advises Follow Up DVT US"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.followUpImagingRecommendedBySpecialist"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — S1 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.36 — S1 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "S2: Time sensitive imaging that must be completed within 2 weeks of a specified target date.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S2",
+              "display": "Time sensitive - within 2 weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "s2-post-anticoagulation",
+          "title": "Follow up scan after anticoagulation therapy as recommended by secondary care specialist.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2: Follow Up Scan After Anticoagulation Recommended By Specialist"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.postAnticoagulationScanRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-DVT-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — S2 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "dvt-follow-up",
+                    "display": "DVT follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.36 — S2 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "am-child",
+          "title": "Children aged younger than 15 years – see local DVT HealthPathway",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Child Younger Than 15 Years"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-pregnant",
+          "title": "Pregnant women – see local DVT HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Pregnant Woman"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.36 — Alternative management row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 36
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.36 — Alternative management or HealthPathway recommended row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=36",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 36
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-routine-clot-resolution",
+          "title": "Routine follow-up scanning to confirm clot resolution - this does not typically assist with decisions on duration of anticoagulation.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Routine Follow Up To Confirm Clot Resolution"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.37 — Not routinely funded row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=37",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 37
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-svt",
+          "title": "Superficial venous thrombosis, unless affecting the proximal long saphenous vein in the thigh",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: SVT Not Affecting Proximal Long Saphenous Vein In Thigh"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.37 — Not routinely funded row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=37",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 37
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.37 — Not routinely funded row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=37",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 37
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

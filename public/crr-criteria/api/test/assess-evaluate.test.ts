@@ -321,6 +321,16 @@ describe("POST /api/assess/evaluate — multi-bundle aggregation (gap §4, AD-20
     expect(body.bundleVersions).toMatchObject({ "national-redflags": "1.0.0", ct_cap: "2.3.0", us_abdomen: "1.0.0" });
   });
 
+  it("a non-P priority (Acute 48h) also becomes a cross-exam recommendation (AD-36)", async () => {
+    const qr = makeQr({ "patient.age": 60, "patient.sex": "male", "workup.urinalysis": true });
+    const res = await evaluate({ questionnaireResponse: qr, requestedExamSite: "ct_cap", candidateExamSites: ["us_abdomen"] });
+    const body: any = await res.json();
+    expect(body.requestedExam.advisory.determination).toBe("INSUFFICIENT_INFORMATION");
+    expect(body.alternatives).toHaveLength(1);
+    expect(body.alternatives[0].advisory.determination).toBe("ACUTE_48H");
+    expect(body.alternatives[0].advisory.priorityCode).toBe("A48");
+  });
+
   it("no alternative when the requested exam is itself a priority determination", async () => {
     const s01 = scenarios.find((s: any) => s.id === "S01-b1-p2");
     const res = await evaluate({ questionnaireResponse: toQuestionnaireResponse(s01), requestedExamSite: "ct_cap", candidateExamSites: ["us_abdomen"] });

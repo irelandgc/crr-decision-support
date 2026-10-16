@@ -53,12 +53,13 @@ export function isDocumentationStandard(v: unknown): v is DocumentationStandard 
   return typeof v === "string" && (DOC_STANDARDS as readonly string[]).includes(v);
 }
 
-// A determination that means "this exam is warranted with a priority" — the
-// trigger for a cross-exam recommendation (gap §4). Exam libraries emit P2_URGENT
-// today; P1/P3 are allowed for. ACUTE only comes from the national library, which
-// stops the pipeline before any exam runs, so it is not an exam-level value here.
-function isPriorityDetermination(determination: string | undefined | null): boolean {
-  return typeof determination === "string" && /^P\d/.test(determination);
+// An exam advisory that means "this exam is warranted with a priority" — the
+// trigger for a cross-exam recommendation (gap §4). Exam libraries return a
+// priorityCode exactly when a timeframe row is met (Acute 24h/48h, P2-P4,
+// S1-S3; W1 convention, AD-36). The national library's ACUTE stops the
+// pipeline before any exam runs, so it is not an exam-level value here.
+function isPriorityAdvisory(advisory: any): boolean {
+  return Boolean(advisory && typeof advisory.priorityCode === "string" && advisory.priorityCode);
 }
 
 const helpersLib = fhirHelpersElm as unknown;
@@ -176,12 +177,12 @@ export async function runAssessment(input: AssessmentInput) {
   const candidateResults = [];
   for (const c of candidates) candidateResults.push(await evalResolution(c));
 
-  const requestedIsPriority = isPriorityDetermination(requestedResult?.advisory?.determination);
+  const requestedIsPriority = isPriorityAdvisory(requestedResult?.advisory);
 
   // gap §4: a candidate that reaches a priority determination while the requested
   // exam does not becomes a cross-exam recommendation.
   const alternatives = candidateResults
-    .filter((c) => c.evaluated && !requestedIsPriority && isPriorityDetermination(c.advisory?.determination))
+    .filter((c) => c.evaluated && !requestedIsPriority && isPriorityAdvisory(c.advisory))
     .map((c) => ({ id: c.id, advisory: c.advisory }));
 
   return {

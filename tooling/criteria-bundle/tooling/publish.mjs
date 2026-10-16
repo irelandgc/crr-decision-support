@@ -99,6 +99,112 @@ const MANIFESTS = {
       draftRef: "documents/reference/CURRENT CT Colonography and CT AP community referred criteria final draft Updated 270826.docx#CT Colonography - Adult",
     },
   },
+  // W1 (slice 7), PDF-sourced. Published exam/site id `ct_chest`.
+  "ct-chest-adult": {
+    cql: "sites/ct-chest-adult/CRR_CTChest_Adult.cql",
+    elm: "elm/CRR_CTChest_Adult.json",
+    planDefinition: "sites/ct-chest-adult/PlanDefinition-ct-chest-adult.json",
+    questionnaire: "sites/ct-chest-adult/Questionnaire-ct-chest-adult.json",
+    results: "sites/ct-chest-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "12-16",
+    },
+  },
+  // Slice 7 W1 (2026-10-15): transcribed from the PDF, not clinically signed off
+  // (staging demo only, AD-35). Published exam/site id ct_head.
+  "ct-head-adult": {
+    cql: "sites/ct-head-adult/CRR_CTHead_Adult.cql",
+    elm: "elm/CRR_CTHead_Adult.json",
+    planDefinition: "sites/ct-head-adult/PlanDefinition-ct-head-adult.json",
+    questionnaire: "sites/ct-head-adult/Questionnaire-ct-head-adult.json",
+    results: "sites/ct-head-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "20-22",
+    },
+  },
+  // W1 (slice 7). Demo transcription, not clinically signed off (AD-35).
+  "us-abdomen-adult": {
+    cql: "sites/us-abdomen-adult/CRR_USAbdomen_Adult.cql",
+    elm: "elm/CRR_USAbdomen_Adult.json",
+    planDefinition: "sites/us-abdomen-adult/PlanDefinition-us-abdomen-adult.json",
+    questionnaire: "sites/us-abdomen-adult/Questionnaire-us-abdomen-adult.json",
+    results: "sites/us-abdomen-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "30-33",
+    },
+  },
+  // W1 (slice 7). Demo transcription, not clinically signed off (AD-35); PDF-sourced.
+  "us-dvt-adult": {
+    cql: "sites/us-dvt-adult/CRR_USDVT_Adult.cql",
+    elm: "elm/CRR_USDVT_Adult.json",
+    planDefinition: "sites/us-dvt-adult/PlanDefinition-us-dvt-adult.json",
+    questionnaire: "sites/us-dvt-adult/Questionnaire-us-dvt-adult.json",
+    results: "sites/us-dvt-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "36-37",
+    },
+  },
+  // W1 (slice 7): PDF-sourced, demo transcription, not clinically signed off (AD-35).
+  "us-pelvis-adult": {
+    cql: "sites/us-pelvis-adult/CRR_USPelvis_Adult.cql",
+    elm: "elm/CRR_USPelvis_Adult.json",
+    planDefinition: "sites/us-pelvis-adult/PlanDefinition-us-pelvis-adult.json",
+    questionnaire: "sites/us-pelvis-adult/Questionnaire-us-pelvis-adult.json",
+    results: "sites/us-pelvis-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "44-51",
+    },
+  },
+  // W1 (slice 7), demo transcription, not signed off (AD-35).
+  "us-renal-adult": {
+    cql: "sites/us-renal-adult/CRR_USRenal_Adult.cql",
+    elm: "elm/CRR_USRenal_Adult.json",
+    planDefinition: "sites/us-renal-adult/PlanDefinition-us-renal-adult.json",
+    questionnaire: "sites/us-renal-adult/Questionnaire-us-renal-adult.json",
+    results: "sites/us-renal-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "52-55",
+    },
+  },
+  // W1 (slice 7): staging demo only, not clinically signed off (AD-35).
+  "xray-chest-adult": {
+    cql: "sites/xray-chest-adult/CRR_XRChest_Adult.cql",
+    elm: "elm/CRR_XRChest_Adult.json",
+    planDefinition: "sites/xray-chest-adult/PlanDefinition-xray-chest-adult.json",
+    questionnaire: "sites/xray-chest-adult/Questionnaire-xray-chest-adult.json",
+    results: "sites/xray-chest-adult/results.md",
+    source: {
+      type: "pdf",
+      title: "National Community Referral Criteria for Imaging (Part I)",
+      identifier: "National ID 15372, Version 2.0",
+      date: "2026-04-09",
+      pages: "62-65",
+    },
+  },
 };
 
 // The KV/admin-route target (`bundle:<examSite>:<version>` in the API worker's KV,
@@ -185,7 +291,8 @@ const logicHash = crypto.createHash("sha256")
 // that must already be green, per the plan's own gate ordering).
 function summariseResults(rel) {
   if (!fs.existsSync(path.join(root, rel))) return { file: rel, summary: "not found - run npm test first" };
-  const rows = readText(rel).split("\n").filter((l) => /^\|\s*(?:S\d|RM-|[A-Z]+-S\d)/.test(l));
+  // Every data row of the generated table (not the header or separator rows).
+  const rows = readText(rel).split("\n").filter((l) => /^\|\s*[A-Za-z0-9]/.test(l) && !/^\|\s*(?:Scenario|ID)\s*\|/i.test(l));
   const pass = rows.filter((l) => / PASS \|$/.test(l)).length;
   return { file: rel, summary: rows.length ? `${pass}/${rows.length} passed` : "see file" };
 }
