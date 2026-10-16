@@ -44,8 +44,9 @@ days after their date. [U] = inferred, not found.
 - 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
 - 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
-- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36 (Proposed); CL-57
-- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; on PR #48, not merged — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
+- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36; CL-57
+- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe), staging not yet re-seeded — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
+- 2026-10-16 AD-36, AD-37 and AD-38 Accepted (Gary) — ARCHITECTURE_DECISIONS.md AD-36, AD-37, AD-38
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -69,11 +70,8 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary Accept or reject AD-38 (two W1 indicators join the attestation category) — ARCHITECTURE_DECISIONS.md AD-38; CL-58
-- @gary Accept or reject AD-37 (W1: not funded never pre-empts a met or undetermined timeframe row) — ARCHITECTURE_DECISIONS.md AD-37; CL-60
 - @gary Re-seed staging with the W1 bundles: empty remote staging, then `node tooling/staging/seed-staging.mjs --demo-published` — tooling/staging/seed-staging.mjs; AD-35; documents/CRR-admin-reference.md §Staging
 - @gary Vocabulary review of the W1 additions (smoking, lung-cancer list shape, history group, attestation candidates, stale attributions) before any W1 sign-off — documents/arch-mig-known-issues.md KI-78
-- @gary Accept or reject AD-36 (one set of timeframe outcome codes for exam libraries) — ARCHITECTURE_DECISIONS.md AD-36; CL-57
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
 - @gary Decide whether CI should parse the Admin Tool's inline JSX (KI-67 shipped because nothing did) — documents/arch-mig-known-issues.md KI-67
