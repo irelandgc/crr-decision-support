@@ -18,7 +18,7 @@
   "experimental": true,
   "date": "2026-10-15",
   "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
-  "description": "Published structure and wording of the US Renal (Adult) national referral criteria (pp.52-55), with each criterion bound to a named expression in the CQL library CRR_USRenal_Adult. NOT CLINICALLY REVIEWED (W1 demo transcription, AD-35). This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract. The acute-assessment row and the renal colic red-flag footnote are shown here for the referrer but are evaluated by the national red-flag bundle (RF-12, RF-03).",
+  "description": "Published structure and wording of the US Renal (Adult) national referral criteria (pp.52-55), with each criterion bound to a named expression in the CQL library CRR_USRenal_Adult. NOT CLINICALLY REVIEWED (W1 demo transcription, AD-35). This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract. The acute-assessment row and the renal colic red-flag footnote are shown for the referrer but evaluated by the national red-flag bundle.",
   "useContext": [
     {
       "code": {
@@ -150,10 +150,6 @@
               "valueInteger": 52
             }
           ]
-        },
-        {
-          "type": "documentation",
-          "label": "Encoded in the national red-flag bundle as RF-12 (CRR_RedFlags), which runs before this library; not site logic (AD-03)."
         }
       ],
       "action": [
@@ -279,11 +275,6 @@
             {
               "type": "documentation",
               "display": "*1 Red flags for renal colic: Creatinine > 160 micromol/L or eGFR < 45 mL/min; solitary kidney; temperature > 38 degrees; peritonitis; signs of sepsis; known bilateral ureteric stones"
-            },
-            {
-              "type": "documentation",
-              "label": "National criteria v2.0, p.55 — footnote *1. The red flags are encoded in the national red-flag bundle as RF-03 (CRR_RedFlags), not here (REVIEW Q2).",
-              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=55"
             }
           ],
           "extension": [
@@ -2058,7 +2049,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 2 (REVIEW Q5: not applied to a patient unable to have intravenous contrast)",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 2",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
               "extension": [
                 {
@@ -2110,7 +2101,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 4 (REVIEW Q4: not applied to a patient meeting the Acute renal colic row)",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 4",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
               "extension": [
                 {

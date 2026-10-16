@@ -6,7 +6,7 @@
 | USR-M02-INT-AKI | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USR-M03-CR-003 | strict | P4_DEFERRABLE (P4) | - | PASS |
 | USR-M04-MW-010 | strict | INSUFFICIENT_INFORMATION | redflag.renalColicAcuteEpisode, symptom.renalColicFirstPresentation, patient.pregnant, symptom.chronicUrinaryRetentionSuspected, advice.acuteImagingRecommended, symptom.haematuriaMacroscopic, patient.ivContrastAllergy, lab.egfr.value, patient.takingMetformin, patient.hyperthyroidism, advice.urgentImagingRecommended, patient.ckdNewDiagnosis, patient.diabetes, lab.egfr.decreaseWithin12m, lab.acr.value, symptom.varicoceleNewRightOrBilateral, symptom.utiCount12m, symptom.utiCount6m, patient.onUtiProphylacticAntibiotics, lab.persistentBacteriuriaSameOrganism, symptom.recurrentLoinPainSuggestingObstruction, advice.nonUrgentImagingRecommended, symptom.haematuriaMicroscopic, workup.renalStoneFollowUpPerHealthPathway, workup.kubXrayCalculusVisible, patient.bmi | PASS |
-| USR-M05-INT-001-strict | strict | INSUFFICIENT_INFORMATION | redflag.renalColicAcuteEpisode, patient.pregnant, symptom.chronicUrinaryRetentionSuspected, advice.acuteImagingRecommended, symptom.haematuriaMacroscopic, patient.ivContrastAllergy, patient.takingMetformin, patient.hyperthyroidism, advice.urgentImagingRecommended, patient.ckdNewDiagnosis, patient.diabetes, lab.egfr.decreaseWithin12m, lab.acr.value, symptom.varicoceleNewRightOrBilateral, symptom.utiCount12m, symptom.utiCount6m, patient.onUtiProphylacticAntibiotics, lab.persistentBacteriuriaSameOrganism, symptom.recurrentLoinPainSuggestingObstruction, advice.nonUrgentImagingRecommended, symptom.haematuriaMicroscopic, workup.renalStoneFollowUpPerHealthPathway, workup.kubXrayCalculusVisible, patient.bmi | PASS |
+| USR-M05-INT-001-strict | strict | INSUFFICIENT_INFORMATION | redflag.renalColicAcuteEpisode, symptom.chronicUrinaryRetentionSuspected, advice.acuteImagingRecommended, symptom.haematuriaMacroscopic, patient.ivContrastAllergy, patient.takingMetformin, patient.hyperthyroidism, advice.urgentImagingRecommended, patient.ckdNewDiagnosis, patient.diabetes, lab.egfr.decreaseWithin12m, lab.acr.value, symptom.varicoceleNewRightOrBilateral, symptom.utiCount12m, symptom.utiCount6m, patient.onUtiProphylacticAntibiotics, lab.persistentBacteriuriaSameOrganism, symptom.recurrentLoinPainSuggestingObstruction, advice.nonUrgentImagingRecommended, symptom.haematuriaMicroscopic, workup.renalStoneFollowUpPerHealthPathway, workup.kubXrayCalculusVisible, patient.bmi | PASS |
 | USR-M06-INT-001-inferred | inferred | ACUTE_48H (A48) | - | PASS |
 | USR-S01-acute-colic-female-under-35 | strict | ACUTE_48H (A48) | - | PASS |
 | USR-S02-acute-colic-pregnant-38 | strict | ACUTE_48H (A48) | - | PASS |
@@ -53,6 +53,7 @@
 | USR-S43-luts-with-retention | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USR-S44-am-abdominal-mass | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USR-S45-nf-hypertension | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USR-S45b-nf-true-row-undetermined | strict | INSUFFICIENT_INFORMATION | symptom.haematuriaMicroscopic | PASS |
 | USR-S46-nf-catheter-bacteriuria | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | USR-S47-catheter-bacteriuria-unwell-unknown | strict | CRITERIA_NOT_MET | - | PASS |
 | USR-S48-nf-simple-cyst | strict | NOT_ROUTINELY_FUNDED | - | PASS |
@@ -67,3 +68,10 @@
 | USR-S57-strict-inferred-micro | strict | INSUFFICIENT_INFORMATION | symptom.haematuriaMicroscopic | PASS |
 | USR-S58-inferred-standard-micro | inferred | P4_DEFERRABLE (P4) | - | PASS |
 | USR-S59-empty | strict | INSUFFICIENT_INFORMATION | redflag.renalColicAcuteEpisode, symptom.renalColicFirstPresentation, patient.pregnant, patient.sex, patient.age, symptom.chronicUrinaryRetentionSuspected, advice.acuteImagingRecommended, symptom.haematuriaMacroscopic, patient.ivContrastAllergy, lab.egfr.value, patient.takingMetformin, patient.hyperthyroidism, advice.urgentImagingRecommended, patient.ckdNewDiagnosis, patient.diabetes, lab.egfr.decreaseWithin12m, lab.acr.value, symptom.varicoceleNewRightOrBilateral, symptom.utiConfirmedCount, lab.persistentBacteriuriaSameOrganism, symptom.utiCount12m, symptom.utiCount6m, patient.onUtiProphylacticAntibiotics, symptom.urinaryIncontinence, symptom.palpableBladder, lab.renalImpairmentNewOrDeteriorating, symptom.recurrentLoinPainSuggestingObstruction, advice.nonUrgentImagingRecommended, symptom.haematuriaMicroscopic, patient.smokingStatus, workup.renalStoneFollowUpPerHealthPathway, workup.kubXrayCalculusVisible, patient.bmi | PASS |
+| USR-S60-catheter-bacteriuria-macro-haematuria | strict | P2_URGENT (P2) | - | PASS |
+| USR-S61-recurrent-uti-woman-micro-haematuria | strict | P4_DEFERRABLE (P4) | - | PASS |
+| USR-S62-recurrent-uti-woman-new-ckd | strict | P3_NON_DEFERRABLE (P3) | - | PASS |
+| USR-S63-macro-60-egfr-30-boundary | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
+| USR-S64-man-one-confirmed-uti-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| USR-S65-woman-3-in-6m-no-prophylaxis-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| USR-S66-female-under-35-pregnancy-not-asked | strict | INSUFFICIENT_INFORMATION | redflag.renalColicAcuteEpisode | PASS |

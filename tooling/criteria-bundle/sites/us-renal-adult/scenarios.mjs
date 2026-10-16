@@ -306,9 +306,9 @@ export const scenarios = [
   },
   {
     id: "USR-S27-nf-recurrent-uti-women",
-    title: "Not funded: recurrent UTIs in a woman not meeting the P3 row (3 in a year, 2 in six months, no prophylaxis, not persistent)",
+    title: "Not funded: recurrent UTIs in a woman not meeting the P3 row (3 in a year, 2 in six months, no prophylaxis, not persistent); every other row not met (R1)",
     answers: {
-      "patient.age": 45, "patient.sex": "female", "symptom.utiRecurrent": true, "symptom.utiCount12m": 3, "symptom.utiCount6m": 2,
+      ...ALL_ROWS_NOT_MET, "patient.age": 45, "patient.sex": "female", "symptom.utiRecurrent": true, "symptom.utiCount12m": 3, "symptom.utiCount6m": 2,
       "patient.onUtiProphylacticAntibiotics": false, "lab.persistentBacteriuriaSameOrganism": false,
     },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
@@ -423,14 +423,20 @@ export const scenarios = [
   // ---- Not routinely funded (p54-p55) --------------------------------------------------------
   {
     id: "USR-S45-nf-hypertension",
-    title: "Not funded: investigation of uncomplicated hypertension",
-    answers: { "patient.age": 49, "patient.sex": "male", "funding.investigationUncomplicatedHypertension": true },
+    title: "Not funded: investigation of uncomplicated hypertension, every row not met (R1)",
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 49, "funding.investigationUncomplicatedHypertension": true },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
+  },
+  {
+    id: "USR-S45b-nf-true-row-undetermined",
+    title: "R1 / REVIEW Q21: not-funded row true but a timeframe row undetermined (microscopic haematuria not stated) - insufficient information, not 'not funded'",
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 49, "funding.investigationUncomplicatedHypertension": true, "symptom.haematuriaMicroscopic": undefined },
+    expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, missing: ["symptom.haematuriaMicroscopic"], redirects: [] },
   },
   {
     id: "USR-S46-nf-catheter-bacteriuria",
     title: "Not funded: bacteriuria with in-dwelling catheter, not systemically unwell",
-    answers: { "patient.age": 81, "patient.sex": "male", "lab.bacteriuria": true, "patient.indwellingCatheter": true, "symptom.systemicallyUnwell": false },
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 81, "patient.sex": "male", "lab.bacteriuria": true, "patient.indwellingCatheter": true, "symptom.systemicallyUnwell": false },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
   },
   {
@@ -442,19 +448,19 @@ export const scenarios = [
   {
     id: "USR-S48-nf-simple-cyst",
     title: "Not funded: follow-up imaging of simple renal cysts (Bosniak I and II)",
-    answers: { "patient.age": 59, "patient.sex": "female", "funding.simpleRenalCystFollowUp": true },
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 59, "funding.simpleRenalCystFollowUp": true },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
   },
   {
     id: "USR-S49-nf-angiomyolipoma-0-8cm",
     title: "Not funded: follow up of incidental angiomyolipoma 0.8 cm (less 1 cm)",
-    answers: { "patient.age": 58, "patient.sex": "female", "imaging.incidentalAngiomyolipomaOnUs": true, "imaging.incidentalSolidLesionDiameterCm": 0.8 },
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 58, "imaging.incidentalAngiomyolipomaOnUs": true, "imaging.incidentalSolidLesionDiameterCm": 0.8 },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
   },
   {
     id: "USR-S50-nf-adpkd-screening",
     title: "Not funded: screening scan for ADPKD",
-    answers: { "patient.age": 24, "patient.sex": "male", "funding.adpkdScreening": true },
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 24, "patient.sex": "male", "funding.adpkdScreening": true },
     expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] },
   },
   {
@@ -514,6 +520,56 @@ export const scenarios = [
     answers: {},
     expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, redirects: [] },
   },
+
+  // ---- Review round 1 (2026-10-16): R1 not-funded precedence and boundaries -------------------
+  {
+    id: "USR-S60-catheter-bacteriuria-macro-haematuria",
+    title: "R1 / REVIEW Q21: man with an in-dwelling catheter and bacteriuria, not systemically unwell (not-funded row true), referred for macroscopic haematuria at 30 - P2, not 'not funded'",
+    answers: { "patient.age": 30, "patient.sex": "male", "lab.bacteriuria": true, "patient.indwellingCatheter": true, "symptom.systemicallyUnwell": false, "symptom.haematuriaMacroscopic": true },
+    expect: { determination: "P2_URGENT", priorityCode: "P2", missing: [], redirects: [] },
+  },
+  {
+    id: "USR-S61-recurrent-uti-woman-micro-haematuria",
+    title: "R1 / REVIEW Q21: woman with recurrent UTIs not meeting the P3 row (not-funded row true), referred for microscopic haematuria - P4, not 'not funded'",
+    answers: {
+      ...ALL_ROWS_NOT_MET, "symptom.utiRecurrent": true, "symptom.utiCount12m": 3, "symptom.utiCount6m": 2,
+      "patient.onUtiProphylacticAntibiotics": false, "symptom.haematuriaMicroscopic": true,
+    },
+    expect: { determination: "P4_DEFERRABLE", priorityCode: "P4", missing: [], redirects: [] },
+  },
+  {
+    id: "USR-S62-recurrent-uti-woman-new-ckd",
+    title: "R1 / REVIEW Q21: woman with recurrent UTIs not meeting the P3 row, new CKD diagnosis with eGFR 28 - P3, not 'not funded'",
+    answers: { "patient.age": 60, "patient.sex": "female", "symptom.utiRecurrent": true, "symptom.utiCount12m": 3, "symptom.utiCount6m": 2, "patient.onUtiProphylacticAntibiotics": false, "lab.persistentBacteriuriaSameOrganism": false, "patient.ckdNewDiagnosis": true, "lab.egfr.value": 28 },
+    expect: { determination: "P3_NON_DEFERRABLE", priorityCode: "P3", missing: [], redirects: [] },
+  },
+  {
+    id: "USR-S63-macro-60-egfr-30-boundary",
+    title: "Boundary: macroscopic haematuria, 60, no UTI, eGFR exactly 30 (not 'less than 30mL/min'), no other contrast reason - CT IVU redirect",
+    answers: {
+      "patient.age": 60, "patient.sex": "male", "symptom.haematuriaMacroscopic": true, "symptom.utiCurrent": false,
+      "patient.ivContrastAllergy": false, "lab.egfr.value": 30, "patient.takingMetformin": false, "patient.hyperthyroidism": false,
+    },
+    expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [R.macro] },
+  },
+  {
+    id: "USR-S64-man-one-confirmed-uti-boundary",
+    title: "Boundary: man with exactly 1 confirmed UTI (not '2 or more'), not persistent; every other row not met",
+    answers: { ...ALL_ROWS_NOT_MET, "patient.sex": "male", "symptom.utiConfirmedCount": 1 },
+    expect: NOT_MET,
+  },
+  {
+    id: "USR-S65-woman-3-in-6m-no-prophylaxis-boundary",
+    title: "Boundary: woman with 3 UTIs in six months (and in the year) but no prophylactic antibiotics - the six-month limb needs 'despite prophylactic antibiotics' (REVIEW Q10); every other row not met",
+    answers: { ...ALL_ROWS_NOT_MET, "symptom.utiCount12m": 3, "symptom.utiCount6m": 3, "patient.onUtiProphylacticAntibiotics": false },
+    expect: NOT_MET,
+  },
+  {
+    id: "USR-S66-female-under-35-pregnancy-not-asked",
+    title: "Female 30, first presentation, renal colic itself not stated: only the renal colic indicator is asked for - not pregnancy, which the 'female younger than 35' limb makes irrelevant",
+    answers: { ...ALL_ROWS_NOT_MET, "patient.age": 30, "patient.pregnant": undefined, "redflag.renalColicAcuteEpisode": undefined, "symptom.renalColicFirstPresentation": true },
+    expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, missing: ["redflag.renalColicAcuteEpisode"], redirects: [] },
+  },
 ];
 
 function answerFor(linkId, a) {
@@ -539,6 +595,7 @@ function answerFor(linkId, a) {
 export function toQuestionnaireResponse(s) {
   const groups = {};
   for (const [linkId, a] of Object.entries(s.answers)) {
+    if (a === undefined) continue;
     (groups[linkId.split(".")[0]] ||= []).push({ linkId, answer: [answerFor(linkId, a)] });
   }
   return {

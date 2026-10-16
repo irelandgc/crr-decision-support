@@ -193,12 +193,12 @@
         },
         {
           "linkId": "symptom.utiCount12m",
-          "text": "Number of urinary tract infections in the last year",
+          "text": "Number of urinary tract infections in a year",
           "type": "integer"
         },
         {
           "linkId": "symptom.utiCount6m",
-          "text": "Number of urinary tract infections in the last six months",
+          "text": "Number of urinary tract infections in six months",
           "type": "integer"
         },
         {
@@ -371,17 +371,17 @@
       "item": [
         {
           "linkId": "advice.acuteImagingRecommended",
-          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a same or next day scan",
+          "text": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for acute ultrasound renal",
           "type": "boolean"
         },
         {
           "linkId": "advice.urgentImagingRecommended",
-          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "text": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for urgent ultrasound renal",
           "type": "boolean"
         },
         {
           "linkId": "advice.nonUrgentImagingRecommended",
-          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "text": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for non-urgent ultrasound renal",
           "type": "boolean"
         },
         {

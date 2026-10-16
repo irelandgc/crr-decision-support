@@ -66,7 +66,8 @@
         printed; any 2 or more confirmed UTIs.
     Q10 Women "more than 3 UTIs in a year, or more than 2 in six months despite
         prophylactic antibiotics": "despite prophylactic antibiotics" read as
-        qualifying the six-month limb only. Not-funded "Recurrent UTIs in
+        qualifying the six-month limb only; "in a year" / "in six months" read
+        as the year / six months before referral. Not-funded "Recurrent UTIs in
         women, except as documented above" read from the referral's own
         statement of recurrence (symptom.utiRecurrent).
     Q11 "Urinary incontinence in men with palpable bladder, or new or
@@ -78,8 +79,7 @@
     Q13 Angiomyolipoma: "more than 1 cm" (redirect) and "less 1 cm" (not
         funded, read as "less than 1 cm"): a lesion of exactly 1 cm meets
         neither row.
-    Q14 Precedence: not funded > alternative management > paediatric >
-        Acute > P2 > P3 > S2 > P4 > not met > insufficient. A lower priority
+    Q14 Timeframe order: Acute 48h > P2 > P3 > S2 > P4. A lower priority
         met while a higher one is indeterminate returns the lower priority.
     Q15 Redirect rows (AKI, LUTS, enlarged prostate / PSA, abdominal mass,
         isolated proteinuria) outrank every criterion when present, e.g. LUTS
@@ -98,6 +98,15 @@
         HealthPathway": the HealthPathway's own follow-up conditions are not
         evaluated; the referral's statement that this is that follow-up is the
         indicator.
+    Q21 Not-funded precedence (coordinator rule R1): redirect > paediatric >
+        most urgent met timeframe row > insufficient (any row undetermined) >
+        not funded (only when every row is definitively not met) > not met.
+        Alternative reading: not funded first, as CT CAP does for its
+        patient-level "unfit for treatment" row.
+    Q22 "Repeat renal ultrasound for diabetic patients with known diabetic
+        renal complications": read as known diabetic renal complications AND
+        a previous renal ultrasound at any time (no interval printed); the
+        diabetes itself is implied by the complications.
     (Q17 is a vocabulary-grouping question with no define; see signoff.md.)
 */
 
@@ -539,6 +548,7 @@ define "Redirect: Macroscopic Haematuria Aged 40 To 85 Without UTI":
   "Repeat renal ultrasound for diabetic patients with known diabetic renal
    complications is not indicated - See local Kidney Disease in Diabetes
    HealthPathway"
+  REVIEW Q22.
 */
 define "Redirect: Repeat US For Known Diabetic Renal Complications":
   "Bool"('patient.diabeticRenalComplications')
@@ -639,6 +649,7 @@ define "Unconfirmed Exclusions":
   patient may wish to consider privately funding imaging."):
    - "Recurrent UTIs in women, except as documented above"
   REVIEW Q10 - "except as documented above" = the P3 "UTI in women" row.
+  REVIEW Q21 - reached only when every timeframe row is definitively not met.
 */
 define "Not Funded: Recurrent UTIs In Women Except As Documented":
   Coalesce("Is Female" and "Bool"('symptom.utiRecurrent') and not "P3: UTI In Women", false)
@@ -715,17 +726,19 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q14):
-    1. Not routinely funded
-    2. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
-    3. Paediatric patient - the adult criteria do not apply (BRD TA-003)
-    4. Highest priority row met: Acute > P2 > P3 > S2 > P4
-    5. Every row definitively not met
-    6. Insufficient information
+  Precedence (REVIEW Q14, Q21):
+    1. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
+    2. Paediatric patient - the adult criteria do not apply (BRD TA-003)
+    3. Most urgent timeframe row met: Acute 48h > P2 > P3 > S2 > P4
+    4. Any timeframe row still undetermined - insufficient information
+    5. Not routinely funded - only when every timeframe row is definitively
+       not met (coordinator rule R1, 2026-10-16), so a not-funded row keyed on
+       a patient fact (NF 1 recurrent UTIs in women, NF 3 catheter bacteriuria)
+       never pre-empts a met or undetermined criterion
+    6. Every row definitively not met
 */
 define "Determination":
   case
-    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
     when "Alternative Management Recommended" then 'ALTERNATIVE_MANAGEMENT'
     when "Is Adult" is false then 'PAEDIATRIC_CRITERIA_APPLY'
     when "Meets Acute 48h Criteria" is true then 'ACUTE_48H'
@@ -733,8 +746,9 @@ define "Determination":
     when "Meets P3 Criteria" is true then 'P3_NON_DEFERRABLE'
     when "Meets S2 Criteria" is true then 'S2_TIME_SENSITIVE'
     when "Meets P4 Criteria" is true then 'P4_DEFERRABLE'
-    when "Meets Any Criterion" is false then 'CRITERIA_NOT_MET'
-    else 'INSUFFICIENT_INFORMATION'
+    when "Meets Any Criterion" is null then 'INSUFFICIENT_INFORMATION'
+    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
+    else 'CRITERIA_NOT_MET'
   end
 
 define "Priority Code":
@@ -758,14 +772,16 @@ define "Priority Code":
    receiving referral."
   "S2 non-deferrable time sensitive imaging to be completed within 2 weeks of a
    specified target date"
+  Each timeframe string below is a verbatim fragment of its heading, with the
+  priority code and the row's classification words left out.
 */
 define "Priority Timeframe":
   case "Determination"
     when 'ACUTE_48H' then 'Within 48 hours'
-    when 'P2_URGENT' then 'Complete within 2 weeks of receiving referral'
-    when 'P3_NON_DEFERRABLE' then 'Complete within 6 weeks of receiving referral'
-    when 'S2_TIME_SENSITIVE' then 'Complete within 2 weeks of a specified target date'
-    when 'P4_DEFERRABLE' then 'If capacity is constrained could wait up to 6-12 weeks from receiving referral'
+    when 'P2_URGENT' then 'must be completed within 2 weeks of receiving referral.'
+    when 'P3_NON_DEFERRABLE' then 'must be completed within 6 weeks of receiving referral.'
+    when 'S2_TIME_SENSITIVE' then 'to be completed within 2 weeks of a specified target date'
+    when 'P4_DEFERRABLE' then 'If capacity is constrained could wait up to 6-12 weeks from receiving referral.'
     else null
   end
 
@@ -777,7 +793,10 @@ define "Priority Timeframe":
 // Rows already definitively not met add nothing.
 define "Missing Criterion Indicators":
   flatten {
-    if "Acute: First Presentation Renal Colic" is null then "Unanswered"({ 'redflag.renalColicAcuteEpisode', 'symptom.renalColicFirstPresentation', 'patient.pregnant', 'patient.sex', 'patient.age' }) else {} as List<String>,
+    if "Acute: First Presentation Renal Colic" is null then "Unanswered"({ 'redflag.renalColicAcuteEpisode', 'symptom.renalColicFirstPresentation' }) else {} as List<String>,
+    // pregnancy is not asked when the "female younger than 35" limb is already met, nor sex/age when pregnant
+    if "Acute: First Presentation Renal Colic" is null and ("Is Female" and "Age In Years" < 35) is not true then "Unanswered"({ 'patient.pregnant' }) else {} as List<String>,
+    if "Acute: First Presentation Renal Colic" is null and "Is Pregnant" is not true then "Unanswered"({ 'patient.sex', 'patient.age' }) else {} as List<String>,
     if "Acute: Suspected Chronic Urinary Retention" is null then { 'symptom.chronicUrinaryRetentionSuspected' } else {} as List<String>,
     if "Acute: Specialist Advises Acute US Renal" is null then { 'advice.acuteImagingRecommended' } else {} as List<String>,
     if "P2: Macroscopic Haematuria" is null then "Unanswered"({ 'symptom.haematuriaMacroscopic', 'patient.age', 'patient.ivContrastAllergy', 'lab.egfr.value', 'patient.takingMetformin', 'patient.hyperthyroidism' }) else {} as List<String>,
