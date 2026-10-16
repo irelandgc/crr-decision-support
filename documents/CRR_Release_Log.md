@@ -4,6 +4,18 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-16 — Staging: seven more demo exams; extraction prompt v3.0.4 (staging only)
+
+**Status:** Deployed by Gary. In the morning, both staging workers were deployed from `main` (API worker version `7694b210`, main worker `71f5aa1a`). Remote staging D1 and KV were then emptied and re-seeded with `tooling/staging/seed-staging.mjs --demo-published`. In the evening, the staging API worker was redeployed from the PR #51 branch (prompt v3.0.4, KI-73). It stays on that branch until PR #51 merges.
+
+**Workers:** `crr-tools-staging` and `crr-criteria-api-staging` only. Production is unchanged.
+
+- **Evaluators and the programme:** on staging, the Triage page can now assess seven more exams: CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal and X-ray Chest (9 exam/site ids live in total). Their bundles are marked published **as a staging demo only** ("STAGING DEMO ONLY: not clinically signed off", AD-35); none is clinically signed off. The re-seed also carried the engine and renderer changes merged since 2026-10-11 (AD-36, AD-37, KI-75, KI-76, KI-77; CL-58 to CL-62).
+- **Referrers on staging:** a note that does not name the selected exam now gets an assessment instead of "Assessment not produced (422)" (CL-63, prompt v3.0.4).
+- No change for referrers or triagers on production.
+
+---
+
 ## 2026-10-11 — Identity headers are no longer credentials (SD-15, SR-16 closed); production API worker redeployed
 
 **Status:** Deployed by Gary after PR #43 was merged (merge commit `7882c2a`). Production main worker deployed with `npm run build && npx wrangler deploy`; production `crr-criteria-api` deployed with `npx wrangler deploy --config public/crr-criteria/wrangler.json` (version `eac63220-fd6e-48c2-9b59-92871e536493`). `ADMIN_PROXY_KEY` set on both production workers with one value; both secret lists, as Gary pasted them, show it. Gary confirmed that a request carrying only a forged `x-admin-email` gets 401, and that the Admin Tool works.

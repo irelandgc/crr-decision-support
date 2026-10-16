@@ -11,14 +11,14 @@ import {
   applyExtractionHints,
   findCriteriaLeaks,
 } from "../prompt";
-import promptV3 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.3.json";
+import promptV3 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.4.json";
 import nationalQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-National.json";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
 
 describe("prompt — versions and assembly", () => {
-  it("version constants come from prompt-v3.0.3.json", () => {
-    expect(PROMPT_VERSION).toBe("3.0.3");
+  it("version constants come from prompt-v3.0.4.json", () => {
+    expect(PROMPT_VERSION).toBe("3.0.4");
     expect(PROMPT_VERSION).toBe((promptV3 as any).version);
     expect(EQUIVALENCE_LIST_VERSION).toBe((promptV3 as any).equivalenceListVersion);
   });
@@ -42,6 +42,13 @@ describe("prompt — versions and assembly", () => {
     expect(a).toContain("You extract. You do not assess.");
     expect(a).toContain("Call the submit_extraction tool");
     expect(a).toContain("Never submit: a verdict");
+  });
+
+  it("states the requested entry's null quote and that quotes come only from the note (KI-73)", () => {
+    const a = assembleSystemPrompt();
+    expect(a).toContain("if it does not, that quote is null");
+    expect(a).toContain("never from the exam/site list");
+    expect(a).not.toContain("Every entry carries a quote");
   });
 });
 

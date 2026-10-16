@@ -43,13 +43,15 @@ days after their date. [U] = inferred, not found.
 - 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71
 - 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
-- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
-- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36; CL-57
-- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe), staging not yet re-seeded — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
+- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-76; CL-56
+- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; on staging (2026-10-16), not in production — AD-36; CL-57
+- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe) — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
 - 2026-10-16 AD-36, AD-37 and AD-38 Accepted (Gary) — ARCHITECTURE_DECISIONS.md AD-36, AD-37, AD-38
-- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; units dropped, so FHIRHelpers cannot throw); built, not deployed — documents/arch-mig-known-issues.md KI-77; CL-61
-- 2026-10-16 "What to add" no longer repeats a heading as its only line; built, not deployed — documents/arch-mig-known-issues.md KI-75; CL-62
+- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; units dropped, so FHIRHelpers cannot throw); on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-77; CL-61
+- 2026-10-16 "What to add" no longer repeats a heading as its only line; on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-75; CL-62
 - 2026-10-16 CRR_RedFlags RF-10 comment / REVIEW Q23 corrected to the US Carotid p35 footnote (no logic change, national bundle not republished) — documents/arch-mig-known-issues.md KI-79
+- 2026-10-16 Staging redeployed from main and re-seeded: 10 bundles published as a staging demo, 9 exam/site ids live; 22 synthetic runs, no 500/502 — AD-35; documents/arch-mig-known-issues.md KI-72
+- 2026-10-16 Extraction prompt v3.0.4 (KI-73) verified on staging: note 3 returns 200 on 3/3 runs; staging API worker runs PR #51's branch until merge — documents/arch-mig-known-issues.md KI-73; CL-63
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -57,8 +59,9 @@ days after their date. [U] = inferred, not found.
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
-- @claude Stop the gate rejecting a whole extraction over an unrequired quote on the requested exam — documents/arch-mig-known-issues.md KI-73
-- @claude Extraction misses localising features in the note-4 jaundice case; add it to the benchmark — documents/arch-mig-known-issues.md KI-74
+- @claude Extraction gives a documented false from wording that does not negate the item (over-inference case 19); benchmark it, then propose a rule or gate change — documents/arch-mig-known-issues.md KI-83
+- @claude Add comparison notes 3 and 4 to the extraction benchmark (no-exam-named quote; jaundice localising features) — documents/arch-mig-known-issues.md KI-73, KI-74
+- @claude Relabel KI-75/76/77/79/80 from "RESOLVED on branch" (PRs #48 and #50 merged; changes on staging) and split that bucket in the counts line — documents/arch-mig-known-issues.md Counts
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
 - @claude Draft BRD v3.3 redline from CL rows tagged BRD (due after slice 5) — documents/DOCUMENTATION-PLAN.md
@@ -70,8 +73,10 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
+- @gary After PR #51 merges, redeploy the staging API worker from `main` (it runs the PR #51 branch until then) — documents/CRR_Release_Log.md 2026-10-16; CL-63
+- @gary Rule on how note 4's localising features (jaundice, palpable liver) can count: reviewed equivalence, extraction hint, or documentation-standard parameter — documents/arch-mig-known-issues.md KI-74
+- @gary Decide how an inference that only combines stated facts is treated under the strict standard (test-pack case 10) — documents/arch-mig-known-issues.md KI-82
 - @gary Decide whether the bundle logic hash should exclude ELM annotations (a comment-only CQL change otherwise forces a major version) — documents/arch-mig-known-issues.md KI-81
-- @gary Re-seed staging with the W1 bundles: empty remote staging, then `node tooling/staging/seed-staging.mjs --demo-published` — tooling/staging/seed-staging.mjs; AD-35; documents/CRR-admin-reference.md §Staging
 - @gary Vocabulary review of the W1 additions (smoking, lung-cancer list shape, history group, attestation candidates, stale attributions) before any W1 sign-off — documents/arch-mig-known-issues.md KI-78
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17
 - @gary Check staging admin still loads Versions and Bundles after the SR-16 redeploy — SECURITY_DECISIONS.md SD-15; documents/CRR-admin-reference.md §Staging
@@ -93,6 +98,7 @@ Governance posture that must be visibly correct before the tabletop runs — eve
 Production-readiness decisions, gated at the pre-pilot review, not at slice completion — not blockers for slice work (AD-30).
 - @gary Rename the production main worker (`vite-react-template`, a template-derived name) together with the host decision: move routes, Workers Builds, secrets and the Access hostnames/AUD — KI-44; AD-34
 - @gary Production publish policy for criteria updates (e.g. the CT AP revision, approved draft 27/08/26) — open item, no register entry yet — AD-30
+- @gary Decide whether to adopt a DCB0129-style clinical safety case (hazard log, named clinical safety officer, safety case report) before pilot — open item, no register entry yet — AD-30
 - @gary Decide AD-17 (ask attestation questions at all?) — AD-17 (review pack D6)
 - @gary Overlay authoring granularity — AD-29
 - @gary HNZ branding / iteratio.nz host (GEN-010) — KI-44
