@@ -67,9 +67,19 @@
 | XRC-S63-nf-rib-views | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | XRC-S64-nf-hypertension | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | XRC-S65-nf-drug-monitoring | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| XRC-S66-nf-asbestos-over-p3 | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| XRC-S66-p3-over-nf-asbestos | strict | P3_NON_DEFERRABLE (P3) | - | PASS |
 | XRC-S67-paediatric | strict | PAEDIATRIC_CRITERIA_APPLY | - | PASS |
 | XRC-S68-age-unknown | strict | INSUFFICIENT_INFORMATION | patient.age | PASS |
 | XRC-S69-empty | strict | INSUFFICIENT_INFORMATION | patient.age, symptom.suspectedCommunityAcquiredPneumonia, symptom.pneumoniaSevereOrAtypicalPresentation, symptom.atRiskOfUnderlyingLungPathology, symptom.respiratoryTractInfection, symptom.possibleLeftVentricularFailure, symptom.dyspnoeaUnexplainedNewOrWorsening, symptom.coughUnexplained, symptom.coughWorsening, symptom.coughDurationWeeks, symptom.chestOrShoulderPainUnexplained, symptom.chronicRespiratoryCondition, symptom.chronicRespiratorySymptomChangeUnexplained, symptom.chronicRespiratorySymptomChangeDurationWeeks, symptom.hoarsenessUnexplained, symptom.hoarsenessDurationWeeks, symptom.chestInfectionsRepeatedOrUnresolved, redflag.haemoptysisPresent, symptom.haemoptysisPersistentUnexplained, weightloss.present, weightloss.periodMonths, symptom.appetiteLoss, symptom.appetiteLossDurationWeeks, symptom.abnormalChestSignsUnexplained, symptom.abnormalChestSignsDurationWeeks, imaging.abnormalChestSigns.ever, symptom.supraclavicularLymphadenopathyNew, symptom.cervicalLymphadenopathyNew, symptom.cervicalLymphadenopathyDurationWeeks, symptom.cervicalLymphNodeDiameterCm, symptom.otherLungCancerFeatures, symptom.paraneoplasticFeatures, symptom.subacuteDyspnoeaUnknownCause, symptom.lowerRespiratoryTractInfection, symptom.noResponseAfter48hAntibiotics, symptom.suspectedSmallPneumothorax, advice.acuteImagingRecommended, symptom.suspectedTuberculosis, symptom.suspectedDrugInducedLungDisease, symptom.newRespiratorySymptoms, symptom.takingPneumotoxicMedication, symptom.unprovokedDvtOrPe, symptom.polymyalgiaRheumatica, symptom.pmrSteroidsStarted, advice.urgentImagingRecommended, symptom.asthmaNonAcute, symptom.asthmaDiagnosisUnclear, symptom.asthmaPoorControl, symptom.asthmaFrequentExacerbations, symptom.chronicDyspnoea, symptom.cardiorespiratoryDiseaseUnresponsiveToTreatment, symptom.asbestosExposureHistory, imaging.cxr.ever, advice.nonUrgentImagingRecommended, imaging.followUpAfterChestInfection, symptom.ongoingSymptomsOrSignsAfterChestInfection, imaging.radiologistSuspiciousFeaturesFollowUpRecommended, advice.followUpImagingRecommendedBySpecialist, imaging.postCancerSurveillance, imaging.noduleFollowUp, advice.followUpImagingRecommended | PASS |
 | XRC-S70-inferred-small-pneumothorax-strict | strict | INSUFFICIENT_INFORMATION | symptom.suspectedSmallPneumothorax | PASS |
 | XRC-S71-inferred-small-pneumothorax-inferred | inferred | ACUTE_48H (A48) | - | PASS |
+| XRC-S72-r1-nf-with-row-met | strict | P2_URGENT (P2) | - | PASS |
+| XRC-S73-r1-nf-with-row-undetermined | strict | INSUFFICIENT_INFORMATION | symptom.coughWorsening, symptom.coughDurationWeeks | PASS |
+| XRC-S74-r1-nf-all-rows-false | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| XRC-S75-lc04-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| XRC-S76-lc05-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| XRC-S77-lc08-appetite-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| XRC-S78-lc08-weight-below-21-days | strict | CRITERIA_NOT_MET | - | PASS |
+| XRC-S79-lc08-weight-above-21-days | strict | ACUTE_48H (A48) | - | PASS |
+| XRC-S80-lc09-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| XRC-S81-lc11-duration-boundary | strict | CRITERIA_NOT_MET | - | PASS |

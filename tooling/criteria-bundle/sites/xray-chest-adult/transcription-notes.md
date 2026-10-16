@@ -2,7 +2,7 @@
 
 **Source:** National Community Referral Criteria for Imaging (Part I), National ID 15372 v2.0, published 09/04/2026, section "X-ray Chest - Adult", **pp.62-65** (`documents/reference/National Primary Care Referral Criteria for Imaging.pdf`; X-ray Shoulder starts p66). Published exam/site id `xr_chest` → bundle key `xray-chest-adult` (AD-01, one-to-one). Library `CRR_XRChest_Adult`.
 
-**Status:** NOT CLINICALLY REVIEWED. Transcribed 2026-10-15 (W1, slice 7) for a **staging demo bundle only** (Gary, 2026-10-15; AD-35). The most literal reading is encoded; every genuine ambiguity is a REVIEW Qn (Q1-Q23, listed in the CQL header and `signoff.md`). Nothing without a literal reading is guessed (§4).
+**Status:** NOT CLINICALLY REVIEWED. Transcribed 2026-10-15 (W1, slice 7) for a **staging demo bundle only** (Gary, 2026-10-15; AD-35). The most literal reading is encoded; every genuine ambiguity is a REVIEW Qn (Q1-Q26, listed in the CQL header and `signoff.md`). Nothing without a literal reading is guessed (§4).
 
 **Text extraction.** The plain-text extraction interleaves the Source column (two BTS URLs broken across 20+ lines) with the Clinical Presentation column on p62, so p62-p65 were re-extracted with `pypdf` `extraction_mode="layout"`. The layout pass confirmed: (a) the two bullets "Suspected community-acquired pneumonia …" and "Respiratory tract infection with possible left ventricular failure" sit in the **Acute: Within 24 hours** row, and the lung-cancer list starts the **Acute: Within 48 hours** row; (b) the Guidance box ("In patients with an acute lower respiratory tract infection …") is printed inside the Acute 24h row, above its bullets, not at the foot of p62 where the plain extraction puts it; (c) the 48h list continues across the page break onto p63 with no new row label. The two BTS URLs were read from the page's link annotations (not reassembled from the broken text). SOURCE quotes and PlanDefinition titles were then checked mechanically against the page text (140/140 quoted fragments found verbatim, whitespace and bullet glyphs normalised).
 
@@ -34,13 +34,13 @@ The PlanDefinition carries this row as an `acute-assessment` block with no condi
 |---|---|---|
 | "One or more of the following symptoms or signs concerning for lung cancer" | any of LC-01..LC-12 | A48-1 (Q5) |
 | "Unexplained, new, or worsening dyspnoea" | `symptom.dyspnoeaUnexplainedNewOrWorsening` | LC-01 (Q6) |
-| "Unexplained cough, persisting and worsening for more than 3 weeks" | `symptom.coughUnexplained` AND `symptom.coughWorsening` AND `symptom.coughDurationWeeks` > 3 | LC-02 (Q7) |
+| "Unexplained cough, persisting and worsening for more than 3 weeks" | `symptom.coughUnexplained` AND `symptom.coughWorsening` AND `symptom.coughDurationWeeks` > 3 | LC-02 (Q7, Q24: present > 3 weeks AND currently worsening) |
 | "Unexplained chest and/or shoulder pain" | `symptom.chestOrShoulderPainUnexplained` | LC-03 |
-| "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks" | `symptom.chronicRespiratoryCondition` AND `symptom.chronicRespiratorySymptomChangeUnexplained` AND `symptom.chronicRespiratorySymptomChangeDurationWeeks` > 3 | LC-04 |
+| "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks" | `symptom.chronicRespiratoryCondition` AND `symptom.chronicRespiratorySymptomChangeUnexplained` AND `symptom.chronicRespiratorySymptomChangeDurationWeeks` > 3 | LC-04 (Q25: duration attaches to the changes) |
 | "Persistent, unexplained hoarseness persisting for more than 3 weeks" | `symptom.hoarsenessUnexplained` AND `symptom.hoarsenessDurationWeeks` > 3 | LC-05 |
 | "Recurrent or unresolved chest infections" | `symptom.chestInfectionsRepeatedOrUnresolved` | LC-06 |
 | "Persistent, unexplained haemoptysis in the absence of red flags" | `redflag.haemoptysisPresent` (existing, national stem) AND `symptom.haemoptysisPersistentUnexplained` | LC-07 (Q9) |
-| "Unexplained weight loss and loss of appetite persisting for more than 3 weeks" | `weightloss.present` (existing) AND `weightloss.periodMonths` (existing) × 30.4375 > 21 days AND `symptom.appetiteLoss` AND `symptom.appetiteLossDurationWeeks` > 3 | LC-08 (Q8) |
+| "Unexplained weight loss and loss of appetite persisting for more than 3 weeks" | `weightloss.present` (existing) AND `weightloss.periodMonths` (existing) × 30.4375 > 21 days AND `symptom.appetiteLoss` AND `symptom.appetiteLossDurationWeeks` > 3 | LC-08 (Q8: "unexplained" applied to the weight loss only) |
 | "unexplained abnormal chest signs persisting more than 3 weeks (e.g. suspected pleural effusion) which have not yet been investigated with imaging" | `symptom.abnormalChestSignsUnexplained` AND `symptom.abnormalChestSignsDurationWeeks` > 3 AND NOT `imaging.abnormalChestSigns.ever` | LC-09 |
 | "New supraclavicular lymphadenopathy" | `symptom.supraclavicularLymphadenopathyNew` | LC-10 |
 | "New cervical lymphadenopathy persisting for more than 3 weeks, where the lymph nodes are greater than 1 cm in diameter in a patient with other lung cancer symptoms, signs, or risk factors" | `symptom.cervicalLymphadenopathyNew` AND `symptom.cervicalLymphadenopathyDurationWeeks` > 3 AND `symptom.cervicalLymphNodeDiameterCm` > 1 AND `symptom.otherLungCancerFeatures` | LC-11 (Q10, Q21) |
@@ -93,7 +93,7 @@ Exclusion-shaped (CT CAP pattern): an unknown component is treated as not presen
 
 ### Not routinely funded (p64-65)
 
-Each item is read as the **purpose of the request** (Q17), exclusion-shaped (`Coalesce(…, false)`). PlanDefinition children have no `input`, so none is ever tickable (GEN-005).
+Each item is read as the **purpose of the request** (Q17), exclusion-shaped (`Coalesce(…, false)`). Under coordinator rule R1 (Q3) a not-funded item applies only when every timeframe row is definitively not met: a met row wins, and an undetermined row gives INSUFFICIENT_INFORMATION. PlanDefinition children have no `input`, so none is ever tickable (GEN-005).
 
 | Source (verbatim) | Indicators | Define |
 |---|---|---|
@@ -115,10 +115,12 @@ Each item is read as the **purpose of the request** (Q17), exclusion-shaped (`Co
 
 ## 2. Modelling decisions
 
-- **Five timeframe rows, one determination each.** `ACUTE_24H`, `ACUTE_48H`, `P2_URGENT`, `P3_NON_DEFERRABLE`, `S2_TIME_SENSITIVE`, plus CT CAP's `NOT_ROUTINELY_FUNDED`, `ALTERNATIVE_MANAGEMENT`, `PAEDIATRIC_CRITERIA_APPLY`, `CRITERIA_NOT_MET`, `INSUFFICIENT_INFORMATION`. The S-row code is deliberately not `S2_…`: the Advisory renderer humanises an unmapped determination code and only strips a leading `P1-P4` for the referrer view, so an `S2_…` code would show "S2" to referrers. Overview p5 names the rows "acute", "urgent P2", "non-urgent P3" and "a "S" specified date code for follow up studies". `priorityCode` (triager-only) uses the legacy labels `Acute 24hr`, `Acute 48hr`, `P2`, `P3`, `S2`; `priorityTimeframe` carries no code.
-- **Precedence** (Q1-Q3): not funded > alternative management > paediatric > the most urgent met row; a met row is not held back by an undetermined more urgent row; `CRITERIA_NOT_MET` only when every row is definitively false.
+- **Five timeframe rows, one determination each (AD-36).** `ACUTE_24H`/`A24`, `ACUTE_48H`/`A48`, `P2_URGENT`/`P2`, `P3_NON_DEFERRABLE`/`P3`, `S2_TIME_SENSITIVE`/`S2`, defines `Meets <row> Criteria`, plus `NOT_ROUTINELY_FUNDED`, `ALTERNATIVE_MANAGEMENT`, `PAEDIATRIC_CRITERIA_APPLY`, `CRITERIA_NOT_MET`, `INSUFFICIENT_INFORMATION`. `priorityCode` is triager-only and non-null exactly when a row is met; `priorityTimeframe` carries no code.
+- **Precedence** (Q1-Q3, coordinator rule R1): alternative management > paediatric > the most urgent met row (not held back by an undetermined more urgent row) > INSUFFICIENT_INFORMATION while any row is undetermined > not routinely funded (only when every row is definitively false) > `CRITERIA_NOT_MET`. Alternative reading for Q3: not funded first, as CT CAP does for "unfit for treatment".
 - **Durations are numbers, thresholds live in CQL.** "more than 3 weeks" / "more than 8 weeks" / "greater than 1 cm" are compared in the library (invariant 3); the Questionnaire asks for the duration in weeks (or size in cm). One cough-duration indicator serves both LC-02 (> 3) and P3-2 (> 8). The one window kept in an indicator's text, "after 48 hours of antibiotic treatment", follows `redflag.notRespondingToAntibiotics72h`.
-- **"unexplained" is per symptom**, not a shared qualifier: one response carries many symptoms, so a single "unexplained" answer would be ambiguous.
+- **"unexplained" is per symptom**, not a shared qualifier: one response carries many symptoms, so a single "unexplained" answer would be ambiguous. One exception, LC-08 (Q8): "Unexplained weight loss and loss of appetite" is encoded with "unexplained" on the weight loss only (`weightloss.present` already reads "Unintentional, unexplained weight loss"); no `symptom.appetiteLossUnexplained` was minted. If the ruling is that "unexplained" governs both, that indicator is needed.
+- **Viewer tick boxes (coordinator rule R2).** No PlanDefinition row has a single boolean input that the CQL reads negated, so no input was removed. The negated reads (`imaging.abnormalChestSigns.ever`, `symptom.pmrSteroidsStarted`, `imaging.cxr.ever`) are each one of several inputs on their row, and each item's wording matches what a tick means (e.g. "Patient has previously had a chest X-ray").
+- **Referrer-visible strings (coordinator rule R3).** The PlanDefinition carries no engineering notes in `documentation.display` (the only display note is the Overview p5 adviser sentence on the four gateways). The one priority code in the middle of published wording, "…under S2 priority imaging" in the first not-funded item, is left verbatim for the renderer.
 - **Missing information** (Q23): a pathway is *started* when it is undetermined and one of its components is met; only started pathways' unanswered components are listed; if none is started, every undetermined pathway's are (about 60 items for the strict matrix cases); if a pathway is already met, only `patient.age` can be missing.
 - **Shared national stem.** LC-07 composes the national `redflag.haemoptysisPresent` with a site qualifier rather than minting a second haemoptysis concept (KI-01). The site Questionnaire repeats that item; one response answers it once.
 - **Groups.** No new vocabulary group was added. Request purposes that are not "not funded" (`imaging.followUpAfterChestInfection`, `imaging.postCancerSurveillance`, `imaging.noduleFollowUp`) are under `imaging`, and history items (asbestos exposure, PMR, unprovoked DVT/PE) under `symptom` ("clinical findings"). A `request` / `history` group would be cleaner; that is the vocabulary owner's call.
@@ -141,6 +143,7 @@ Each item is read as the **purpose of the request** (Q17), exclusion-shaped (`Co
 | p64 | "for example COPD, ILD, bronchiectasis, sarcoidosis" | illustrative |
 | p64 | "especially if clinical concern of malignancy" | modifier (Q20) |
 | p64 | "such as heart failure" | illustrative example of "signs of complications" |
+| p64 | "6 week" (S2 "6 week follow up chest X-ray after chest infection") | the follow-up's target date, not a condition on when the infection was (Q26) |
 | p65 | "(e.g. amiodarone, nitrofurantoin, methotrexate)" | illustrative |
 
 ## 4. Not encoded
@@ -178,17 +181,16 @@ Near-duplicate risks the owner should look at (KI-01): `advice.followUpImagingRe
 | Case | Note (verbatim) | Legacy verdict / evaluator | Engine (strict) | Engine (inferred) |
 |---|---|---|---|---|
 | LP-001 | "55 yo man, 3 days cough, fever and shortness of breath" | Proceeds (acute CAP) / Proceeds | INSUFFICIENT_INFORMATION — CAP only inferable; 60-item checklist (XRC-S01) | INSUFFICIENT_INFORMATION — asks for severe/atypical presentation, at-risk, possible LVF (XRC-S02) |
-| CR-001 | "42 yr old homeless patient with fever productive cough, smoker, unsure re wt loss .Fine lower basal crepitus , mild tachy ," | Proceeds (acute CAP, at-risk smoker) / Proceeds | INSUFFICIENT_INFORMATION (XRC-S03) | ACUTE_24H, Acute 24hr (XRC-S04) |
+| CR-001 | "42 yr old homeless patient with fever productive cough, smoker, unsure re wt loss .Fine lower basal crepitus , mild tachy ," | Proceeds (acute CAP, at-risk smoker) / Proceeds | INSUFFICIENT_INFORMATION (XRC-S03) | ACUTE_24H, A24 (XRC-S04) |
 
 Neither note documents a criterion: "suspected CAP" and "at risk of underlying lung pathology" are clinical interpretations (`inferred` under the extraction contract), so under the strict standard both cases are insufficient where the legacy tool said Proceeds. That is the documentation-standard question (TA-010), visible, not a transcription defect. The CR-001 evaluator's urgent-care comment (needs same-day imaging, social circumstances) is a workflow point for the working group, not a criterion.
 
-## 8. Adjacent problems (flagged, not fixed)
+## 8. Adjacent problems
 
-1. **Referrer-facing S2 code in the Viewer.** `shared/criteria-render.js` strips only a leading `P1-P4` from an indication block title for the referrer view; the published S2 title "S2 non-deferrable time sensitive imaging …" will show "S2" to referrers. Same pattern in `shared/advisory-render.js` (`plain.replace(/^P[1-4]…/)`). The title is kept verbatim here, as CT CAP keeps "P2 Urgent: …".
-2. **Cross-exam recommendation ignores Acute and S rows.** `api/engine.ts` `isPriorityDetermination` matches `/^P\d/` only, so ACUTE_24H, ACUTE_48H and S2_TIME_SENSITIVE from this site never trigger a cross-exam recommendation.
-3. **Determination wording.** Only P2_URGENT / ALTERNATIVE_MANAGEMENT / NOT_ROUTINELY_FUNDED map to PlanDefinition wording in the Advisory renderer; this site's other codes fall back to humanised codes ("Acute 24 hours", "P3 non urgent" → "non urgent", "Specified date").
-4. **Checklist length** (Q23): a note with no documented criterion gets about 60 "what to add" lines.
+The three renderer/engine gaps raised at transcription (leading S2 code shown to referrers, cross-exam recommendation ignoring Acute and S outcomes, humanised wording for unmapped codes) are resolved by AD-36 / KI-76 / CL-57. A priority code in the middle of published wording (the first not-funded item) is the coordinator's renderer item (R3). Still open:
+
+1. **Checklist length** (Q23): a note with no documented criterion gets about 60 "what to add" lines. Under R1 this now also applies to a not-funded request (e.g. immigration) whose timeframe rows are unanswered.
 
 ## 9. Build gates
 
-`npm run build` compiles `CRR_XRChest_Adult` (124 defines; build line added to `tooling/package.json`); `npm test` runs 74 scenario runs for sites (71 for this site, all passing; results in `results.md`); `npm run check` rule 14 passes for this site (82 Questionnaire items incl. groups). Publish manifest added to `tooling/publish.mjs` (`source.pages` "62-65"); not published.
+`npm run build` compiles `CRR_XRChest_Adult` (125 defines); `npm test` runs this site's 81 scenarios, all passing (results in `results.md`); `npm run check` rule 14 passes for this site (82 Questionnaire items incl. groups). Publish manifest added to `tooling/publish.mjs` (`source.pages` "62-65"); not published.

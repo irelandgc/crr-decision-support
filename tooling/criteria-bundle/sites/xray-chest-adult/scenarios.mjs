@@ -40,6 +40,7 @@ const DECIMALS = [
   "symptom.cervicalLymphadenopathyDurationWeeks", "symptom.cervicalLymphNodeDiameterCm",
 ];
 const NONE = Object.fromEntries([["patient.age", 50], ...BOOLEANS.map((id) => [id, false]), ...DECIMALS.map((id) => [id, 0])]);
+const omit = (o, ids) => Object.fromEntries(Object.entries(o).filter(([k]) => !ids.includes(k)));
 const ADVISER = { "advice.adviserNameRole": "Dr A Example, respiratory physician" };
 
 const AM_REDIRECTS = [
@@ -493,10 +494,10 @@ export const scenarios = [
     expect: NF,
   },
   {
-    id: "XRC-S66-nf-asbestos-over-p3",
-    title: "Asbestos surveillance request in a patient never X-rayed - not funded wins over P3 (REVIEW Q19)",
+    id: "XRC-S66-p3-over-nf-asbestos",
+    title: "Asbestos surveillance request in a patient never X-rayed - the met P3 row wins over not funded (REVIEW Q3, Q19)",
     answers: { ...NONE, "funding.asbestosSurveillance": true, "symptom.asbestosExposureHistory": true },
-    expect: NF,
+    expect: P3,
   },
 
   // ── Age, empty, inferred ──
@@ -532,6 +533,70 @@ export const scenarios = [
     answers: { ...NONE, "symptom.suspectedSmallPneumothorax": { v: true, status: "inferred", quote: "sudden pleuritic pain, ?ptx" } },
     runWith: { "Documentation Standard": "inferred" },
     expect: { ...A48, inferredExcluded: [] },
+  },
+
+  // ── Not-funded precedence (coordinator rule R1, REVIEW Q3) ──
+  {
+    id: "XRC-S72-r1-nf-with-row-met",
+    title: "Immigration CXR, but suspected TB documented - the met P2 row wins over not funded",
+    answers: { ...NONE, "funding.immigrationPurposes": true, "symptom.suspectedTuberculosis": true },
+    expect: P2,
+  },
+  {
+    id: "XRC-S73-r1-nf-with-row-undetermined",
+    title: "Immigration CXR, the cough pathway started and undetermined - insufficient, asks for the cough atoms",
+    answers: { ...omit(NONE, ["symptom.coughWorsening", "symptom.coughDurationWeeks"]), "funding.immigrationPurposes": true, "symptom.coughUnexplained": true },
+    expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, missing: ["symptom.coughWorsening", "symptom.coughDurationWeeks"] },
+  },
+  {
+    id: "XRC-S74-r1-nf-all-rows-false",
+    title: "Rib views requested, every timeframe row definitively not met - not routinely funded",
+    answers: { ...NONE, "funding.ribViews": true },
+    expect: NF,
+  },
+
+  // ── Exactly-at-threshold boundaries (REVIEW Q7: strictly greater) ──
+  {
+    id: "XRC-S75-lc04-boundary",
+    title: "LC-04 boundary: unexplained change in chronic respiratory symptoms for exactly 3 weeks - not met",
+    answers: { ...NONE, "symptom.chronicRespiratoryCondition": true, "symptom.chronicRespiratorySymptomChangeUnexplained": true, "symptom.chronicRespiratorySymptomChangeDurationWeeks": 3 },
+    expect: NOT_MET,
+  },
+  {
+    id: "XRC-S76-lc05-boundary",
+    title: "LC-05 boundary: unexplained hoarseness for exactly 3 weeks - not met",
+    answers: { ...NONE, "symptom.hoarsenessUnexplained": true, "symptom.hoarsenessDurationWeeks": 3 },
+    expect: NOT_MET,
+  },
+  {
+    id: "XRC-S77-lc08-appetite-boundary",
+    title: "LC-08 boundary: weight loss over 1 month, appetite loss exactly 3 weeks - not met",
+    answers: { ...NONE, "weightloss.present": true, "weightloss.periodMonths": 1, "symptom.appetiteLoss": true, "symptom.appetiteLossDurationWeeks": 3 },
+    expect: NOT_MET,
+  },
+  {
+    id: "XRC-S78-lc08-weight-below-21-days",
+    title: "LC-08 boundary: weight loss over 0.68 month (about 20.7 days, just under 21) - not met",
+    answers: { ...NONE, "weightloss.present": true, "weightloss.periodMonths": 0.68, "symptom.appetiteLoss": true, "symptom.appetiteLossDurationWeeks": 4 },
+    expect: NOT_MET,
+  },
+  {
+    id: "XRC-S79-lc08-weight-above-21-days",
+    title: "LC-08 boundary: weight loss over 0.70 month (about 21.3 days, just over 21) - Acute 48h",
+    answers: { ...NONE, "weightloss.present": true, "weightloss.periodMonths": 0.7, "symptom.appetiteLoss": true, "symptom.appetiteLossDurationWeeks": 4 },
+    expect: A48,
+  },
+  {
+    id: "XRC-S80-lc09-boundary",
+    title: "LC-09 boundary: unexplained chest signs for exactly 3 weeks, not imaged - not met",
+    answers: { ...NONE, "symptom.abnormalChestSignsUnexplained": true, "symptom.abnormalChestSignsDurationWeeks": 3 },
+    expect: NOT_MET,
+  },
+  {
+    id: "XRC-S81-lc11-duration-boundary",
+    title: "LC-11 boundary: new cervical node 1.5 cm for exactly 3 weeks, other features - not met",
+    answers: { ...NONE, "symptom.cervicalLymphadenopathyNew": true, "symptom.cervicalLymphadenopathyDurationWeeks": 3, "symptom.cervicalLymphNodeDiameterCm": 1.5, "symptom.otherLungCancerFeatures": true },
+    expect: NOT_MET,
   },
 ];
 

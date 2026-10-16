@@ -41,7 +41,12 @@
   CLINICAL REVIEW FLAGS (listed in signoff.md and transcription-notes.md)
     Q1  Tier precedence: Acute 24h > Acute 48h > P2 > P3 > S2 when more than one is met.
     Q2  A met lower tier is returned even when a higher tier is undetermined (null).
-    Q3  Determination precedence: not funded > alternative management > paediatric > tiers.
+    Q3  Determination precedence (coordinator rule R1): alternative management >
+        paediatric > most urgent MET timeframe row > INSUFFICIENT_INFORMATION if any row
+        is undetermined > not routinely funded (only when every timeframe row is
+        definitively not met) > criteria not met. A not-funded item never pre-empts a
+        timeframe row that is met or undetermined. Alternative reading: not funded first,
+        as CT CAP does for its patient-level "unfit for treatment" row.
     Q4  Acute 24h CAP bullet read as: suspected CAP AND (unexpectedly severe or atypical
         presentation OR considered at risk of underlying lung pathology).
     Q5  "One or more of the following symptoms or signs concerning for lung cancer" read as
@@ -55,9 +60,15 @@
     Q8  "Unexplained weight loss and loss of appetite persisting for more than 3 weeks":
         both must be present and both must have persisted for more than 3 weeks; the weight
         loss duration is read from weightloss.periodMonths (3 weeks = 21 days, a month taken
-        as 30.4375 days).
+        as 30.4375 days). "Unexplained" is applied to the weight loss only (carried by
+        weightloss.present, "Unintentional, unexplained weight loss"); loss of appetite is
+        not required to be unexplained. Alternative reading: "unexplained" governs both,
+        which needs one more indicator (symptom.appetiteLossUnexplained, not minted).
     Q9  "in the absence of red flags" (persistent haemoptysis) is satisfied by the national
         red-flag layer running first; this library does not re-test the RF-14 qualifiers.
+        Consequence: when haemoptysis is present but the RF-14 qualifiers are unanswered,
+        the national layer reports RF-14 as indeterminate but does not stop the pipeline,
+        so LC-07 can return Acute 48h with the red flags still unresolved.
     Q10 "where the lymph nodes are greater than 1 cm in diameter" read as the largest
         cervical node being greater than 1 cm.
     Q11 "Suspected tuberculosis - ... request a CXR if indicated": suspected TB alone meets
@@ -81,7 +92,8 @@
     Q18 "Routine lateral x-ray view when requesting a PA image" is NOT encoded: it removes
         a view, not the referral, so there is no literal reading as a referral outcome.
     Q19 Asbestos: P3 "History of asbestos exposure and no previous chest x-ray" versus
-        not-funded "Asbestos exposure surveillance" - not funded wins under Q3.
+        not-funded "Asbestos exposure surveillance" - under Q3 the met P3 row wins; a
+        surveillance request is not funded only when no timeframe row is met.
     Q20 Alternative management: "especially if clinical concern of malignancy" is a modifier
         and not encoded; the redirect needs ongoing unexplained respiratory symptoms AND a
         previous negative chest X-ray.
@@ -93,6 +105,17 @@
         "Acute: Within 48 hours".
     Q23 Missing information when nothing has started: every undetermined pathway's
         unanswered indicators are listed (long list); see "Missing Information".
+    Q24 LC-02 "Unexplained cough, persisting and worsening for more than 3 weeks" read as
+        a cough present for more than 3 weeks AND currently worsening. Alternative
+        reading: the cough has been worsening for more than 3 weeks (the duration
+        qualifies the worsening too), which a single duration cannot express.
+    Q25 LC-04 "Unexplained changes in existing symptoms in patients with underlying
+        chronic respiratory problems persisting for more than 3 weeks": the duration is
+        read as attaching to the changes. Alternative reading: it attaches to the
+        underlying chronic respiratory problems (then a change of any duration counts).
+    Q26 S2 "6 week follow up chest X-ray after chest infection": "6 week" is read as the
+        target date of the follow-up (S2 is timed to a specified date), not as a condition
+        on how long ago the infection was.
 */
 
 library CRR_XRChest_Adult version '1.0.0'
@@ -252,6 +275,7 @@ define "LC-01 Unexplained New Or Worsening Dyspnoea":
 /*
   SOURCE (p62, LC-02): "Unexplained cough, persisting and worsening for more than 3 weeks"
   REVIEW Q7 - more than 3 weeks is strictly greater than 3.
+  REVIEW Q24 - present more than 3 weeks AND currently worsening.
 */
 define "LC-02 Parts":
   {
@@ -277,7 +301,7 @@ define "LC-03 Unexplained Chest Or Shoulder Pain":
 /*
   SOURCE (p62, LC-04): "Unexplained changes in existing symptoms in patients with
    underlying chronic respiratory problems persisting for more than 3 weeks"
-  "persisting for more than 3 weeks" is read as qualifying the changes.
+  REVIEW Q25 - "persisting for more than 3 weeks" is read as qualifying the changes.
 */
 define "LC-04 Parts":
   {
@@ -316,7 +340,9 @@ define "LC-06 Recurrent Or Unresolved Chest Infections":
 /*
   SOURCE (p63, LC-07): "Persistent, unexplained haemoptysis in the absence of red flags"
   REVIEW Q9 - "in the absence of red flags" is satisfied by the national red-flag
-  layer (RF-14) running first; not re-tested here. The haemoptysis stem reuses the
+  layer (RF-14) running first; not re-tested here. If the RF-14 qualifiers are
+  unanswered, RF-14 is indeterminate and does not stop the pipeline, so this item
+  can return Acute 48h with the red flags unresolved. The haemoptysis stem reuses the
   national linkId redflag.haemoptysisPresent (one concept, one indicator - KI-01).
 */
 define "LC-07 Parts":
@@ -334,7 +360,7 @@ define "LC-07 Persistent Unexplained Haemoptysis":
    more than 3 weeks"
   REVIEW Q8 - both present and both persisting more than 3 weeks; the weight-loss
   duration is weightloss.periodMonths, compared as more than 21 days with a month
-  of 30.4375 days.
+  of 30.4375 days. "Unexplained" is applied to the weight loss only.
 */
 define "Weight Loss Persisting More Than 3 Weeks":
   "Dec"('weightloss.periodMonths') * 30.4375 > 21.0
@@ -686,7 +712,7 @@ define "Meets P3 Criteria":
      o ongoing symptoms or signs
      o suspicious radiological features noted by a radiologist and follow up is recommended
      o when recommended by secondary care clinician or radiologist"
-  REVIEW Q15, Q16. "6 week" is the target date of the follow-up, not a condition.
+  REVIEW Q15, Q16. REVIEW Q26 - "6 week" is the target date of the follow-up, not a condition.
 */
 define "S2-1 Sub-conditions":
   "Bool"('symptom.ongoingSymptomsOrSignsAfterChestInfection')
@@ -823,6 +849,8 @@ define "Unconfirmed Exclusions":
   patient may wish to consider privately funding imaging."):
   REVIEW Q17 - each item is read as the purpose of the request. Each is
   exclusion-shaped: an unknown item is treated as not present.
+  REVIEW Q3 - a not-funded item applies only when every timeframe row is
+  definitively not met (see "Determination").
 */
 
 /*
@@ -917,20 +945,26 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q3, as CT CAP):
-    1. Not routinely funded
-    2. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
-    3. Paediatric patient - the adult criteria do not apply (BRD TA-003)
-    4. The most urgent tier that is met (REVIEW Q1): Acute 24h, Acute 48h, P2, P3, S2.
-       A met tier is returned even if a more urgent tier is undetermined (REVIEW Q2).
-    5. Every tier definitively not met
-    6. Insufficient information
-  Determination codes carry no S-code in their text (the Advisory renderer
-  humanises an unmapped code for the referrer view).
+  Precedence (REVIEW Q3, coordinator rule R1):
+    1. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
+    2. Paediatric patient - the adult criteria do not apply (BRD TA-003)
+    3. The most urgent timeframe row that is met (REVIEW Q1): Acute 24h, Acute 48h,
+       P2, P3, S2. A met row is returned even if a more urgent row is undetermined
+       (REVIEW Q2).
+    4. Insufficient information, while any timeframe row is undetermined
+    5. Not routinely funded, only when every timeframe row is definitively not met
+    6. Criteria not met
+  Determination and priority codes follow AD-36.
 */
+define "Any Timeframe Row Undetermined":
+  "Meets Acute 24h Criteria" is null
+    or "Meets Acute 48h Criteria" is null
+    or "Meets P2 Criteria" is null
+    or "Meets P3 Criteria" is null
+    or "Meets S2 Criteria" is null
+
 define "Determination":
   case
-    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
     when "Alternative Management Recommended" then 'ALTERNATIVE_MANAGEMENT'
     when "Is Adult" is false then 'PAEDIATRIC_CRITERIA_APPLY'
     when "Meets Acute 24h Criteria" is true then 'ACUTE_24H'
@@ -938,15 +972,12 @@ define "Determination":
     when "Meets P2 Criteria" is true then 'P2_URGENT'
     when "Meets P3 Criteria" is true then 'P3_NON_DEFERRABLE'
     when "Meets S2 Criteria" is true then 'S2_TIME_SENSITIVE'
-    when "Meets Acute 24h Criteria" is false
-      and "Meets Acute 48h Criteria" is false
-      and "Meets P2 Criteria" is false
-      and "Meets P3 Criteria" is false
-      and "Meets S2 Criteria" is false then 'CRITERIA_NOT_MET'
-    else 'INSUFFICIENT_INFORMATION'
+    when "Any Timeframe Row Undetermined" then 'INSUFFICIENT_INFORMATION'
+    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
+    else 'CRITERIA_NOT_MET'
   end
 
-// Triager-only (GEN-004). Labels as used by the legacy tools.
+// Triager-only (GEN-004). AD-36 priority codes.
 define "Priority Code":
   case "Determination"
     when 'ACUTE_24H' then 'A24'
