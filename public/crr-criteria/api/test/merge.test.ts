@@ -229,3 +229,27 @@ describe("merge — context labs", () => {
     expect(r.unmappedContext).toEqual([{ name: "Ferritin", reason: expect.stringContaining("no linkId") }]);
   });
 });
+
+describe("merge — quantity answers reach the engine as valueQuantity.value (KI-77)", () => {
+  const qtyQr = (vq: any) => ({
+    resourceType: "QuestionnaireResponse", status: "completed",
+    item: [{ linkId: "lab", item: [{ linkId: "lab.crp.value", answer: [{ valueQuantity: vq, extension: [{ url: ANSWER_EVIDENCE_EXT_URL, extension: [{ url: "status", valueCode: "documented" }, { url: "quote", valueString: "CRP 12" }] }] }] }] }],
+  });
+  const vqOf = (qr: any) => {
+    let out: any;
+    const walk = (items: any[]) => { for (const i of items || []) { if (Array.isArray(i.item)) walk(i.item); if (i.linkId === "lab.crp.value") out = i.answer[0].valueQuantity; } };
+    walk(qr.item);
+    return out;
+  };
+  it("wraps a bare number", () => {
+    expect(vqOf(run({ extractedResponse: qtyQr(12) }).questionnaireResponse)).toEqual({ value: 12 });
+  });
+  it("keeps a full UCUM quantity's value (was: reduced to its code string)", () => {
+    const got = vqOf(run({ extractedResponse: qtyQr({ value: 12, unit: "mg/L", system: "http://unitsofmeasure.org", code: "mg/L" }) }).questionnaireResponse);
+    expect(got).toEqual({ value: 12 });
+  });
+  it("reduces a context quantity with a non-UCUM unit to its value (FHIRHelpers would throw)", () => {
+    const r = run({ extractedResponse: extractedQr({}), context: { labs: [{ linkId: "lab.crp.value", value: { value: 12, unit: "IU/L" } }] } });
+    expect(vqOf(r.questionnaireResponse)).toEqual({ value: 12 });
+  });
+});

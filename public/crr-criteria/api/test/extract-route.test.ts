@@ -118,6 +118,14 @@ describe("buildQuestionnaireResponse — flat answers -> FHIR (v3.0.1)", () => {
     expect(ans.valueCoding).toEqual({ system: "http://hl7.org/fhir/administrative-gender", code: "male" });
   });
 
+  it("wraps a quantity answer as valueQuantity.value (KI-77: a bare number was dropped by the engine)", () => {
+    const qr = buildQuestionnaireResponse(
+      [{ linkId: "lab.crp.value", value: 12, status: "documented", quote: "CRP 12" }],
+      idx, TYPE_TO_VALUE_KEY,
+    );
+    expect(qr.item[0].item[0].answer[0].valueQuantity).toEqual({ value: 12 });
+  });
+
   it("an unknown linkId falls through as valueString (the gate then rejects it)", () => {
     const qr = buildQuestionnaireResponse(
       [{ linkId: "made.up", value: "x", status: "documented", quote: "x" }],

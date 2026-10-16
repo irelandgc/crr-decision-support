@@ -155,7 +155,8 @@ function candidatesFromExtracted(qr: any): Candidate[] {
       const answer = item.answer[0] || {};
       const valueKey = Object.keys(answer).find((k) => k.startsWith("value"));
       let value: unknown = valueKey ? answer[valueKey] : undefined;
-      if (value && typeof value === "object" && "code" in (value as any)) value = (value as any).code;
+      if (valueKey === "valueCoding" && value && typeof value === "object") value = (value as any).code;
+      if (valueKey === "valueQuantity" && value && typeof value === "object") value = (value as any).value;
       const ev = (answer.extension || []).find((e: any) => e.url === ANSWER_EVIDENCE_EXT_URL);
       let status: "documented" | "inferred" = "documented";
       let quote: string | undefined;
@@ -207,6 +208,23 @@ function candidatesFromAttestations(
   return out;
 }
 
+// KI-77: the engine reads `valueQuantity.value`. A bare number is wrapped; a
+// quantity whose unit has no UCUM code (e.g. unit "IU/L" alone) is reduced to
+// its value, because FHIRHelpers throws on a non-UCUM unit and the libraries
+// compare the number only.
+function scalarOf(v: unknown): unknown {
+  return v && typeof v === "object" && "value" in (v as any) ? (v as any).value : v;
+}
+
+function quantityOf(v: unknown): unknown {
+  if (typeof v === "number") return { value: v };
+  if (v && typeof v === "object" && typeof (v as any).value === "number") {
+    const q = v as any;
+    return q.system && q.code ? q : { value: q.value };
+  }
+  return v;
+}
+
 // ── emit one answer object for the merged QR ──────────────────────────────────
 function answerObject(c: Candidate, itemType: string | undefined): any {
   // Attestation-category items are stripped from the Questionnaires the extractor
@@ -219,7 +237,9 @@ function answerObject(c: Candidate, itemType: string | undefined): any {
   const obj: any =
     valueKey === "valueCoding"
       ? { valueCoding: { system: ADMIN_GENDER_SYSTEM, code: String(c.value) } }
-      : { [valueKey]: c.value };
+      : valueKey === "valueQuantity"
+        ? { valueQuantity: quantityOf(c.value) }
+        : { [valueKey]: c.value };
 
   if (c.provenance === "context") return obj; // structured input — no evidence extension (engine treats as documented)
 
@@ -269,7 +289,7 @@ export function merge(input: MergeInput): MergeResult {
           linkId: c.linkId,
           kept: { value: c.value, status: c.status, provenance: c.provenance },
           superseded: { value: existing.value, status: existing.status, provenance: existing.provenance },
-          valuesMatch: String(existing.value) === String(c.value),
+          valuesMatch: String(scalarOf(existing.value)) === String(scalarOf(c.value)),
         });
       }
       if (!existing || PROVENANCE_RANK[c.provenance] >= PROVENANCE_RANK[existing.provenance]) {

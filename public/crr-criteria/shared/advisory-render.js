@@ -182,7 +182,8 @@ function evidenceRows(mergedResponse) {
       const ans = i.answer[0] || {};
       const vk = Object.keys(ans).find((k) => k.startsWith("value"));
       let value = vk ? ans[vk] : undefined;
-      if (value && typeof value === "object" && "code" in value) value = value.code;
+      if (vk === "valueQuantity" && value && typeof value === "object") value = value.value;
+      else if (value && typeof value === "object" && "code" in value) value = value.code;
       const ev = (ans.extension || []).find((e) => e.url === EVIDENCE_URL);
       const sub = {};
       for (const s of (ev && ev.extension) || []) {
