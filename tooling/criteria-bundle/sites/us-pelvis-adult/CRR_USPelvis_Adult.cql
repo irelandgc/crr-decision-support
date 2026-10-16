@@ -40,13 +40,12 @@
     ACUTE_24H, ACUTE_48H, P2_URGENT, P3_NON_DEFERRABLE,
     P4_DEFERRABLE, S2_TIME_SENSITIVE (priority code S2),
     S3_TIME_SENSITIVE (priority code S3), CRITERIA_NOT_MET,
-    INSUFFICIENT_INFORMATION. The S2/S3 determinations deliberately carry no
-    priority code in their name: the renderers strip a leading P-code from
-    referrer text but not an S-code (GEN-004).
+    INSUFFICIENT_INFORMATION (AD-36). Priority codes: A24, A48, P2, P3, P4, S2,
+    S3 - non-null exactly when a timeframe row is met.
 
   CLINICAL REVIEW FLAGS (full wording in signoff.md / transcription-notes.md)
-    Q1  Precedence across rows: most urgent met row wins; an unresolved more-urgent row is listed in Missing Information, never blocks.
-    Q2  Precedence of redirect / not-funded over criteria (CT CAP Q5 / TA-013 order kept).
+    Q1  Precedence across timeframes: most urgent met row wins; an unresolved more-urgent row is listed in Missing Information, never blocks.
+    Q2  Precedence (coordinator rule R1): redirect, then paediatric, then met timeframe, then insufficient if any timeframe is undetermined, then not funded only when every timeframe is definitively not met, then criteria not met. Alternative: not-funded first (CT CAP).
     Q3  S2 and S3 advice gateways share one wording; left out of the logic.
     Q4  Acute 24h row 1: "including:" sub-bullets read as illustrative; the stem alone is encoded.
     Q5  Acute 24h row 1: the "outside the two-week post miscarriage maternity-funded scan window" condition is not encoded.
@@ -70,6 +69,10 @@
     Q23 A stated count of risk factors ("2 risk factors", DG-004) cannot be used; each footnote *5 factor is its own indicator.
     Q24 Sex is not checked ("Women" / "woman" read as population wording).
     Q25 A referral raising none of the section's concepts returns insufficient information with an empty missing list (MW-004, MW-006).
+    Q26 P3 row 8 "PID excluded as the cause of the pain as per local PID HealthPathway" is encoded as symptom.pid = false; a plain "no PID" satisfies it.
+    Q27 Cervical polyps redirect fires for any cervical polyp; "polyps which prove difficult to remove" is not a condition.
+    Q28 P3 row 7b "low suspicion of cancer" is encoded as pelvic mass suspicious of cancer = false.
+    Q29 P3 row 7a "for more than four weeks" is applied to the unilateral pain only, not to the unilateral tenderness.
 */
 
 library CRR_USPelvis_Adult version '1.0.0'
@@ -568,6 +571,11 @@ define "P3 Row 6: Ovarian Cancer Symptoms More Than 6 Weeks Not Recently Investi
      tenderness, or
    - pelvic mass and low suspicion of cancer."
   REVIEW Q17 - "more than four weeks" is > 4.
+  REVIEW Q29 - read as (unilateral pain for more than four weeks) OR unilateral
+  tenderness of any duration; the alternative applies the duration to both.
+  REVIEW Q28 - "low suspicion of cancer" is encoded as
+  symptom.pelvicMassSuspiciousOfCancer = false (one indicator, two roles with P2
+  row 1). A referrer who answers "not suspicious" is taken to mean low suspicion.
 */
 define "P3 Row 7a: Unilateral Pain More Than 4 Weeks Or Unilateral Tenderness":
   ("Bool"('symptom.pelvicPainUnilateral') and "Dec"('symptom.pelvicPainWeeks') > 4.0)
@@ -587,6 +595,10 @@ define "P3 Row 7: Suspected Ovarian Cyst With Pain Or Low-suspicion Mass":
    cause of the pain as per local PID HealthPathway."
   symptom.pid false = PID excluded as the cause (one concept, two roles: the
   same indicator true is the PID redirect).
+  REVIEW Q26 - the printed wording requires PID to have been excluded "as per
+  local PID HealthPathway" (a work-up), but a plain "no PID" answer satisfies
+  this encoding. Alternative: a separate work-up indicator (PID excluded per
+  the HealthPathway) required here, with symptom.pid kept for the redirect.
 */
 define "P3 Row 8: Pelvic Pain More Than 6 Weeks With PID Excluded":
   "Dec"('symptom.pelvicPainWeeks') > 6.0
@@ -821,6 +833,11 @@ define "Meets S3 Criteria":
   Unconfirmed Exclusions.
   REVIEW Q19 - the secondary amenorrhoea "unless" clause is encoded as: no
   palpable pelvic mass AND no significantly raised androgens.
+  REVIEW Q27 - the cervical polyps redirect fires for any cervical polyp;
+  "for women with polyps which prove difficult to remove" is read as the advice
+  text, not a condition. Because redirects outrank timeframes (Q2), a referral
+  with postmenopausal bleeding and a cervical polyp returns alternative
+  management.
 */
 define "Redirect: RPOC With Persistent Or Heavy Bleeding":
   "Bool"('symptom.rpocSuspected') and "Bool"('symptom.bleedingPersistentOrHeavyPostAbortionOrMiscarriage')
@@ -902,6 +919,8 @@ define "Unconfirmed Exclusions":
       factors for endometrial hyperplasia or endometrial cancer, no abnormality
       on examination and where first line treatment has not been trialled."
   Each is read "is true": an unknown does not make the referral not funded.
+  A not-funded row applies only when every timeframe row is definitively not
+  met (REVIEW Q2, coordinator rule R1).
   REVIEW Q17 - "less than 3 cm" < 3; "less than 5 cm" < 5; "up to 5cms" <= 5.
   REVIEW Q18 - "simple ovarian cyst (O-RADS 2)": the parenthetical is read as the
   category label of the simple cyst; O-RADS 2 is not separately required.
@@ -953,21 +972,20 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q1, Q2 - confirm):
-    1. Not routinely funded
-    2. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
-    3. Paediatric patient - the adult criteria do not apply (BRD TA-003)
-    4. Age unknown - insufficient information
-    5. The most urgent timeframe with a met row, in printed order:
+  Precedence (REVIEW Q1, Q2 - confirm; Q2 is coordinator rule R1):
+    1. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
+    2. Paediatric patient - the adult criteria do not apply (BRD TA-003)
+    3. Age unknown - insufficient information
+    4. The most urgent timeframe with a met row, in printed order:
        Acute 24h, Acute 48h, P2, P3, P4, S2, S3. A more urgent row that is
        unresolved does not block a less urgent met row; its missing indicators
        are listed in Missing Information.
-    6. Every timeframe definitively not met - criteria not met
-    7. Otherwise insufficient information
+    5. Any timeframe row undetermined - insufficient information
+    6. Every timeframe definitively not met: not routinely funded if a
+       not-funded row is met, otherwise criteria not met
 */
 define "Determination":
   case
-    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
     when "Alternative Management Recommended" then 'ALTERNATIVE_MANAGEMENT'
     when "Is Adult" is false then 'PAEDIATRIC_CRITERIA_APPLY'
     when "Is Adult" is null then 'INSUFFICIENT_INFORMATION'
@@ -980,11 +998,12 @@ define "Determination":
     when "Meets S3 Criteria" is true then 'S3_TIME_SENSITIVE'
     when "Meets Acute 24h Criteria" is false and "Meets Acute 48h Criteria" is false
       and "Meets P2 Criteria" is false and "Meets P3 Criteria" is false and "Meets P4 Criteria" is false
-      and "Meets S2 Criteria" is false and "Meets S3 Criteria" is false then 'CRITERIA_NOT_MET'
+      and "Meets S2 Criteria" is false and "Meets S3 Criteria" is false
+      then (if "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED' else 'CRITERIA_NOT_MET')
     else 'INSUFFICIENT_INFORMATION'
   end
 
-// Triager-only field. Acute timeframes print no code.
+// Triager-only field (AD-36): non-null exactly when a timeframe row is met.
 define "Priority Code":
   case "Determination"
     when 'ACUTE_24H' then 'A24'
@@ -1016,11 +1035,11 @@ define "Priority Timeframe":
   case "Determination"
     when 'ACUTE_24H' then 'Acute: Within 24 hours'
     when 'ACUTE_48H' then 'Acute: Within 48 hours'
-    when 'P2_URGENT' then 'Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.'
-    when 'P3_NON_DEFERRABLE' then 'Non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.'
+    when 'P2_URGENT' then 'Urgent: Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.'
+    when 'P3_NON_DEFERRABLE' then 'non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.'
     when 'P4_DEFERRABLE' then 'Deferrable. If capacity is constrained could wait up to 6-12 weeks from receiving referral.'
-    when 'S2_TIME_SENSITIVE' then 'Non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.'
-    when 'S3_TIME_SENSITIVE' then 'Non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.'
+    when 'S2_TIME_SENSITIVE' then 'non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.'
+    when 'S3_TIME_SENSITIVE' then 'non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.'
     else null
   end
 

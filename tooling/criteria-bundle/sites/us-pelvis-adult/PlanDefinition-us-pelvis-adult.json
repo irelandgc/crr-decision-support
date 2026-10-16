@@ -190,13 +190,7 @@
       "action": [
         {
           "id": "aa-unstable",
-          "title": "Clinically unstable patients with suspected gynaecologic or pelvic cause",
-          "documentation": [
-            {
-              "type": "documentation",
-              "display": "Evaluated by the national red-flag library (CRR_RedFlags, RF-11, redflag.clinicallyUnstableGynaePelvicCause) before this exam's criteria; not re-encoded in this bundle."
-            }
-          ]
+          "title": "Clinically unstable patients with suspected gynaecologic or pelvic cause"
         }
       ],
       "documentation": [
@@ -269,7 +263,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.44 — Acute: Within 24 hours row, bullet 1 (REVIEW Q4, Q5: stem encoded; sub-bullets illustrative)",
+              "label": "National criteria v2.0, p.44 — Acute: Within 24 hours row, bullet 1",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=44",
               "extension": [
                 {
@@ -345,7 +339,7 @@
             },
             {
               "id": "a24-2-symptoms",
-              "title": "The patient presents with symptoms suggestive of possible perforation including cramping pain, discharge, unexplained bleeding",
+              "title": "and the patient presents with symptoms suggestive of possible perforation including cramping pain, discharge, unexplained bleeding",
               "input": [
                 {
                   "type": "QuestionnaireResponse",
@@ -785,7 +779,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 3 (REVIEW Q8)",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 3",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
               "extension": [
                 {
@@ -913,7 +907,7 @@
             },
             {
               "id": "p2-5-nonuterine",
-              "title": "Non-uterine causes have been excluded*4",
+              "title": "non-uterine causes have been excluded*4",
               "input": [
                 {
                   "type": "QuestionnaireResponse",
@@ -1248,7 +1242,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.46 — P3 row, bullet 2 (REVIEW Q12)",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 2",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
               "extension": [
                 {
@@ -1870,7 +1864,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.47 — P3 row, bullet 10 (REVIEW Q13)",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 10",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
               "extension": [
                 {
@@ -1995,7 +1989,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.47 — P3 row, bullet 12 (REVIEW Q16)",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 12",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
               "extension": [
                 {
@@ -2228,7 +2222,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.47 — P4 row, bullet 3 (REVIEW Q16)",
+              "label": "National criteria v2.0, p.47 — P4 row, bullet 3",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
               "extension": [
                 {
@@ -2270,7 +2264,7 @@
     },
     {
       "id": "s2",
-      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.",
+      "title": "S2 non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.",
       "code": [
         {
           "coding": [
@@ -2504,10 +2498,6 @@
                   "valueInteger": 47
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "Not encoded (REVIEW Q3): the same advice wording is printed under S2 and S3, so it cannot select a timeframe. A referral resting on this advice is assessed on its other answers."
             }
           ]
         }
@@ -2515,7 +2505,7 @@
       "documentation": [
         {
           "type": "documentation",
-          "label": "National criteria v2.0, p.47 — S2 row (printed title begins with the code S2, carried in the priority code here: GEN-004)",
+          "label": "National criteria v2.0, p.47 — S2 row",
           "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
           "extension": [
             {
@@ -2528,7 +2518,7 @@
     },
     {
       "id": "s3",
-      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
+      "title": "S3 non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
       "code": [
         {
           "coding": [
@@ -2782,10 +2772,6 @@
                   "valueInteger": 48
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "Not encoded (REVIEW Q3): the same advice wording is printed under S2 and S3, so it cannot select a timeframe. A referral resting on this advice is assessed on its other answers."
             }
           ]
         }
@@ -2793,7 +2779,7 @@
       "documentation": [
         {
           "type": "documentation",
-          "label": "National criteria v2.0, p.48 — S3 row (printed title begins with the code S3, carried in the priority code here: GEN-004)",
+          "label": "National criteria v2.0, p.48 — S3 row",
           "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
           "extension": [
             {
@@ -2973,7 +2959,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 6 (REVIEW Q19)",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 6",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
               "extension": [
                 {
@@ -3219,7 +3205,7 @@
           "documentation": [
             {
               "type": "documentation",
-              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 8 (REVIEW Q15)",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 8",
               "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
               "extension": [
                 {

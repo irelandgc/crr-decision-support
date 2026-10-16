@@ -77,18 +77,31 @@
 | USP-NF-01-fibroid-follow-up | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | USP-NF-02-subfertility | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | USP-NF-03-simple-cyst-post | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-04-simple-cyst-post-boundary | strict | INSUFFICIENT_INFORMATION | - | PASS |
-| USP-NF-05-simple-cyst-pre-over-s2 | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-06-non-simple-cyst | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-07-haemorrhagic-5cm | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-08-benign-cells | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-09-mht-bleeding-6m | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-10-mht-bleeding-7m | strict | INSUFFICIENT_INFORMATION | - | PASS |
-| USP-NF-11-screening | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-12-aub-under45-untrialled | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USP-NF-13-over-redirect | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-04-simple-cyst-post-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| USP-NF-05-simple-cyst-pre | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-06-simple-cyst-pre-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| USP-NF-07-simple-cyst-pre-s2-met | strict | S2_TIME_SENSITIVE (S2) | - | PASS |
+| USP-NF-08-non-simple-cyst | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-09-non-simple-cyst-boundary | strict | CRITERIA_NOT_MET | - | PASS |
+| USP-NF-10-haemorrhagic-5cm-s2-met | strict | S2_TIME_SENSITIVE (S2) | - | PASS |
+| USP-NF-11-benign-cells | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-12-mht-bleeding-6m | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-13-mht-bleeding-7m | strict | CRITERIA_NOT_MET | - | PASS |
+| USP-NF-14-screening | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-15-aub-under45-untrialled | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USP-NF-16-undetermined | strict | INSUFFICIENT_INFORMATION | - | PASS |
+| USP-NF-17-met-row-wins | strict | P2_URGENT (P2) | - | PASS |
+| USP-NF-18-redirect-over-not-funded | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
+| USP-NF-19-paediatric-over-not-funded | strict | PAEDIATRIC_CRITERIA_APPLY | - | PASS |
+| USP-B-01-bmi-30 | strict | P3_NON_DEFERRABLE (P3) | - | PASS |
+| USP-B-02-bmi-29.9 | strict | INSUFFICIENT_INFORMATION | - | PASS |
+| USP-B-03-nulliparity-35 | strict | INSUFFICIENT_INFORMATION | - | PASS |
+| USP-B-04-nulliparity-36 | strict | P3_NON_DEFERRABLE (P3) | - | PASS |
+| USP-B-05-ovarian-symptoms-6w | strict | INSUFFICIENT_INFORMATION | - | PASS |
+| USP-B-06-pelvic-pain-6w | strict | INSUFFICIENT_INFORMATION | - | PASS |
 | USP-X-01-paediatric | strict | PAEDIATRIC_CRITERIA_APPLY | - | PASS |
 | USP-X-02-age-unknown | strict | INSUFFICIENT_INFORMATION | patient.age | PASS |
 | USP-X-03-criteria-not-met | strict | CRITERIA_NOT_MET | - | PASS |
+| USP-X-04-pmb-cervical-polyp | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USP-SI-01-strict | strict | INSUFFICIENT_INFORMATION | symptom.acutelyUnwellSuspectedGynaeCause | PASS |
 | USP-SI-02-inferred | inferred | ACUTE_24H (A24) | - | PASS |
