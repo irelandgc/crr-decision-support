@@ -43,12 +43,12 @@ days after their date. [U] = inferred, not found.
 - 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71
 - 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
-- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
-- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36; CL-57
-- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe), staging not yet re-seeded — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
+- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-76; CL-56
+- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; on staging (2026-10-16), not in production — AD-36; CL-57
+- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe) — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
 - 2026-10-16 AD-36, AD-37 and AD-38 Accepted (Gary) — ARCHITECTURE_DECISIONS.md AD-36, AD-37, AD-38
-- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; units dropped, so FHIRHelpers cannot throw); built, not deployed — documents/arch-mig-known-issues.md KI-77; CL-61
-- 2026-10-16 "What to add" no longer repeats a heading as its only line; built, not deployed — documents/arch-mig-known-issues.md KI-75; CL-62
+- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; units dropped, so FHIRHelpers cannot throw); on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-77; CL-61
+- 2026-10-16 "What to add" no longer repeats a heading as its only line; on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-75; CL-62
 - 2026-10-16 CRR_RedFlags RF-10 comment / REVIEW Q23 corrected to the US Carotid p35 footnote (no logic change, national bundle not republished) — documents/arch-mig-known-issues.md KI-79
 - 2026-10-16 Staging redeployed from main and re-seeded: 10 bundles published as a staging demo, 9 exam/site ids live; 22 synthetic runs, no 500/502 — AD-35; documents/arch-mig-known-issues.md KI-72
 - 2026-10-16 Extraction prompt v3.0.4 (KI-73) verified on staging: note 3 returns 200 on 3/3 runs; staging API worker runs PR #51's branch until merge — documents/arch-mig-known-issues.md KI-73; CL-63
@@ -61,6 +61,7 @@ days after their date. [U] = inferred, not found.
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
 - @claude Extraction gives a documented false from wording that does not negate the item (over-inference case 19); benchmark it, then propose a rule or gate change — documents/arch-mig-known-issues.md KI-83
 - @claude Add comparison notes 3 and 4 to the extraction benchmark (no-exam-named quote; jaundice localising features) — documents/arch-mig-known-issues.md KI-73, KI-74
+- @claude Relabel KI-75/76/77/79/80 from "RESOLVED on branch" (PRs #48 and #50 merged; changes on staging) and split that bucket in the counts line — documents/arch-mig-known-issues.md Counts
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
 - @claude Draft BRD v3.3 redline from CL rows tagged BRD (due after slice 5) — documents/DOCUMENTATION-PLAN.md
