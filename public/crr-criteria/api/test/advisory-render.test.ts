@@ -183,6 +183,32 @@ describe("resolveAdvisory — P2_URGENT resolves the PlanDefinition action wordi
   });
 });
 
+describe("resolveAdvisory — W1 timeframe codes resolve their row wording (AD-36)", () => {
+  const pd = JSON.parse(JSON.stringify(ctCapPd));
+  pd.action.push(
+    { title: "P3 non-deferrable imaging or intervention that must be completed within 6 weeks", condition: [{ kind: "applicability", expression: { language: "text/cql-identifier", expression: "Meets P3 Criteria" } }] },
+    { title: "S2 non-deferrable time sensitive imaging or intervention that must be completed by a specified date", condition: [{ kind: "applicability", expression: { language: "text/cql-identifier", expression: "Meets S2 Criteria" } }] },
+  );
+  const res: any = insufficientResponse([]);
+  res.bundleArtefacts = { ct_cap: { questionnaire: ctCapQ, planDefinition: pd }, us_x: { questionnaire: ctCapQ, planDefinition: pd } };
+  res.advisory.determination = "P3_NON_DEFERRABLE";
+  res.advisory.requestedExam.advisory.determination = "P3_NON_DEFERRABLE";
+  res.advisory.requestedExam.advisory.priorityCode = "P3";
+  res.advisory.alternatives = [{ id: "us_x", advisory: { determination: "S2_TIME_SENSITIVE", priorityCode: "S2" } }];
+
+  it("referrer sees the row wording with the code stripped, for the requested exam and the alternative", () => {
+    const m = resolveAdvisory(res, "referrer");
+    expect(m.determination.plain).toBe("non-deferrable imaging or intervention that must be completed within 6 weeks");
+    expect(m.alternatives[0].plain).toBe("non-deferrable time sensitive imaging or intervention that must be completed by a specified date");
+    expect(advisoryHtml(m)).not.toMatch(/\b[PS][1-4]\b/);
+  });
+  it("triager keeps the codes", () => {
+    const m = resolveAdvisory(res, "triager");
+    expect(m.determination.plain).toMatch(/^P3 non-deferrable/);
+    expect(m.alternatives[0].plain).toMatch(/^S2 non-deferrable/);
+  });
+});
+
 describe("resolveAdvisory — attestation answers in the Advisory (browser findings)", () => {
   const ATT_Q = [
     {

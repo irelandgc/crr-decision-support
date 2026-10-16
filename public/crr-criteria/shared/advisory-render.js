@@ -37,11 +37,26 @@ const EVIDENCE_URL = "http://crr.health.nz/fhir/StructureDefinition/answer-evide
 
 // Determinations that resolve to a top-level PlanDefinition action by its CQL
 // condition define name.
+// Exam libraries name each timeframe row's define "Meets <timeframe> Criteria"
+// and return the matching determination code (W1 convention, AD-36).
 const DETERMINATION_TO_DEFINE = {
+  ACUTE_24H: "Meets Acute 24h Criteria",
+  ACUTE_48H: "Meets Acute 48h Criteria",
   P2_URGENT: "Meets P2 Criteria",
+  P3_NON_DEFERRABLE: "Meets P3 Criteria",
+  P4_DEFERRABLE: "Meets P4 Criteria",
+  S1_TIME_SENSITIVE: "Meets S1 Criteria",
+  S2_TIME_SENSITIVE: "Meets S2 Criteria",
+  S3_TIME_SENSITIVE: "Meets S3 Criteria",
   ALTERNATIVE_MANAGEMENT: "Alternative Management Recommended",
   NOT_ROUTINELY_FUNDED: "Not Routinely Funded",
 };
+
+// GEN-004: a leading priority token (P1-P4, S1-S4, or a range such as P3-P4) is
+// stripped from wording shown to referrers (KI-76).
+function stripPriorityToken(s) {
+  return String(s).replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "");
+}
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -199,12 +214,11 @@ export function resolveAdvisory(response, view, opts) {
     ? planActionFor(requestedArtefact.planDefinition, DETERMINATION_TO_DEFINE[detCode])
     : null;
   // The published P2 row title leads with the code ("P2 Urgent: …"). GEN-004
-  // forbids showing the code to referrers, so strip a leading `P<n>` or `S<n>`
-  // token (or a range such as `P3-P4`; KI-76) from
-  // the plain wording for the referrer view (the timeframe line still carries
-  // the urgency); the triager sees the code in its own line.
+  // forbids showing the code to referrers, so strip it from the plain wording
+  // for the referrer view (the timeframe line still carries the urgency); the
+  // triager sees the code in its own line.
   let plain = (action && action.title) || humanizeCode(detCode);
-  if (!isTriager) plain = plain.replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "");
+  if (!isTriager) plain = stripPriorityToken(plain);
   const determination = {
     code: detCode,
     plain,
@@ -256,7 +270,7 @@ export function resolveAdvisory(response, view, opts) {
         return {
           id: alt.id,
           determination: altDet,
-          plain: (altAction && altAction.title) || humanizeCode(altDet),
+          plain: isTriager ? ((altAction && altAction.title) || humanizeCode(altDet)) : stripPriorityToken((altAction && altAction.title) || humanizeCode(altDet)),
           page: altAction ? altAction.page : null,
         };
       })

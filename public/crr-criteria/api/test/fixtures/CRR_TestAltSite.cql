@@ -38,16 +38,21 @@ define function "Bool"(linkId String):
 
 define "Meets": "Bool"('workup.bloods') is true
 
+// A non-P priority (W1 convention, AD-36): urinalysis alone reaches Acute 48h.
+define "Meets Acute 48h": "Bool"('workup.urinalysis') is true
+
 define "Determination":
-  if "Meets" then 'P2_URGENT' else 'INSUFFICIENT_INFORMATION'
+  if "Meets" then 'P2_URGENT'
+  else if "Meets Acute 48h" then 'ACUTE_48H'
+  else 'INSUFFICIENT_INFORMATION'
 
 define "Advisory":
   Tuple {
     exam: 'Test Alternative Site (fixture)',
     criteriaVersion: 'fixture',
     determination: "Determination",
-    priorityCode: (if "Determination" = 'P2_URGENT' then 'P2' else null),
-    missingInformation: (if "Meets" then {} else { 'workup.bloods' }) as List<String>,
+    priorityCode: (if "Determination" = 'P2_URGENT' then 'P2' else if "Determination" = 'ACUTE_48H' then 'A48' else null),
+    missingInformation: (if "Meets" or "Meets Acute 48h" then {} else { 'workup.bloods' }) as List<String>,
     activeRedirects: {} as List<String>,
     ruleTrace: Tuple { meets: "Meets", documentationStandard: "Documentation Standard" }
   }
