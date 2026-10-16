@@ -42,27 +42,38 @@
     Q1  "Painless" jaundice = redflag.painfulJaundice answered false (composition, no new indicator)
     Q2  "without obvious cause" = new indicator workup.jaundiceObviousCause; unknown -> insufficient
     Q3  "consider discussing ... as a CT scan may be more appropriate" is advice, not a condition
-    Q4  P2 "Initial presentation" is not a separate condition; ALP/GGT indicators are the initial results
+    Q4  P2 "Initial presentation" is not a separate condition; ALP/GGT indicators are the initial results;
+        if GGT has normalised at a 3-month repeat, the ALP/normal-GGT redirect fires and outranks P2 (Q13)
     Q5  P2 "raised ALP and GGT" = both raised; "+/- bilirubin" not encoded
     Q6  P3 "without previous imaging" (modality unstated) = imaging.presentingProblem.ever false
     Q7  P3 "without previous imaging which showed gallstones" = no previous imaging has shown gallstones
     Q8  P3 follow-up ALP/GGT: unprinted sub-bullet connectors read as AND (all four parts)
     Q9  P3 ALT: both sub-bullets required; "in patients with high risk factors" is a condition
-    Q10 P3 ALT "greater than 120 IU/L": strictly greater; a number is required
-    Q11 P3 isolated GGT: "persists" = repeat GGT still more than 5 x ULN; "isolated" shared with bilirubin
-    Q12 Initial GGT < 5 x ULN, repeat > 5 x ULN: the alternative-management item fires, not P3
-    Q13 "ALP elevated with normal GGT" uses the latest GGT (the repeat once repeated)
+    Q10 P3 ALT "greater than 120 IU/L": strictly greater; a number is required; the unit is not checked (KI-77)
+    Q11 P3 isolated GGT: "persists" = repeat GGT still more than 5 x ULN; "isolated" shared with bilirubin;
+        exactly 5.0 x ULN (initial or repeat) does not meet "more than 5 times"
+    Q12 Initial GGT < 5 x ULN, repeat > 5 x ULN: the alternative-management item fires, not P3;
+        an initial GGT of exactly 5.0 x ULN meets neither this item ("less than 5") nor P3
+    Q13 "ALP elevated with normal GGT" uses the latest GGT (the repeat once repeated); it can therefore
+        redirect a patient whose initial results met P2 bullet 1 (Q4)
     Q14 P3 AAA: "asymptomatic" and "newly suspected" are two indicators; "e.g." clause not encoded
     Q15 P3 mass: "non-pulsatile abdominal mass and suspected enlarged liver" = both required
-    Q16 S3 rows: one indicator per bullet; S3 ranks below P3
-    Q17 Precedence: not funded > alternative management > paediatric > acute 48 h > P2 > P3 > S3
+    Q16 S3 rows: one indicator per bullet; heading printed verbatim (renderer strips the leading code);
+        the "*Hepatitis Foundation Clinician" Referrers entry is a note, not enforced; S3 ranks below P3 (Q17)
+    Q17 Order of timeframe rows: acute 48 h > P2 > P3 > S3; the most urgent row met is returned even
+        when a more urgent row is undetermined
     Q18 Not-funded items read as the reason for the request; bloating composes two indicators
-    Q19 Weight loss/fatigue/pain/suspicion redirect: all four required; "suspicion" != "strong suspicion"
+    Q19 Weight loss/fatigue/pain/suspicion redirect: all four required; "suspicion" != "strong suspicion";
+        p32 "Unexplained weight loss" is read through weightloss.present ("Unintentional, unexplained")
     Q20 Bloating "associated clinical symptoms (for example ...)" = clinical features of concern
     Q21 "Urinary tract presentations and suspected renal abnormality" is one indicator, wording verbatim
     Q22 "Adult" = age over 15 (Overview p4), as CT CAP
     Q23 Chronic pancreatitis ("request acute general surgery assessment") is a redirect, not a red flag
     Q24 Upper abdominal mass redirect needs "upper" and "not consistent with hepatomegaly" both answered
+    Q25 Not-funded precedence (coordinator rule R1): redirect > paediatric > most urgent met timeframe
+        row > insufficient information (any row undetermined) > not funded (every row not met) >
+        criteria not met. Alternative reading: not funded first, as CT CAP does for its patient-level
+        "unfit for treatment" row
 */
 
 library CRR_USAbdomen_Adult version '1.0.0'
@@ -261,7 +272,10 @@ define "Meets Acute 48h Criteria":
   REVIEW Q4 - "Initial presentation" is not encoded as a separate condition.
   It is read as when the results were found; the follow-up case (repeat
   testing at 3 months) is P3 bullet 3 with its own repeat-result indicators.
-  A patient whose initial results met this bullet still meets it at follow-up.
+  A patient whose initial results met this bullet still meets it at follow-up,
+  unless the GGT has returned to normal at a repeat 3 months or more later: the
+  "ALP elevated with normal GGT" redirect then fires (REVIEW Q13) and, being a
+  redirect, outranks P2 (scenario USAB-S41).
 */
 define "P2: Initial ALP More Than 2x ULN And GGT Raised":
   "Initial ALP More Than 2x ULN" and "GGT Higher Than ULN"
@@ -385,7 +399,9 @@ define "P3: Follow-Up ALP And GGT Still Raised At 3 Months":
   indicator, patient.liverRiskFactors). The "e.g." lists are illustrative
   (KI-05) and not encoded.
   REVIEW Q10 - "greater than 120 IU/L" is strictly greater and needs the value;
-  a qualitative "ALT raised" does not satisfy it.
+  a qualitative "ALT raised" does not satisfy it. "Qty" returns only the
+  number, so the unit is not checked: a value reported in another unit would be
+  compared as if in IU/L. Depends on how the gate handles quantity units (KI-77).
   "No clinical features of concern": workup.clinicalFeaturesOfConcern answered
   false. Candidate attestation indicator (AD-17).
 */
@@ -407,7 +423,8 @@ define "P3: ALT Over 120 With Risk Factors, Conservative Methods Unsuccessful, N
 
   REVIEW Q11 - read as: isolated AND initial GGT > 5 x ULN AND repeat testing at
   3 months or more AND repeat GGT still > 5 x ULN ("persists" refers to the
-  "raised GGT more than 5 times the ULN").
+  "raised GGT more than 5 times the ULN"). Exactly 5.0 x ULN, initially or on
+  repeat, is not "more than 5 times" (scenarios USAB-S43, USAB-S44).
 */
 define "P3: Isolated GGT More Than 5x ULN Persisting At 3 Months":
   "LFT Abnormality Isolated"
@@ -542,6 +559,8 @@ define "Redirect: Upper Abdominal Mass Not Hepatomegaly":
   REVIEW Q19 - all four required ("and"). "persistent" and "vague" are not
   captured separately (symptom.fatigue, symptom.abdominalPain). "suspicion" is
   not CT CAP's "strong suspicion": new indicator workup.suspicionMalignancy.
+  "Unexplained weight loss" is read through weightloss.present, whose text is
+  "Unintentional, unexplained weight loss" (adds "unintentional").
 */
 define "Redirect: Weight Loss, Fatigue, Abdominal Pain And Suspected Malignancy":
   ("Bool"('weightloss.present')
@@ -557,7 +576,9 @@ define "Redirect: Weight Loss, Fatigue, Abdominal Pain And Suspected Malignancy"
   REVIEW Q12 - evaluated on the initial GGT multiple. A repeat GGT above 5 x
   ULN does not switch this off (the item's own wording then advises
   considering ultrasound), and P3 bullet 5 is not met because the initial GGT
-  was not above 5 x ULN.
+  was not above 5 x ULN. An initial GGT of exactly 5.0 x ULN is neither "less
+  than 5 times" (this item) nor "more than 5 times" (P3 bullet 5): neither fires
+  (scenario USAB-S43).
 */
 define "Redirect: Isolated GGT Less Than 5x ULN":
   ("LFT Abnormality Isolated"
@@ -572,7 +593,10 @@ define "Redirect: Isolated GGT Less Than 5x ULN":
   REVIEW Q13 - "normal GGT" is the latest GGT: the repeat result once liver
   tests have been repeated at 3 months or more, otherwise the initial result.
   Without this, P3 bullet 3 (initial ALP > 2 x ULN with GGT rising by the
-  repeat) could never be reached.
+  repeat) could never be reached. Consequence: a patient whose initial ALP was
+  > 2 x ULN with raised GGT (P2 bullet 1) but whose GGT is normal at the
+  3-month repeat is redirected here, and the redirect outranks P2 (REVIEW Q4,
+  scenario USAB-S41).
 */
 define "GGT Normal At Latest Test":
   if "Repeat Testing At 3 Months Or More" is true then not "Repeat GGT Higher Than ULN"
@@ -699,7 +723,8 @@ define "Unconfirmed Exclusions": {} as List<String>
   indicator each, published wording as the item text), except bloating, which
   composes symptom.isolatedBloating with workup.clinicalFeaturesOfConcern
   answered false (the same two indicators drive the bloating redirect).
-  Unknown is treated as not present.
+  Unknown is treated as not present. Not funded is returned only when every
+  timeframe row is definitively not met (REVIEW Q25).
 */
 define "Not Funded: Isolated Bloating With No Features Of Concern":
   ("Isolated Bloating" and not "Clinical Features Of Concern") is true
@@ -718,38 +743,42 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q17 - confirm ordering):
-    1. Not routinely funded
-    2. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
-    3. Paediatric patient - the adult criteria do not apply (BRD TA-003)
-    4. Acute: within 48 hours met
-    5. P2 met
-    6. P3 met
-    7. S3 met
-    8. Every row definitively not met
-    9. Insufficient information
-  The highest row that is met is returned even when a higher row is
-  undetermined.
+  Precedence (REVIEW Q17, Q25 - confirm ordering):
+    1. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
+    2. Paediatric patient - the adult criteria do not apply (BRD TA-003)
+    3. Acute: within 48 hours met
+    4. P2 met
+    5. P3 met
+    6. S3 met
+    7. Any timeframe row undetermined -> insufficient information
+    8. Not routinely funded (only when every timeframe row is definitively not met)
+    9. Criteria not met
+  The most urgent row that is met is returned even when a more urgent row is
+  undetermined (Q17). A not-funded item never pre-empts a timeframe row that is
+  met or still undetermined (coordinator rule R1, Q25).
 */
+define "All Timeframe Rows Not Met":
+  "Meets Acute 48h Criteria" is false
+    and "Meets P2 Criteria" is false
+    and "Meets P3 Criteria" is false
+    and "Meets S3 Criteria" is false
+
 define "Determination":
   case
-    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
     when "Alternative Management Recommended" then 'ALTERNATIVE_MANAGEMENT'
     when "Is Adult" is false then 'PAEDIATRIC_CRITERIA_APPLY'
     when "Meets Acute 48h Criteria" is true then 'ACUTE_48H'
     when "Meets P2 Criteria" is true then 'P2_URGENT'
     when "Meets P3 Criteria" is true then 'P3_NON_DEFERRABLE'
     when "Meets S3 Criteria" is true then 'S3_TIME_SENSITIVE'
-    when "Meets Acute 48h Criteria" is false
-      and "Meets P2 Criteria" is false
-      and "Meets P3 Criteria" is false
-      and "Meets S3 Criteria" is false then 'CRITERIA_NOT_MET'
-    else 'INSUFFICIENT_INFORMATION'
+    when not "All Timeframe Rows Not Met" then 'INSUFFICIENT_INFORMATION'
+    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
+    else 'CRITERIA_NOT_MET'
   end
 
 /*
-  The acute row prints no code ("Acute: Within 48 hours"), so no priority code
-  is emitted for it; the timeframe carries the urgency.
+  AD-36 priority codes. The acute row prints no code ("Acute: Within 48
+  hours"); A48 is the AD-36 code for it (triager view only).
 */
 define "Priority Code":
   case "Determination"

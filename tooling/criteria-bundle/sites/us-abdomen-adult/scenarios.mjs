@@ -1,6 +1,6 @@
 // Test scenarios for CRR_USAbdomen_Adult (US Abdomen - Adult, National criteria v2.0 pp.30-33).
 // DEMO TRANSCRIPTION - NOT CLINICALLY REVIEWED. Expectations follow the literal reading
-// recorded in the CQL header and signoff.md (REVIEW Q1-Q24).
+// recorded in the CQL header and signoff.md (REVIEW Q1-Q25).
 //
 // Order: results-matrix cases for this site first (MW-009 encoded as a US Abdomen request,
 // RP-002, CB-001, CB-002), then coverage of every row, redirect, not-funded item, boundary
@@ -387,27 +387,77 @@ export const scenarios = [
   // ---- Not routinely funded -------------------------------------------------
   {
     id: "USAB-S35-nf-bloating",
-    title: "Isolated bloating with no other features of concern -> not routinely funded",
+    title: "Isolated bloating with no other features of concern, every timeframe row not met -> not routinely funded",
     answers: { ...NONE, "symptom.isolatedBloating": true, "workup.clinicalFeaturesOfConcern": false },
     expect: met("NOT_ROUTINELY_FUNDED", null),
   },
   {
     id: "USAB-S36-nf-screening-fatty-liver",
-    title: "Request is screening for fatty liver -> not routinely funded",
-    answers: { "patient.age": 55, "funding.screeningFattyLiver": true },
+    title: "Request is screening for fatty liver, every timeframe row not met -> not routinely funded (R1, REVIEW Q25)",
+    answers: { ...NONE, "patient.age": 55, "funding.screeningFattyLiver": true },
     expect: met("NOT_ROUTINELY_FUNDED", null),
   },
   {
     id: "USAB-S37-nf-over-redirect",
-    title: "Hernia request that also mentions dyspepsia -> not routinely funded outranks the redirect (REVIEW Q17); the redirect is still listed",
+    title: "Hernia request that also mentions dyspepsia -> the redirect outranks not funded (R1, REVIEW Q25)",
     answers: { ...NONE, "funding.hernia": true, "symptom.dyspepsia": true },
-    expect: { ...met("NOT_ROUTINELY_FUNDED", null), redirects: [R.dyspepsia] },
+    expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [R.dyspepsia], unconfirmedExclusions: [] },
   },
   {
     id: "USAB-S38-nf-gallstone-follow-up",
-    title: "Follow-up of known gallstones in an asymptomatic patient -> not routinely funded",
-    answers: { "patient.age": 60, "funding.gallstonesFollowUpAsymptomatic": true },
+    title: "Follow-up of known gallstones in an asymptomatic patient, every timeframe row not met -> not routinely funded",
+    answers: { ...NONE, "patient.age": 60, "funding.gallstonesFollowUpAsymptomatic": true },
     expect: met("NOT_ROUTINELY_FUNDED", null),
+  },
+  {
+    id: "USAB-S45-nf-with-row-met",
+    title: "Hernia (not funded) and an asymptomatic newly suspected AAA (P3 met) -> P3; not funded never pre-empts a met row (R1, REVIEW Q25)",
+    answers: { ...NONE, "funding.hernia": true, "symptom.aaaNewlySuspected": true, "symptom.aaaAsymptomatic": true },
+    expect: met("P3_NON_DEFERRABLE", "P3"),
+  },
+  {
+    id: "USAB-S46-nf-with-row-undetermined",
+    title: "Hernia (not funded) with every timeframe row unanswered -> insufficient information, not not-funded (R1, REVIEW Q25)",
+    answers: { "patient.age": 60, "funding.hernia": true },
+    expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, redirects: [] },
+  },
+  {
+    id: "USAB-S47-nf-all-rows-false",
+    title: "Hernia (not funded) with every timeframe row definitively not met -> not routinely funded (R1, REVIEW Q25)",
+    answers: { ...NONE, "funding.hernia": true },
+    expect: met("NOT_ROUTINELY_FUNDED", null),
+  },
+
+  // ---- Review-round boundaries ----------------------------------------------
+  {
+    id: "USAB-S41-p2-initial-ggt-normal-at-repeat",
+    title: "Initial ALP 2.5 x ULN with raised GGT (P2 bullet 1), GGT normal at the 3-month repeat -> ALP/normal-GGT redirect outranks P2 (REVIEW Q4, Q13)",
+    answers: { ...NONE, "lab.alp.timesULN": 2.5, "lab.alp.high": true, "lab.ggt.raised": true, "lab.repeatAfter3Months": true, "lab.alp.repeatHigh": true, "lab.ggt.repeatRaised": false },
+    expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [R.alpNormalGgt], unconfirmedExclusions: [] },
+  },
+  {
+    id: "USAB-S42-age-15",
+    title: "Age 15 with P2 lab results -> paediatric criteria apply (adult = over 15, REVIEW Q22)",
+    answers: { ...NONE, "patient.age": 15, "lab.alp.timesULN": 2.5, "lab.alp.high": true, "lab.ggt.raised": true },
+    expect: met("PAEDIATRIC_CRITERIA_APPLY", null),
+  },
+  {
+    id: "USAB-S48-age-16",
+    title: "Age 16 with P2 lab results -> P2 (REVIEW Q22)",
+    answers: { ...NONE, "patient.age": 16, "lab.alp.timesULN": 2.5, "lab.alp.high": true, "lab.ggt.raised": true },
+    expect: met("P2_URGENT", "P2"),
+  },
+  {
+    id: "USAB-S43-ggt-initial-exactly-5",
+    title: "Isolated GGT exactly 5.0 x ULN initially, 6.0 x ULN at the 3-month repeat -> neither the > 5 row nor the < 5 redirect; criteria not met (REVIEW Q11, Q12)",
+    answers: { ...NONE, "lab.isolatedLftAbnormality": true, "lab.ggt.raised": true, "lab.ggt.timesULN": 5.0, "lab.repeatAfter3Months": true, "lab.ggt.repeatTimesULN": 6.0, "lab.alp.repeatHigh": false },
+    expect: met("CRITERIA_NOT_MET", null),
+  },
+  {
+    id: "USAB-S44-ggt-repeat-exactly-5",
+    title: "Isolated GGT 6.0 x ULN initially, exactly 5.0 x ULN at the 3-month repeat -> not 'persists' above 5 x; criteria not met (REVIEW Q11)",
+    answers: { ...NONE, "lab.isolatedLftAbnormality": true, "lab.ggt.raised": true, "lab.ggt.timesULN": 6.0, "lab.repeatAfter3Months": true, "lab.ggt.repeatTimesULN": 5.0, "lab.alp.repeatHigh": false },
+    expect: met("CRITERIA_NOT_MET", null),
   },
 
   // ---- Documentation standard ----------------------------------------------

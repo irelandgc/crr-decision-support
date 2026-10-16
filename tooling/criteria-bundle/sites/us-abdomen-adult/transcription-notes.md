@@ -4,7 +4,7 @@
 
 **Status:** W1 demo transcription for staging only (AD-35, Gary 2026-10-15). NOT CLINICALLY REVIEWED. Most literal reading encoded; every ambiguity is a REVIEW Qn (CQL header, `signoff.md`, §3 below). No criterion was left out for want of a literal reading.
 
-**Size:** 16 criteria (Acute 48 h ×2, P2 ×3, P3 ×8, S3 ×3), 12 alternative-management redirects, 7 not-funded items (6 published bullets; "Screening for:" has two). 98 ELM definitions in all. 55 Questionnaire items (41 new vocabulary indicators, 14 reused). 47 scenarios.
+**Size:** 16 criteria (Acute 48 h ×2, P2 ×3, P3 ×8, S3 ×3), 12 alternative-management redirects, 7 not-funded items (6 published bullets; "Screening for:" has two). 99 ELM definitions in all. 55 Questionnaire items (41 new vocabulary indicators, 14 reused). 55 scenarios.
 
 ## 1. Atoms
 
@@ -96,24 +96,26 @@ Not-funded rows carry no input, so the Viewer never renders them as tickable (GE
 
 - Guidance box (p31, inside the P3 row above its bullets): rendered as the site Guidance block. Its statements ("Ultrasound imaging is a first-line investigation if cholestasis is suspected based on LFT results", "borderline … Mild …") are guidance, not criteria.
 - Source column (p30 "Local HealthPathways Suites", "National Referral Criteria 2013"; p31 "Guidelines on the management of abnormal liver blood tests - PMC", "*1 lfts.pdf (bpac.org.nz)"; p32 "RACP Surveillance for liver cancer in primary care") → `PlanDefinition.relatedArtifact` citations.
-- Referrers column: "GP & UC Doctors / NPs" → `useContext`. The S3 row also lists "*Hepatitis Foundation Clinician" (the asterisk ties it to the HCC bullet); shown as a note on `s3-hcc`, not enforced — referrer eligibility is not engine logic.
+- Referrers column: "GP & UC Doctors / NPs" → `useContext`. The S3 row also lists "*Hepatitis Foundation Clinician" (the asterisk ties it to the HCC bullet); shown as a note on `s3-hcc`, not enforced — referrer eligibility is not engine logic. It is not a Source, so it is not among the `relatedArtifact` citations (removed in the review round).
 
 ## 2. Modelling decisions
 
-- **Determination codes.** `ACUTE_48H`, `P2_URGENT`, `P3_NON_DEFERRABLE`, `S3_TIME_SENSITIVE` (priority code `S3`), plus the CT CAP set (`ALTERNATIVE_MANAGEMENT`, `NOT_ROUTINELY_FUNDED`, `PAEDIATRIC_CRITERIA_APPLY`, `CRITERIA_NOT_MET`, `INSUFFICIENT_INFORMATION`). No code exists yet for these rows; chosen so a humanised fallback never shows "S3" to a referrer (the renderers strip only a leading P1–P4). The acute row prints no code, so its `priorityCode` is null and the timeframe "Within 48 hours" carries the urgency. Parallel W1 sites may choose differently; the coordinator should align them.
-- **S3 heading.** The S3 block title drops the leading "S3" ("Non-deferrable time sensitive imaging …"); the code sits on the `priority-code` coding (triager-only) and the full printed heading is in the documentation label. P2/P3 titles keep the code, as CT CAP does, because the renderers strip it.
+- **Determination codes (AD-36).** `ACUTE_48H`/`A48`, `P2_URGENT`/`P2`, `P3_NON_DEFERRABLE`/`P3`, `S3_TIME_SENSITIVE`/`S3`, plus `ALTERNATIVE_MANAGEMENT`, `NOT_ROUTINELY_FUNDED`, `PAEDIATRIC_CRITERIA_APPLY`, `CRITERIA_NOT_MET`, `INSUFFICIENT_INFORMATION`. The acute row prints no code; `A48` is the AD-36 code for it and the acute PlanDefinition block carries an `A48` priority coding. Priority codes are triager-only; the timeframe wording is shown to both views.
+- **Row headings.** Every timeframe heading is printed verbatim, including the leading "P2"/"P3"/"S3"; the renderers strip a leading P/S code from referrer-facing text (KI-76). (Before the review round the S3 heading dropped its code because the renderers then stripped only P1–P4.)
 - **Compound row titles.** P3 bullets 3 and 4 print sub-bullets; the PlanDefinition titles keep every word but join the sub-bullets with ":" and ";" (p3-follow-up-alp-ggt, p3-alt). "Screening for: o aortic aneurysm o fatty liver" is rendered as two not-funded rows ("Screening for: aortic aneurysm", "Screening for: fatty liver"). The CQL SOURCE quote for P3 bullet 4 spans the p31/p32 page break.
 - **LFT time points.** Three time points appear: the initial result (P2 bullet 1; "at the initial presentation" in P3 bullet 3), the repeat at 3 months or more (P3 bullets 3 and 5), and unqualified "raised"/"elevated"/"normal" (P2 bullet 2, redirects). Initial results use `lab.alp.timesULN`, `lab.alp.high`, `lab.ggt.raised`, `lab.ggt.timesULN`; repeat results have their own indicators. "Normal GGT" in the ALP redirect uses the repeat result once repeated (Q13).
 - **Flag or multiple.** "Raised"/"higher than the ULN" is satisfied by the boolean flag or, when no flag is given, by a stated multiple above 1. Thresholds stated as multiples (> 2 x, > 5 x, < 5 x) need the multiple (KI-13: the referrer is never asked for a reference range, only for the laboratory's multiple). ALT has a numeric threshold, so `lab.alt.value` (IU/L) is required.
-- **Precedence** follows CT CAP (not funded → redirect → paediatric → rows) with the four priority rows ordered Acute 48 h, P2, P3, S3 (Q17). A met lower row is returned when a higher row is undetermined, and nothing further is asked.
+- **Precedence** (coordinator rule R1, Q25): redirect → paediatric → most urgent met timeframe row (Acute 48 h, P2, P3, S3; Q17) → insufficient information if any row is undetermined → not routinely funded only when every row is definitively not met → criteria not met. A met lower row is returned when a higher row is undetermined, and nothing further is asked. A redirect outranks every timeframe row, so a P2 patient whose GGT is normal at the 3-month repeat is redirected by "ALP elevated with normal GGT" (Q4/Q13, USAB-S41).
+- **Viewer tick boxes (rule R2).** The Viewer renders a row with exactly one boolean input as a tick box and only ever sends `true` (KI-65); compound rows render one control per input on the same terms. `redflag.painfulJaundice`, read as false for "painless", is removed from the `a48-painless-jaundice` row's `input` so no "Painful jaundice" box appears under the painless-jaundice row; the CQL is unchanged and the indicator still appears in missing information (ungrouped). No row has a negated indicator as its sole input. Negated parts of compound rows (`workup.jaundiceObviousCause`, `imaging.biliaryTree.ever`, `symptom.dyspepsia`, `imaging.presentingProblem.ever`, `imaging.gallstones.ever`, `workup.clinicalFeaturesOfConcern`) stay as inputs: their item text reads the right way round (ticking "Dyspepsia" means dyspepsia is present), but because a tick box cannot send `false`, these rows cannot be completed from Viewer ticks alone.
+- **ALT unit.** `"Qty"` returns only the number, so `lab.alt.value` is compared with 120 whatever unit it carries; this relies on the gate's quantity handling (KI-77).
 - **Missing information** lists, for each row still undetermined, only its unanswered parts; rows already false ask for nothing. For a sparse note this is long (31 items for MW-009); the Advisory renderer groups by pathway with the shortest first, so MW-009 leads with the obvious-cause and mass questions.
 - **Unconfirmed exclusions** is empty: this site's alternative-management items are other presentations, not exclusions to confirm (CT CAP's `excl.*` are).
-- **Attestation (AD-17) candidates, not added.** `workup.jaundiceObviousCause`, `workup.clinicalFeaturesOfConcern`, `workup.cholecystectomyCandidate`, `workup.suspicionMalignancy` rest on referrer judgement. Adding them to `attestationIndicators` needs `attestationWording` (AD-23) and is outside the additions-file schema; proposed for the vocabulary owner.
+- **Attestation (AD-17) candidates, not added (KI-78 d).** `workup.jaundiceObviousCause`, `workup.clinicalFeaturesOfConcern`, `workup.cholecystectomyCandidate`, `workup.suspicionMalignancy` rest on referrer judgement. Adding them to `attestationIndicators` needs `attestationWording` (AD-23) and is outside the additions-file schema; proposed for the vocabulary owner.
 - **population.cql: not done.** P3 bullets 3 and 5 (repeat at 3 months) could be computed from coded lab history as CT CAP does, but `run-tests-sites.mjs` does not support record-backed scenarios and retrieval is dormant (invariant 5).
 
 ## 3. REVIEW questions
 
-Q1–Q24 as listed in the CQL header and `signoff.md` (readings encoded stated there in full).
+Q1–Q25 as listed in the CQL header and `signoff.md` (readings encoded stated there in full).
 
 ## 4. Modifiers and illustrative wording not encoded (KI-05)
 
@@ -148,13 +150,13 @@ From `documents/CRR_Test_Case_Results_Matrix_v2.xlsx` (all four sheets):
 | CB-001 | Test Case Results; Structured Re-Eval | Declined | USAB-M06 | INSUFFICIENT_INFORMATION (nothing answered either way; the engine does not assume "not met") |
 | CB-002 | Test Case Results; Structured Re-Eval | At risk / Proceeds | USAB-M07 | INSUFFICIENT_INFORMATION (no ULN multiple, no GGT; ALP flag inferred) |
 
-MW-009 as requested (CT CAP) is unchanged: the CT CAP bundle still redirects it. The engine will not offer US Abdomen as a cross-exam alternative for it today, because `engine.ts` only treats `P<n>` determinations as priorities (see §7). The Structured Re-Eval responses for CB-002 quote a P2 criterion ("elevated ALP more than 2x ULN together with elevated GGT +/- raised bilirubin +/- raised ALT") and a P3 criterion that are not the published wording — the paraphrase problem the bundle removes.
+MW-009 as requested (CT CAP) is unchanged: the CT CAP bundle still redirects it. Since AD-36 the engine treats any advisory with a priority code as a priority, so US Abdomen reaching `ACUTE_48H` can surface as the cross-exam alternative once the referrer answers the obvious-cause question. The Structured Re-Eval responses for CB-002 quote a P2 criterion ("elevated ALP more than 2x ULN together with elevated GGT +/- raised bilirubin +/- raised ALT") and a P3 criterion that are not the published wording — the paraphrase problem the bundle removes.
 
-## 7. Adjacent problems found (flagged, not fixed)
+## 7. Adjacent problems found
 
-1. `public/crr-criteria/api/engine.ts` `isPriorityDetermination` matches only `/^P\d/`, and its comment says acute determinations come only from the national library. Site rows "Acute: Within 48 hours" and S-coded rows are priority outcomes too; without a change, MW-009 (CT CAP requested, US Abdomen candidate) never surfaces US Abdomen as an alternative.
-2. `public/crr-criteria/shared/advisory-render.js` `DETERMINATION_TO_DEFINE` maps only P2 / alternative management / not funded; P3, S3 and acute outcomes fall back to the humanised code with no row wording or page. Both renderers strip only a leading P1–P4 from referrer-facing text, so an S-code would leak (worked around here by the S3 title).
-3. A quantity answer carrying a display unit but no UCUM `code` (e.g. `unit: "IU/L"`) throws inside `FHIRHelpers.ToQuantity` (cql-execution rejects "IU/L"; UCUM is `[IU]/L`). An extraction answer for `lab.alt.value` shaped that way would fail the whole evaluation; the gate or merge step should normalise or reject it. The scenarios send `code: "[IU]/L"`.
+1. Resolved by AD-36 / CL-57: the engine counted only `P<n>` determinations as priorities; it now uses `priorityCode`.
+2. Resolved by AD-36 / KI-76: the Advisory renderer mapped only P2 / alternative management / not funded and both renderers stripped only P1–P4.
+3. Open as KI-77: a quantity answer carrying a display unit but no UCUM `code` (e.g. `unit: "IU/L"`) throws inside `FHIRHelpers.ToQuantity` (cql-execution rejects "IU/L"; UCUM is `[IU]/L`). An extraction answer for `lab.alt.value` shaped that way would fail the whole evaluation; the gate or merge step should normalise or reject it. The scenarios send `code: "[IU]/L"`.
 
 ## 8. PDF text extraction
 
@@ -165,4 +167,4 @@ The plain-text extraction was reliable for wording but not for layout on three p
 
 ## 9. Build gates
 
-`npm run build && npm test && npm run check` from `tooling/criteria-bundle/tooling`, 2026-10-16: all green. Build compiles `CRR_USAbdomen_Adult` (98 definitions); sites 50/50 scenario runs (47 for this site); CT CAP 30/30, red flags 47/47, errata 8/8, ground truth 5/5; check: "Site us-abdomen-adult: CRR_USAbdomen_Adult (98 defines), 64 Questionnaire items, 47 scenarios … Consistency OK" (64 items = 55 answerable + 9 groups). The site is wired into the `build` script and `publish.mjs` `MANIFESTS` (coordinator re-does both centrally). Not published.
+`npm run build && npm test && npm run check` from `tooling/criteria-bundle/tooling`, 2026-10-16 (review-fix round, on `claude/status-check-hcapoe`): all green. Build compiles `CRR_USAbdomen_Adult` (99 definitions); sites 394/394 scenario runs (55 for this site); CT CAP 30/30, red flags 47/47, errata 8/8, ground truth 5/5; check: "Site us-abdomen-adult: CRR_USAbdomen_Adult (99 defines), 64 Questionnaire items, 55 scenarios … Consistency OK" (64 items = 55 answerable + 9 groups). Not published.

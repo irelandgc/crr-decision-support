@@ -45,7 +45,15 @@
 | USAB-S34-bloating-with-symptoms | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USAB-S35-nf-bloating | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | USAB-S36-nf-screening-fatty-liver | strict | NOT_ROUTINELY_FUNDED | - | PASS |
-| USAB-S37-nf-over-redirect | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USAB-S37-nf-over-redirect | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | USAB-S38-nf-gallstone-follow-up | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USAB-S45-nf-with-row-met | strict | P3_NON_DEFERRABLE (P3) | - | PASS |
+| USAB-S46-nf-with-row-undetermined | strict | INSUFFICIENT_INFORMATION | symptom.jaundice, redflag.painfulJaundice, workup.jaundiceObviousCause, advice.acuteImagingRecommended, lab.alp.timesULN, lab.ggt.raised, symptom.biliaryColicOrCholecystitis, lab.alp.high, symptom.settlesWithAnalgesia, imaging.biliaryTree.ever, advice.urgentImagingRecommended, symptom.recurrentRUQOrEpigastricPain, symptom.dyspepsia, imaging.presentingProblem.ever, symptom.biliaryColicResolved, imaging.gallstones.ever, workup.cholecystectomyCandidate, lab.repeatAfter3Months, lab.alp.repeatHigh, lab.ggt.repeatRaised, lab.alt.value, patient.liverRiskFactors, workup.conservativeMethodsUnsuccessful, workup.clinicalFeaturesOfConcern, lab.isolatedLftAbnormality, lab.ggt.timesULN, lab.ggt.repeatTimesULN, symptom.aaaNewlySuspected, symptom.aaaAsymptomatic, symptom.abdominalMassNonPulsatile, symptom.hepatomegalySuspected, advice.nonUrgentImagingRecommended, advice.hccSurveillance, advice.aaaSurveillance, advice.incidentalFindingFollowUp | PASS |
+| USAB-S47-nf-all-rows-false | strict | NOT_ROUTINELY_FUNDED | - | PASS |
+| USAB-S41-p2-initial-ggt-normal-at-repeat | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
+| USAB-S42-age-15 | strict | PAEDIATRIC_CRITERIA_APPLY | - | PASS |
+| USAB-S48-age-16 | strict | P2_URGENT (P2) | - | PASS |
+| USAB-S43-ggt-initial-exactly-5 | strict | CRITERIA_NOT_MET | - | PASS |
+| USAB-S44-ggt-repeat-exactly-5 | strict | CRITERIA_NOT_MET | - | PASS |
 | USAB-S39-strict-inferred | strict | INSUFFICIENT_INFORMATION | lab.ggt.raised | PASS |
 | USAB-S40-inferred-standard | inferred | P2_URGENT (P2) | - | PASS |

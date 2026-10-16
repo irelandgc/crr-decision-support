@@ -103,10 +103,6 @@
     },
     {
       "type": "citation",
-      "label": "*Hepatitis Foundation"
-    },
-    {
-      "type": "citation",
       "label": "New Zealand Vascular Society guidelines (2015)"
     }
   ],
@@ -145,7 +141,6 @@
     {
       "id": "acute-assessment",
       "title": "Refer for acute assessment without imaging",
-      "description": "Evaluated by the national red-flag layer (CRR_RedFlags RF-05 to RF-09), which runs before this library; not re-encoded in this bundle.",
       "code": [
         {
           "coding": [
@@ -256,12 +251,6 @@
               "type": "QuestionnaireResponse",
               "profile": [
                 "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.jaundice"
-              ]
-            },
-            {
-              "type": "QuestionnaireResponse",
-              "profile": [
-                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#redflag.painfulJaundice"
               ]
             },
             {
@@ -1222,7 +1211,7 @@
     },
     {
       "id": "s3",
-      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
+      "title": "S3 non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
       "priority": "routine",
       "code": [
         {
@@ -1256,7 +1245,7 @@
       "documentation": [
         {
           "type": "documentation",
-          "label": "National criteria v2.0, p.32 — S3 row (published heading: \"S3 non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.\")",
+          "label": "National criteria v2.0, p.32 — S3 row",
           "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
           "extension": [
             {
