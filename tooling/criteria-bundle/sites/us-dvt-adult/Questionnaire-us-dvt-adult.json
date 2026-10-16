@@ -29,8 +29,15 @@
             { "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": { "system": "http://unitsofmeasure.org", "code": "a", "display": "years" } }
           ]
         },
-        { "linkId": "patient.pregnant", "text": "Patient is pregnant", "type": "boolean" },
-        { "linkId": "history.anticoagulantTherapy", "text": "Patient is currently being treated with anticoagulant therapy", "type": "boolean" }
+        { "linkId": "patient.pregnant", "text": "Patient is pregnant", "type": "boolean" }
+      ]
+    },
+    {
+      "linkId": "history",
+      "text": "History and current medication",
+      "type": "group",
+      "item": [
+        { "linkId": "history.anticoagulantTherapy", "text": "Currently on anticoagulant therapy", "type": "boolean" }
       ]
     },
     {
@@ -76,7 +83,7 @@
       "type": "group",
       "item": [
         { "linkId": "advice.sameDayImagingRecommended", "text": "A Health NZ Haematology service or other secondary care specialist recommends same day imaging", "type": "boolean" },
-        { "linkId": "advice.followUpImagingRecommendedBySpecialist", "text": "A secondary care clinician or radiologist advises referral for follow-up imaging of the requested exam", "type": "boolean" },
+        { "linkId": "advice.followUpImagingRecommendedBySpecialist", "text": "Secondary care clinician or Radiologist advises referral for follow up ultrasound DVT", "type": "boolean" },
         { "linkId": "advice.postAnticoagulationScanRecommended", "text": "A secondary care specialist recommends a follow-up scan after anticoagulation therapy", "type": "boolean" },
         { "linkId": "advice.adviserNameRole", "text": "Name and role of the clinician who advised (must be included in the referral)", "type": "string" }
       ]

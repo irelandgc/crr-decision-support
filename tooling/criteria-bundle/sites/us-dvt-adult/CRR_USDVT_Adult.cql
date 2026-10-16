@@ -33,17 +33,17 @@
     as 'documented'. An unanswered indicator is NULL and propagates as
     "insufficient information" under CQL three-valued logic.
 
-  OUTCOMES
-    ALTERNATIVE_MANAGEMENT        children younger than 15 / pregnant women
-    ACUTE_24H         priority code A24
-    ACUTE_48H         priority code A48
-    S1_TIME_SENSITIVE  priority code S1
-    S2_TIME_SENSITIVE priority code S2
+  OUTCOMES (AD-36 timeframe convention)
+    ALTERNATIVE_MANAGEMENT   children younger than 15 / pregnant women
+    ACUTE_24H                priority code A24
+    ACUTE_48H                priority code A48
+    S1_TIME_SENSITIVE        priority code S1
+    S2_TIME_SENSITIVE        priority code S2
     NOT_ROUTINELY_FUNDED
     CRITERIA_NOT_MET / INSUFFICIENT_INFORMATION
-    Determination codes carry no priority code, because the Advisory renderer
-    humanises an unmapped determination code for the referrer. Priority codes
-    are emitted only in "Priority Code" (triager view).
+    The Advisory renderer maps each AD-36 code to its "Meets <timeframe>
+    Criteria" PlanDefinition row and strips the leading S-code for referrers
+    (KI-76); the priority code itself is shown only in the triager view.
 
   CLINICAL REVIEW FLAGS (listed in signoff.md and transcription-notes.md)
     Q1  Wells score is taken as the number the referrer documents; the bundle
@@ -51,8 +51,11 @@
         links mdcalc, but does not define it).
     Q2  The printed "1" after each Wells bullet is read as a reference marker
         with no wording behind it in the PDF.
-    Q3  Precedence: redirect > highest priority met > not routinely funded >
-        not met > insufficient. Differs from CT CAP (not-funded first).
+    Q3  Precedence (coordinator rule R1): redirect > most urgent timeframe
+        row met > insufficient (any row still undetermined) > not routinely
+        funded (only when every row is definitively not met) > criteria not
+        met. Alternative reading: not-funded first, as CT CAP does for its
+        patient-level "unfit for treatment" row.
     Q4  Highest priority wins where rows overlap. "No DVT on initial US, still
         suspected, Wells >= 2" (S1) also meets Acute 48h when the referral says
         lower limb DVT is still clinically suspected - S1 bullet 1 is then
@@ -436,17 +439,21 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q3 - confirm ordering):
+  Precedence (coordinator rule R1; REVIEW Q3 - confirm ordering):
     1. Alternative management / redirect (BRD TA-013: redirect wins over criteria)
-    2. Highest priority met: Acute 24h > Acute 48h > S1 > S2
+       (no paediatric gate: the section has no adult age band, REVIEW Q7)
+    2. Most urgent timeframe row met: Acute 24h > Acute 48h > S1 > S2
        (crr-business-rules.md Rule 2.2; prompt decomposition item 22)
-    3. Not routinely funded
-    4. Every priority row definitively not met
-    5. Insufficient information
-  Not-funded sits below the priority rows because its items are presentations
-  ("in these clinical scenarios"), not patient-level vetoes: a referral with a
-  not-funded SVT AND a suspected lower limb DVT meeting Acute 48h is referred
-  for the DVT. CT CAP orders not-funded first; its one item is patient-level.
+    3. Insufficient information - no row met and at least one row still
+       undetermined; the missing atoms are listed
+    4. Not routinely funded - only when every timeframe row is definitively
+       not met
+    5. Criteria not met
+  A not-funded item never pre-empts a timeframe row that is met or still
+  undetermined: its items are presentations ("in these clinical scenarios"),
+  not patient-level vetoes, so a not-funded SVT with a suspected lower limb
+  DVT is assessed for the DVT. Alternative reading (REVIEW Q3): not-funded
+  first, as CT CAP does for its patient-level "unfit for treatment" row.
   REVIEW Q14 - a met lower priority is returned even if a higher row is still
   undetermined.
 */
@@ -463,9 +470,9 @@ define "Determination":
     when "Meets Acute 48h Criteria" is true then 'ACUTE_48H'
     when "Meets S1 Criteria" is true then 'S1_TIME_SENSITIVE'
     when "Meets S2 Criteria" is true then 'S2_TIME_SENSITIVE'
+    when "Any Priority Criteria Met" is null then 'INSUFFICIENT_INFORMATION'
     when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
-    when "Any Priority Criteria Met" is false then 'CRITERIA_NOT_MET'
-    else 'INSUFFICIENT_INFORMATION'
+    else 'CRITERIA_NOT_MET'
   end
 
 define "Priority Code":

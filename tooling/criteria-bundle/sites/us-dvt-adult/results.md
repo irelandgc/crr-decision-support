@@ -31,6 +31,8 @@
 | DVT-S27-nf-routine-clot-resolution | strict | NOT_ROUTINELY_FUNDED | - | PASS |
 | DVT-S28-nf-svt-with-dvt-criteria | strict | ACUTE_48H (A48) | - | PASS |
 | DVT-S29-s2-vs-routine-follow-up | strict | S2_TIME_SENSITIVE (S2) | - | PASS |
+| DVT-S34-nf-svt-row-undetermined | strict | INSUFFICIENT_INFORMATION | workup.wellsScoreDvt, lab.ddimer.positive | PASS |
+| DVT-S35-nf-routine-s2-undetermined | strict | INSUFFICIENT_INFORMATION | advice.postAnticoagulationScanRecommended | PASS |
 | DVT-S30-svt-location-unknown | strict | INSUFFICIENT_INFORMATION | symptom.svtProximalLongSaphenousVeinThigh | PASS |
 | DVT-S31-empty | strict | INSUFFICIENT_INFORMATION | symptom.superficialVenousThrombosis, symptom.svtProximalLongSaphenousVeinThigh, symptom.suspectedDvtUpperLimb, advice.sameDayImagingRecommended, symptom.suspectedDvtLowerLimb, workup.wellsScoreDvt, lab.ddimer.positive, imaging.usdvt.initialNegative, workup.dvtClinicalSuspicionHigh, symptom.calfDvt, history.anticoagulantTherapy, advice.followUpImagingRecommendedBySpecialist, advice.postAnticoagulationScanRecommended | PASS |
 | DVT-S32-wells-inferred-strict | strict | INSUFFICIENT_INFORMATION | workup.wellsScoreDvt, lab.ddimer.positive | PASS |

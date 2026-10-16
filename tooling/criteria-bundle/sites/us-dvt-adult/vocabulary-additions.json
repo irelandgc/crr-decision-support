@@ -1,5 +1,5 @@
 {
-  "_note": "US DVT - Adult (us-dvt-adult) W1 transcription, 2026-10-15. NOT CLINICALLY REVIEWED. `add` = new indicators in the indicators.json schema; `addSite` = existing indicators that should list us-dvt-adult in sites[]; `addAttestationIndicators` = linkIds to append to the top-level `attestationIndicators` array (AD-17; each carries attestationWording, AD-23). Group choices and naming questions are in transcription-notes.md section 2.",
+  "_note": "MERGED into vocabulary/indicators.json 1.3.0 by the coordinator (2026-10-16; renames per KI-78) - indicators.json is authoritative; this file is the proposal record. US DVT - Adult (us-dvt-adult) W1 transcription, 2026-10-15. NOT CLINICALLY REVIEWED. `add` = new indicators in the indicators.json schema; `addSite` = existing indicators that should list us-dvt-adult in sites[]; `addAttestationIndicators` = linkIds to append to the top-level `attestationIndicators` array (AD-17; each carries attestationWording, AD-23). Group choices and naming questions are in transcription-notes.md section 2.",
   "add": [
     {
       "linkId": "symptom.superficialVenousThrombosis",
@@ -96,13 +96,13 @@
     },
     {
       "linkId": "history.anticoagulantTherapy",
-      "text": "Patient is currently being treated with anticoagulant therapy",
+      "text": "Currently on anticoagulant therapy",
       "type": "boolean",
-      "group": "patient",
+      "group": "history",
       "status": "active",
       "code": "PLACEHOLDER",
       "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
-      "notes": "US DVT S1 uses it negated ('a calf DVT not being treated with anticoagulation'). The same concept is printed at CT Head - Adult ('Anticoagulant therapy', 'On anticoagulants', pp.20-21) and US Carotid - Adult ('is not taking anticoagulants', p34); those sites were not read in full here and are not attributed. There is no medication group; 'patient' is the nearest existing group (vocabulary-owner question)."
+      "notes": "US DVT S1 uses it negated ('a calf DVT not being treated with anticoagulation'). The same concept is printed at CT Head - Adult ('Anticoagulant therapy', 'On anticoagulants', pp.20-21) and US Carotid - Adult ('is not taking anticoagulants', p34); those sites were not read in full here. Proposed as patient.onAnticoagulants; merged as history.anticoagulantTherapy (KI-78)."
     },
     {
       "linkId": "patient.pregnant",
@@ -126,7 +126,7 @@
     },
     {
       "linkId": "advice.followUpImagingRecommendedBySpecialist",
-      "text": "A secondary care clinician or radiologist advises referral for follow-up imaging of the requested exam",
+      "text": "A secondary care clinician or radiologist has recommended the follow-up imaging (documented)",
       "type": "boolean",
       "group": "advice",
       "status": "active",

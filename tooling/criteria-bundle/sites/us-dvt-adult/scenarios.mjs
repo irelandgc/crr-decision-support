@@ -209,19 +209,19 @@ export const scenarios = [
   // ---- Not routinely funded ---------------------------------------------------------------
   {
     id: "DVT-S26-nf-svt-not-proximal",
-    title: "SVT not affecting the proximal long saphenous vein in the thigh: not routinely funded",
+    title: "SVT not affecting the proximal long saphenous vein in the thigh, every timeframe row no: not routinely funded (REVIEW Q3, all rows false)",
     answers: { ...NEG, "symptom.superficialVenousThrombosis": true, "symptom.svtProximalLongSaphenousVeinThigh": false },
     expect: { ...NRF, missing: [], redirects: [] },
   },
   {
     id: "DVT-S27-nf-routine-clot-resolution",
-    title: "Routine follow-up scan to confirm clot resolution: not routinely funded",
+    title: "Routine follow-up scan to confirm clot resolution, every timeframe row no: not routinely funded (REVIEW Q3, all rows false)",
     answers: { ...NEG, "funding.routineClotResolutionFollowUp": true },
     expect: { ...NRF, missing: [] },
   },
   {
     id: "DVT-S28-nf-svt-with-dvt-criteria",
-    title: "Not-funded SVT plus suspected lower limb DVT with Wells 2: Acute 48h (REVIEW Q3 precedence)",
+    title: "Not-funded SVT plus suspected lower limb DVT with Wells 2: Acute 48h (REVIEW Q3, a row met)",
     answers: { ...NEG, "symptom.superficialVenousThrombosis": true, "symptom.svtProximalLongSaphenousVeinThigh": false,
       "symptom.suspectedDvtLowerLimb": true, "workup.wellsScoreDvt": 2 },
     expect: { ...A48, missing: [] },
@@ -232,6 +232,19 @@ export const scenarios = [
     answers: { ...NEG, "advice.postAnticoagulationScanRecommended": true, "funding.routineClotResolutionFollowUp": true,
       "advice.adviserNameRole": "Dr C (haematologist)" },
     expect: { ...S2, missing: [] },
+  },
+  {
+    id: "DVT-S34-nf-svt-row-undetermined",
+    title: "Not-funded SVT plus suspected lower limb DVT, Wells and D-dimer not stated: insufficient, asks for both (REVIEW Q3, a row undetermined)",
+    answers: { ...NEG, "symptom.superficialVenousThrombosis": true, "symptom.svtProximalLongSaphenousVeinThigh": false,
+      "symptom.suspectedDvtLowerLimb": true },
+    expect: { ...INSUFF, missing: ["workup.wellsScoreDvt", "lab.ddimer.positive"] },
+  },
+  {
+    id: "DVT-S35-nf-routine-s2-undetermined",
+    title: "Routine clot-resolution follow-up, post-anticoagulation specialist advice not stated: insufficient, asks for it (REVIEW Q3, a row undetermined)",
+    answers: { ...without(NEG, "advice.postAnticoagulationScanRecommended"), "funding.routineClotResolutionFollowUp": true },
+    expect: { ...INSUFF, missing: ["advice.postAnticoagulationScanRecommended"] },
   },
 
   // ---- Insufficient information -----------------------------------------------------------
