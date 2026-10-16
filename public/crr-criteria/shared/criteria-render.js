@@ -285,7 +285,7 @@ export function resolveCriteria(bundle, opts) {
         description: r.description,
         priority: isTriager ? r.priority : null,
         // referrer-safe: strip a leading "P<n>" token from the title (the code is triager-only, GEN-004)
-        titleForContext: isTriager ? r.text : r.text.replace(/^P[1-4]\s*[:\-–]?\s*/i, ""),
+        titleForContext: isTriager ? r.text : r.text.replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, ""),
         page: r.page,
         selection: r.selection,
         notes: r.notes,

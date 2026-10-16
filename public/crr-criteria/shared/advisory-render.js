@@ -199,11 +199,12 @@ export function resolveAdvisory(response, view, opts) {
     ? planActionFor(requestedArtefact.planDefinition, DETERMINATION_TO_DEFINE[detCode])
     : null;
   // The published P2 row title leads with the code ("P2 Urgent: …"). GEN-004
-  // forbids showing the code to referrers, so strip a leading `P<n>` token from
+  // forbids showing the code to referrers, so strip a leading `P<n>` or `S<n>`
+  // token (or a range such as `P3-P4`; KI-76) from
   // the plain wording for the referrer view (the timeframe line still carries
   // the urgency); the triager sees the code in its own line.
   let plain = (action && action.title) || humanizeCode(detCode);
-  if (!isTriager) plain = plain.replace(/^P[1-4]\s*[:\-–]?\s*/i, "");
+  if (!isTriager) plain = plain.replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "");
   const determination = {
     code: detCode,
     plain,

@@ -40,6 +40,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 - 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
 - 2026-10-14 Viewer source line shows an approved draft's date, not its repo path; built, not deployed — documents/arch-mig-known-issues.md KI-66; CL-54
+- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
 - 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
 - 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71

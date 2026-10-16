@@ -79,6 +79,16 @@ describe("criteria-render — referrer view (GEN-004)", () => {
     expect(html).toContain("Urgent: non-deferrable imaging or intervention that must be completed within 2 weeks");
     expect(html).not.toContain("P2 Urgent: non-deferrable");
   });
+  it("strips a leading S-code or code range from a row title (KI-76)", () => {
+    for (const [prefix, code] of [["S1: ", "S1"], ["S2 ", "S2"], ["P3-P4: ", "P4"]]) {
+      const pd = JSON.parse(JSON.stringify(ctCapPd));
+      const row = pd.action.find((a: any) => /^P2\b/.test(a.title || ""));
+      row.title = row.title.replace(/^P2\s*/, prefix);
+      const h = criteriaHtml(resolveCriteria({ ...bundle, planDefinition: pd }, { context: "referrer", layout: "indication" }));
+      expect(h).not.toMatch(new RegExp(`\\b${code}\\b`));
+      expect(h).toContain("Urgent: non-deferrable imaging or intervention that must be completed within 2 weeks");
+    }
+  });
   it("groups the P2 pathways by indication-theme", () => {
     expect(html).toContain("Suspected occult malignancy");
     expect(html).toContain("Specialist-endorsed referral");
