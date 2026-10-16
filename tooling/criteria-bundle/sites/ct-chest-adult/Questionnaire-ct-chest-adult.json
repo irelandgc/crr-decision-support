@@ -1,0 +1,251 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-CT-Chest-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTChest_Adult_Indicators",
+  "title": "CT Chest - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the CT Chest (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, v2.0, published 09/04/2026, pp.12-16). Evaluated by the CQL library CRR_CTChest_Adult. Each answer may carry the answer-evidence extension (status documented|inferred, quote). NOT CLINICALLY REVIEWED. No item carries an initialExpression: no population library exists for this site.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_CTChest_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.currentSmoker",
+          "text": "Current smoker",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Symptoms and signs",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "symptom.haemoptysisWithoutChestInfection",
+          "text": "Haemoptysis occurred in the absence of chest infection",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.dyspnoeaUnexplainedNewOrWorsening",
+          "text": "Unexplained, new, or worsening dyspnoea",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.coughUnexplainedOver3Weeks",
+          "text": "Unexplained cough, persisting and worsening for more than 3 weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.chestShoulderPainUnexplainedOver3Weeks",
+          "text": "Unexplained chest and/or shoulder pain persisting for more than 3 weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.chronicRespiratorySymptomChangeOver3Weeks",
+          "text": "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.hoarsenessUnexplainedOver3Weeks",
+          "text": "Unexplained hoarseness persisting for more than 3 weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.chestInfectionsRepeatedOrUnresolved",
+          "text": "Repeated / or unresolved chest infections",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.haemoptysisPersistentUnexplained",
+          "text": "Persistent, unexplained haemoptysis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.weightAndAppetiteLossOver3Weeks",
+          "text": "Unexplained weight loss and loss of appetite persisting for more than 3 weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.abnormalChestSignsOver3Weeks",
+          "text": "Un-investigated/unexplained abnormal chest signs persisting for more than 3 weeks. (e.g. suspected pleural effusion)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.supraclavicularLymphadenopathyNew",
+          "text": "New, supraclavicular lymphadenopathy",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.paraneoplasticFeatures",
+          "text": "Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with finger (and toe) clubbing and painful swollen joints",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.cervicalLymphadenopathyOver3WeeksOver1cm",
+          "text": "New cervical lymphadenopathy persisting for more than 3 weeks and nodes are more than 1 cm in diameter in a patient with other lung cancer symptoms or signs or risk factors",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.newOnset",
+          "text": "The concerning symptoms or signs are of new onset",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.persistentSixWeeksDespiteTreatment",
+          "text": "Symptoms or signs persistent for six weeks despite appropriate treatment",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.nonSpecificSymptomsConcerningForCancer",
+          "text": "Persistent, non-specific, non-localising symptoms and signs which are concerning for underlying cancer",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "redflag",
+      "text": "Haemoptysis",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "redflag.haemoptysisPresent",
+          "text": "Haemoptysis",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Initial assessment and investigations",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "workup.upperAirwayBleedingExcluded",
+          "text": "Upper respiratory tract causes, including bleeding from the nasopharynx, sinuses or oral cavity, have been excluded",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxr",
+          "text": "Chest X-ray completed as part of initial investigations",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.bloods",
+          "text": "Blood tests completed as part of initial investigations",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.initialInvestigationsCauseNotFound",
+          "text": "Initial investigations fail to identify a cause",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxrNormal",
+          "text": "Chest x-ray is normal",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxrIndeterminateAbnormality",
+          "text": "Indeterminate abnormality on chest x-ray which raises the possibility of a lung cancer (e.g. bulky hilum)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxrPersistentConsolidationFollowUp",
+          "text": "Persistent consolidation on chest x-ray done as a 6-week follow-up study",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxrIsolatedPulmonaryNodule",
+          "text": "Isolated pulmonary nodule identified on a chest x-ray",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.cxrNoduleNotConfirmedBenign",
+          "text": "The nodule cannot be confirmed as benign from x-ray appearances alone",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.radiologyReportRecommendsImaging",
+          "text": "The radiology report recommends the requested imaging",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.rePresentation",
+          "text": "The patient is re-presenting with these symptoms or signs (this is not the initial presentation)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.ctIncidentalNoduleFollowUp",
+          "text": "The request is for follow-up of a nodule discovered incidentally on a CT chest scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.ctNoduleReportConfirmsBenign",
+          "text": "The radiology report confirms the nodule is benign based on CT appearance and no follow-up is required",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist, PCRL or radiologist advice",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "advice.urgentStagingCtRecommended",
+          "text": "A secondary care clinician or radiologist advises referral for urgent staging CT chest/liver for work up of a suspicious lesion on chest x-ray",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.localHealthPathwayAdvisesCt",
+          "text": "CT is the advised next step on the local HealthPathway, as opposed to referral to secondary care or PET-CT",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.urgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.nonUrgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.adviserNameRole",
+          "text": "Name and role of the clinician who advised (must be included in the referral)",
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

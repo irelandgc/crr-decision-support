@@ -1,0 +1,1838 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-US-Abdomen-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-US-Abdomen-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USAbdomen_Adult",
+  "title": "US Abdomen - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the US Abdomen (Adult) national referral criteria, with each criterion bound to a named expression in the CQL library CRR_USAbdomen_Adult. DEMO TRANSCRIPTION - NOT CLINICALLY REVIEWED (AD-10, AD-35). This resource carries what the Criteria Viewer renders (grouping, published text, timeframes, badges, guidance, redirects, not-funded list, sources); the Library carries the logic; the Questionnaire carries the input contract. The acute-assessment row is rendered here but evaluated by the national red-flag layer.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.30-33",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "Local HealthPathways Suites"
+    },
+    {
+      "type": "citation",
+      "label": "National Referral Criteria 2013"
+    },
+    {
+      "type": "citation",
+      "label": "Guidelines on the management of abnormal liver blood tests - PMC"
+    },
+    {
+      "type": "citation",
+      "label": "*1 lfts.pdf (bpac.org.nz)"
+    },
+    {
+      "type": "citation",
+      "label": "RACP Surveillance for liver cancer in primary care"
+    },
+    {
+      "type": "citation",
+      "label": "*Hepatitis Foundation"
+    },
+    {
+      "type": "citation",
+      "label": "New Zealand Vascular Society guidelines (2015)"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_USAbdomen_Adult"
+  ],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance",
+      "description": "Guidance: Liver Function Tests and US investigation\n\nOpportunistic liver function testing is not indicated for asymptomatic people without risk factors.\n\n2.5% of the normal population will fall outside the upper limit of the reference range as part of the normal statistical distribution of results and test results may fluctuate as a physiological response.\n\nElevated liver enzyme levels are estimated to occur in up to 9% of asymptomatic people.\n\nAbnormal liver blood test results should only be interpreted after review of the previous results, past medical history and current medical condition.\n\nLiver disease is rare among people with abnormal LFT results in primary care.\n\nOn the other hand, severe liver disease may be present with little or no liver function abnormality so the level or duration of elevation should not determine the significance, but the result should be viewed within the context of trend, past medical and drug history and current symptoms.\n\nFor practical purposes, as advised by BPAC*1 marker abnormalities are usually considered “borderline” if they are less than 2 times the upper limit of normal (ULN) and “Mild” if they are 2 – 5 times the ULN.\n\nIf hepatocellular injury is suspected and the patient does not have concerning symptoms/features, ultrasound is a second-tier investigation after investigating the most likely causes. Obesity and raised ALT provide strong evidence for a presumptive diagnosis of ‘fatty’ liver. Ultrasound is not always necessary.\n\nUltrasound imaging is a first-line investigation if cholestasis is suspected based on LFT results.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "guidance"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.31 — Guidance box (printed inside the P3 row, above its bullets)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 31
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-assessment",
+      "title": "Refer for acute assessment without imaging",
+      "description": "Evaluated by the national red-flag layer (CRR_RedFlags RF-05 to RF-09), which runs before this library; not re-encoded in this bundle.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "acute-assessment"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.30 — Refer for acute assessment without imaging row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 30
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "aa-cholecystitis",
+          "title": "Suspected acute cholecystitis or cholangitis (i.e. intractable biliary colic not relieved by simple analgesia and especially if accompanied by fever, persistent vomiting)"
+        },
+        {
+          "id": "aa-acute-abdomen",
+          "title": "Acute abdomen, including possible appendicitis"
+        },
+        {
+          "id": "aa-ruptured-aaa",
+          "title": "Suspicion of ruptured abdominal aortic aneurysm"
+        },
+        {
+          "id": "aa-torsion",
+          "title": "Suspected testicular torsion"
+        },
+        {
+          "id": "aa-painful-jaundice",
+          "title": "Painful jaundice"
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "priority": "asap",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.30 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 30
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "a48-painless-jaundice",
+          "title": "Painless jaundice without obvious cause - consider discussing with secondary care specialist or Primary Care Radiology Liaison as a CT scan may be more appropriate.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 48h: Painless Jaundice Without Obvious Cause"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.jaundice"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#redflag.painfulJaundice"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#workup.jaundiceObviousCause"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.30 — Acute: Within 48 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 30
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "jaundice",
+                    "display": "Jaundice"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for same or next day ultrasound scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 48h: Specialist Advises Same Or Next Day Ultrasound"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.acuteImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.30 — Acute: Within 48 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 30
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral",
+      "priority": "urgent",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.30 — P2 Urgent row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 30
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p2-alp-ggt",
+          "title": "Initial presentation with ALP more than 2 times the upper limit of normal (ULN) and GGT higher than the ULN",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2: Initial ALP More Than 2x ULN And GGT Raised"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.alp.timesULN"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.raised"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.timesULN"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.30 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 30
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-liver-blood-tests",
+                    "display": "Abnormal liver blood tests"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-biliary-colic",
+          "title": "Suspected acute cholecystitis / biliary colic with raised ALP and GGT +/- bilirubin and where symptoms settle with analgesia and biliary tree has not previously been imaged.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2: Settled Biliary Colic With Raised ALP And GGT, Biliary Tree Not Imaged"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.biliaryColicOrCholecystitis"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.alp.high"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.raised"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.settlesWithAnalgesia"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#imaging.biliaryTree.ever"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.30 — P2 Urgent row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 30
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "biliary-pain",
+                    "display": "Biliary or upper abdominal pain"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent ultrasound scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2: Specialist Advises Urgent Ultrasound"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.30 — P2 Urgent row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=30",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 30
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3 non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P3",
+              "display": "Non-urgent - within six weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.31 — P3 row (continues on p.32)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 31
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p3-recurrent-pain",
+          "title": "Recurrent right upper quadrant / epigastric, non-dyspepsia pain without previous imaging",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Recurrent RUQ Or Epigastric Non-Dyspepsia Pain Without Previous Imaging"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.recurrentRUQOrEpigastricPain"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.dyspepsia"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#imaging.presentingProblem.ever"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.31 — P3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 31
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "biliary-pain",
+                    "display": "Biliary or upper abdominal pain"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-resolved-biliary-colic",
+          "title": "Suspected resolved acute biliary colic or cholecystitis, without previous imaging which showed gallstones and the patient is a potential candidate for and would accept a cholecystectomy",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Resolved Biliary Colic, No Gallstones On Previous Imaging, Cholecystectomy Candidate"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.biliaryColicOrCholecystitis"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.biliaryColicResolved"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#imaging.gallstones.ever"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#workup.cholecystectomyCandidate"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.31 — P3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 31
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "biliary-pain",
+                    "display": "Biliary or upper abdominal pain"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-follow-up-alp-ggt",
+          "title": "Follow up imaging on repeat testing 3 months or more after the initial presentation and: ALP was more than 2 times the ULN at the initial presentation AND on repeat testing 3 months later the : Repeat ALP remains higher than the ULN; Repeat GGT remains higher than the ULN",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Follow-Up ALP And GGT Still Raised At 3 Months"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.repeatAfter3Months"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.alp.timesULN"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.alp.repeatHigh"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.repeatRaised"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.repeatTimesULN"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.31 — P3 row, bullet 3 (with sub-bullets)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 31
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-liver-blood-tests",
+                    "display": "Abnormal liver blood tests"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-alt",
+          "title": "ALT greater than 120 IU/L AND: Conservative methods (e.g. weight loss and lifestyle alterations or medication change) unsuccessful in patients with high risk factors (diabetes, obesity, medications that affect the liver, e.g. statins); No clinical features of concern",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: ALT Over 120 With Risk Factors, Conservative Methods Unsuccessful, No Features Of Concern"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.alt.value"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#patient.liverRiskFactors"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#workup.conservativeMethodsUnsuccessful"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#workup.clinicalFeaturesOfConcern"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.31 — P3 row, bullet 4 (sub-bullets on p.32)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=31",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 31
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-liver-blood-tests",
+                    "display": "Abnormal liver blood tests"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-isolated-ggt",
+          "title": "Isolated raised GGT more than 5 times the ULN and persists on re-testing after 3 months.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Isolated GGT More Than 5x ULN Persisting At 3 Months"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.isolatedLftAbnormality"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.timesULN"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.repeatAfter3Months"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#lab.ggt.repeatTimesULN"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — P3 row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-liver-blood-tests",
+                    "display": "Abnormal liver blood tests"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-aaa",
+          "title": "Asymptomatic, newly suspected abdominal aortic aneurysm e.g. on clinical examination or other imaging.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Asymptomatic Newly Suspected AAA"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.aaaNewlySuspected"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.aaaAsymptomatic"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — P3 row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abdominal-aortic-aneurysm",
+                    "display": "Abdominal aortic aneurysm"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-mass-liver",
+          "title": "Non-pulsatile abdominal mass and suspected enlarged liver on examination.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Non-Pulsatile Abdominal Mass And Suspected Enlarged Liver"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.abdominalMassNonPulsatile"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#symptom.hepatomegalySuspected"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — P3 row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abdominal-mass",
+                    "display": "Abdominal mass or enlarged liver"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for non-urgent ultrasound scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Specialist Advises Non-Urgent Ultrasound"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — P3 row, bullet 8",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S3",
+              "display": "Specified date - within 6 weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.32 — S3 row (published heading: \"S3 non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.\")",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 32
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "s3-hcc",
+          "title": "HCC surveillance using liver ultrasound as initially recommended by a gastroenterologist or other secondary care specialist, as part of long-term monitoring by Hepatitis Foundation of NZ, or as recommended by an agreed local pathway.*",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3: HCC Surveillance As Recommended"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.hccSurveillance"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — S3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "Referrers column for this row: *Hepatitis Foundation Clinician. Source: RACP Surveillance for liver cancer in primary care."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "surveillance-follow-up",
+                    "display": "Surveillance and follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3-aaa",
+          "title": "Surveillance of known abdominal aortic aneurysm according to local HealthPathway, or if none available according to the according to New Zealand Vascular Society guidelines (2015) *1 or secondary care specialist advice",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3: Surveillance Of Known AAA"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.aaaSurveillance"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — S3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "surveillance-follow-up",
+                    "display": "Surveillance and follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3-incidental",
+          "title": "Follow up of incidental finding on imaging (including gallbladder polyps) according to the Incidental Findings on Imaging HealthPathway, or if unavailable according to the radiology report advice from the Primary Care Radiology Liaison",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3: Incidental Finding Follow Up"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult#advice.incidentalFindingFollowUp"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — S3 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "surveillance-follow-up",
+                    "display": "Surveillance and follow-up"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.32 — Alternative management row (continues on p.33)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 32
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "am-upper-mass",
+          "title": "Upper abdominal non-pulsatile mass, not consistent with hepatomegaly – discuss with Primary Care Radiology Liaison or relevant secondary care specialist as referral for CT abdomen may be more appropriate.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Upper Abdominal Mass Not Hepatomegaly"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-suspected-malignancy",
+          "title": "Unexplained weight loss, persistent fatigue, vague abdominal pain and suspicion of underlying malignancy – See local CT Chest, Abdomen and Pelvis HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Weight Loss, Fatigue, Abdominal Pain And Suspected Malignancy"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — Alternative management row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-isolated-ggt",
+          "title": "Isolated raised GGT less than 5 times the ULN - Re-test after three months with interim alcohol abstinence. Consider ultrasound if GGT is higher than 5 times the ULN on re-testing.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Isolated GGT Less Than 5x ULN"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.32 — Alternative management row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=32",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 32
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-alp-normal-ggt",
+          "title": "ALP elevated with normal GGT - suggests ALP increase is probably not liver-related. If ALT or bilirubin elevated as well, or the patient is symptomatic consider ALP iso-enzyme testing to confirm liver origin.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: ALP Elevated With Normal GGT"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-ferritin",
+          "title": "Raised ferritin – See local Raised Ferritin or Hereditary Haemochromatosis HealthPathways",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Raised Ferritin"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-bilirubin",
+          "title": "Isolated raised bilirubin – Gilberts syndrome with unconjugated hyperbilirubinemia is the most common cause – See local Abnormal Liver Function Tests HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Isolated Raised Bilirubin"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-dyspepsia",
+          "title": "Dyspepsia – See local HealthPathway",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Dyspepsia"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-colorectal",
+          "title": "Suspected colorectal neoplasm. If colicky vague abdominal pain, with or without distension, and change in bowel habit, consider colorectal cancer - See local Colorectal Symptoms HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Suspected Colorectal Neoplasm"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 8",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-lymphoedema",
+          "title": "New unilateral lymphoedema - discussion with secondary care recommended as referral for CT is usually preferable",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: New Unilateral Lymphoedema"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 9",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-chronic-pancreatitis",
+          "title": "Suspected or symptomatic chronic pancreatitis – request acute general surgery assessment.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Chronic Pancreatitis"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 10",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-urinary-tract",
+          "title": "Urinary tract presentations and suspected renal abnormality - See local Ultrasound Renal HealthPathway",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Urinary Tract Or Renal Presentation"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 11",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-bloating",
+          "title": "Isolated bloating with associated clinical symptoms (for example decreased appetite, weight loss, abdominal pain, abnormal vaginal bleeding), seek advice from the appropriate specialist as a CT or US may be indicated.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Isolated Bloating With Associated Symptoms"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.33 — Alternative management row, bullet 12",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 33
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.33 — Not routinely funded row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=33",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 33
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-hernia",
+          "title": "Hernia in adults"
+        },
+        {
+          "id": "nf-infective-hepatitis",
+          "title": "Infective hepatitis"
+        },
+        {
+          "id": "nf-gallstones",
+          "title": "Follow-up imaging of previously diagnosed gallstones in asymptomatic patients"
+        },
+        {
+          "id": "nf-bloating",
+          "title": "Isolated bloating with no other features of concern"
+        },
+        {
+          "id": "nf-cysts",
+          "title": "Follow up imaging of simple renal or hepatic cysts"
+        },
+        {
+          "id": "nf-screening-aaa",
+          "title": "Screening for: aortic aneurysm"
+        },
+        {
+          "id": "nf-screening-fatty-liver",
+          "title": "Screening for: fatty liver"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3305 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-US-Pelvis-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-US-Pelvis-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USPelvis_Adult",
+  "title": "US Pelvis - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the US Pelvis (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, National ID 15372 v2.0, published 09/04/2026, pp.44-51), with each logic-carrying row bound to a named expression in the CQL library CRR_USPelvis_Adult. NOT CLINICALLY REVIEWED: demo transcription for staging (AD-35); REVIEW questions in signoff.md. This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.44-51",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "HealthPathway Canterbury"
+    },
+    {
+      "type": "citation",
+      "label": "HealthPathway Lead Region- Abortion"
+    },
+    {
+      "type": "citation",
+      "label": "HealthPathway Lead Region – Pain and Bleeding in Early Pregnancy"
+    },
+    {
+      "type": "citation",
+      "label": "https://bpac.org.nz/2023/ovarian-cancer.aspx",
+      "url": "https://bpac.org.nz/2023/ovarian-cancer.aspx"
+    },
+    {
+      "type": "citation",
+      "label": "Body mass index trumps age in decision for endometrial&nbsp; biopsy: cohort study of symptomatic premenopausal women (ajog.org)"
+    },
+    {
+      "type": "citation",
+      "label": "Beavis, A.L., et al., Identifying women 45 years and younger at elevated risk for endometrial hyperplasia or cancer. Gynecol Oncol, 2023. 174: p. 98-105."
+    },
+    {
+      "type": "citation",
+      "label": "PCOS summary guideline"
+    },
+    {
+      "type": "citation",
+      "label": "O-RADS US v2022: An Update from the American College of Radiology’s Ovarian-Adnexal Reporting and Data System US Committee | Radiology (rsna.org)"
+    },
+    {
+      "type": "citation",
+      "label": "1)i-Refer RCR UK"
+    },
+    {
+      "type": "citation",
+      "label": "3D HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "2)Canterbury HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "3)MoH Comm Rad Criteria 2015"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_USPelvis_Adult"
+  ],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance",
+      "description": "In the acute pelvic pain presentation, the use of ultrasound as a “rule out” investigation is limited - thus the acuity of the presentation (and the expected management required) should remain the determining factor in referral to hospital vs community management.\n\nIf the patient requires hospital assessment regardless of the ultrasound result, a community–provided acute demand ultrasound is typically not warranted unless specifically advised by a secondary care specialist.\n\nIn suspected ovarian / adnexal torsion (difficult to diagnose clinically with variable symptoms / signs) US has a good specificity (85-90%) but lower sensitivity (75-80%) i.e. negative predictive value.\n\nIn suspected ovarian cyst “accidents” (i.e. rupture or haemorrhage of physiologic cysts) free fluid in the pelvis and partial or complete cyst collapse may be observed, but not always.\n\nPelvic Inflammatory Disease (PID) remains the most common cause of acute pelvic pain. It is commonly associated with a normal ultrasound and is typically considered a clinical diagnosis.\n\nMāori and Pacific Peoples are disproportionately affected by endometrial cancer (EC) and endometrial hyperplasia (EH). Investigations including transvaginal ultrasound and/ or aspiration endometrial sampling should be considered at or soon after initial presentation for all Māori and Pacific people presenting with abnormal uterine bleeding (AUB)",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "guidance"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.44 — Acute: Within 24 hours row, Guidance",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=44",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 44
+            }
+          ]
+        },
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.46 — P2 Urgent row, Guidance (Māori and Pacific Peoples)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 46
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-assessment",
+      "title": "Refer for acute assessment without initial imaging",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "acute-assessment"
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "aa-unstable",
+          "title": "Clinically unstable patients with suspected gynaecologic or pelvic cause",
+          "documentation": [
+            {
+              "type": "documentation",
+              "display": "Evaluated by the national red-flag library (CRR_RedFlags, RF-11, redflag.clinicallyUnstableGynaePelvicCause) before this exam's criteria; not re-encoded in this bundle."
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.44 — Refer for acute assessment without initial imaging row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=44",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 44
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-24h",
+      "title": "Acute: Within 24 hours",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A24",
+              "display": "Acute - within 24 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 24h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "a24-1",
+          "title": "Patients acutely unwell from a suspected gynaecological cause including:\no sudden onset of severe pelvic pain, clinically stable and suspected ovarian torsion or ovarian cyst accident (e.g. cyst rupture or bleed)\no possible endometritis from RPOC *1 in women with persistent pelvic pain and tenderness, +/- low grade fever, +/- bleeding; where the patient is outside the two-week post miscarriage maternity-funded scan window. Consider seeking gynaecology advice or acute gynaecology assessment if admission may be more appropriate.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 24h Row 1: Acutely Unwell From Suspected Gynaecological Cause"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.acutelyUnwellSuspectedGynaeCause"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.44 — Acute: Within 24 hours row, bullet 1 (REVIEW Q4, Q5: stem encoded; sub-bullets illustrative)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=44",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 44
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*1 Patients with suspected endometritis i.e. suspected infection with ongoing pelvic pain post-partum, miscarriage or abortion, uterine tenderness, with or without fever and/or bleeding but systemically stable. If systemically unstable and/or severe persistent pelvic pain refer for acute assessment without requesting imaging"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "acute-pelvic-pain",
+                    "display": "Acute pelvic pain"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a24-2",
+          "title": "IUD strings missing and not visible on examination, or IUD breaks on removal attempt and only a fragment is removed, and the patient presents with symptoms suggestive of possible perforation including cramping pain, discharge, unexplained bleeding.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 24h Row 2: IUD Problem With Possible Perforation Symptoms"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "a24-2-iud",
+              "title": "IUD strings missing and not visible on examination, or IUD breaks on removal attempt and only a fragment is removed",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "a24-2-strings",
+                  "title": "IUD strings missing and not visible on examination",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudStringsNotVisible"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "a24-2-fragment",
+                  "title": "IUD breaks on removal attempt and only a fragment is removed",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudFragmentRetained"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "a24-2-symptoms",
+              "title": "The patient presents with symptoms suggestive of possible perforation including cramping pain, discharge, unexplained bleeding",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudPerforationSymptoms"
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — Acute: Within 24 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "iud-problem",
+                    "display": "IUD problem"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.44 — Acute: Within 24 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=44",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 44
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "a48-1",
+          "title": "Suspected ongoing pregnancy more than 14 days post abortion or miscarriage and either:\no Urine HCG is greater than 1000 IU on testing at 14 days post-procedure, miscarriage, or early medical abortion (EMA)\nOR\no Serial serum bHCG remains high after early medical abortion (EMA) or miscarriage especially if bHCG has increased between a baseline test done within 72 hours of Mifepristone and a follow-up test 8-16 days after ingestion (N.B. a decrease in serum bHCG of 80% or more between baseline and follow-up tests excludes ongoing pregnancy).\no +/- Ongoing symptoms of pregnancy (e.g. nausea, breast tenderness)",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 48h Row 1: Suspected Ongoing Pregnancy With Raised HCG"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "a48-1-suspected",
+              "title": "Suspected ongoing pregnancy more than 14 days post abortion or miscarriage",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ongoingPregnancySuspectedPostAbortionOrMiscarriage"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "a48-1-hcg",
+              "title": "and either:",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "a48-1-urine",
+                  "title": "Urine HCG is greater than 1000 IU on testing at 14 days post-procedure, miscarriage, or early medical abortion (EMA)",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#lab.urineHcg.value"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "a48-1-serum",
+                  "title": "Serial serum bHCG remains high after early medical abortion (EMA) or miscarriage",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#lab.serumBhcg.remainsHigh"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — Acute: Within 48 hours row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "pain-and-bleeding-in-early-pregnancy",
+                    "display": "Pain and bleeding in early pregnancy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "a48-2",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for same or next day ultrasound pelvis",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute 48h Row 2: Advice For Same Or Next Day Ultrasound"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.acuteImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — Acute: Within 48 hours row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.45 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p2-1",
+          "title": "Pelvic mass on examination suspicious of cancer",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 1: Pelvic Mass Suspicious Of Cancer"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassPalpable"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassSuspiciousOfCancer"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-gynaecological-malignancy",
+                    "display": "Suspected gynaecological malignancy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-2",
+          "title": "Postmenopausal bleeding (i.e. vaginal bleeding after more than 12 months' amenorrhoea around the expected age of menopause (approximately 50 years)).",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 2: Postmenopausal Bleeding"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.postmenopausalBleeding"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "post-menopausal-bleeding",
+                    "display": "Post-menopausal bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-3",
+          "title": "Persistent postmenopausal bleeding at any age, while on continuous combined menopause hormone therapy (MHT), and it has been more than 6 months since starting therapy.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 3: Persistent Bleeding On Continuous Combined MHT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.postmenopausal"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.vaginalBleedingPersistent"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.mhtContinuousCombined"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.mhtMonthsSinceStart"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 3 (REVIEW Q8)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "post-menopausal-bleeding",
+                    "display": "Post-menopausal bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-4",
+          "title": "No palpable pelvic mass but new abdominal or pelvic symptoms*2 warranting consideration of ovarian cancer which are present on a persistent or frequent basis and the Ca-125 result is 35 units/mL or greater, irrespective of menopause status.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 4: Ovarian Cancer Symptoms With Ca-125 35 Or Greater"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassPalpable"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCancerSymptomsPersistent"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#lab.ca125.value"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*2 Presentations warranting consideration of ovarian cancer, in the absence of a palpable mass - new abdominal or pelvic symptoms which are present on a persistent or frequent basis:\n• Persistent abdominal distension or bloating\n• Early satiety or loss of appetite\n• Pelvic or abdominal pain without a known cause\n• Increased urinary urgency or frequency\n• Irritable bowel symptoms, especially if new onset and aged older than 50 years\n• Unexplained weight loss or fatigue"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-gynaecological-malignancy",
+                    "display": "Suspected gynaecological malignancy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-5",
+          "title": "Abnormal uterine bleeding (AUB) *3 and non-uterine causes have been excluded*4, and either:\n• Woman of any age, with abnormal uterine bleeding and at least two risk factors*5 for EH/EC OR\n• A pelvic mass is suspected on examination, and no prior imaging has been done since the onset of symptoms.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 5: AUB With Non-uterine Causes Excluded And Risk Factors Or Mass"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p2-5-aub",
+              "title": "Abnormal uterine bleeding (AUB) *3",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.abnormalUterineBleeding"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-5-nonuterine",
+              "title": "Non-uterine causes have been excluded*4",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.nonUterineBleedingCausesExcluded"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-5-either",
+              "title": "and either:",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "p2-5a",
+                  "title": "Woman of any age, with abnormal uterine bleeding and at least two risk factors*5 for EH/EC"
+                },
+                {
+                  "id": "p2-5b",
+                  "title": "A pelvic mass is suspected on examination, and no prior imaging has been done since the onset of symptoms.",
+                  "selectionBehavior": "all",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassPalpable"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#imaging.any.sinceSymptomOnset"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.45 — P2 Urgent row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 45
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*3 Abnormal Uterine Bleeding (AUB) –bleeding from the uterus that is abnormal in volume, regularity, frequency or duration and occurs in the absence of pregnancy (excluding postmenopausal bleeding) The condition may be acute (urgent referral) or chronic (experienced for 6 months or more).\n• Volume – Heavy Menstrual Bleeding - excessive menstrual blood loss which interferes with a woman’s physical, social, emotional and or material quality of life\n• Regularity - 10 days or more variation between the longest and the shortest cycles. Higher variability is commonly seen in adolescence and in peri-menopause.\n• Duration - Prolonged menstrual bleeding – lasting more than 8 days\n• Frequency\n  o Secondary amenorrhoea where bleeding occurs less than every 90 days or more\n  o Infrequent menstrual cycles - less than every 38 days\n  o Frequent menstrual cycles - more than every 24 days\n• Other\n  o Intermenstrual bleeding (IMB) is spontaneous bleeding occurring between regular menstrual periods. This may be cyclical (predictable) or random.\n  o Post-coital bleeding - refers to spotting or bleeding that occurs after intercourse and is not related to menstruation\n  o Unscheduled bleeding - unexpected bleeding while on hormonal medication (progestogen-only or combined oestrogen and progestogen) e.g. for women using cyclic progestins bleeding outside the time of progestin withdrawal is atypical and requires investigation."
+            },
+            {
+              "type": "documentation",
+              "display": "*4 Non-uterine i.e. lower genital tract causes of bleeding\n• Vulvovaginal atrophy / atrophic vaginitis\n• Vulval dermatoses\n• Sexually transmitted infections e.g. chlamydia\n• Malignancy of cervix, vagina, vulva\n• Cervical ectropion\n• Urethral causes e.g. urethral caruncle"
+            },
+            {
+              "type": "documentation",
+              "display": "*5 Risk factors for  EH/EC\nPriority group and equity considerations: For Māori and Pacific peoples, investigations to exclude endometrial cancer and hyperplasia should be considered at, or soon after, the initial presentation of abnormal uterine bleeding (AUB). Māori and Pacific peoples have a significantly higher rate of endometrial hyperplasia and cancer (relative risk (RR) of 2.47 and 5.11 respectively compared with other ethnicities).\nClinical risk factors:\n• Excess estrogen exposure:\n  o Endogenous:\n    ▪ BMI 30 or higher – the risk is directly proportional to the BMI\n    ▪ Polycystic ovary syndrome (PCOS)\n    ▪ Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)\n    ▪ Nulliparity in women older than 35 years\n    ▪ Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)\n    ▪ Estrogen‐secreting tumour\n  o Exogenous:\n    ▪ Long‐standing unopposed estrogen menopause hormone therapy (MHT)\n    ▪ Tamoxifen therapy\n• Diabetes mellitus\n• Iron deficiency anaemia (Hb less than 100)\n• Family history of endometrial, ovarian, breast, or bowel cancer"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-uterine-bleeding",
+                    "display": "Abnormal uterine bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-6",
+          "title": "Atypical (AG2) endometrial cells reported on cervical screening cytology result in women of any age and menopause status.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 6: Atypical Endometrial Cells On Cytology"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#lab.cytology.atypicalEndometrialCells"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P2 Urgent row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "endometrial-cells-on-cervical-cytology",
+                    "display": "Endometrial cells on cervical cytology"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-7",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for urgent US pelvis.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2 Row 7: Advice For Urgent US Pelvis"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P2 Urgent row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.45 — P2 Urgent row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=45",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 45
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3 non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P3",
+              "display": "Non-deferrable - within 6 weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p3-1",
+          "title": "Women aged 45 years or older with AUB and non-uterine causes have been excluded*4.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 1: AUB Aged 45 Or Older With Non-uterine Causes Excluded"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.abnormalUterineBleeding"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.nonUterineBleedingCausesExcluded"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*4 Non-uterine i.e. lower genital tract causes of bleeding\n• Vulvovaginal atrophy / atrophic vaginitis\n• Vulval dermatoses\n• Sexually transmitted infections e.g. chlamydia\n• Malignancy of cervix, vagina, vulva\n• Cervical ectropion\n• Urethral causes e.g. urethral caruncle"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-uterine-bleeding",
+                    "display": "Abnormal uterine bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-2",
+          "title": "Women aged younger than 45 years with AUB and one or more risk factors for EH/EC*5",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 2: AUB Under 45 With A Risk Factor"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.abnormalUterineBleeding"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 2 (REVIEW Q12)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*5 Risk factors for  EH/EC\nPriority group and equity considerations: For Māori and Pacific peoples, investigations to exclude endometrial cancer and hyperplasia should be considered at, or soon after, the initial presentation of abnormal uterine bleeding (AUB). Māori and Pacific peoples have a significantly higher rate of endometrial hyperplasia and cancer (relative risk (RR) of 2.47 and 5.11 respectively compared with other ethnicities).\nClinical risk factors:\n• Excess estrogen exposure:\n  o Endogenous:\n    ▪ BMI 30 or higher – the risk is directly proportional to the BMI\n    ▪ Polycystic ovary syndrome (PCOS)\n    ▪ Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)\n    ▪ Nulliparity in women older than 35 years\n    ▪ Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)\n    ▪ Estrogen‐secreting tumour\n  o Exogenous:\n    ▪ Long‐standing unopposed estrogen menopause hormone therapy (MHT)\n    ▪ Tamoxifen therapy\n• Diabetes mellitus\n• Iron deficiency anaemia (Hb less than 100)\n• Family history of endometrial, ovarian, breast, or bowel cancer"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-uterine-bleeding",
+                    "display": "Abnormal uterine bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-3",
+          "title": "Women aged younger than 45 years who have not responded to first-line treatment for AUB trialled for at least three months.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 3: AUB Under 45 Not Responding To First-line Treatment"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.aubFirstLineTreatmentMonths"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.aubFirstLineTreatmentResponded"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-uterine-bleeding",
+                    "display": "Abnormal uterine bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-4",
+          "title": "Perimenopausal woman, on combined cyclical MHT, with ongoing irregular bleeding, or bleeding outside the time of progestogen withdrawal,\no AND despite a trial of increased progestogen,\no AND it has been more than 6 months since starting MHT.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 4: Perimenopausal Bleeding On Cyclical MHT Despite Increased Progestogen"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p3-4-peri",
+              "title": "Perimenopausal woman",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.perimenopausal"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-4-mht",
+              "title": "on combined cyclical MHT",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.mhtCyclicalCombined"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-4-bleeding",
+              "title": "with ongoing irregular bleeding, or bleeding outside the time of progestogen withdrawal",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "p3-4-irregular",
+                  "title": "ongoing irregular bleeding",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.irregularBleedingOngoing"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p3-4-outside",
+                  "title": "bleeding outside the time of progestogen withdrawal",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.bleedingOutsideProgestogenWithdrawal"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-4-progestogen",
+              "title": "AND despite a trial of increased progestogen",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.increasedProgestogenTrialled"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-4-months",
+              "title": "AND it has been more than 6 months since starting MHT",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.mhtMonthsSinceStart"
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-uterine-bleeding",
+                    "display": "Abnormal uterine bleeding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-5",
+          "title": "Benign-appearing endometrial cells reported on cervical smear and at least one of:\no The patient is post-menopausal (no period for twelve consecutive months)\no The patient is symptomatic (e.g. intermenstrual, post-coital, irregular or heavy bleeding)\no The patient has at least one risk factor for EC or EH*5",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 5: Benign Endometrial Cells With Qualifying Feature"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p3-5-cells",
+              "title": "Benign-appearing endometrial cells reported on cervical smear",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#lab.cytology.benignEndometrialCells"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-5-one-of",
+              "title": "and at least one of:",
+              "selectionBehavior": "one-or-more",
+              "action": [
+                {
+                  "id": "p3-5-post",
+                  "title": "The patient is post-menopausal (no period for twelve consecutive months)",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.postmenopausal"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p3-5-symptomatic",
+                  "title": "The patient is symptomatic (e.g. intermenstrual, post-coital, irregular or heavy bleeding)",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.gynaeSymptomatic"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p3-5-risk",
+                  "title": "The patient has at least one risk factor for EC or EH*5"
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*5 Risk factors for  EH/EC\nPriority group and equity considerations: For Māori and Pacific peoples, investigations to exclude endometrial cancer and hyperplasia should be considered at, or soon after, the initial presentation of abnormal uterine bleeding (AUB). Māori and Pacific peoples have a significantly higher rate of endometrial hyperplasia and cancer (relative risk (RR) of 2.47 and 5.11 respectively compared with other ethnicities).\nClinical risk factors:\n• Excess estrogen exposure:\n  o Endogenous:\n    ▪ BMI 30 or higher – the risk is directly proportional to the BMI\n    ▪ Polycystic ovary syndrome (PCOS)\n    ▪ Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)\n    ▪ Nulliparity in women older than 35 years\n    ▪ Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)\n    ▪ Estrogen‐secreting tumour\n  o Exogenous:\n    ▪ Long‐standing unopposed estrogen menopause hormone therapy (MHT)\n    ▪ Tamoxifen therapy\n• Diabetes mellitus\n• Iron deficiency anaemia (Hb less than 100)\n• Family history of endometrial, ovarian, breast, or bowel cancer"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "endometrial-cells-on-cervical-cytology",
+                    "display": "Endometrial cells on cervical cytology"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-6",
+          "title": "No palpable pelvic mass but new abdominal or pelvic symptoms *2 warranting consideration of ovarian cancer are present on a persistent or frequent basis for more than 6 weeks AND the patient has not been recently investigated.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 6: Ovarian Cancer Symptoms More Than 6 Weeks Not Recently Investigated"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassPalpable"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCancerSymptomsPersistent"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCancerSymptomsWeeks"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.recentlyInvestigated"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*2 Presentations warranting consideration of ovarian cancer, in the absence of a palpable mass - new abdominal or pelvic symptoms which are present on a persistent or frequent basis:\n• Persistent abdominal distension or bloating\n• Early satiety or loss of appetite\n• Pelvic or abdominal pain without a known cause\n• Increased urinary urgency or frequency\n• Irritable bowel symptoms, especially if new onset and aged older than 50 years\n• Unexplained weight loss or fatigue"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "suspected-gynaecological-malignancy",
+                    "display": "Suspected gynaecological malignancy"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-7",
+          "title": "Suspected ovarian cyst and either:\n• unilateral pelvic pain for more than four weeks and/or unilateral tenderness, or\n• pelvic mass and low suspicion of cancer.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 7: Suspected Ovarian Cyst With Pain Or Low-suspicion Mass"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p3-7-cyst",
+              "title": "Suspected ovarian cyst",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCystSuspected"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p3-7-either",
+              "title": "and either:",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "p3-7a",
+                  "title": "unilateral pelvic pain for more than four weeks and/or unilateral tenderness",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicPainUnilateral"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicPainWeeks"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicTendernessUnilateral"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p3-7b",
+                  "title": "pelvic mass and low suspicion of cancer.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassPalpable"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicMassSuspiciousOfCancer"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.46 — P3 row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 46
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "ovarian-cyst-or-pelvic-mass",
+                    "display": "Ovarian cyst or pelvic mass"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-8",
+          "title": "Pelvic pain for more than six weeks, unrelated to menstrual cycle, and with pelvic inflammatory disease (PID) excluded as the cause of the pain as per local PID HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 8: Pelvic Pain More Than 6 Weeks With PID Excluded"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicPainWeeks"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pelvicPainUnrelatedToMenstrualCycle"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pid"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 8",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-pelvic-conditions",
+                    "display": "Chronic pelvic conditions"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-9",
+          "title": "Primary amenorrhoea (i.e. absence of menarche by age 16 years, or age 14 years if absent secondary sexual characteristics)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 9: Primary Amenorrhoea"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.primaryAmenorrhoea"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 9",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-pelvic-conditions",
+                    "display": "Chronic pelvic conditions"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-10",
+          "title": "IUD strings not visible on exam or IUD breaks on removal attempt and fragment only removed and patient is asymptomatic.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 10: IUD Problem Asymptomatic"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudStringsNotVisible"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudFragmentRetained"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.iudPerforationSymptoms"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 10 (REVIEW Q13)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "iud-problem",
+                    "display": "IUD problem"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-11",
+          "title": "Dysmenorrhoea - (secondary) new onset dysmenorrhoea and debilitating pain persists despite a three-month trial of medical management as per local Dysmenorrhoea HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 11: Secondary Dysmenorrhoea Despite Three Months Medical Management"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.secondaryDysmenorrhoeaNewOnset"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.dysmenorrhoeaDebilitatingPainPersists"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.dysmenorrhoeaMedicalManagementMonths"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 11",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-pelvic-conditions",
+                    "display": "Chronic pelvic conditions"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-12",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for routine ultrasound pelvis.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3 Row 12: Advice For Routine Ultrasound Pelvis"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P3 row, bullet 12 (REVIEW Q16)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.46 — P3 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=46",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 46
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "P4 Deferrable. If capacity is constrained could wait up to 6-12 weeks from receiving referral.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P4",
+              "display": "Deferrable - up to 6-12 weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P4 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p4-1",
+          "title": "Polycystic ovary syndrome (PCOS) suspected, but only one of the three Rotterdam diagnostic criteria (i.e. hyperandrogenism, polycystic ovaries, irregular menses) fulfilled.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4 Row 1: Suspected PCOS With Only One Rotterdam Criterion"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.pcosSuspected"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.hyperandrogenism"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.polycysticOvaries"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.irregularMenses"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P4 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-pelvic-conditions",
+                    "display": "Chronic pelvic conditions"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p4-2",
+          "title": "Known fibroid larger than 5cms which becomes symptomatic with pelvic pressure, back pain, dyspareunia, or urination difficulties after commencing MHT.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4 Row 2: Known Fibroid Over 5cm Symptomatic After Starting MHT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.knownFibroidSizeCm"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.fibroidSymptomaticAfterStartingMht"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P4 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "chronic-pelvic-conditions",
+                    "display": "Chronic pelvic conditions"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p4-3",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for deferrable, non-urgent ultrasound pelvis.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4 Row 3: Advice For Deferrable Ultrasound Pelvis"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.deferrableImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — P4 row, bullet 3 (REVIEW Q16)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.47 — P4 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 2 weeks of a specified target date.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S2",
+              "display": "Time sensitive - within 2 weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "s2-1",
+          "title": "6-month follow-up scans of O-RADS 2 ovarian or adnexal cysts, in both pre- and post-menopausal woman according to the ACR published table or ACR mobile phone app.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2 Row 1: 6-month Follow-up Of O-RADS 2 Cyst"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCystORads2"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpIntervalMonths"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — S2 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-2",
+          "title": "Follow up scans of haemorrhagic cyst in pre-menopausal woman according to the ACR published table or ACR mobile phone app.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2 Row 2: Follow-up Of Haemorrhagic Cyst Pre-menopausal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.haemorrhagicCyst"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.postmenopausal"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — S2 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-3",
+          "title": "Follow up scan of asymptomatic endometrial polyps detected as incidental finding on US in a patient without risk factors for EH/ EC as per local Incidental Findings in Imaging HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2 Row 3: Follow-up Of Incidental Endometrial Polyp Without Risk Factors"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.endometrialPolypIncidental"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — S2 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*5 Risk factors for  EH/EC\nPriority group and equity considerations: For Māori and Pacific peoples, investigations to exclude endometrial cancer and hyperplasia should be considered at, or soon after, the initial presentation of abnormal uterine bleeding (AUB). Māori and Pacific peoples have a significantly higher rate of endometrial hyperplasia and cancer (relative risk (RR) of 2.47 and 5.11 respectively compared with other ethnicities).\nClinical risk factors:\n• Excess estrogen exposure:\n  o Endogenous:\n    ▪ BMI 30 or higher – the risk is directly proportional to the BMI\n    ▪ Polycystic ovary syndrome (PCOS)\n    ▪ Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)\n    ▪ Nulliparity in women older than 35 years\n    ▪ Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)\n    ▪ Estrogen‐secreting tumour\n  o Exogenous:\n    ▪ Long‐standing unopposed estrogen menopause hormone therapy (MHT)\n    ▪ Tamoxifen therapy\n• Diabetes mellitus\n• Iron deficiency anaemia (Hb less than 100)\n• Family history of endometrial, ovarian, breast, or bowel cancer"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s2-4",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for time-sensitive, specified date, follow-up ultrasound of the pelvis",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.47 — S2 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 47
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "Not encoded (REVIEW Q3): the same advice wording is printed under S2 and S3, so it cannot select a timeframe. A referral resting on this advice is assessed on its other answers."
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.47 — S2 row (printed title begins with the code S2, carried in the priority code here: GEN-004)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=47",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 47
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "Non-deferrable time sensitive imaging or intervention that must be completed within 6 weeks of a specified target date.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S3",
+              "display": "Time sensitive - within 6 weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "s3-1",
+          "title": "12-month follow-up scans of O-RADS-2 ovarian or adnexal cysts, in both pre- and post-menopausal woman according to the ACR published table or ACR mobile phone app",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3 Row 1: 12-month Follow-up Of O-RADS 2 Cyst"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCystORads2"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpIntervalMonths"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — S3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3-2",
+          "title": "12 month follow up scan of suspected dermoid cyst in pre-menopausal woman according to the ACR published table or ACR mobile phone app",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3 Row 2: 12-month Follow-up Of Suspected Dermoid Pre-menopausal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.dermoidCystSuspected"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.postmenopausal"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpIntervalMonths"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — S3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3-3",
+          "title": "12 month follow up scan of suspected asymptomatic endometrioma in pre-menopausal woman according to the ACR published table or ACR mobile phone app",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S3 Row 3: 12-month Follow-up Of Suspected Asymptomatic Endometrioma Pre-menopausal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpScan"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.endometriomaSuspected"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#symptom.ovarianCystSymptomatic"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#patient.postmenopausal"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult#workup.followUpIntervalMonths"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — S3 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "follow-up-of-a-known-finding",
+                    "display": "Follow-up of a known finding"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "s3-4",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for time–sensitive, specified date follow-up ultrasound of the pelvis",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — S3 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "Not encoded (REVIEW Q3): the same advice wording is printed under S2 and S3, so it cannot select a timeframe. A referral resting on this advice is assessed on its other answers."
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.48 — S3 row (printed title begins with the code S3, carried in the priority code here: GEN-004)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 48
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "am-rpoc",
+          "title": "Suspected retained products of conception (RPOC) with persistent or heavy bleeding after abortion or miscarriage - See local Abortion HealthPathway or Miscarriage HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: RPOC With Persistent Or Heavy Bleeding"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-endometriosis",
+          "title": "Suspected endometriosis in the absence of a clinically palpable mass - See local Endometriosis HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Endometriosis Without Palpable Mass"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-primary-dysmenorrhoea",
+          "title": "Primary dysmenorrhoea in the absence of a clinically palpable mass - See local Dysmenorrhoea HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Primary Dysmenorrhoea Without Palpable Mass"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-pid",
+          "title": "Pelvic inflammatory disease (PID) in the absence of a clinically palpable mass - See local PID HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: PID Without Palpable Mass"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-cervical-polyps",
+          "title": "Cervical polyps - referral to secondary care rather than ultrasound is recommended for women with polyps which prove difficult to remove. Ultrasound is not able to identify the rare occurrence of malignant polyps - See local Endometrial Polyps HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Cervical Polyps"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-secondary-amenorrhoea",
+          "title": "Secondary amenorrhoea. Pelvic USS is not normally helpful in diagnosing secondary amenorrhoea unless a pelvis mass is present, or the patient has significantly raised androgens which would raise concern regarding an ovarian tumour.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Secondary Amenorrhoea Without Mass Or Raised Androgens"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.48 — Alternative management row, bullet 6 (REVIEW Q19)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 48
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.48 — Alternative management row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=48",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 48
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-fibroids",
+          "title": "Routine follow-up of known fibroids",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 1: Routine Follow-up Of Known Fibroids"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-subfertility",
+          "title": "Subfertility",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 2: Subfertility"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-simple-cyst-post",
+          "title": "Follow-up of asymptomatic, simple ovarian cyst (O-RADS 2) less than 3 cm in diameter in post-menopausal woman",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 3: Small Simple Cyst Post-menopausal"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-simple-cyst-pre",
+          "title": "Follow-up of asymptomatic, simple ovarian cyst (O-RADS 2) less than 5 cm in diameter in premenopausal woman",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 4: Simple Cyst Under 5cm Premenopausal"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-non-simple-cyst",
+          "title": "Follow-up of asymptomatic, non-simple ovarian cyst less than 3 cm diameter in premenopausal woman",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 5: Non-simple Cyst Under 3cm Premenopausal"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-haemorrhagic-cyst",
+          "title": "Follow up of typical-appearing haemorrhagic cyst up to 5cms diameter in pre-menopausal woman.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 6: Typical Haemorrhagic Cyst Up To 5cm Pre-menopausal"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-benign-cells",
+          "title": "Benign-appearing endometrial cells on smear in asymptomatic, pre-menopausal women, no abnormality on exam and without any risk factors*5 for endometrial hyperplasia or cancer",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 7: Benign Endometrial Cells Asymptomatic Pre-menopausal No Risk Factors"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-mht-bleeding",
+          "title": "Erratic, unscheduled bleeding in the first 3 to 6 months after starting MHT.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 8: Erratic Unscheduled Bleeding Within 6 Months Of Starting MHT"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 8 (REVIEW Q15)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-screening",
+          "title": "Screening ultrasound scan for a family history of ovarian cancer. All women with Lynch Syndrome, Hereditary non-polyposis colorectal cancer (HNPCC), or Cowden Syndrome, or BRCA gene mutations associated with increased ovarian cancer risk should be referred to secondary care for assessment and management. There is insufficient evidence to warrant routine pelvic US screening in asymptomatic women.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 9: Screening For Family History Of Ovarian Cancer"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 9",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-aub-under45",
+          "title": "Women aged less than 45 years with abnormal uterine bleeding and no risk factors for endometrial hyperplasia or endometrial cancer, no abnormality on examination and where first line treatment has not been trialled.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded 10: AUB Under 45 No Risk Factors First-line Not Trialled"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.49 — Not routinely funded row, bullet 10",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 49
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.49 — Not routinely funded row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=49",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 49
+            }
+          ]
+        },
+        {
+          "type": "documentation",
+          "display": "*5 Risk factors for  EH/EC\nPriority group and equity considerations: For Māori and Pacific peoples, investigations to exclude endometrial cancer and hyperplasia should be considered at, or soon after, the initial presentation of abnormal uterine bleeding (AUB). Māori and Pacific peoples have a significantly higher rate of endometrial hyperplasia and cancer (relative risk (RR) of 2.47 and 5.11 respectively compared with other ethnicities).\nClinical risk factors:\n• Excess estrogen exposure:\n  o Endogenous:\n    ▪ BMI 30 or higher – the risk is directly proportional to the BMI\n    ▪ Polycystic ovary syndrome (PCOS)\n    ▪ Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)\n    ▪ Nulliparity in women older than 35 years\n    ▪ Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)\n    ▪ Estrogen‐secreting tumour\n  o Exogenous:\n    ▪ Long‐standing unopposed estrogen menopause hormone therapy (MHT)\n    ▪ Tamoxifen therapy\n• Diabetes mellitus\n• Iron deficiency anaemia (Hb less than 100)\n• Family history of endometrial, ovarian, breast, or bowel cancer"
+        }
+      ]
+    }
+  ]
+}

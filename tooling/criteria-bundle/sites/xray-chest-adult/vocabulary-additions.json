@@ -1,0 +1,964 @@
+{
+  "add": [
+    {
+      "linkId": "symptom.suspectedCommunityAcquiredPneumonia",
+      "text": "Suspected community-acquired pneumonia (CAP)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pneumoniaSevereOrAtypicalPresentation",
+      "text": "The suspected pneumonia has an unexpectedly severe or atypical presentation",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ],
+      "notes": "Referrer judgement; candidate for the AD-17 attestation category (X-ray Chest REVIEW Q21)."
+    },
+    {
+      "linkId": "symptom.atRiskOfUnderlyingLungPathology",
+      "text": "The patient is considered at risk of underlying lung pathology",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ],
+      "notes": "Published example '(e.g. lung cancer)' is illustrative (KI-05). Referrer judgement; candidate for the AD-17 attestation category (X-ray Chest REVIEW Q21)."
+    },
+    {
+      "linkId": "symptom.respiratoryTractInfection",
+      "text": "Respiratory tract infection",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ],
+      "notes": "Broader than symptom.lowerRespiratoryTractInfection; both are kept because the published rows name them separately."
+    },
+    {
+      "linkId": "symptom.possibleLeftVentricularFailure",
+      "text": "Possible left ventricular failure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.dyspnoeaUnexplainedNewOrWorsening",
+      "text": "Unexplained, new, or worsening dyspnoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ],
+      "notes": "Published wording kept as one indicator; whether the adjectives are alternatives is X-ray Chest REVIEW Q6. Distinct from redflag.acuteDyspnoeaOrChestPain, symptom.subacuteDyspnoeaUnknownCause and symptom.chronicDyspnoea."
+    },
+    {
+      "linkId": "symptom.coughUnexplained",
+      "text": "The cough is unexplained",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.coughWorsening",
+      "text": "The cough is worsening",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.coughDurationWeeks",
+      "text": "How long the cough has persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62, p64"
+        }
+      ],
+      "notes": "Value sibling justified: X-ray Chest states 'more than 3 weeks' (p62) and 'Chronic cough (more than 8 weeks)' (p64)."
+    },
+    {
+      "linkId": "symptom.chestOrShoulderPainUnexplained",
+      "text": "Unexplained chest and/or shoulder pain",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.chronicRespiratoryCondition",
+      "text": "Underlying chronic respiratory problems",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.chronicRespiratorySymptomChangeUnexplained",
+      "text": "Unexplained changes in existing respiratory symptoms",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.chronicRespiratorySymptomChangeDurationWeeks",
+      "text": "How long the changes in existing respiratory symptoms have persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p62"
+        }
+      ],
+      "notes": "Value sibling justified: 'persisting for more than 3 weeks'."
+    },
+    {
+      "linkId": "symptom.hoarsenessUnexplained",
+      "text": "Persistent, unexplained hoarseness",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Distinct from redflag.hoarsenessOrStridorWithHaemoptysis (RF-14 qualifier)."
+    },
+    {
+      "linkId": "symptom.hoarsenessDurationWeeks",
+      "text": "How long the hoarseness has persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Value sibling justified: 'persisting for more than 3 weeks'."
+    },
+    {
+      "linkId": "symptom.chestInfectionsRepeatedOrUnresolved",
+      "text": "Recurrent or unresolved chest infections",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.haemoptysisPersistentUnexplained",
+      "text": "The haemoptysis is persistent and unexplained",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Qualifier of the national stem redflag.haemoptysisPresent (composed with it, not a second haemoptysis concept)."
+    },
+    {
+      "linkId": "symptom.appetiteLoss",
+      "text": "Loss of appetite",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.appetiteLossDurationWeeks",
+      "text": "How long the loss of appetite has persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Value sibling justified: 'persisting for more than 3 weeks'."
+    },
+    {
+      "linkId": "symptom.abnormalChestSignsUnexplained",
+      "text": "Unexplained abnormal chest signs",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Published example '(e.g. suspected pleural effusion)' is illustrative (KI-05)."
+    },
+    {
+      "linkId": "symptom.abnormalChestSignsDurationWeeks",
+      "text": "How long the abnormal chest signs have persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Value sibling justified: 'persisting more than 3 weeks'."
+    },
+    {
+      "linkId": "imaging.abnormalChestSigns.ever",
+      "text": "The abnormal chest signs have already been investigated with imaging",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.supraclavicularLymphadenopathyNew",
+      "text": "New supraclavicular lymphadenopathy",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.cervicalLymphadenopathyNew",
+      "text": "New cervical lymphadenopathy",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.cervicalLymphadenopathyDurationWeeks",
+      "text": "How long the cervical lymphadenopathy has persisted, in weeks",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Value sibling justified: 'persisting for more than 3 weeks'."
+    },
+    {
+      "linkId": "symptom.cervicalLymphNodeDiameterCm",
+      "text": "Diameter of the largest cervical lymph node, in centimetres",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Value sibling justified: 'greater than 1 cm in diameter'. 'Largest' is X-ray Chest REVIEW Q10."
+    },
+    {
+      "linkId": "symptom.otherLungCancerFeatures",
+      "text": "Other lung cancer symptoms, signs, or risk factors are present",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Candidate for the AD-17 attestation category (X-ray Chest REVIEW Q21)."
+    },
+    {
+      "linkId": "symptom.paraneoplasticFeatures",
+      "text": "Features suggestive of paraneoplastic syndromes",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "The published examples (hypercalcaemia, hypertrophic osteoarthropathy, clubbing) follow 'e.g.' and are not separate indicators (KI-05)."
+    },
+    {
+      "linkId": "symptom.subacuteDyspnoeaUnknownCause",
+      "text": "Subacute dyspnoea of unknown cause",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.lowerRespiratoryTractInfection",
+      "text": "Lower respiratory tract infection",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.noResponseAfter48hAntibiotics",
+      "text": "Has not responded as expected after 48 hours of antibiotic treatment",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Window in the text follows the redflag.notRespondingToAntibiotics72h precedent."
+    },
+    {
+      "linkId": "symptom.suspectedSmallPneumothorax",
+      "text": "Suspected small pneumothorax",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "The large pneumothorax is national red flag redflag.pneumothoraxLarge (RF-16, p62)."
+    },
+    {
+      "linkId": "symptom.suspectedTuberculosis",
+      "text": "Suspected tuberculosis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Suspected active TB with the patient acutely unwell is national red flag redflag.activeTbAcutelyUnwell (RF-17, p62)."
+    },
+    {
+      "linkId": "symptom.suspectedDrugInducedLungDisease",
+      "text": "Suspected drug induced lung disease",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.newRespiratorySymptoms",
+      "text": "New respiratory symptoms",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.takingPneumotoxicMedication",
+      "text": "Taking medication which can potentially affect the lungs",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ],
+      "notes": "Published examples (amiodarone, nitrofurantoin, methotrexate) follow 'e.g.' (KI-05)."
+    },
+    {
+      "linkId": "symptom.unprovokedDvtOrPe",
+      "text": "Idiopathic / unprovoked DVT or PE",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.polymyalgiaRheumatica",
+      "text": "Polymyalgia Rheumatica (PMR)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pmrSteroidsStarted",
+      "text": "Steroid treatment for polymyalgia rheumatica has already been started",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p63"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.asthmaNonAcute",
+      "text": "Non-acute asthma",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.asthmaDiagnosisUnclear",
+      "text": "The asthma diagnosis is unclear",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.asthmaPoorControl",
+      "text": "Poor asthma control",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.asthmaFrequentExacerbations",
+      "text": "Frequent asthma exacerbations",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.chronicDyspnoea",
+      "text": "Chronic dyspnoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.cardiorespiratoryDiseaseUnresponsiveToTreatment",
+      "text": "Known cardio-respiratory disease unresponsive to treatment",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "Published examples after 'for example' (COPD, ILD, bronchiectasis, sarcoidosis) are illustrative (KI-05)."
+    },
+    {
+      "linkId": "symptom.asbestosExposureHistory",
+      "text": "History of asbestos exposure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging.cxr.ever",
+      "text": "Patient has previously had a chest X-ray",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging.followUpAfterChestInfection",
+      "text": "The request is a follow-up chest X-ray after a chest infection",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "Serves the S2 row and the not-funded 'Routine follow-up of pneumonia findings on chest x-ray' (X-ray Chest REVIEW Q15). A request purpose, placed under `imaging` for want of a request group."
+    },
+    {
+      "linkId": "symptom.ongoingSymptomsOrSignsAfterChestInfection",
+      "text": "Ongoing symptoms or signs after the chest infection",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging.radiologistSuspiciousFeaturesFollowUpRecommended",
+      "text": "Suspicious radiological features noted by a radiologist, and follow up is recommended",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "advice.followUpImagingRecommendedBySpecialist",
+      "text": "A secondary care clinician or radiologist has recommended the follow-up imaging (documented)",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "One concept for 'when recommended by secondary care clinician or radiologist', 'documented specialist recommendation', 'if recommended by a secondary care clinician or radiologist' and the not-funded exception 'documented recommendation of a hospital secondary care clinician or radiologist' (X-ray Chest REVIEW Q16). Narrower than the PCRL-inclusive gateway advice.followUpImagingRecommended."
+    },
+    {
+      "linkId": "imaging.postCancerSurveillance",
+      "text": "The request is post-cancer surveillance imaging",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "A request purpose, placed under `imaging` for want of a request group. Distinct from excl.currentCancerFollowUp (current cancer diagnosis under follow up)."
+    },
+    {
+      "linkId": "imaging.noduleFollowUp",
+      "text": "The request is follow-up of nodules detected on chest X-ray or CT",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "Serves the S2 row and the not-funded nodule item."
+    },
+    {
+      "linkId": "advice.followUpImagingRecommended",
+      "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for follow-up imaging of the requested exam",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ],
+      "notes": "The S-row gateway, by analogy with advice.urgentImagingRecommended / advice.nonUrgentImagingRecommended. Other sites' S rows were not checked in this session."
+    },
+    {
+      "linkId": "symptom.respiratorySymptomsOngoingUnexplained",
+      "text": "Ongoing unexplained respiratory symptoms",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging.cxrNegative.ever",
+      "text": "A previous chest X-ray for these symptoms was negative",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.asbestosSurveillance",
+      "text": "The request is for asbestos exposure surveillance",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.heartMurmurIndication",
+      "text": "The chest X-ray is requested for a heart murmur",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.heartMurmurComplicationSigns",
+      "text": "Signs of complications of the heart murmur, such as heart failure",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.lungCancerScreening",
+      "text": "The request is lung cancer screening",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p64"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.tbScreening",
+      "text": "The request is TB screening",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.tbSkinOrBloodTestPositive",
+      "text": "Positive tuberculosis skin or blood test",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.ribViews",
+      "text": "The request is for rib views",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.immigrationPurposes",
+      "text": "The chest X-ray is for immigration purposes",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.routineHypertensionInvestigation",
+      "text": "The request is routine investigation of hypertension",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.routineMonitoringPneumotoxicMedication",
+      "text": "The request is routine monitoring of an asymptomatic patient taking a medication which may cause drug induced lung disease",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "xray-chest-adult",
+          "page": "p65"
+        }
+      ]
+    }
+  ],
+  "addSite": [
+    {
+      "linkId": "patient.age",
+      "page": "p62"
+    },
+    {
+      "linkId": "weightloss.periodMonths",
+      "page": "p63"
+    }
+  ]
+}

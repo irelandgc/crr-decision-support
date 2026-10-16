@@ -1,0 +1,2477 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-US-Renal-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-US-Renal-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USRenal_Adult",
+  "title": "US Renal - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the US Renal (Adult) national referral criteria (pp.52-55), with each criterion bound to a named expression in the CQL library CRR_USRenal_Adult. NOT CLINICALLY REVIEWED (W1 demo transcription, AD-35). This resource carries what the Criteria Viewer renders; the Library carries the logic; the Questionnaire carries the input contract. The acute-assessment row and the renal colic red-flag footnote are shown here for the referrer but are evaluated by the national red-flag bundle (RF-12, RF-03).",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.52-55",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "Canterbury HealthPathway"
+    },
+    {
+      "type": "citation",
+      "label": "Development and validation of a haematuria cancer risk score to identify patients at risk of harbouring cancer - Tan - 2019 - Journal of Internal Medicine - Wiley Online Library"
+    },
+    {
+      "type": "citation",
+      "label": "Microhematuria: AUA/SUFU Guideline - American Urological Association (auanet.org)"
+    },
+    {
+      "type": "citation",
+      "label": "Assessment of non-visible haematuria - Differential diagnosis of symptoms | BMJ Best Practice"
+    },
+    {
+      "type": "citation",
+      "label": "Non-visible haematuria for the Detection of Bladder, Upper Tract, and Kidney Cancer: An Updated Systematic Review and Meta-analysis - PubMed (nih.gov)"
+    },
+    {
+      "type": "citation",
+      "label": "Swedish - long term follow up ob study -microscopic haematuria.pdf"
+    },
+    {
+      "type": "citation",
+      "label": "Haematuria (Remedy BNSSG ICB)"
+    },
+    {
+      "type": "citation",
+      "label": "haeumaturia-in-adults.pdf (scot.nhs.uk)"
+    },
+    {
+      "type": "citation",
+      "label": "Reliability of the IDENTIFY calculator in stratifying risk of urothelial carcinoma in patients with haematuria: An initial evaluation at an Australian centre - Rival - 2024 - BJUI Compass - Wiley Online Library"
+    },
+    {
+      "type": "citation",
+      "label": "Machine Learning and External Validation of the IDENTIFY Risk Calculator for Patients with Haematuria Referred to Secondary Care for Suspected Urinary Tract Cancer - PubMed (nih.gov)"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_USRenal_Adult"
+  ],
+  "action": [
+    {
+      "id": "acute-assessment",
+      "title": "Refer for acute assessment without initial imaging",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "acute-assessment"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.52 — Refer for acute assessment without initial imaging row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 52
+            }
+          ]
+        },
+        {
+          "type": "documentation",
+          "label": "Encoded in the national red-flag bundle as RF-12 (CRR_RedFlags), which runs before this library; not site logic (AD-03)."
+        }
+      ],
+      "action": [
+        {
+          "id": "aa-pyelonephritis",
+          "title": "Consider admission or seek advice for Pyelonephritis where presentation with fever (higher than 38 degrees), pyuria on microscopy, loin pain or tenderness, +/- lower UTI symptoms and:",
+          "action": [
+            {
+              "id": "aa-pyelonephritis-1",
+              "title": "not responding to antibiotics after 72 hours and abscess development is a consideration, or"
+            },
+            {
+              "id": "aa-pyelonephritis-2",
+              "title": "flank pain that does not improve within 24 hours of IV or 48 hours of oral antibiotics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "priority": "asap",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.52 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 52
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "acute-renal-colic",
+          "title": "First presentation of renal colic if pregnant or female younger than 35 years old and no red flags* requiring admission.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute: First Presentation Renal Colic"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#redflag.renalColicAcuteEpisode"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.renalColicFirstPresentation"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.pregnant"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — Acute row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*1 Red flags for renal colic: Creatinine > 160 micromol/L or eGFR < 45 mL/min; solitary kidney; temperature > 38 degrees; peritonitis; signs of sepsis; known bilateral ureteric stones"
+            },
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.55 — footnote *1. The red flags are encoded in the national red-flag bundle as RF-03 (CRR_RedFlags), not here (REVIEW Q2).",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=55"
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "renal-colic",
+                    "display": "Renal colic"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "acute-retention",
+          "title": "Suspected chronic urinary retention e.g. new onset incontinence with palpable enlarged bladder",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute: Suspected Chronic Urinary Retention"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.chronicUrinaryRetentionSuspected"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — Acute row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "urinary-symptoms",
+                    "display": "Urinary symptoms"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "acute-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for acute ultrasound renal",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Acute: Specialist Advises Acute US Renal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.acuteImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — Acute row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.",
+      "priority": "urgent",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.52 — P2 Urgent row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 52
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p2-macro-haematuria",
+          "title": "Macroscopic haematuria:",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2: Macroscopic Haematuria"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haematuria-macroscopic",
+                    "display": "Haematuria — macroscopic"
+                  }
+                ]
+              }
+            }
+          ],
+          "selectionBehavior": "any",
+          "action": [
+            {
+              "id": "p2-macro-age",
+              "title": "If younger than 40 years or aged 86 years and older.",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "P2: Macroscopic Haematuria Younger Than 40 Or 86 And Older"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMacroscopic"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P2 Urgent row, bullet 1, sub-bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "haematuria-macroscopic",
+                        "display": "Haematuria — macroscopic"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p2-macro-contrast",
+              "title": "If aged 40 to 85 years and unable to have intravenous contrast (i.e. history of allergy to IV contrast, has an eGFR less than 30mL/min, is taking metformin, or has hyperthyroidism).",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "lab-value",
+                      "display": "LAB VALUE REQUIRED"
+                    }
+                  ]
+                }
+              ],
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "P2: Macroscopic Haematuria Aged 40 To 85 Unable To Have Contrast"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMacroscopic"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.ivContrastAllergy"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.egfr.value"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.takingMetformin"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.hyperthyroidism"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P2 Urgent row, bullet 1, sub-bullet 2",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "haematuria-macroscopic",
+                        "display": "Haematuria — macroscopic"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p2-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for urgent ultrasound renal",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P2: Specialist Advises Urgent US Renal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — P2 Urgent row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3 non-deferrable imaging or intervention that must be completed within 6 weeks of receiving referral.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P3",
+              "display": "Non-deferrable - within six weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.52 — P3 row (continues on p.53)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 52
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p3-micro-haematuria-smoker",
+          "title": "Microscopic haematuria, male patient, older than 50 years, current or ex-smoker",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Microscopic Haematuria Male Over 50 Current Or Ex-Smoker"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMicroscopic"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.smokingStatus"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — P3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haematuria-microscopic",
+                    "display": "Haematuria — microscopic"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-ckd",
+          "title": "New diagnosis of chronic kidney disease (CKD) and any of:",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "lab-value",
+                  "display": "LAB VALUE REQUIRED"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: New CKD Diagnosis With Qualifying Results"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.ckdNewDiagnosis"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.52 — P3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 52
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "ckd-kidney-function",
+                    "display": "CKD / kidney function"
+                  }
+                ]
+              }
+            }
+          ],
+          "selectionBehavior": "any",
+          "action": [
+            {
+              "id": "p3-ckd-egfr30",
+              "title": "eGFR less than 30",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "CKD: eGFR Less Than 30"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.egfr.value"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P3 row, bullet 2, sub-bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "ckd-kidney-function",
+                        "display": "CKD / kidney function"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p3-ckd-egfr45",
+              "title": "eGFR less than 45 with diabetes",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "CKD: eGFR Less Than 45 With Diabetes"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.egfr.value"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.diabetes"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P3 row, bullet 2, sub-bullet 2",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "ckd-kidney-function",
+                        "display": "CKD / kidney function"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p3-ckd-egfr60",
+              "title": "eGFR less than 60 with evidence of progressive disease (i.e. eGFR decreased by 15 or more within the previous 12 months),",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "CKD: eGFR Less Than 60 With Progressive Disease"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.egfr.value"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.egfr.decreaseWithin12m"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P3 row, bullet 2, sub-bullet 3",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "ckd-kidney-function",
+                        "display": "CKD / kidney function"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p3-ckd-acr",
+              "title": "ACR more than 250",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "CKD: ACR More Than 250"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.acr.value"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.52 — P3 row, bullet 2, sub-bullet 4",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=52",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 52
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "ckd-kidney-function",
+                        "display": "CKD / kidney function"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p3-varicocele",
+          "title": "New right-sided or bilateral varicocele.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: New Right-Sided Or Bilateral Varicocele"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.varicoceleNewRightOrBilateral"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "varicocele",
+                    "display": "Varicocele"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-uti-men",
+          "title": "UTI in men (*including pyelonephritis where admission is not required)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: UTI In Men"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "urinary-symptoms",
+                    "display": "Urinary symptoms"
+                  }
+                ]
+              }
+            }
+          ],
+          "selectionBehavior": "any",
+          "action": [
+            {
+              "id": "p3-uti-men-recurrent",
+              "title": "recurrent UTI (i.e. 2 or more confirmed UTI)",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "UTI In Men: Recurrent"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.utiConfirmedCount"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.53 — P3 row, bullet 4, sub-bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 53
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "urinary-symptoms",
+                        "display": "Urinary symptoms"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p3-uti-men-persistent",
+              "title": "persistent UTI (i.e. if urine culture shows persistent bacteriuria with same organism following treatment with appropriate antibiotic, consider colonisation of renal tract stone).  Arrange Xray KUB and pre- and post-void renal ultrasound.",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Persistent UTI"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.persistentBacteriuriaSameOrganism"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.53 — P3 row, bullet 4, sub-bullet 2",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 53
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "urinary-symptoms",
+                        "display": "Urinary symptoms"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p3-uti-women",
+          "title": "UTI in women (*including pyelonephritis where admission is not required)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: UTI In Women"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "urinary-symptoms",
+                    "display": "Urinary symptoms"
+                  }
+                ]
+              }
+            }
+          ],
+          "selectionBehavior": "any",
+          "action": [
+            {
+              "id": "p3-uti-women-recurrent",
+              "title": "recurrent UTI (i.e.  more than 3 UTIs in a year, or more than 2 in six months despite prophylactic antibiotics.)",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "UTI In Women: Recurrent"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.utiCount12m"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.utiCount6m"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.onUtiProphylacticAntibiotics"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.53 — P3 row, bullet 5, sub-bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 53
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "urinary-symptoms",
+                        "display": "Urinary symptoms"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p3-uti-women-persistent",
+              "title": "Persistent UTI i.e. if urine culture shows persistent bacteriuria with same organism following treatment with appropriate antibiotic, consider colonisation of renal tract stone. Arrange Xray KUB and pre- and post-void renal ultrasound.",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Persistent UTI"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.persistentBacteriuriaSameOrganism"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.53 — P3 row, bullet 5, sub-bullet 2",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 53
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "urinary-symptoms",
+                        "display": "Urinary symptoms"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p3-incontinence-men",
+          "title": "Urinary incontinence in men with palpable bladder, or new or deteriorating renal impairment.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Urinary Incontinence In Men With Palpable Bladder Or Renal Impairment"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.urinaryIncontinence"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.palpableBladder"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#lab.renalImpairmentNewOrDeteriorating"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "urinary-symptoms",
+                    "display": "Urinary symptoms"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-loin-pain",
+          "title": "Recurrent loin pain suggesting renal tract obstruction other than renal stone.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Recurrent Loin Pain Suggesting Non-Stone Obstruction"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.recurrentLoinPainSuggestingObstruction"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "loin-pain",
+                    "display": "Loin pain"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison or radiologist advises referral for non-urgent ultrasound renal.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P3: Specialist Advises Non-Urgent US Renal"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P3 row, bullet 8",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "P4 Deferrable. If capacity is constrained could wait up to 6-12 weeks from receiving referral.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P4",
+              "display": "Deferrable - up to 6-12 weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P4 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.53 — P4 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 53
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p4-micro-haematuria-male-non-smoker",
+          "title": "Microscopic haematuria, male patient, older than 50 years who is a non-smoker",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4: Microscopic Haematuria Male Over 50 Non-Smoker"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMicroscopic"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.smokingStatus"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P4 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haematuria-microscopic",
+                    "display": "Haematuria — microscopic"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p4-micro-haematuria-male-50-younger",
+          "title": "Microscopic haematuria, male patient aged 50 years and younger, with any smoking status (current or ex-smoker, or non-smoker)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4: Microscopic Haematuria Male 50 And Younger"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMicroscopic"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.age"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P4 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haematuria-microscopic",
+                    "display": "Haematuria — microscopic"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p4-micro-haematuria-female",
+          "title": "Microscopic haematuria, female, of any age and smoking status",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "P4: Microscopic Haematuria Female"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#symptom.haematuriaMicroscopic"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.sex"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.53 — P4 row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=53",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 53
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haematuria-microscopic",
+                    "display": "Haematuria — microscopic"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "S2 non-deferrable time sensitive imaging to be completed within 2 weeks of a specified target date",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "S2",
+              "display": "Time sensitive - within two weeks of a specified target date"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets S2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.54 — S2 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 54
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "s2-renal-stone-follow-up",
+          "title": "Follow up, according to the Renal Colic and Urinary Tract Stones HealthPathway, if calculus not visible on KUB X-ray (provided BMI is less than 30)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "S2: Renal Stone Follow Up Calculus Not Visible On KUB X-ray"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#workup.renalStoneFollowUpPerHealthPathway"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#workup.kubXrayCalculusVisible"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult#patient.bmi"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — S2 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "renal-colic",
+                    "display": "Renal colic"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.54 — Alternative management row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 54
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "am-angiomyolipoma",
+          "title": "Incidental finding on ultrasound of a solid lesion more than 1 cm diameter with typical ultrasound appearances of an angiomyolipoma – see local CT IVU HealthPathway",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Angiomyolipoma More Than 1 cm"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-macro-haematuria",
+          "title": "Macroscopic haematuria in patients who do not have a UTI, if aged 40 to 85 years. Refer for CT IVU (Intravenous Urogram).",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Macroscopic Haematuria Aged 40 To 85 Without UTI"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 2 (REVIEW Q5: not applied to a patient unable to have intravenous contrast)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-diabetic-repeat",
+          "title": "Repeat renal ultrasound for diabetic patients with known diabetic renal complications is not indicated - See local Kidney Disease in Diabetes HealthPathway",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Repeat US For Known Diabetic Renal Complications"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-renal-colic",
+          "title": "Suspected renal colic in a non-pregnant person – See local Renal Colic and Urinary Tract Stones HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Suspected Renal Colic Not Pregnant"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 4 (REVIEW Q4: not applied to a patient meeting the Acute renal colic row)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-aki",
+          "title": "Acute kidney injury – manage according to Acute Kidney Injury pathway, or seek advice from the relevant secondary care specialist as to whether a renal ultrasound is indicated",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Acute Kidney Injury"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-prostate",
+          "title": "Enlarged prostate or elevated PSA – See local Prostate Cancer Diagnosis HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Enlarged Prostate Or Elevated PSA"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-proteinuria",
+          "title": "Isolated proteinuria – seek nephrology advice.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Isolated Proteinuria"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-luts",
+          "title": "Lower urinary tract symptoms - See local Lower Urinary Tract Symptoms (LUTS) or Benign Prostatic Hypertrophy HealthPathway, or other relevant HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Lower Urinary Tract Symptoms"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 8",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-abdominal-mass",
+          "title": "Abdominal mass - Discuss with secondary care specialist as FSA, CT scan or other investigations may be more appropriate",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Abdominal Mass"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Alternative management row, bullet 9",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.54 — Not routinely funded row (continues on p.55)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 54
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-recurrent-uti-women",
+          "title": "Recurrent UTIs in women, except as documented above",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Recurrent UTIs In Women Except As Documented"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Not routinely funded row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-hypertension",
+          "title": "Investigation of uncomplicated hypertension",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Investigation Of Uncomplicated Hypertension"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Not routinely funded row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-catheter-bacteriuria",
+          "title": "Bacteriuria in patients with in-dwelling catheters who are not systemically unwell",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Catheter Bacteriuria Not Systemically Unwell"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Not routinely funded row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-simple-cysts",
+          "title": "Follow-up imaging of simple renal cysts (Bosniak I and II)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Simple Renal Cyst Follow Up"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Not routinely funded row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-angiomyolipoma",
+          "title": "Follow up of incidental finding on ultrasound of a solid lesion less 1 cm diameter with typical ultrasound appearances of an angiomyolipoma.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Angiomyolipoma Less Than 1 cm"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.54 — Not routinely funded row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=54",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 54
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-adpkd-screening",
+          "title": "Screening scan for Autosomal Dominant Polycystic Kidney Disease (ADPKD)",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: ADPKD Screening"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.55 — Not routinely funded row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=55",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 55
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "nf-pkd-serial",
+          "title": "Serial ultrasounds of known polycystic kidneys unless indicated by the radiology report, or the patient develops new symptoms that meet any of the other criteria for renal ultrasound",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Not Funded: Serial US Of Known Polycystic Kidneys"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.55 — Not routinely funded row, bullet 7",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=55",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 55
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

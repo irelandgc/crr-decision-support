@@ -1,0 +1,434 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-US-Renal-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-US-Renal-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USRenal_Adult_Indicators",
+  "title": "US Renal - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the US Renal (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, v2.0, published 09/04/2026, pp.52-55). NOT CLINICALLY REVIEWED (W1 demo transcription, AD-35). The LLM extraction step, structured referral forms and the Criteria Viewer tick-list all produce a QuestionnaireResponse against this Questionnaire, which the CQL library CRR_USRenal_Adult evaluates. Each answer may carry the answer-evidence extension (status documented|inferred, quote). No population library: no item is populated from the patient record.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_USRenal_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.sex",
+          "text": "Sex",
+          "type": "choice",
+          "required": true,
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "male",
+                "display": "Male"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "female",
+                "display": "Female"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://hl7.org/fhir/administrative-gender",
+                "code": "other",
+                "display": "Other"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.pregnant",
+          "text": "Patient is pregnant",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.smokingStatus",
+          "text": "Smoking status",
+          "type": "choice",
+          "answerOption": [
+            {
+              "valueCoding": {
+                "system": "http://crr.health.nz/fhir/CodeSystem/smoking-status",
+                "code": "current",
+                "display": "Current smoker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://crr.health.nz/fhir/CodeSystem/smoking-status",
+                "code": "ex",
+                "display": "Ex-smoker"
+              }
+            },
+            {
+              "valueCoding": {
+                "system": "http://crr.health.nz/fhir/CodeSystem/smoking-status",
+                "code": "non",
+                "display": "Non-smoker"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.ivContrastAllergy",
+          "text": "History of allergy to IV contrast",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.takingMetformin",
+          "text": "Is taking metformin",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.hyperthyroidism",
+          "text": "Has hyperthyroidism",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.diabetes",
+          "text": "Diabetes",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.diabeticRenalComplications",
+          "text": "Known diabetic renal complications",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.ckdNewDiagnosis",
+          "text": "New diagnosis of chronic kidney disease (CKD)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.bmi",
+          "text": "Body mass index (BMI)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "kg/m2",
+                "display": "kg/m2"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.onUtiProphylacticAntibiotics",
+          "text": "Taking prophylactic antibiotics for urinary tract infection",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.indwellingCatheter",
+          "text": "Has an in-dwelling catheter",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Symptoms, signs and clinical findings",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "symptom.haematuriaMacroscopic",
+          "text": "Macroscopic haematuria",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.haematuriaMicroscopic",
+          "text": "Microscopic haematuria",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.renalColicFirstPresentation",
+          "text": "First presentation of renal colic",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.chronicUrinaryRetentionSuspected",
+          "text": "Suspected chronic urinary retention",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.varicoceleNewRightOrBilateral",
+          "text": "New right-sided or bilateral varicocele",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.utiConfirmedCount",
+          "text": "Number of confirmed urinary tract infections",
+          "type": "integer"
+        },
+        {
+          "linkId": "symptom.utiCount12m",
+          "text": "Number of urinary tract infections in the last year",
+          "type": "integer"
+        },
+        {
+          "linkId": "symptom.utiCount6m",
+          "text": "Number of urinary tract infections in the last six months",
+          "type": "integer"
+        },
+        {
+          "linkId": "symptom.utiRecurrent",
+          "text": "Recurrent urinary tract infections",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.utiCurrent",
+          "text": "Has a urinary tract infection",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.urinaryIncontinence",
+          "text": "Urinary incontinence",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.palpableBladder",
+          "text": "Palpable bladder",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.recurrentLoinPainSuggestingObstruction",
+          "text": "Recurrent loin pain suggesting renal tract obstruction other than renal stone",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.enlargedProstate",
+          "text": "Enlarged prostate",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.lowerUrinaryTractSymptoms",
+          "text": "Lower urinary tract symptoms",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.abdominalMass",
+          "text": "Abdominal mass",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.systemicallyUnwell",
+          "text": "Systemically unwell",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "lab",
+      "text": "Laboratory results",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "lab.egfr.value",
+          "text": "eGFR value (mL/min)",
+          "type": "quantity",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mL/min",
+                "display": "mL/min"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lab.egfr.decreaseWithin12m",
+          "text": "Decrease in eGFR within the previous 12 months",
+          "type": "quantity"
+        },
+        {
+          "linkId": "lab.acr.value",
+          "text": "Urine albumin:creatinine ratio (mg/mmol)",
+          "type": "quantity"
+        },
+        {
+          "linkId": "lab.renalImpairmentNewOrDeteriorating",
+          "text": "New or deteriorating renal impairment",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.acuteKidneyInjury",
+          "text": "Acute kidney injury",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.psa.raised",
+          "text": "Elevated PSA",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.proteinuriaIsolated",
+          "text": "Isolated proteinuria",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.bacteriuria",
+          "text": "Bacteriuria",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.persistentBacteriuriaSameOrganism",
+          "text": "Urine culture shows persistent bacteriuria with same organism following treatment with appropriate antibiotic",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging",
+      "text": "Prior imaging",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "imaging.usrenal.ever",
+          "text": "Patient has previously had a renal ultrasound",
+          "type": "boolean"
+        },
+        {
+          "linkId": "imaging.incidentalAngiomyolipomaOnUs",
+          "text": "Incidental finding on ultrasound of a solid lesion with typical ultrasound appearances of an angiomyolipoma",
+          "type": "boolean"
+        },
+        {
+          "linkId": "imaging.incidentalSolidLesionDiameterCm",
+          "text": "Diameter of the incidental solid lesion found on ultrasound, in cm",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "cm",
+                "display": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "imaging.furtherImagingRecommendedByReport",
+          "text": "Further imaging is indicated by the radiology report",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Work-up",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "workup.renalStoneFollowUpPerHealthPathway",
+          "text": "Follow up, according to the Renal Colic and Urinary Tract Stones HealthPathway",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.kubXrayCalculusVisible",
+          "text": "Calculus visible on KUB X-ray",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist advice",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "advice.acuteImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a same or next day scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.urgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.nonUrgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.adviserNameRole",
+          "text": "Name and role of the clinician who advised (must be included in the referral)",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "linkId": "funding",
+      "text": "Funding",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "funding.investigationUncomplicatedHypertension",
+          "text": "Investigation of uncomplicated hypertension",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.simpleRenalCystFollowUp",
+          "text": "Follow-up imaging of simple renal cysts (Bosniak I and II)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.adpkdScreening",
+          "text": "Screening scan for Autosomal Dominant Polycystic Kidney Disease (ADPKD)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.polycysticKidneySerialUs",
+          "text": "Serial ultrasounds of known polycystic kidneys",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "redflag",
+      "text": "Renal colic",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "redflag.renalColicAcuteEpisode",
+          "text": "Acute episode of suspected renal colic",
+          "type": "boolean"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,415 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-US-Abdomen-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-US-Abdomen-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USAbdomen_Adult_Indicators",
+  "title": "US Abdomen - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the US Abdomen (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, v2.0, published 09/04/2026, pp.30-33). DEMO TRANSCRIPTION - NOT CLINICALLY REVIEWED. The LLM extraction step, structured referral forms and the Criteria Viewer tick-list all produce a QuestionnaireResponse against this Questionnaire, which the CQL library CRR_USAbdomen_Adult evaluates. Each answer may carry the answer-evidence extension (status documented|inferred, quote). No item carries an initialExpression: there is no population library for this site.",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_USAbdomen_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "required": true,
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.liverRiskFactors",
+          "text": "High risk factors present (diabetes, obesity, medications that affect the liver, e.g. statins)",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Symptoms and examination findings",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "symptom.jaundice",
+          "text": "Jaundice",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.biliaryColicOrCholecystitis",
+          "text": "Suspected acute biliary colic or cholecystitis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.settlesWithAnalgesia",
+          "text": "Symptoms settle with analgesia",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.biliaryColicResolved",
+          "text": "The suspected acute biliary colic or cholecystitis has resolved",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.recurrentRUQOrEpigastricPain",
+          "text": "Recurrent right upper quadrant or epigastric pain",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.dyspepsia",
+          "text": "Dyspepsia",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.aaaNewlySuspected",
+          "text": "Newly suspected abdominal aortic aneurysm",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.aaaAsymptomatic",
+          "text": "The suspected abdominal aortic aneurysm is asymptomatic",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.abdominalMassNonPulsatile",
+          "text": "Non-pulsatile abdominal mass",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.abdominalMassUpper",
+          "text": "The abdominal mass is in the upper abdomen",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.hepatomegalySuspected",
+          "text": "Suspected enlarged liver on examination",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.fatigue",
+          "text": "Fatigue",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.abdominalPain",
+          "text": "Abdominal pain",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.colorectalNeoplasmSuspected",
+          "text": "Suspected colorectal neoplasm",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.unilateralLymphoedemaNew",
+          "text": "New unilateral lymphoedema",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.chronicPancreatitis",
+          "text": "Suspected or symptomatic chronic pancreatitis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.urinaryTractPresentation",
+          "text": "Urinary tract presentations and suspected renal abnormality",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.isolatedBloating",
+          "text": "Isolated bloating",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "redflag",
+      "text": "National red-flag indicator used in this site's logic",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "redflag.painfulJaundice",
+          "text": "Painful jaundice",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "Answer false (documented) when the note says the jaundice is painless."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "weightloss",
+      "text": "Unintentional weight loss",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "weightloss.present",
+          "text": "Unintentional, unexplained weight loss",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "lab",
+      "text": "Liver blood tests and other laboratory results",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "lab.alp.timesULN",
+          "text": "ALP as a multiple of the upper limit of normal reported by the laboratory",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "The ALP result at the initial presentation, as a multiple of the laboratory's upper limit of normal. Omit when the note gives a value without a stated multiple or flag."
+            }
+          ]
+        },
+        {
+          "linkId": "lab.alp.high",
+          "text": "Alkaline phosphatase high",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.ggt.raised",
+          "text": "GGT raised (higher than the upper limit of normal)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.ggt.timesULN",
+          "text": "GGT as a multiple of the upper limit of normal reported by the laboratory",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "The initial GGT result as a multiple of the laboratory's upper limit of normal."
+            }
+          ]
+        },
+        {
+          "linkId": "lab.repeatAfter3Months",
+          "text": "Liver blood tests have been repeated 3 months or more after the initial presentation",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.alp.repeatHigh",
+          "text": "ALP remains higher than the upper limit of normal on repeat testing",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.ggt.repeatRaised",
+          "text": "GGT remains higher than the upper limit of normal on repeat testing",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.ggt.repeatTimesULN",
+          "text": "GGT on repeat testing as a multiple of the upper limit of normal reported by the laboratory",
+          "type": "decimal"
+        },
+        {
+          "linkId": "lab.isolatedLftAbnormality",
+          "text": "The raised liver blood test result is isolated (the other liver blood tests are normal)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.bilirubin.raised",
+          "text": "Bilirubin raised",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.alt.value",
+          "text": "ALT value (IU/L)",
+          "type": "quantity",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "[IU]/L",
+                "display": "IU/L"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lab.ferritin.raised",
+          "text": "Ferritin raised",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging",
+      "text": "Previous imaging",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "imaging.biliaryTree.ever",
+          "text": "Biliary tree has previously been imaged",
+          "type": "boolean"
+        },
+        {
+          "linkId": "imaging.presentingProblem.ever",
+          "text": "The presenting problem has previously been imaged",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "true = the presenting problem has been imaged before."
+            }
+          ]
+        },
+        {
+          "linkId": "imaging.gallstones.ever",
+          "text": "Previous imaging has shown gallstones",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "workup.jaundiceObviousCause",
+          "text": "An obvious cause for the jaundice has been identified",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "true = an obvious cause for the jaundice is stated; false = the note says there is no obvious cause."
+            }
+          ]
+        },
+        {
+          "linkId": "workup.cholecystectomyCandidate",
+          "text": "The patient is a potential candidate for and would accept a cholecystectomy",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.conservativeMethodsUnsuccessful",
+          "text": "Conservative methods (e.g. weight loss and lifestyle alterations or medication change) have been unsuccessful",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.clinicalFeaturesOfConcern",
+          "text": "Clinical features of concern are present",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "true = features of concern are present; false = the note says there are none."
+            }
+          ]
+        },
+        {
+          "linkId": "workup.suspicionMalignancy",
+          "text": "Suspicion of underlying malignancy",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist / PCRL / radiologist advice and surveillance plans",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "advice.acuteImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a same or next day scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.urgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.nonUrgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.adviserNameRole",
+          "text": "Name and role of the clinician who advised (must be included in the referral)",
+          "type": "string"
+        },
+        {
+          "linkId": "advice.hccSurveillance",
+          "text": "HCC surveillance using liver ultrasound has been recommended by a gastroenterologist or other secondary care specialist, as part of long-term monitoring by Hepatitis Foundation of NZ, or by an agreed local pathway",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.aaaSurveillance",
+          "text": "Surveillance of a known abdominal aortic aneurysm is due according to local HealthPathway, New Zealand Vascular Society guidelines or secondary care specialist advice",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.incidentalFindingFollowUp",
+          "text": "Follow up of an incidental finding on imaging (including gallbladder polyps) is due according to the Incidental Findings on Imaging HealthPathway or radiology report advice",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "funding",
+      "text": "Not routinely funded scenarios",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "funding.hernia",
+          "text": "Hernia in adults",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.infectiveHepatitis",
+          "text": "Infective hepatitis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.gallstonesFollowUpAsymptomatic",
+          "text": "Follow-up imaging of previously diagnosed gallstones in asymptomatic patients",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.simpleCystFollowUp",
+          "text": "Follow up imaging of simple renal or hepatic cysts",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.screeningAorticAneurysm",
+          "text": "Screening for aortic aneurysm",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.screeningFattyLiver",
+          "text": "Screening for fatty liver",
+          "type": "boolean"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,403 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-CT-Head-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTHead_Adult_Indicators",
+  "title": "CT Head - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the CT Head (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, v2.0, published 09/04/2026, pp.20-22). NOT CLINICALLY REVIEWED. The LLM extraction step, structured referral forms and the Criteria Viewer tick-list all produce a QuestionnaireResponse against this Questionnaire, which the CQL library CRR_CTHead_Adult evaluates. Each answer may carry the answer-evidence extension (status documented|inferred, quote). No item is populatable from the patient record (no population library for this site).",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_CTHead_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "redflag",
+      "text": "TIA (national red-flag vocabulary, stem only) and shared findings",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "redflag.suspectedTIA",
+          "text": "Suspected transient ischaemic attack (TIA)",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "A '?TIA' query is not an assertion (extraction contract rule 10)."
+            }
+          ]
+        },
+        {
+          "linkId": "redflag.bowelOrBladderIncontinence",
+          "text": "Loss of bowel or bladder control",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "CT Head: 'incontinence' in the cognitive-impairment features."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Presentation",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "symptom.fever",
+          "text": "Fever (documented, no threshold stated)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.tiaDaysSinceEpisode",
+          "text": "Time since the TIA episode, in days",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "d",
+                "display": "days"
+              }
+            },
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "Answer only from an explicit time ('yesterday' = 1, '3 days ago' = 3); omit if vague."
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.crescendoTIA",
+          "text": "Crescendo TIAs",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.tiaSevereOrProlongedDeficit",
+          "text": "Severe or prolonged deficit (hemiparesis longer than 60 minutes)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.focalNeurologicalSigns",
+          "text": "Focal neurological signs",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizure",
+          "text": "Seizure",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.headachePatternChangeProgressive",
+          "text": "A change in the pattern of headaches, with a progressive increase in frequency or severity",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.headacheWorseOnCoughSneezeValsalva",
+          "text": "Headache exacerbated by coughing, sneezing, or Valsalva manoeuvre in a pattern not typical of a migraine",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.headachePersistentNauseaVomiting",
+          "text": "Headache associated with persistent nausea and vomiting (i.e. not typical of a migraine or other primary headache)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.neuroDeficitSpeechOrWeakness",
+          "text": "Objective neurological deficit causing disturbances of speech, or limb or facial weakness",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.cognitiveImpairment",
+          "text": "Cognitive impairment",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.rapidCognitiveDecline",
+          "text": "Rapid cognitive decline over weeks",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.gaitAtaxia",
+          "text": "Gait ataxia",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.firstSeizure",
+          "text": "First seizure",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizureClearHistory",
+          "text": "There is a clear history of the seizure",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizureSingle",
+          "text": "Single seizure",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizureUnprovokedOrSubstanceProvoked",
+          "text": "The seizure was unprovoked, or provoked by a known substance (e.g. drug or alcohol use)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.returnedToNormalHealth",
+          "text": "Patient has since returned to normal health",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.systemicSymptoms",
+          "text": "Systemic symptoms",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.newFocalNeurologicalDeficit",
+          "text": "New focal neurologic deficit",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizureFocal",
+          "text": "Focal seizure",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.persistentAlteredMentalState",
+          "text": "Persistent altered mental state",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.headachePersistent",
+          "text": "Persistent headache",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.seizuresPoorlyControlledOrRecurrent",
+          "text": "Poorly controlled or recurrent seizures",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.suspectedProlactinoma",
+          "text": "Suspected prolactinoma",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.dementiaUnexpectedChange",
+          "text": "Unexpected change in dementia disease progression",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "history",
+      "text": "History, medication and care context",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "history.anticoagulantTherapy",
+          "text": "Currently on anticoagulant therapy",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.anticoagulation",
+          "text": "History of anticoagulation",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.malignancy",
+          "text": "History of malignancy",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.cancerWithBrainMetastasisPropensity",
+          "text": "History of cancer with propensity to brain metastases",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "The published criteria name lung, melanoma and breast cancer as examples."
+            }
+          ]
+        },
+        {
+          "linkId": "history.chronicIllnessWithCerebralInvolvement",
+          "text": "Chronic illness associated with potential cerebral complications or involvement",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "The published criteria name malignancy as the main example."
+            }
+          ]
+        },
+        {
+          "linkId": "history.falls",
+          "text": "History of falls",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.headInjury",
+          "text": "Head injury",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.atrialFibrillation",
+          "text": "Atrial fibrillation",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.carotidStenosis",
+          "text": "Known carotid artery stenosis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.palliativeCare",
+          "text": "Patient is in a palliative care setting",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.dementiaEstablishedAdvanced",
+          "text": "Established, advanced dementia",
+          "type": "boolean"
+        },
+        {
+          "linkId": "history.dementiaDurationYears",
+          "text": "Duration of dementia, in years",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Assessment",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "workup.abcd2Score",
+          "text": "ABCD2 score",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "Answer only from a stated ABCD2 score; never compute it."
+            }
+          ]
+        },
+        {
+          "linkId": "workup.suitableForCommunityManagement",
+          "text": "Patient has been assessed as suitable for being managed in the community",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.resultMayChangeManagement",
+          "text": "The imaging result may change management",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.subtypeDiagnosisAltersManagement",
+          "text": "Establishing the subtype diagnosis will alter management",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist advice, decision support and access",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "advice.decisionSupportToolCompleted",
+          "text": "The relevant bpacnz decision-support tool has been completed and indicates the requested imaging is appropriate",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.rapidSpecialistCareAccessible",
+          "text": "The patient is able to access rapid specialist assessment",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "CT Head asks whether the patient is UNABLE to access rapid specialist care; answer false when the note says so."
+            }
+          ]
+        },
+        {
+          "linkId": "advice.acuteImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a same or next day scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.urgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.nonUrgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.adviserNameRole",
+          "text": "Name and role of the clinician who advised (must be included in the referral)",
+          "type": "string"
+        },
+        {
+          "linkId": "advice.strokeSpecialistRecommended",
+          "text": "The requested imaging has been recommended by a Health NZ neurologist / stroke specialist or physician",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.mriAvailable",
+          "text": "MRI is available for this patient",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "Answer false when the note says MRI is not available."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

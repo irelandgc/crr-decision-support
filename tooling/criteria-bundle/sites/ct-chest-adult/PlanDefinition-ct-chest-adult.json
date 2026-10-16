@@ -1,0 +1,1306 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-CT-Chest-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-CT-Chest-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTChest_Adult",
+  "title": "CT Chest - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the CT Chest (Adult) national referral criteria (pp.12-16), with each criterion bound to a named expression in the CQL library CRR_CTChest_Adult. NOT CLINICALLY REVIEWED. The acute-assessment row is shown for display only; its logic is national red flags RF-01 and RF-02 in CRR_RedFlags. No not-routinely-funded row is printed for this section.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.12-16",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances)",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "TBC-page-id"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "Superior vena cava syndrome - Symptoms, diagnosis and treatment | BMJ Best Practice"
+    },
+    {
+      "type": "citation",
+      "label": "P79 Single Point of Access Clinic (SPOAC): a new regional lung cancer pathway in New Zealand | Thorax (bmj.com)"
+    },
+    {
+      "type": "citation",
+      "label": "Supporting the earlier diagnosis of lung cancer | Cancer Research UK"
+    },
+    {
+      "type": "citation",
+      "label": "Assessment of haemoptysis - Diagnosis Approach | BMJ Best Practice"
+    },
+    {
+      "type": "citation",
+      "label": "Hemoptysis (acr.org)"
+    },
+    {
+      "type": "citation",
+      "label": "Incidence of lung cancer amongst primary care chest radiograph referrals—an evaluation of national and local datasets within the United Kingdom | British Journal of Radiology | Oxford Academic (oup.com)"
+    },
+    {
+      "type": "citation",
+      "label": "Investigation report: Missed detection of lung cancer on chest X-rays of patients being seen in primary care (hssib.org.uk)"
+    },
+    {
+      "type": "citation",
+      "label": "Guideline concordance for timely chest imaging after new presentations of dyspnoea or haemoptysis in primary care: a retrospective cohort study | Thorax (bmj.com)"
+    },
+    {
+      "type": "citation",
+      "label": "Cancer Research UK-Risk Assessment Tools"
+    },
+    {
+      "type": "citation",
+      "label": "Recognising Lung Cancer in Primary Care - PubMed"
+    },
+    {
+      "type": "citation",
+      "label": "Canterbury Community HealthPathways CT chest HealthPathway"
+    },
+    {
+      "type": "citation",
+      "label": "i-refer (RCR) UK, “Lung nodules”"
+    },
+    {
+      "type": "citation",
+      "label": "3D HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "Canterbury HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "MoH Comm Rad Criteria 2015"
+    },
+    {
+      "type": "citation",
+      "label": "Mid-Central Advisory Oncology Pathway"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_CTChest_Adult"
+  ],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance",
+      "description": "Guidance: Lung Cancer Imaging\n\nA diagnosis of lung cancer and initiating imaging investigations should be considered for all patients with concerning symptoms or signs*1 which last more than 3 weeks or sooner if the patient has risk factors for lung cancer. *2\n\nIn addition, in New Zealand, patients who identify as Māori have higher rates of lung cancer than non-Māori and a lower threshold for investigating concerning symptoms or signs*1 should be considered especially if the patient has risk factors*2\n\nUrgent Chest x-ray (CXR) (preferably same or next day) remains the initial investigation of choice for symptomatic patients where lung cancer is suspected.\n\nHowever, studies suggest the sensitivity of a CXR is around 75-80% highlighting the importance of having “safety netting” *3 in place for symptomatic patients with a normal CXR.\n\nThe presence of multiple signs and symptoms, particularly in combination with haemoptysis, weight loss or persistent thrombocytosis has a significantly stronger positive predictive value for lung cancer.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "guidance"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.13 — Guidance: Lung Cancer Imaging (within the P2 row)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=13",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 13
+            }
+          ]
+        },
+        {
+          "type": "documentation",
+          "display": "*1 Concerning symptoms and signs for lung cancer: Unexplained, new, or worsening dyspnoea. Unexplained cough, persisting and worsening for more than 3 weeks. Unexplained chest and/or shoulder pain persisting for more than 3 weeks. Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks. Unexplained hoarseness persisting for more than 3 weeks. Repeated / or unresolved chest infections. Persistent, unexplained haemoptysis. Unexplained weight loss and loss of appetite persisting for more than 3 weeks. Un-investigated/unexplained abnormal chest signs persisting for more than 3 weeks. (e.g. suspected pleural effusion). New, supraclavicular lymphadenopathy. Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with finger (and toe) clubbing and painful swollen joints. New cervical lymphadenopathy persisting for more than 3 weeks and nodes are more than 1 cm in diameter in a patient with other lung cancer symptoms or signs or risk factors."
+        },
+        {
+          "type": "documentation",
+          "display": "*2 Risk factors for lung cancer: Current or past smoker – increased risk with duration and to lesser extent quantity. Reduced risk with duration since quitting especially more than 15 years. A total of less than 100 cigarettes smoked in lifetime can be considered risk-equivalent to having never smoked. Family history – lung cancer diagnosed in sibling and to lesser extent in parent. Personal history of cancer especially head and neck cancer. History of lung disease including chronic obstructive pulmonary disease (COPD), cystic fibrosis. Exposure to cancer causing agents including asbestos, radon, air pollutants."
+        },
+        {
+          "type": "documentation",
+          "display": "*3 Safety netting after normal chest x-ray – With the sensitivity of chest x-ray for lung cancer reported as 75-80%, a normal chest x-ray may provide false reassurance. Safety netting is a diagnostic management strategy that aims to ensure patients are monitored throughout the diagnostic process until their symptoms or signs are explained or have resolved. Persistent, or worsening, unexplained respiratory symptoms and especially clusters of symptoms and especially in patients at increased risk of lung cancer warrant further investigation despite a normal chest x-ray, by way of referral for chest CT or discussion with a secondary care clinician or Primary Care Radiology Liaison."
+        }
+      ]
+    },
+    {
+      "id": "acute-assessment",
+      "title": "Refer for acute assessment without initial imaging",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "acute-assessment"
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "acute-haemoptysis",
+          "title": "Life threatening, massive haemoptysis – patient is at high risk of asphyxiation or exsanguination"
+        },
+        {
+          "id": "acute-stridor-svc",
+          "title": "Stridor / suspected SVC obstruction"
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.12 — Refer for acute assessment without initial imaging row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=12",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 12
+            }
+          ]
+        },
+        {
+          "type": "documentation",
+          "label": "Evaluated by the national red-flag library CRR_RedFlags (RF-01, RF-02), not by this bundle"
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.",
+      "priority": "urgent",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p2-haemoptysis",
+          "title": "Unexplained haemoptysis (occurred in absence of chest infection and upper respiratory tract causes including bleeding from the nasopharynx, sinuses, or oral cavity have been excluded), And initial investigations including chest x-ray fail to identify a cause - refer for urgent CT chest and for respiratory assessment.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.1: Unexplained Haemoptysis"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p2-1-haemoptysis",
+              "title": "Haemoptysis",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#redflag.haemoptysisPresent"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-1-no-chest-infection",
+              "title": "Occurred in absence of chest infection",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.haemoptysisWithoutChestInfection"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-1-urt-excluded",
+              "title": "Upper respiratory tract causes including bleeding from the nasopharynx, sinuses, or oral cavity have been excluded",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.upperAirwayBleedingExcluded"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-1-cxr",
+              "title": "Initial investigations including chest x-ray",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxr"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-1-no-cause",
+              "title": "Initial investigations fail to identify a cause",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.initialInvestigationsCauseNotFound"
+                  ]
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "haemoptysis",
+                    "display": "Haemoptysis"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-smoker-over-55",
+          "title": "Aged over 55 years’ old, current smoker; AND One or more concerning, new onset, symptoms /signs for lung cancer *1 Persistent for six weeks despite appropriate treatment. AND unexplained despite initial investigations including chest x-ray and blood tests.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.2: Over 55 Current Smoker With Concerning Symptoms"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "action": [
+            {
+              "id": "p2-2-age-smoker",
+              "title": "Aged over 55 years’ old, current smoker",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "mandatory",
+                      "display": "MANDATORY"
+                    }
+                  ]
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#patient.age"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#patient.currentSmoker"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-2-concerning",
+              "title": "One or more concerning, new onset, symptoms /signs for lung cancer *1",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "One Or More Concerning Symptoms Or Signs"
+                  }
+                }
+              ],
+              "selectionBehavior": "one-or-more",
+              "action": [
+                {
+                  "id": "fn1-dyspnoea",
+                  "title": "Unexplained, new, or worsening dyspnoea.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.dyspnoeaUnexplainedNewOrWorsening"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-cough",
+                  "title": "Unexplained cough, persisting and worsening for more than 3 weeks.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.coughUnexplainedOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-chest-shoulder-pain",
+                  "title": "Unexplained chest and/or shoulder pain persisting for more than 3 weeks.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.chestShoulderPainUnexplainedOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-chronic-respiratory-change",
+                  "title": "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.chronicRespiratorySymptomChangeOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-hoarseness",
+                  "title": "Unexplained hoarseness persisting for more than 3 weeks.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.hoarsenessUnexplainedOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-chest-infections",
+                  "title": "Repeated / or unresolved chest infections.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.chestInfectionsRepeatedOrUnresolved"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-haemoptysis",
+                  "title": "Persistent, unexplained haemoptysis",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.haemoptysisPersistentUnexplained"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-weight-appetite",
+                  "title": "Unexplained weight loss and loss of appetite persisting for more than 3 weeks.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.weightAndAppetiteLossOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-chest-signs",
+                  "title": "Un-investigated/unexplained abnormal chest signs persisting for more than 3 weeks. (e.g. suspected pleural effusion)",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.abnormalChestSignsOver3Weeks"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-supraclavicular",
+                  "title": "New, supraclavicular lymphadenopathy",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.supraclavicularLymphadenopathyNew"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-paraneoplastic",
+                  "title": "Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with finger (and toe) clubbing and painful swollen joints",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.paraneoplasticFeatures"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "fn1-cervical",
+                  "title": "New cervical lymphadenopathy persisting for more than 3 weeks and nodes are more than 1 cm in diameter in a patient with other lung cancer symptoms or signs or risk factors.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.cervicalLymphadenopathyOver3WeeksOver1cm"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.15 — Notes, *1 Concerning symptoms and signs for lung cancer",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 15
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "lung-cancer-risk",
+                        "display": "Lung cancer risk"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "p2-2-new-onset",
+              "title": "New onset",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.newOnset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-2-persistent",
+              "title": "Persistent for six weeks despite appropriate treatment.",
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#symptom.persistentSixWeeksDespiteTreatment"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-2-unexplained",
+              "title": "AND unexplained despite initial investigations including chest x-ray and blood tests.",
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Unexplained Despite Chest X-ray And Blood Tests"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxr"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.bloods"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.initialInvestigationsCauseNotFound"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 2, sub-bullet 3",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 14
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "lung-cancer-risk",
+                        "display": "Lung cancer risk"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*1 Concerning symptoms and signs for lung cancer: Unexplained, new, or worsening dyspnoea. Unexplained cough, persisting and worsening for more than 3 weeks. Unexplained chest and/or shoulder pain persisting for more than 3 weeks. Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks. Unexplained hoarseness persisting for more than 3 weeks. Repeated / or unresolved chest infections. Persistent, unexplained haemoptysis. Unexplained weight loss and loss of appetite persisting for more than 3 weeks. Un-investigated/unexplained abnormal chest signs persisting for more than 3 weeks. (e.g. suspected pleural effusion). New, supraclavicular lymphadenopathy. Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with finger (and toe) clubbing and painful swollen joints. New cervical lymphadenopathy persisting for more than 3 weeks and nodes are more than 1 cm in diameter in a patient with other lung cancer symptoms or signs or risk factors."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "lung-cancer-risk",
+                    "display": "Lung cancer risk"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-indeterminate-cxr",
+          "title": "Indeterminate abnormality on chest x-ray which raises the possibility of a lung cancer (e.g. bulky hilum), AND CT chest is recommended in the Radiology report.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.3: Indeterminate Chest X-ray Abnormality"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxrIndeterminateAbnormality"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.radiologyReportRecommendsImaging"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-cxr-nodule",
+                    "display": "Abnormal CXR / nodule"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-persistent-consolidation",
+          "title": "Persistent consolidation on chest x-ray done as a 6-week follow-up study AND CT chest is recommended in the Radiology report.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.4: Persistent Consolidation"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxrPersistentConsolidationFollowUp"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.radiologyReportRecommendsImaging"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-cxr-nodule",
+                    "display": "Abnormal CXR / nodule"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-staging",
+          "title": "Secondary care clinician or Radiologist advises referral for urgent staging CT chest/liver for work up of a suspicious lesion on chest x-ray, AND CT is the advised next step on local HealthPathway as opposed to referral to secondary care or PET-CT *4",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.5: Staging CT Chest/Liver Advised"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.urgentStagingCtRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.localHealthPathwayAdvisesCt"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 5",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*4 Local pathways–direct to PET CT: Where chest x-ray findings are suspicious for a lung cancer but there are no features on the chest x-ray to suggest it is not curable, the preferred next step in some districts where there is available resource, is to proceed directly with whole body PET-CT rather than CT chest."
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "staging",
+                    "display": "Staging"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p2-specialist",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent CT chest",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2.6: Specialist Advises Urgent CT Chest"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P2 Urgent row, bullet 6",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.13 — P2 Urgent row (timeframe p13, bullets p14)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=13",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "P3: non-deferrable, imaging or intervention that must be completed within 6 weeks of receiving referral",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P3",
+              "display": "Non-deferrable - within six weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P3 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "p3-nodule",
+          "title": "Isolated, pulmonary nodule identified on a chest x-ray and cannot be confirmed as benign from x-ray appearances alone AND referral for CT chest is recommended in the Radiology report",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P3.1: Isolated Pulmonary Nodule"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxrIsolatedPulmonaryNodule"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxrNoduleNotConfirmedBenign"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.radiologyReportRecommendsImaging"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P3 row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "abnormal-cxr-nodule",
+                    "display": "Abnormal CXR / nodule"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "p3-specialist",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for non-urgent CT chest",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P3.2: Specialist Advises Non-urgent CT Chest"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.14 — P3 row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 14
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.14 — P3 row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=14",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 14
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "action": [
+        {
+          "id": "am-re-presents",
+          "title": "Patient re-presents with concerning symptoms or signs and chest x-ray is normal, but doesn’t meet the above criteria for CT chest referral – seek advice from secondary care respiratory team, regarding appropriate management and whether CT chest is warranted.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Re-presents With Normal Chest X-ray, Criteria Not Met"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.15 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 15
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*3 Safety netting after normal chest x-ray – With the sensitivity of chest x-ray for lung cancer reported as 75-80%, a normal chest x-ray may provide false reassurance. Safety netting is a diagnostic management strategy that aims to ensure patients are monitored throughout the diagnostic process until their symptoms or signs are explained or have resolved. Persistent, or worsening, unexplained respiratory symptoms and especially clusters of symptoms and especially in patients at increased risk of lung cancer warrant further investigation despite a normal chest x-ray, by way of referral for chest CT or discussion with a secondary care clinician or Primary Care Radiology Liaison."
+            }
+          ]
+        },
+        {
+          "id": "am-non-specific",
+          "title": "Persistent, non-specific, non-localising symptoms and signs which are concerning for underlying cancer (e.g. weight loss, fatigue) and initial investigations including chest x-ray and bloods fail to identify a cause. See CT Chest/Abdomen/Pelvis HealthPathway.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Non-specific Symptoms, Initial Investigations Negative"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.15 — Alternative management row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 15
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-initial-presentation",
+          "title": "Initial presentation with respiratory symptoms or signs concerning for lung cancer - refer for urgent chest x-ray as the initial investigation.",
+          "description": "Shown as published; not evaluated by the engine pending clinical review (REVIEW Q8).",
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.15 — Alternative management row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 15
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-incidental-ct-nodule",
+          "title": "Follow-up of nodule discovered incidentally on CT chest scan - refer to secondary care for management advice unless radiology report confirms benign based on CT appearance and no follow-up is required (e.g. intrapulmonary lymph node, benign pattern of calcification).",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Follow-up Of Incidental CT Nodule"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.15 — Alternative management row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 15
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.15 — Alternative management or HealthPathway recommended row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=15",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

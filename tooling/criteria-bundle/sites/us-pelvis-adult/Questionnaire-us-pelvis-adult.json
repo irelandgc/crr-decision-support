@@ -1,0 +1,676 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "CRR-US-Pelvis-Adult",
+  "url": "http://crr.health.nz/fhir/Questionnaire/CRR-US-Pelvis-Adult",
+  "version": "1.0.0",
+  "name": "CRR_USPelvis_Adult_Indicators",
+  "title": "US Pelvis - Adult: referral indicators",
+  "status": "draft",
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Atomic clinical indicators for the US Pelvis (Adult) national referral criteria (National Community Referral Criteria for Imaging Part I, National ID 15372 v2.0, published 09/04/2026, pp.44-51). NOT CLINICALLY REVIEWED (demo transcription, AD-35). The LLM extraction step, structured referral forms and the Criteria Viewer tick-list produce a QuestionnaireResponse against this Questionnaire, which the CQL library CRR_USPelvis_Adult evaluates. Each answer may carry the answer-evidence extension (status documented|inferred, quote). No item is populatable from the patient record yet (no population library).",
+  "extension": [
+    {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-library",
+      "valueCanonical": "http://crr.health.nz/fhir/Library/CRR_USPelvis_Adult"
+    }
+  ],
+  "item": [
+    {
+      "linkId": "patient",
+      "text": "Patient",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "patient.age",
+          "text": "Age in years at referral",
+          "type": "integer",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "a",
+                "display": "years"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.postmenopausal",
+          "text": "Post-menopausal (no period for twelve consecutive months)",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = pre-menopausal (still having periods, including perimenopausal)"
+            }
+          ]
+        },
+        {
+          "linkId": "patient.perimenopausal",
+          "text": "Perimenopausal",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.mhtContinuousCombined",
+          "text": "On continuous combined menopause hormone therapy (MHT)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.mhtCyclicalCombined",
+          "text": "On combined cyclical menopause hormone therapy (MHT)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.mhtMonthsSinceStart",
+          "text": "Months since starting menopause hormone therapy (MHT)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mo",
+                "display": "months"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.maoriOrPacificEthnicity",
+          "text": "Māori or Pacific ethnicity",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.bmi",
+          "text": "Body mass index (BMI)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "kg/m2",
+                "display": "kg/m2"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "patient.pcosDiagnosed",
+          "text": "Polycystic ovary syndrome (PCOS)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.chronicAnovulation",
+          "text": "Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.nulliparous",
+          "text": "Nulliparous",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.earlyMenarcheOrLateMenopause",
+          "text": "Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.estrogenSecretingTumour",
+          "text": "Estrogen-secreting tumour",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.unopposedEstrogenMhtLongStanding",
+          "text": "Long-standing unopposed estrogen menopause hormone therapy (MHT)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.tamoxifenTherapy",
+          "text": "Tamoxifen therapy",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.diabetes",
+          "text": "Diabetes mellitus",
+          "type": "boolean"
+        },
+        {
+          "linkId": "patient.familyHistoryEndometrialOvarianBreastBowelCancer",
+          "text": "Family history of endometrial, ovarian, breast, or bowel cancer",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom",
+      "text": "Symptoms, signs and findings",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "symptom.acutelyUnwellSuspectedGynaeCause",
+          "text": "Acutely unwell from a suspected gynaecological cause",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.iudStringsNotVisible",
+          "text": "IUD strings missing and not visible on examination",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.iudFragmentRetained",
+          "text": "IUD broke on removal attempt and only a fragment was removed",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.iudPerforationSymptoms",
+          "text": "Symptoms suggestive of possible IUD perforation (e.g. cramping pain, discharge, unexplained bleeding)",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = the patient is asymptomatic"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.ongoingPregnancySuspectedPostAbortionOrMiscarriage",
+          "text": "Suspected ongoing pregnancy more than 14 days post abortion or miscarriage",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pelvicMassPalpable",
+          "text": "Clinically palpable pelvic mass on examination",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pelvicMassSuspiciousOfCancer",
+          "text": "Pelvic mass is suspicious of cancer",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = low suspicion of cancer"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.postmenopausalBleeding",
+          "text": "Postmenopausal bleeding (vaginal bleeding after more than 12 months' amenorrhoea around the expected age of menopause)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.vaginalBleedingPersistent",
+          "text": "Persistent vaginal bleeding",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.ovarianCancerSymptomsPersistent",
+          "text": "New abdominal or pelvic symptoms warranting consideration of ovarian cancer, present on a persistent or frequent basis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.ovarianCancerSymptomsWeeks",
+          "text": "Weeks the symptoms warranting consideration of ovarian cancer have been present",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "wk",
+                "display": "weeks"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.abnormalUterineBleeding",
+          "text": "Abnormal uterine bleeding (AUB)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.irregularBleedingOngoing",
+          "text": "Ongoing irregular bleeding",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.bleedingOutsideProgestogenWithdrawal",
+          "text": "Bleeding outside the time of progestogen withdrawal",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.gynaeSymptomatic",
+          "text": "Symptomatic (e.g. intermenstrual, post-coital, irregular or heavy bleeding)",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = asymptomatic"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.examinationAbnormality",
+          "text": "Abnormality on examination",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.ovarianCystSuspected",
+          "text": "Suspected ovarian cyst",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pelvicPainWeeks",
+          "text": "Weeks of pelvic pain",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "wk",
+                "display": "weeks"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.pelvicPainUnilateral",
+          "text": "Unilateral pelvic pain",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pelvicTendernessUnilateral",
+          "text": "Unilateral pelvic tenderness",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pelvicPainUnrelatedToMenstrualCycle",
+          "text": "Pelvic pain unrelated to menstrual cycle",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pid",
+          "text": "Pelvic inflammatory disease (PID)",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "true = PID suspected or diagnosed; false = PID excluded as the cause of the pain as per local PID HealthPathway"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.primaryAmenorrhoea",
+          "text": "Primary amenorrhoea (absence of menarche by age 16 years, or age 14 years if absent secondary sexual characteristics)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.secondaryDysmenorrhoeaNewOnset",
+          "text": "New onset (secondary) dysmenorrhoea",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.dysmenorrhoeaDebilitatingPainPersists",
+          "text": "Debilitating dysmenorrhoea pain persists",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.primaryDysmenorrhoea",
+          "text": "Primary dysmenorrhoea",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.pcosSuspected",
+          "text": "Polycystic ovary syndrome (PCOS) suspected",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.hyperandrogenism",
+          "text": "Hyperandrogenism",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.polycysticOvaries",
+          "text": "Polycystic ovaries",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.irregularMenses",
+          "text": "Irregular menses",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.knownFibroidSizeCm",
+          "text": "Size of known fibroid (cm)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "cm",
+                "display": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.fibroidSymptomaticAfterStartingMht",
+          "text": "Fibroid became symptomatic with pelvic pressure, back pain, dyspareunia, or urination difficulties after commencing MHT",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.ovarianCystORads2",
+          "text": "O-RADS 2 ovarian or adnexal cyst",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.ovarianCystSimple",
+          "text": "Simple ovarian cyst",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = non-simple"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.ovarianCystSizeCm",
+          "text": "Ovarian cyst diameter (cm)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "cm",
+                "display": "cm"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.ovarianCystSymptomatic",
+          "text": "Ovarian cyst or endometrioma is symptomatic",
+          "type": "boolean",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/extraction-hint",
+              "valueString": "false = asymptomatic"
+            }
+          ]
+        },
+        {
+          "linkId": "symptom.haemorrhagicCyst",
+          "text": "Haemorrhagic ovarian cyst",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.haemorrhagicCystTypicalAppearing",
+          "text": "Haemorrhagic cyst is typical-appearing",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.dermoidCystSuspected",
+          "text": "Suspected dermoid cyst",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.endometriomaSuspected",
+          "text": "Suspected endometrioma",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.endometrialPolypIncidental",
+          "text": "Asymptomatic endometrial polyp(s) detected as an incidental finding on ultrasound",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.rpocSuspected",
+          "text": "Suspected retained products of conception (RPOC)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.bleedingPersistentOrHeavyPostAbortionOrMiscarriage",
+          "text": "Persistent or heavy bleeding after abortion or miscarriage",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.endometriosisSuspected",
+          "text": "Suspected endometriosis",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.cervicalPolyp",
+          "text": "Cervical polyp(s)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.secondaryAmenorrhoea",
+          "text": "Secondary amenorrhoea",
+          "type": "boolean"
+        },
+        {
+          "linkId": "symptom.erraticUnscheduledBleedingOnMht",
+          "text": "Erratic, unscheduled bleeding after starting MHT",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "lab",
+      "text": "Laboratory and cytology results",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "lab.ironDeficiencyAnaemia",
+          "text": "Iron deficiency anaemia (Hb less than 100)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.urineHcg.value",
+          "text": "Urine HCG result (IU) on testing at 14 days post-procedure, miscarriage, or early medical abortion (EMA)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "[IU]",
+                "display": "IU"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lab.serumBhcg.remainsHigh",
+          "text": "Serial serum bHCG remains high after early medical abortion (EMA) or miscarriage",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.ca125.value",
+          "text": "Ca-125 result (units/mL)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "[U]/mL",
+                "display": "units/mL"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "lab.cytology.atypicalEndometrialCells",
+          "text": "Atypical (AG2) endometrial cells reported on cervical screening cytology",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.cytology.benignEndometrialCells",
+          "text": "Benign-appearing endometrial cells reported on cervical smear",
+          "type": "boolean"
+        },
+        {
+          "linkId": "lab.androgens.significantlyRaised",
+          "text": "Significantly raised androgens",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "workup",
+      "text": "Assessment and treatment before referral",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "workup.nonUterineBleedingCausesExcluded",
+          "text": "Non-uterine (lower genital tract) causes of bleeding have been excluded",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.aubFirstLineTreatmentTrialled",
+          "text": "First-line treatment for abnormal uterine bleeding (AUB) has been trialled",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.aubFirstLineTreatmentMonths",
+          "text": "Months first-line treatment for abnormal uterine bleeding (AUB) has been trialled",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mo",
+                "display": "months"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "workup.aubFirstLineTreatmentResponded",
+          "text": "Responded to first-line treatment for abnormal uterine bleeding (AUB)",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.increasedProgestogenTrialled",
+          "text": "A trial of increased progestogen has been given",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.recentlyInvestigated",
+          "text": "The patient has been recently investigated for these symptoms",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.dysmenorrhoeaMedicalManagementMonths",
+          "text": "Months of medical management for dysmenorrhoea (as per local Dysmenorrhoea HealthPathway)",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mo",
+                "display": "months"
+              }
+            }
+          ]
+        },
+        {
+          "linkId": "workup.followUpScan",
+          "text": "The request is a follow-up scan of a known finding",
+          "type": "boolean"
+        },
+        {
+          "linkId": "workup.followUpIntervalMonths",
+          "text": "Follow-up interval (months) according to the ACR published table or ACR mobile phone app",
+          "type": "decimal",
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit",
+              "valueCoding": {
+                "system": "http://unitsofmeasure.org",
+                "code": "mo",
+                "display": "months"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "imaging",
+      "text": "Prior imaging",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "imaging.any.sinceSymptomOnset",
+          "text": "Imaging has been done since the onset of symptoms",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "advice",
+      "text": "Specialist / PCRL / radiologist advice",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "advice.acuteImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a same or next day scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.urgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent imaging of the requested exam",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.nonUrgentImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a non-urgent scan",
+          "type": "boolean"
+        },
+        {
+          "linkId": "advice.adviserNameRole",
+          "text": "Name and role of the clinician who advised (must be included in the referral)",
+          "type": "string"
+        },
+        {
+          "linkId": "advice.deferrableImagingRecommended",
+          "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a deferrable, non-urgent scan",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "linkId": "funding",
+      "text": "Funding-stream markers",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "funding.routineFibroidFollowUp",
+          "text": "Routine follow-up of known fibroids",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.subfertility",
+          "text": "Imaging requested for subfertility",
+          "type": "boolean"
+        },
+        {
+          "linkId": "funding.ovarianCancerFamilyHistoryScreening",
+          "text": "Screening ultrasound scan for a family history of ovarian cancer",
+          "type": "boolean"
+        }
+      ]
+    }
+  ]
+}

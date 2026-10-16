@@ -1,0 +1,162 @@
+{
+  "_note": "US DVT - Adult (us-dvt-adult) W1 transcription, 2026-10-15. NOT CLINICALLY REVIEWED. `add` = new indicators in the indicators.json schema; `addSite` = existing indicators that should list us-dvt-adult in sites[]; `addAttestationIndicators` = linkIds to append to the top-level `attestationIndicators` array (AD-17; each carries attestationWording, AD-23). Group choices and naming questions are in transcription-notes.md section 2.",
+  "add": [
+    {
+      "linkId": "symptom.superficialVenousThrombosis",
+      "text": "Superficial venous thrombosis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36, p37" }],
+      "notes": "Used both as part of an Acute 24h criterion (with symptom.svtProximalLongSaphenousVeinThigh) and as a not-routinely-funded scenario (without it) - one concept, both roles (KI-01). Read as a clinical diagnosis stated by the referrer, not necessarily imaging-confirmed (us-dvt-adult REVIEW Q10)."
+    },
+    {
+      "linkId": "symptom.svtProximalLongSaphenousVeinThigh",
+      "text": "The superficial venous thrombosis affects the proximal long saphenous vein in the thigh",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36, p37" }],
+      "notes": "Location qualifier for symptom.superficialVenousThrombosis. true = Acute 24h criterion (p36); false = not routinely funded (p37, 'unless affecting the proximal long saphenous vein in the thigh')."
+    },
+    {
+      "linkId": "symptom.suspectedDvtUpperLimb",
+      "text": "Clinically suspected upper limb deep vein thrombosis (DVT)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Not in the attestation category: the suspected diagnosis is the question the referral states (us-dvt-adult REVIEW Q13)."
+    },
+    {
+      "linkId": "symptom.suspectedDvtLowerLimb",
+      "text": "Clinically suspected lower limb deep vein thrombosis (DVT)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Not in the attestation category: the suspected diagnosis is the question the referral states (us-dvt-adult REVIEW Q13)."
+    },
+    {
+      "linkId": "symptom.calfDvt",
+      "text": "Calf deep vein thrombosis (DVT) has been diagnosed",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }]
+    },
+    {
+      "linkId": "workup.wellsScoreDvt",
+      "text": "Wells score for DVT, as documented by the referrer",
+      "type": "integer",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "The PDF names the score and links 'Well's Criteria for DVT (mdcalc.com)' but does not define it. No bundle computes it from its components; a value the extraction step computes from components is 'inferred' (us-dvt-adult REVIEW Q1). Integer: the score can be negative."
+    },
+    {
+      "linkId": "workup.dvtClinicalSuspicionHigh",
+      "text": "Clinical suspicion of deep vein thrombosis (DVT) remains high",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "attestationWording": {
+        "referrer": "No DVT was seen on the initial ultrasound - does your clinical suspicion of DVT remain high?",
+        "triager": "Does the referral state that clinical suspicion of DVT remains high after no DVT was seen on the initial ultrasound?"
+      },
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Attestation category (AD-17): the referrer's clinical judgement, analogous to workup.strongSuspicionMalignancy. Listed in addAttestationIndicators."
+    },
+    {
+      "linkId": "lab.ddimer.positive",
+      "text": "D-dimer positive",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Boolean abnormality flag (KI-06); the criterion states no numeric threshold, so there is no .value sibling."
+    },
+    {
+      "linkId": "imaging.usdvt.initialNegative",
+      "text": "No DVT seen on the initial ultrasound for this presentation",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "A prior-imaging RESULT, not an interval, so it does not follow the imaging.<examSlug>.<window> shape; the qualifier names the result. Vocabulary-owner question (us-dvt-adult transcription-notes section 2)."
+    },
+    {
+      "linkId": "history.anticoagulantTherapy",
+      "text": "Patient is currently being treated with anticoagulant therapy",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "US DVT S1 uses it negated ('a calf DVT not being treated with anticoagulation'). The same concept is printed at CT Head - Adult ('Anticoagulant therapy', 'On anticoagulants', pp.20-21) and US Carotid - Adult ('is not taking anticoagulants', p34); those sites were not read in full here and are not attributed. There is no medication group; 'patient' is the nearest existing group (vocabulary-owner question)."
+    },
+    {
+      "linkId": "patient.pregnant",
+      "text": "Patient is pregnant",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Redirect at US DVT ('Pregnant women - see local DVT HealthPathway'). Pregnancy is also printed at CT KUB p26, US Renal p52 and US Pelvis p45; not attributed here (not read in full)."
+    },
+    {
+      "linkId": "advice.sameDayImagingRecommended",
+      "text": "A Health NZ Haematology service or other secondary care specialist recommends same day imaging",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Distinct from advice.acuteImagingRecommended: the adviser set excludes PCRL and radiologist as named advisers, and the timeframe is 'same day', not 'same or next day'. Folding would widen the US DVT Acute 24h criterion (us-dvt-adult REVIEW Q11; compare vocabulary REVIEW Q25)."
+    },
+    {
+      "linkId": "advice.followUpImagingRecommendedBySpecialist",
+      "text": "A secondary care clinician or radiologist advises referral for follow-up imaging of the requested exam",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "US DVT p36 S1: 'Secondary care clinician or Radiologist advises referral for follow up ultrasound DVT' (no PCRL). X-ray Abdomen p61 ('... or Primary Care Radiology Liaison or radiologist advises referral for follow-up x-ray') and US Pelvis ('... advises referral for time-sensitive, specified date, follow-up ultrasound of the pelvis') print PCRL variants; not attributed here. Whether one gateway serves all three is a vocabulary question (us-dvt-adult REVIEW Q12)."
+    },
+    {
+      "linkId": "advice.postAnticoagulationScanRecommended",
+      "text": "A secondary care specialist recommends a follow-up scan after anticoagulation therapy",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p36" }],
+      "notes": "Single US DVT S2 row as one gateway (KI-07). Overlaps advice.followUpImagingRecommendedBySpecialist (us-dvt-adult REVIEW Q5)."
+    },
+    {
+      "linkId": "funding.routineClotResolutionFollowUp",
+      "text": "The scan is routine follow-up scanning to confirm clot resolution",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [{ "examSite": "us-dvt-adult", "page": "p37" }]
+    }
+  ],
+  "addSite": [
+    { "linkId": "patient.age", "page": "p36" },
+    { "linkId": "advice.adviserNameRole", "page": "p36" }
+  ],
+  "addAttestationIndicators": ["workup.dvtClinicalSuspicionHigh"]
+}

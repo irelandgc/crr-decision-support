@@ -1,0 +1,1754 @@
+{
+  "resourceType": "PlanDefinition",
+  "id": "CRR-CT-Head-Adult",
+  "url": "http://crr.health.nz/fhir/PlanDefinition/CRR-CT-Head-Adult",
+  "version": "1.0.0",
+  "name": "CRR_CTHead_Adult",
+  "title": "CT Head - Adult",
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/plan-definition-type",
+        "code": "eca-rule",
+        "display": "ECA Rule"
+      }
+    ]
+  },
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-15",
+  "publisher": "Health New Zealand | Te Whatu Ora - Community Referred Radiology Programme",
+  "description": "Published structure and wording of the CT Head (Adult) national referral criteria (pp.20-22), each criterion bound to a named expression in the CQL library CRR_CTHead_Adult. NOT CLINICALLY REVIEWED (staging demonstration only, AD-35). This resource carries what the Criteria Viewer renders (grouping, published text, timeframe, badges, guidance, footnotes, sources); the Library carries the logic; the Questionnaire carries the input contract.",
+  "useContext": [
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "focus"
+      },
+      "valueCodeableConcept": {
+        "text": "Community-referred radiology, adult"
+      }
+    },
+    {
+      "code": {
+        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+        "code": "user"
+      },
+      "valueCodeableConcept": {
+        "text": "GP & UC Doctors / NPs"
+      }
+    }
+  ],
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "urn:iso:std:iso:3166",
+          "code": "NZ"
+        }
+      ]
+    }
+  ],
+  "approvalDate": "2026-04-09",
+  "effectivePeriod": {
+    "start": "2026-04-09",
+    "end": "2028-04-09"
+  },
+  "author": [
+    {
+      "name": "System Design Manager Community Radiology"
+    }
+  ],
+  "endorser": [
+    {
+      "name": "National Clinical Governance Group"
+    }
+  ],
+  "relatedArtifact": [
+    {
+      "type": "derived-from",
+      "label": "National Community Referral Criteria for Imaging (Part I), National ID 15372, v2.0, published 09/04/2026, pp.20-22",
+      "citation": "Health New Zealand | Te Whatu Ora. National Community Referral Criteria for Imaging (Part I). September 2025 (Updated April 2026).",
+      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf"
+    },
+    {
+      "type": "documentation",
+      "label": "Local HealthPathways page for this exam (domain supplied by region; page ID common to all instances). Page ID 15616 is taken from the published JSON's Auckland-region link (pdf-criteria-all.json healthPathwaysUrl) and is not verified as common to all instances.",
+      "extension": [
+        {
+          "url": "http://crr.health.nz/fhir/StructureDefinition/healthpathways-page-id",
+          "valueString": "15616"
+        }
+      ]
+    },
+    {
+      "type": "citation",
+      "label": "Appropriateness of general practitioner imaging requests for transient ischaemic attack patients: secondary analysis of a cluster randomised controlled trial (csiro.au)"
+    },
+    {
+      "type": "citation",
+      "label": "Verbal advice Professor. Anna Ranta as SME"
+    },
+    {
+      "type": "citation",
+      "label": "ANZ Living Clinical Guidelines for Stroke Management - Early assessment and diagnosis v6.8"
+    },
+    {
+      "type": "citation",
+      "label": "Right Decision Services HCI NHS Scotland *1"
+    },
+    {
+      "type": "citation",
+      "label": "i-Refer"
+    },
+    {
+      "type": "citation",
+      "label": "OCCP Glioma (AU)"
+    },
+    {
+      "type": "citation",
+      "label": "NICE 2019"
+    },
+    {
+      "type": "citation",
+      "label": "ACR Appropriateness criteria"
+    },
+    {
+      "type": "citation",
+      "label": "HealthPathway Canterbury"
+    },
+    {
+      "type": "citation",
+      "label": "HP"
+    },
+    {
+      "type": "citation",
+      "label": "3D HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "Canterbury HealthPathways"
+    },
+    {
+      "type": "citation",
+      "label": "MoH Comm Rad Criteria 2015"
+    }
+  ],
+  "library": [
+    "http://crr.health.nz/fhir/Library/CRR_CTHead_Adult"
+  ],
+  "action": [
+    {
+      "id": "guidance",
+      "title": "Guidance: Transient Ischaemic Attack (TIA)",
+      "description": "For clinically suspected anterior circulation events, and if the patient is a potential candidate for carotid endarterectomy, carotid angiography (CTA)or if unavailable, carotid ultrasound, should be added to the CT head exam.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "guidance"
+            }
+          ]
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.20 — Guidance: Transient Ischaemic Attack (TIA), in the Acute row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acute-48h",
+      "title": "Acute: Within 48 hours",
+      "priority": "asap",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "A48",
+              "display": "Acute - within 48 hours"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets Acute 48h Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.20 — Acute: Within 48 hours row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 20
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "a-tia",
+          "title": "TIA, where it is within 7 days of the TIA episode and",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "tia-stroke",
+                    "display": "TIA / stroke"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway Acute: TIA"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — Acute row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "REVIEW Q2: 'within 7 days' encoded as 7 days or fewer since the episode."
+            }
+          ],
+          "action": [
+            {
+              "id": "a-tia-within-7d",
+              "title": "TIA, within 7 days of the TIA episode",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "mandatory",
+                      "display": "MANDATORY"
+                    }
+                  ]
+                }
+              ],
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "tia-stroke",
+                        "display": "TIA / stroke"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "TIA Within 7 Days"
+                  }
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#redflag.suspectedTIA"
+                  ]
+                },
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.tiaDaysSinceEpisode"
+                  ]
+                }
+              ],
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.20 — Acute row, bullet 1",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "a-tia-routes",
+              "title": "AND one of the following",
+              "selectionBehavior": "any",
+              "action": [
+                {
+                  "id": "a-tia-r1",
+                  "title": "CT +/-CTA recommended by HNZ neurologist / stroke specialist or physician.",
+                  "code": [
+                    {
+                      "coding": [
+                        {
+                          "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                          "code": "gateway",
+                          "display": "GATEWAY"
+                        }
+                      ]
+                    }
+                  ],
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                            "code": "tia-stroke",
+                            "display": "TIA / stroke"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "condition": [
+                    {
+                      "kind": "applicability",
+                      "expression": {
+                        "language": "text/cql-identifier",
+                        "expression": "TIA Route 1: Recommended By Neurologist Stroke Specialist Or Physician"
+                      }
+                    }
+                  ],
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.strokeSpecialistRecommended"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.adviserNameRole"
+                      ]
+                    }
+                  ],
+                  "documentation": [
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.20 — Acute row, bullet 1, sub-bullet 1",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 20
+                        }
+                      ]
+                    },
+                    {
+                      "type": "documentation",
+                      "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+                    }
+                  ]
+                },
+                {
+                  "id": "a-tia-r2",
+                  "title": "Patient has no high-risk features *1 and assessed as suitable for being managed in the community AND completion of the BPAC TIA decision support tool indicates CT head +/- carotid imaging is appropriate.",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                            "code": "tia-stroke",
+                            "display": "TIA / stroke"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "condition": [
+                    {
+                      "kind": "applicability",
+                      "expression": {
+                        "language": "text/cql-identifier",
+                        "expression": "TIA Route 2: No High-Risk Features, Community Management, BPAC Tool"
+                      }
+                    }
+                  ],
+                  "selectionBehavior": "all",
+                  "documentation": [
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.20 — Acute row, bullet 1, sub-bullet 2",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 20
+                        }
+                      ]
+                    },
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.21 — footnote *1 (continues p.22)",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 21
+                        }
+                      ]
+                    },
+                    {
+                      "type": "documentation",
+                      "display": "*1 High risk features for TIA: Less than 59 years old; ABCD2 greater than 4; Crescendo TIAs; Atrial fibrillation; On anticoagulants; Severe or prolonged deficit (hemiparesis longer than 60 minutes); Known carotid artery stenosis."
+                    },
+                    {
+                      "type": "documentation",
+                      "display": "REVIEW Q1: 'Less than 59 years old' is encoded literally (age under 59 is a high-risk feature)."
+                    }
+                  ],
+                  "action": [
+                    {
+                      "id": "a-tia-r2-no-high-risk",
+                      "title": "No high-risk features *1",
+                      "input": [
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#patient.age"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#workup.abcd2Score"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.crescendoTIA"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.atrialFibrillation"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.anticoagulantTherapy"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.tiaSevereOrProlongedDeficit"
+                          ]
+                        },
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.carotidStenosis"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "a-tia-r2-community",
+                      "title": "Assessed as suitable for being managed in the community",
+                      "input": [
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#workup.suitableForCommunityManagement"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "a-tia-r2-bpac",
+                      "title": "Completion of the BPAC TIA decision support tool indicates CT head +/- carotid imaging is appropriate",
+                      "code": [
+                        {
+                          "coding": [
+                            {
+                              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                              "code": "gateway",
+                              "display": "GATEWAY"
+                            }
+                          ]
+                        }
+                      ],
+                      "input": [
+                        {
+                          "type": "QuestionnaireResponse",
+                          "profile": [
+                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.decisionSupportToolCompleted"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "a-tia-r3",
+                  "title": "Patient is unable to access rapid specialist care.",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                      "valueCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                            "code": "tia-stroke",
+                            "display": "TIA / stroke"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "condition": [
+                    {
+                      "kind": "applicability",
+                      "expression": {
+                        "language": "text/cql-identifier",
+                        "expression": "TIA Route 3: Unable To Access Rapid Specialist Care"
+                      }
+                    }
+                  ],
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.rapidSpecialistCareAccessible"
+                      ]
+                    }
+                  ],
+                  "documentation": [
+                    {
+                      "type": "documentation",
+                      "label": "National criteria v2.0, p.20 — Acute row, bullet 1, sub-bullet 3",
+                      "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+                      "extension": [
+                        {
+                          "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                          "valueInteger": 20
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "a-focal",
+          "title": "Focal neurologic signs - consider seeking neurologist advice first",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "tia-stroke",
+                    "display": "TIA / stroke"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway Acute: Focal Neurologic Signs"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.focalNeurologicalSigns"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — Acute row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "REVIEW Q16: 'consider seeking neurologist advice first' is advice, not a condition."
+            }
+          ]
+        },
+        {
+          "id": "a-palliative-seizure",
+          "title": "Seizure in palliative care setting and result may change management.",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "seizure",
+                    "display": "Seizure"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway Acute: Seizure In Palliative Care"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.seizure"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.palliativeCare"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#workup.resultMayChangeManagement"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — Acute row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "REVIEW Q4: a seizure with a *4 risk factor (e.g. aged older than 40) is redirected to Neurology phone advice before this row is reached."
+            }
+          ]
+        },
+        {
+          "id": "a-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for same or next day CT scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway Acute: Specialist Advises Same Or Next Day CT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.acuteImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — Acute row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2-urgent",
+      "title": "P2 Urgent: Non-deferrable imaging or intervention that must be completed within 2 weeks of receiving referral.",
+      "priority": "urgent",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P2",
+              "display": "Urgent - within two weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P2 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.20 — P2 Urgent row (continues p.21)",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 20
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p2-headache",
+          "title": "Headaches: A change in the pattern of headaches, with a progressive increase in frequency or severity, especially in patients aged 50 years and older AND any of:",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "headache",
+                    "display": "Headache"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2: Headache"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — P2 Urgent row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "'especially in patients aged 50 years and older' and 'especially malignancy' are modifiers, not conditions (KI-05; matrix RP-000)."
+            }
+          ],
+          "action": [
+            {
+              "id": "p2-headache-pattern",
+              "title": "A change in the pattern of headaches, with a progressive increase in frequency or severity",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "mandatory",
+                      "display": "MANDATORY"
+                    }
+                  ]
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.headachePatternChangeProgressive"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-headache-any",
+              "title": "AND any of:",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "headache",
+                        "display": "Headache"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Any Headache Feature"
+                  }
+                }
+              ],
+              "selectionBehavior": "any",
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.20 — P2 Urgent row, bullet 1, sub-bullets",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 20
+                    }
+                  ]
+                }
+              ],
+              "action": [
+                {
+                  "id": "p2-headache-chronic-illness",
+                  "title": "chronic illness associated with potential cerebral complications or involvement, especially malignancy. The most likely cancers to metastasise to the brain are lung, breast, and melanoma.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.chronicIllnessWithCerebralInvolvement"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-headache-valsalva",
+                  "title": "exacerbated by coughing, sneezing, or Valsalva manoeuvre in a pattern not typical of a migraine.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.headacheWorseOnCoughSneezeValsalva"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-headache-nausea-vomiting",
+                  "title": "associated with persistent nausea and vomiting (i.e. not typical of a migraine or other primary headache)",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.headachePersistentNauseaVomiting"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-headache-neuro-deficit",
+                  "title": "objective neurological deficit causing disturbances of speech, or limb or facial weakness.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.neuroDeficitSpeechOrWeakness"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p2-cognitive",
+          "title": "Cognitive impairment with 1 or more features to suggest symptoms are secondary to a space-occupying lesion (SOL), bleed, or hydrocephalus *2:",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "cognitive-impairment",
+                    "display": "Cognitive impairment"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2: Cognitive Impairment With SOL Feature"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.20 — P2 Urgent row, bullet 2 (feature list continues p.21)",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=20",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 20
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.22 — footnote *2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=22",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 22
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*2 Features suggestive of underlying SOL, bleed, or hydrocephalus: Rapid cognitive decline over weeks; Presence of focal neurological signs; History of falls; Anticoagulant therapy; Gait ataxia or incontinence.; History of cancers with propensity to brain metastases (e.g. lung, melanoma, breast)"
+            },
+            {
+              "type": "documentation",
+              "display": "REVIEW Q7: the cancer list reads '– lung, melanoma, breast' here and '(e.g. lung, melanoma, breast)' in footnote *2."
+            }
+          ],
+          "action": [
+            {
+              "id": "p2-cognitive-impairment",
+              "title": "Cognitive impairment",
+              "code": [
+                {
+                  "coding": [
+                    {
+                      "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                      "code": "mandatory",
+                      "display": "MANDATORY"
+                    }
+                  ]
+                }
+              ],
+              "input": [
+                {
+                  "type": "QuestionnaireResponse",
+                  "profile": [
+                    "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.cognitiveImpairment"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "p2-cognitive-features",
+              "title": "1 or more features to suggest symptoms are secondary to a space-occupying lesion (SOL), bleed, or hydrocephalus *2",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                        "code": "cognitive-impairment",
+                        "display": "Cognitive impairment"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "condition": [
+                {
+                  "kind": "applicability",
+                  "expression": {
+                    "language": "text/cql-identifier",
+                    "expression": "Any SOL Feature"
+                  }
+                }
+              ],
+              "selectionBehavior": "any",
+              "documentation": [
+                {
+                  "type": "documentation",
+                  "label": "National criteria v2.0, p.21 — P2 Urgent row, bullet 2, feature list",
+                  "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+                  "extension": [
+                    {
+                      "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                      "valueInteger": 21
+                    }
+                  ]
+                }
+              ],
+              "action": [
+                {
+                  "id": "p2-sol-rapid-decline",
+                  "title": "Rapid cognitive decline over weeks",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.rapidCognitiveDecline"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-sol-focal-signs",
+                  "title": "Presence of focal neurological signs",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.focalNeurologicalSigns"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-sol-falls",
+                  "title": "History of falls",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.falls"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-sol-anticoagulant",
+                  "title": "Anticoagulant therapy",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.anticoagulantTherapy"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-sol-gait-incontinence",
+                  "title": "Gait ataxia or incontinence.",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.gaitAtaxia"
+                      ]
+                    },
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#redflag.bowelOrBladderIncontinence"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "p2-sol-cancer",
+                  "title": "History of cancers with propensity to brain metastases – lung, melanoma, breast",
+                  "input": [
+                    {
+                      "type": "QuestionnaireResponse",
+                      "profile": [
+                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.cancerWithBrainMetastasisPropensity"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p2-first-seizure",
+          "title": "First seizure in patient aged 21 years or older, where there is a clear history and the patient is low risk3, or where MRI (preferred first-line investigation) is not available, clear history, and low risk* or MRI not available",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "seizure",
+                    "display": "Seizure"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2: First Seizure"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.firstSeizure"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#patient.age"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.seizureClearHistory"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.seizureSingle"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.seizureUnprovokedOrSubstanceProvoked"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.returnedToNormalHealth"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.mriAvailable"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — P2 Urgent row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.22 — footnote *3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=22",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 22
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*3 Criteria for low-risk first seizure – all of the following must apply: Single seizure which is unprovoked, or provoked by a known substance (e.g. drug or alcohol use); Patient has since returned to normal health; There are none of the following risk factors for intracranial pathology: Head injury; Aged older than 40; Fever, systemic symptoms; History of anticoagulation, malignancy; New focal neurologic deficit; Focal seizure; Persistent altered mental state; Persistent headache"
+            },
+            {
+              "type": "documentation",
+              "display": "REVIEW Q3: the printed bullet repeats a clause; encoded as the union of the printed clauses: (clear history and low risk) or MRI not available."
+            }
+          ]
+        },
+        {
+          "id": "p2-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for urgent CT scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P2: Specialist Advises Urgent CT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.urgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — P2 Urgent row, bullet 4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p4-deferrable",
+      "title": "P4 Deferrable. If capacity is constrained could wait up to 6-12 weeks from receiving referral.",
+      "priority": "routine",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "indication"
+            }
+          ]
+        },
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/priority-code",
+              "code": "P4",
+              "display": "Deferrable - within 6-12 weeks"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Meets P4 Criteria"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.21 — P4 Deferrable row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 21
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "p4-cognitive",
+          "title": "Cognitive impairment without any features suggestive of SOL, bleed, or hydrocephalus*2: and establishing the subtype diagnosis will alter management.",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "cognitive-impairment",
+                    "display": "Cognitive impairment"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P4: Cognitive Impairment Without SOL Features"
+              }
+            }
+          ],
+          "selectionBehavior": "all",
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.cognitiveImpairment"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#workup.subtypeDiagnosisAltersManagement"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — P4 Deferrable row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.22 — footnote *2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=22",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 22
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*2 Features suggestive of underlying SOL, bleed, or hydrocephalus: Rapid cognitive decline over weeks; Presence of focal neurological signs; History of falls; Anticoagulant therapy; Gait ataxia or incontinence.; History of cancers with propensity to brain metastases (e.g. lung, melanoma, breast)"
+            }
+          ]
+        },
+        {
+          "id": "p4-advice",
+          "title": "Secondary care clinician or Primary Care Radiology Liaison (PCRL) or radiologist advises referral for non-urgent, CT scan.",
+          "code": [
+            {
+              "coding": [
+                {
+                  "system": "http://crr.health.nz/fhir/CodeSystem/criteria-badge",
+                  "code": "gateway",
+                  "display": "GATEWAY"
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/indication-theme",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "http://crr.health.nz/fhir/CodeSystem/indication-theme",
+                    "code": "specialist-endorsed-referral",
+                    "display": "Specialist-endorsed referral"
+                  }
+                ]
+              }
+            }
+          ],
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Pathway P4: Specialist Advises Non-Urgent CT"
+              }
+            }
+          ],
+          "input": [
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.nonUrgentImagingRecommended"
+              ]
+            },
+            {
+              "type": "QuestionnaireResponse",
+              "profile": [
+                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.adviserNameRole"
+              ]
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — P4 Deferrable row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "If the referral was discussed with and endorsed by any secondary care clinician, radiologist, or primary care radiology liaison, always include the name and role of that person in the referral."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alternative-management",
+      "title": "Alternative management or HealthPathway recommended.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "alternative-management"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Alternative Management Recommended"
+          }
+        }
+      ],
+      "selectionBehavior": "any",
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.21 — Alternative management or HealthPathway recommended row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 21
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "am-prolactinoma",
+          "title": "Suspected Prolactinoma – request non-acute assessment by the appropriate secondary care specialist.",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Suspected Prolactinoma"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — Alternative management row, bullet 1",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "am-seizure-risk-factors",
+          "title": "Seizures with risk factors for intracranial pathology4 – seek Neurology phone advice",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Seizures With Risk Factors For Intracranial Pathology"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — Alternative management row, bullet 2",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.22 — footnote *4",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=22",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 22
+                }
+              ]
+            },
+            {
+              "type": "documentation",
+              "display": "*4 Risk factors for intracranial pathology: Head injury; Aged older than 40; Fever, systemic symptoms; History of anticoagulation, malignancy; New focal neurologic deficit; Focal seizure; Persistent altered mental state; Persistent headache"
+            }
+          ]
+        },
+        {
+          "id": "am-poorly-controlled-seizures",
+          "title": "Poorly controlled or recurrent seizures – follow the appropriate pathway:",
+          "condition": [
+            {
+              "kind": "applicability",
+              "expression": {
+                "language": "text/cql-identifier",
+                "expression": "Redirect: Poorly Controlled Or Recurrent Seizures"
+              }
+            }
+          ],
+          "documentation": [
+            {
+              "type": "documentation",
+              "label": "National criteria v2.0, p.21 — Alternative management row, bullet 3",
+              "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+              "extension": [
+                {
+                  "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+                  "valueInteger": 21
+                }
+              ]
+            }
+          ],
+          "action": [
+            {
+              "id": "am-pathway-epilepsy-adults",
+              "title": "Epilepsy in Adults"
+            },
+            {
+              "id": "am-pathway-epilepsy-women",
+              "title": "Epilepsy in Women"
+            },
+            {
+              "id": "am-pathway-first-seizure-adults",
+              "title": "First Seizure in Adults"
+            },
+            {
+              "id": "am-pathway-seizure-palliative",
+              "title": "Seizure in Palliative Care"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "not-funded",
+      "title": "Community-referred radiology not routinely funded by Health New Zealand in these clinical scenarios. Imaging may still be appropriate, and the patient may wish to consider privately funding imaging.",
+      "code": [
+        {
+          "coding": [
+            {
+              "system": "http://crr.health.nz/fhir/CodeSystem/criteria-block",
+              "code": "not-funded"
+            }
+          ]
+        }
+      ],
+      "condition": [
+        {
+          "kind": "applicability",
+          "expression": {
+            "language": "text/cql-identifier",
+            "expression": "Not Routinely Funded"
+          }
+        }
+      ],
+      "documentation": [
+        {
+          "type": "documentation",
+          "label": "National criteria v2.0, p.21 — Not routinely funded row",
+          "url": "https://crr.health.nz/criteria/National_Community_Referral_Criteria_for_Imaging_Part_I_v2.0.pdf#page=21",
+          "extension": [
+            {
+              "url": "http://crr.health.nz/fhir/StructureDefinition/source-page",
+              "valueInteger": 21
+            }
+          ]
+        }
+      ],
+      "action": [
+        {
+          "id": "nf-advanced-dementia",
+          "title": "Established, advanced dementia of more than 2 years duration, no unexpected change in disease progression and establishing the subtype will not alter management."
+        }
+      ]
+    }
+  ]
+}

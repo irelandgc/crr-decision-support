@@ -1,0 +1,475 @@
+{
+  "add": [
+    {
+      "linkId": "patient.currentSmoker",
+      "text": "Current smoker",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 2 ('Aged over 55 years’ old, current smoker'). Current smoking only; ex-smoking is a different concept (footnote *2 'Current or past smoker' is not encoded)."
+    },
+    {
+      "linkId": "symptom.dyspnoeaUnexplainedNewOrWorsening",
+      "text": "Unexplained, new, or worsening dyspnoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.coughUnexplainedOver3Weeks",
+      "text": "Unexplained cough, persisting and worsening for more than 3 weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.chestShoulderPainUnexplainedOver3Weeks",
+      "text": "Unexplained chest and/or shoulder pain persisting for more than 3 weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list. X-ray Chest p62 prints this item without 'persisting for more than 3 weeks' - a different concept there."
+    },
+    {
+      "linkId": "symptom.chronicRespiratorySymptomChangeOver3Weeks",
+      "text": "Unexplained changes in existing symptoms in patients with underlying chronic respiratory problems persisting for more than 3 weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.hoarsenessUnexplainedOver3Weeks",
+      "text": "Unexplained hoarseness persisting for more than 3 weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.chestInfectionsRepeatedOrUnresolved",
+      "text": "Repeated / or unresolved chest infections",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.haemoptysisPersistentUnexplained",
+      "text": "Persistent, unexplained haemoptysis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list. Distinct from redflag.haemoptysisPresent (haemoptysis of any kind), which it implies."
+    },
+    {
+      "linkId": "symptom.weightAndAppetiteLossOver3Weeks",
+      "text": "Unexplained weight loss and loss of appetite persisting for more than 3 weeks",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list. Not weightloss.present: this item also requires loss of appetite and a duration of more than 3 weeks."
+    },
+    {
+      "linkId": "symptom.abnormalChestSignsOver3Weeks",
+      "text": "Un-investigated/unexplained abnormal chest signs persisting for more than 3 weeks. (e.g. suspected pleural effusion)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.supraclavicularLymphadenopathyNew",
+      "text": "New, supraclavicular lymphadenopathy",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.paraneoplasticFeatures",
+      "text": "Features suggestive of paraneoplastic syndromes. e.g. hypercalcaemia, hypertrophic osteoarthropathy with finger (and toe) clubbing and painful swollen joints",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list."
+    },
+    {
+      "linkId": "symptom.cervicalLymphadenopathyOver3WeeksOver1cm",
+      "text": "New cervical lymphadenopathy persisting for more than 3 weeks and nodes are more than 1 cm in diameter in a patient with other lung cancer symptoms or signs or risk factors",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "Footnote *1 item on p15 (\"Concerning symptoms and signs for lung cancer\"). Text is the item as printed; the item's own duration / size qualifiers are part of the concept (CT Chest REVIEW Q4). X-ray Chest - Adult p62-63 prints a near-identical list. 'risk factors' refers to footnote *2, which is judged within this indicator rather than encoded separately."
+    },
+    {
+      "linkId": "symptom.newOnset",
+      "text": "The concerning symptoms or signs are of new onset",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 2 sub-bullet 1 ('One or more concerning, new onset, symptoms /signs for lung cancer'). Applies to the presenting symptoms/signs."
+    },
+    {
+      "linkId": "symptom.persistentSixWeeksDespiteTreatment",
+      "text": "Symptoms or signs persistent for six weeks despite appropriate treatment",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 2 sub-bullet 2. 'for six weeks' read as at least six weeks (CT Chest REVIEW Q3)."
+    },
+    {
+      "linkId": "symptom.haemoptysisWithoutChestInfection",
+      "text": "Haemoptysis occurred in the absence of chest infection",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 1 parenthetical, first half (CT Chest REVIEW Q5)."
+    },
+    {
+      "linkId": "symptom.nonSpecificSymptomsConcerningForCancer",
+      "text": "Persistent, non-specific, non-localising symptoms and signs which are concerning for underlying cancer",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "attestationWording": {
+        "referrer": "Does the patient have persistent, non-specific, non-localising symptoms or signs that you are concerned are due to an underlying cancer?",
+        "triager": "Does the referral describe persistent, non-specific, non-localising symptoms or signs concerning for underlying cancer?"
+      },
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "CT Chest alternative-management bullet 2 (redirect to the CT Chest/Abdomen/Pelvis HealthPathway). Proposed for the AD-17 attestation category: 'concerning for underlying cancer' is the referrer's clinical impression (CT Chest REVIEW Q14). '(e.g. weight loss, fatigue)' is illustrative and not part of the text."
+    },
+    {
+      "linkId": "workup.upperAirwayBleedingExcluded",
+      "text": "Upper respiratory tract causes, including bleeding from the nasopharynx, sinuses or oral cavity, have been excluded",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 1 parenthetical, second half (CT Chest REVIEW Q5)."
+    },
+    {
+      "linkId": "workup.initialInvestigationsCauseNotFound",
+      "text": "Initial investigations fail to identify a cause",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 1 ('initial investigations including chest x-ray fail to identify a cause'), P2 bullet 2 ('unexplained despite initial investigations including chest x-ray and blood tests') and alternative-management bullet 2 (p15). Which investigations were done is recorded by workup.cxr / workup.bloods."
+    },
+    {
+      "linkId": "workup.cxrNormal",
+      "text": "Chest x-ray is normal",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "CT Chest alternative-management bullet 1."
+    },
+    {
+      "linkId": "workup.cxrIndeterminateAbnormality",
+      "text": "Indeterminate abnormality on chest x-ray which raises the possibility of a lung cancer (e.g. bulky hilum)",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 3. '(e.g. bulky hilum)' is illustrative (KI-05). See CT Chest REVIEW Q7 on isolated nodules."
+    },
+    {
+      "linkId": "workup.cxrPersistentConsolidationFollowUp",
+      "text": "Persistent consolidation on chest x-ray done as a 6-week follow-up study",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 4."
+    },
+    {
+      "linkId": "workup.cxrIsolatedPulmonaryNodule",
+      "text": "Isolated pulmonary nodule identified on a chest x-ray",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P3 bullet 1. Printed 'Isolated, pulmonary nodule'."
+    },
+    {
+      "linkId": "workup.cxrNoduleNotConfirmedBenign",
+      "text": "The nodule cannot be confirmed as benign from x-ray appearances alone",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P3 bullet 1."
+    },
+    {
+      "linkId": "workup.radiologyReportRecommendsImaging",
+      "text": "The radiology report recommends the requested imaging",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullets 3 and 4 ('CT chest is recommended in the Radiology report') and P3 bullet 1 ('referral for CT chest is recommended in the Radiology report'). Worded for the requested exam, like advice.urgentImagingRecommended, so other sites can reuse it (CT Chest REVIEW Q6)."
+    },
+    {
+      "linkId": "workup.rePresentation",
+      "text": "The patient is re-presenting with these symptoms or signs (this is not the initial presentation)",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "CT Chest alternative-management bullet 1 ('Patient re-presents'). Bullet 3's 'Initial presentation' is the same concept negated, but bullet 3 is not evaluated (CT Chest REVIEW Q8)."
+    },
+    {
+      "linkId": "workup.ctIncidentalNoduleFollowUp",
+      "text": "The request is for follow-up of a nodule discovered incidentally on a CT chest scan",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "CT Chest alternative-management bullet 4."
+    },
+    {
+      "linkId": "workup.ctNoduleReportConfirmsBenign",
+      "text": "The radiology report confirms the nodule is benign based on CT appearance and no follow-up is required",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p15"
+        }
+      ],
+      "notes": "CT Chest alternative-management bullet 4 ('unless radiology report confirms benign ...'). Examples printed: intrapulmonary lymph node, benign pattern of calcification (illustrative, KI-05)."
+    },
+    {
+      "linkId": "advice.urgentStagingCtRecommended",
+      "text": "A secondary care clinician or radiologist advises referral for urgent staging CT chest/liver for work up of a suspicious lesion on chest x-ray",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 5. Not advice.urgentImagingRecommended: the bullet names staging CT chest/liver and omits PCRL."
+    },
+    {
+      "linkId": "advice.localHealthPathwayAdvisesCt",
+      "text": "CT is the advised next step on the local HealthPathway, as opposed to referral to secondary care or PET-CT",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "ct-chest-adult",
+          "page": "p14"
+        }
+      ],
+      "notes": "CT Chest P2 bullet 5 (with footnote *4 'Local pathways–direct to PET CT', p16). Answered by the referrer for their district; the criterion itself is national."
+    }
+  ],
+  "addSite": [
+    {
+      "linkId": "patient.age",
+      "page": "p14"
+    },
+    {
+      "linkId": "workup.bloods",
+      "page": "p14"
+    },
+    {
+      "linkId": "advice.nonUrgentImagingRecommended",
+      "page": "p14"
+    }
+  ],
+  "addAttestation": [
+    "symptom.nonSpecificSymptomsConcerningForCancer"
+  ]
+}

@@ -1,0 +1,1201 @@
+{
+  "add": [
+    {
+      "linkId": "patient.postmenopausal",
+      "text": "Post-menopausal (no period for twelve consecutive months)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46, p47, p48, p49"
+        }
+      ],
+      "notes": "Extraction hint: false = pre-menopausal (still having periods, including perimenopausal). Used for every pre-/post-menopausal condition in US Pelvis - Adult (P3 benign endometrial cells; S2/S3 and not-funded cyst rows). The p46 wording is the definition used."
+    },
+    {
+      "linkId": "patient.perimenopausal",
+      "text": "Perimenopausal",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.mhtContinuousCombined",
+      "text": "On continuous combined menopause hormone therapy (MHT)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.mhtCyclicalCombined",
+      "text": "On combined cyclical menopause hormone therapy (MHT)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.mhtMonthsSinceStart",
+      "text": "Months since starting menopause hormone therapy (MHT)",
+      "type": "decimal",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46, p49"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.maoriOrPacificEthnicity",
+      "text": "Māori or Pacific ethnicity",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ],
+      "notes": "US Pelvis footnote *5 (risk factors for EH/EC), 'Priority group and equity considerations'. Counted as an EH/EC risk factor at US Pelvis - Adult under REVIEW Q (equity provision, KI-11)."
+    },
+    {
+      "linkId": "patient.bmi",
+      "text": "Body mass index (BMI)",
+      "type": "decimal",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.pcosDiagnosed",
+      "text": "Polycystic ovary syndrome (PCOS)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ],
+      "notes": "A PCOS diagnosis as an EH/EC risk factor (footnote *5). Distinct from symptom.pcosSuspected (P4: suspected, only one Rotterdam criterion)."
+    },
+    {
+      "linkId": "patient.chronicAnovulation",
+      "text": "Chronic anovulation (e.g. fewer than 4 menstrual cycles in 12 months)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.nulliparous",
+      "text": "Nulliparous",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.earlyMenarcheOrLateMenopause",
+      "text": "Early menarche (variably defined as earlier than 10 to 12 years of age) or late menopause (after age 55 years)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.estrogenSecretingTumour",
+      "text": "Estrogen-secreting tumour",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.unopposedEstrogenMhtLongStanding",
+      "text": "Long-standing unopposed estrogen menopause hormone therapy (MHT)",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.tamoxifenTherapy",
+      "text": "Tamoxifen therapy",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p50"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.diabetes",
+      "text": "Diabetes mellitus",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p51"
+        }
+      ]
+    },
+    {
+      "linkId": "patient.familyHistoryEndometrialOvarianBreastBowelCancer",
+      "text": "Family history of endometrial, ovarian, breast, or bowel cancer",
+      "type": "boolean",
+      "group": "patient",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p51"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.ironDeficiencyAnaemia",
+      "text": "Iron deficiency anaemia (Hb less than 100)",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p51"
+        }
+      ],
+      "notes": "The published risk factor carries its threshold in parentheses; one boolean, the parenthetical in the text."
+    },
+    {
+      "linkId": "lab.urineHcg.value",
+      "text": "Urine HCG result (IU) on testing at 14 days post-procedure, miscarriage, or early medical abortion (EMA)",
+      "type": "decimal",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ],
+      "notes": "Unit as printed ('IU'); no unit is asserted on the answer (KI-47 pattern)."
+    },
+    {
+      "linkId": "lab.serumBhcg.remainsHigh",
+      "text": "Serial serum bHCG remains high after early medical abortion (EMA) or miscarriage",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.ca125.value",
+      "text": "Ca-125 result (units/mL)",
+      "type": "decimal",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.cytology.atypicalEndometrialCells",
+      "text": "Atypical (AG2) endometrial cells reported on cervical screening cytology",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.cytology.benignEndometrialCells",
+      "text": "Benign-appearing endometrial cells reported on cervical smear",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46, p49"
+        }
+      ]
+    },
+    {
+      "linkId": "lab.androgens.significantlyRaised",
+      "text": "Significantly raised androgens",
+      "type": "boolean",
+      "group": "lab",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.acutelyUnwellSuspectedGynaeCause",
+      "text": "Acutely unwell from a suspected gynaecological cause",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p44"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.iudStringsNotVisible",
+      "text": "IUD strings missing and not visible on examination",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.iudFragmentRetained",
+      "text": "IUD broke on removal attempt and only a fragment was removed",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.iudPerforationSymptoms",
+      "text": "Symptoms suggestive of possible IUD perforation (e.g. cramping pain, discharge, unexplained bleeding)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p47"
+        }
+      ],
+      "notes": "Extraction hint: false = the patient is asymptomatic. One concept, two roles (KI-01): true at Acute 24h (p45), false ('patient is asymptomatic') at P3 (p47)."
+    },
+    {
+      "linkId": "symptom.ongoingPregnancySuspectedPostAbortionOrMiscarriage",
+      "text": "Suspected ongoing pregnancy more than 14 days post abortion or miscarriage",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pelvicMassPalpable",
+      "text": "Clinically palpable pelvic mass on examination",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46, p48"
+        }
+      ],
+      "notes": "One concept for 'pelvic mass on examination', 'no palpable pelvic mass', 'a pelvic mass is suspected on examination', 'pelvic mass' and 'in the absence of a clinically palpable mass' (REVIEW Q at US Pelvis - Adult)."
+    },
+    {
+      "linkId": "symptom.pelvicMassSuspiciousOfCancer",
+      "text": "Pelvic mass is suspicious of cancer",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46"
+        }
+      ],
+      "notes": "Extraction hint: false = low suspicion of cancer."
+    },
+    {
+      "linkId": "symptom.postmenopausalBleeding",
+      "text": "Postmenopausal bleeding (vaginal bleeding after more than 12 months' amenorrhoea around the expected age of menopause)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.vaginalBleedingPersistent",
+      "text": "Persistent vaginal bleeding",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.ovarianCancerSymptomsPersistent",
+      "text": "New abdominal or pelvic symptoms warranting consideration of ovarian cancer, present on a persistent or frequent basis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46, p49"
+        }
+      ],
+      "notes": "Footnote *2 lists the presentations (persistent distension or bloating; early satiety or loss of appetite; pelvic or abdominal pain without a known cause; increased urinary urgency or frequency; irritable bowel symptoms; unexplained weight loss or fatigue). Not decomposed (REVIEW Q at US Pelvis - Adult)."
+    },
+    {
+      "linkId": "symptom.ovarianCancerSymptomsWeeks",
+      "text": "Weeks the symptoms warranting consideration of ovarian cancer have been present",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.abnormalUterineBleeding",
+      "text": "Abnormal uterine bleeding (AUB)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46, p49, p50"
+        }
+      ],
+      "notes": "Footnote *3 defines AUB (volume, regularity, duration, frequency, intermenstrual, post-coital, unscheduled bleeding; excludes postmenopausal bleeding)."
+    },
+    {
+      "linkId": "symptom.irregularBleedingOngoing",
+      "text": "Ongoing irregular bleeding",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.bleedingOutsideProgestogenWithdrawal",
+      "text": "Bleeding outside the time of progestogen withdrawal",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.gynaeSymptomatic",
+      "text": "Symptomatic (e.g. intermenstrual, post-coital, irregular or heavy bleeding)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46, p49"
+        }
+      ],
+      "notes": "Extraction hint: false = asymptomatic."
+    },
+    {
+      "linkId": "symptom.examinationAbnormality",
+      "text": "Abnormality on examination",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.ovarianCystSuspected",
+      "text": "Suspected ovarian cyst",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pelvicPainWeeks",
+      "text": "Weeks of pelvic pain",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46, p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pelvicPainUnilateral",
+      "text": "Unilateral pelvic pain",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pelvicTendernessUnilateral",
+      "text": "Unilateral pelvic tenderness",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pelvicPainUnrelatedToMenstrualCycle",
+      "text": "Pelvic pain unrelated to menstrual cycle",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pid",
+      "text": "Pelvic inflammatory disease (PID)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47, p48"
+        }
+      ],
+      "notes": "Extraction hint: true = PID suspected or diagnosed; false = PID excluded as the cause of the pain as per local PID HealthPathway. One concept, two roles (KI-01): redirect when present (p48), required excluded at P3 pelvic pain (p47)."
+    },
+    {
+      "linkId": "symptom.primaryAmenorrhoea",
+      "text": "Primary amenorrhoea (absence of menarche by age 16 years, or age 14 years if absent secondary sexual characteristics)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.secondaryDysmenorrhoeaNewOnset",
+      "text": "New onset (secondary) dysmenorrhoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.dysmenorrhoeaDebilitatingPainPersists",
+      "text": "Debilitating dysmenorrhoea pain persists",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.primaryDysmenorrhoea",
+      "text": "Primary dysmenorrhoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.pcosSuspected",
+      "text": "Polycystic ovary syndrome (PCOS) suspected",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.hyperandrogenism",
+      "text": "Hyperandrogenism",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ],
+      "notes": "Rotterdam diagnostic criterion."
+    },
+    {
+      "linkId": "symptom.polycysticOvaries",
+      "text": "Polycystic ovaries",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ],
+      "notes": "Rotterdam diagnostic criterion."
+    },
+    {
+      "linkId": "symptom.irregularMenses",
+      "text": "Irregular menses",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ],
+      "notes": "Rotterdam diagnostic criterion."
+    },
+    {
+      "linkId": "symptom.knownFibroidSizeCm",
+      "text": "Size of known fibroid (cm)",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.fibroidSymptomaticAfterStartingMht",
+      "text": "Fibroid became symptomatic with pelvic pressure, back pain, dyspareunia, or urination difficulties after commencing MHT",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.ovarianCystORads2",
+      "text": "O-RADS 2 ovarian or adnexal cyst",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47, p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.ovarianCystSimple",
+      "text": "Simple ovarian cyst",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ],
+      "notes": "Extraction hint: false = non-simple."
+    },
+    {
+      "linkId": "symptom.ovarianCystSizeCm",
+      "text": "Ovarian cyst diameter (cm)",
+      "type": "decimal",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.ovarianCystSymptomatic",
+      "text": "Ovarian cyst or endometrioma is symptomatic",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48, p49"
+        }
+      ],
+      "notes": "Extraction hint: false = asymptomatic."
+    },
+    {
+      "linkId": "symptom.haemorrhagicCyst",
+      "text": "Haemorrhagic ovarian cyst",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47, p49"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.haemorrhagicCystTypicalAppearing",
+      "text": "Haemorrhagic cyst is typical-appearing",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.dermoidCystSuspected",
+      "text": "Suspected dermoid cyst",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.endometriomaSuspected",
+      "text": "Suspected endometrioma",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.endometrialPolypIncidental",
+      "text": "Asymptomatic endometrial polyp(s) detected as an incidental finding on ultrasound",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.rpocSuspected",
+      "text": "Suspected retained products of conception (RPOC)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.bleedingPersistentOrHeavyPostAbortionOrMiscarriage",
+      "text": "Persistent or heavy bleeding after abortion or miscarriage",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.endometriosisSuspected",
+      "text": "Suspected endometriosis",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.cervicalPolyp",
+      "text": "Cervical polyp(s)",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.secondaryAmenorrhoea",
+      "text": "Secondary amenorrhoea",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p48"
+        }
+      ]
+    },
+    {
+      "linkId": "symptom.erraticUnscheduledBleedingOnMht",
+      "text": "Erratic, unscheduled bleeding after starting MHT",
+      "type": "boolean",
+      "group": "symptom",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.nonUterineBleedingCausesExcluded",
+      "text": "Non-uterine (lower genital tract) causes of bleeding have been excluded",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45, p46, p50"
+        }
+      ],
+      "notes": "Footnote *4 lists the non-uterine causes."
+    },
+    {
+      "linkId": "workup.aubFirstLineTreatmentTrialled",
+      "text": "First-line treatment for abnormal uterine bleeding (AUB) has been trialled",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.aubFirstLineTreatmentMonths",
+      "text": "Months first-line treatment for abnormal uterine bleeding (AUB) has been trialled",
+      "type": "decimal",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.aubFirstLineTreatmentResponded",
+      "text": "Responded to first-line treatment for abnormal uterine bleeding (AUB)",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.increasedProgestogenTrialled",
+      "text": "A trial of increased progestogen has been given",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.recentlyInvestigated",
+      "text": "The patient has been recently investigated for these symptoms",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p46"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.dysmenorrhoeaMedicalManagementMonths",
+      "text": "Months of medical management for dysmenorrhoea (as per local Dysmenorrhoea HealthPathway)",
+      "type": "decimal",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.followUpScan",
+      "text": "The request is a follow-up scan of a known finding",
+      "type": "boolean",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47, p48, p49"
+        }
+      ]
+    },
+    {
+      "linkId": "workup.followUpIntervalMonths",
+      "text": "Follow-up interval (months) according to the ACR published table or ACR mobile phone app",
+      "type": "decimal",
+      "group": "workup",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47, p48"
+        }
+      ]
+    },
+    {
+      "linkId": "imaging.any.sinceSymptomOnset",
+      "text": "Imaging has been done since the onset of symptoms",
+      "type": "boolean",
+      "group": "imaging",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p45"
+        }
+      ],
+      "notes": "Window 'sinceSymptomOnset' is outside the _convention.priorImaging list (withinNm / withinNy / moreThanNmAgo / ever); the published criterion is relative to symptom onset, not a fixed interval."
+    },
+    {
+      "linkId": "advice.deferrableImagingRecommended",
+      "text": "A secondary care clinician, Primary Care Radiology Liaison (PCRL) or radiologist advises referral for a deferrable, non-urgent scan",
+      "type": "boolean",
+      "group": "advice",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p47"
+        }
+      ],
+      "notes": "US Pelvis - Adult prints both a P3 'routine' gateway and a P4 'deferrable, non-urgent' gateway on p47; folding the P4 one into advice.nonUrgentImagingRecommended (vocabulary REVIEW Q26) would make the P4 gateway unreachable. Proposed as its own indicator; the vocabulary owner decides."
+    },
+    {
+      "linkId": "funding.routineFibroidFollowUp",
+      "text": "Routine follow-up of known fibroids",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.subfertility",
+      "text": "Imaging requested for subfertility",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    },
+    {
+      "linkId": "funding.ovarianCancerFamilyHistoryScreening",
+      "text": "Screening ultrasound scan for a family history of ovarian cancer",
+      "type": "boolean",
+      "group": "funding",
+      "status": "active",
+      "code": "PLACEHOLDER",
+      "sites": [
+        {
+          "examSite": "us-pelvis-adult",
+          "page": "p49"
+        }
+      ]
+    }
+  ],
+  "addSite": []
+}
