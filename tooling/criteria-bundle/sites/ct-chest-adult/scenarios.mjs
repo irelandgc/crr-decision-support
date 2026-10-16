@@ -192,6 +192,14 @@ export const scenarios = [
     expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [AM2], unconfirmedExclusions: [] },
   },
   {
+    id: "CTCH-S27-redirect-non-specific-over-gateway",
+    title: "Redirect: non-specific symptoms, work-up negative; wins over a PCRL advising urgent CT chest (P2 bullet 6, REVIEW Q10)",
+    answers: { "patient.age": 60, "symptom.nonSpecificSymptomsConcerningForCancer": true, "workup.cxr": true, "workup.bloods": true,
+      "workup.initialInvestigationsCauseNotFound": true, "advice.urgentImagingRecommended": true, ...ADVISER,
+      "workup.ctIncidentalNoduleFollowUp": false },
+    expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [AM2], unconfirmedExclusions: [] },
+  },
+  {
     id: "CTCH-S19-redirect-re-presents",
     title: "Redirect: re-presents with a *1 symptom and a normal CXR, every pathway definitively not met",
     answers: { "patient.age": 50, ...ALL_PATHWAYS_FALSE, "workup.rePresentation": true, "symptom.coughUnexplainedOver3Weeks": true,

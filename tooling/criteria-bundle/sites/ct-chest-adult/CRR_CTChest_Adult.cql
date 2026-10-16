@@ -69,9 +69,12 @@
     Q9  "concerning symptoms or signs" in the re-presentation redirect read as
         the *1 list (no *1 marker there).
     Q10 Redirect precedence over criteria (TA-013) where the non-specific
-        symptoms redirect and P2 bullet 2 both hold.
+        symptoms redirect and P2 bullet 2 both hold, and where it overrides a
+        specialist/radiologist-advice gateway (P2 bullets 5 and 6).
     Q11 Follow-up of incidental CT nodule: redirect unless the report confirms
-        benign and no follow-up is required; unknown benign status redirects.
+        benign and no follow-up is required; unknown benign status redirects;
+        the redirect also overrides specialist advice for non-urgent CT chest
+        (P3 bullet 2, scenario CTCH-S16).
     Q12 Māori equity provision in Guidance not encoded (no threshold stated).
     Q13 Adult gate (age > 15, Overview p4) applied; a child returns
         PAEDIATRIC_CRITERIA_APPLY though no CT Chest - Paediatric section exists.
@@ -80,6 +83,8 @@
     Q15 P3 returned when P3 is met and P2 is still indeterminate.
     Q16 P2 bullet 5 omits PCRL and names staging CT "chest/liver": encoded as
         printed, its own advice indicator.
+    Q17 "Initial investigations ... fail to identify a cause" is one indicator
+        shared by P2 bullets 1 and 2 and alternative management bullet 2.
 */
 
 library CRR_CTChest_Adult version '1.0.0'
@@ -173,6 +178,12 @@ define "Bloods Done": "Bool"('workup.bloods')
   investigations" (p14, P2 bullet 2) and "fail to identify a cause" (p15,
   alternative management bullet 2) are one concept: initial investigations have
   not explained the presentation. One indicator (KI-01).
+  REVIEW Q17 - The three presentations name different investigations (P2
+  bullet 1: "including chest x-ray"; P2 bullet 2: "including chest x-ray and
+  blood tests"; alternative management bullet 2: "including chest x-ray and
+  bloods"). The investigations themselves are separate indicators (workup.cxr,
+  workup.bloods); this one records only that they found no cause, and a
+  referral answers it once. Confirm one concept.
 */
 define "Initial Investigations Fail To Identify Cause": "Bool"('workup.initialInvestigationsCauseNotFound')
 
@@ -519,7 +530,8 @@ define "Redirect: Re-presents With Normal Chest X-ray, Criteria Not Met":
   REVIEW Q10 - Redirects take precedence over criteria (BRD TA-013, as CT CAP).
   A current smoker over 55 whose only *1 symptom is unexplained weight loss can
   meet P2 bullet 2 and this redirect at once; encoded as printed, the redirect
-  wins. Confirm.
+  wins. It also wins over a specialist/radiologist-advice gateway (P2 bullets 5
+  and 6) when both hold. Confirm.
   "(e.g. weight loss, fatigue)" is illustrative (KI-05).
 */
 define "Non-specific Symptoms Concerning For Cancer": "Bool"('symptom.nonSpecificSymptomsConcerningForCancer')
@@ -554,7 +566,9 @@ define "Redirect: Non-specific Symptoms, Initial Investigations Negative":
   REVIEW Q11 - The redirect applies unless the report confirms benign AND no
   follow-up is required; an unanswered benign-confirmation does not stop the
   redirect ("unless" makes referral to secondary care the default). Where the
-  report does confirm benign, no criterion here asks for CT either.
+  report does confirm benign, no criterion here asks for CT either. With
+  redirects taking precedence (TA-013), this redirect also overrides a
+  specialist advising non-urgent CT chest (P3 bullet 2; scenario CTCH-S16).
 */
 define "Incidental CT Nodule Follow-up": "Bool"('workup.ctIncidentalNoduleFollowUp')
 

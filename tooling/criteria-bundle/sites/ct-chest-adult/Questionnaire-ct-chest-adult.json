@@ -200,7 +200,7 @@
         },
         {
           "linkId": "workup.rePresentation",
-          "text": "The patient is re-presenting with these symptoms or signs (this is not the initial presentation)",
+          "text": "Patient re-presents with the symptoms or signs being referred (this is not the initial presentation)",
           "type": "boolean"
         },
         {

@@ -20,6 +20,7 @@
 | CTCH-S16-redirect-incidental-ct-nodule | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | CTCH-S17-incidental-ct-nodule-benign | strict | CRITERIA_NOT_MET | - | PASS |
 | CTCH-S18-redirect-non-specific-over-p2 | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
+| CTCH-S27-redirect-non-specific-over-gateway | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | CTCH-S19-redirect-re-presents | strict | ALTERNATIVE_MANAGEMENT | - | PASS |
 | CTCH-S20-re-presents-but-p2-met | strict | P2_URGENT (P2) | - | PASS |
 | CTCH-S21-criteria-not-met-re-presentation-unknown | strict | CRITERIA_NOT_MET | - | PASS |

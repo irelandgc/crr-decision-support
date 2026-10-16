@@ -224,10 +224,6 @@
               "valueInteger": 12
             }
           ]
-        },
-        {
-          "type": "documentation",
-          "label": "Evaluated by the national red-flag library CRR_RedFlags (RF-01, RF-02), not by this bundle"
         }
       ]
     },
@@ -316,21 +312,15 @@
               ]
             },
             {
-              "id": "p2-1-cxr",
-              "title": "Initial investigations including chest x-ray",
+              "id": "p2-1-investigations",
+              "title": "And initial investigations including chest x-ray fail to identify a cause",
               "input": [
                 {
                   "type": "QuestionnaireResponse",
                   "profile": [
                     "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Chest-Adult#workup.cxr"
                   ]
-                }
-              ]
-            },
-            {
-              "id": "p2-1-no-cause",
-              "title": "Initial investigations fail to identify a cause",
-              "input": [
+                },
                 {
                   "type": "QuestionnaireResponse",
                   "profile": [
@@ -1246,7 +1236,6 @@
         {
           "id": "am-initial-presentation",
           "title": "Initial presentation with respiratory symptoms or signs concerning for lung cancer - refer for urgent chest x-ray as the initial investigation.",
-          "description": "Shown as published; not evaluated by the engine pending clinical review (REVIEW Q8).",
           "documentation": [
             {
               "type": "documentation",
