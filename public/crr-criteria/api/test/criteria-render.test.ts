@@ -7,7 +7,7 @@
 // Advisory renderer holds (advisory-render.test.ts).
 import { describe, expect, it } from "vitest";
 // @ts-expect-error -- plain .js ESM module, no type declarations
-import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, flattenQrValues, CHROME_STRINGS } from "../../shared/criteria-render.js";
+import { resolveCriteria, criteriaHtml, buildQuestionnaireResponse, flattenQrValues, CHROME_STRINGS, stripMidstringPriority } from "../../shared/criteria-render.js";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
 import ctCapOverlay from "../../../../tooling/criteria-bundle/fhir/RegionalOverlay-CRR-CT-CAP-Adult-te-waipounamu.json";
@@ -93,13 +93,26 @@ describe("criteria-render — referrer view (GEN-004)", () => {
     const pd = JSON.parse(JSON.stringify(ctCapPd));
     const nf = pd.action.find((a: any) => (a.action || []).length && /not routinely funded/i.test(a.title || ""));
     nf.action[0].title = "Routine follow-up, other than in the scenarios specified above under S2 priority imaging";
-    nf.documentation = [...(nf.documentation || []), { display: "The same wording is printed under S2 and S3." }];
+    nf.documentation = [...(nf.documentation || []), { display: "Complete as for the urgent row (P2)." }];
     const b = { ...bundle, planDefinition: pd };
     const ref = criteriaHtml(resolveCriteria(b, { context: "referrer", layout: "indication" }));
     expect(ref).toContain("other than in the scenarios specified above under priority imaging");
     expect(ref).not.toMatch(/\b[PS][1-4]\b/);
     const tri = criteriaHtml(resolveCriteria(b, { context: "triager", layout: "indication" }));
     expect(tri).toContain("under S2 priority imaging");
+  });
+  it("keeps line breaks in referrer guidance (KI-76 review)", () => {
+    const tri = resolveCriteria(bundle, { context: "triager", layout: "indication" });
+    const ref = resolveCriteria(bundle, { context: "referrer", layout: "indication" });
+    expect(tri.guidance.text).toContain("\n");
+    expect(ref.guidance.text).toBe(tri.guidance.text);
+  });
+  it("removes only the mid-sentence code forms published wording uses (KI-76 review)", () => {
+    expect(stripMidstringPriority("other than in the scenarios specified above under S2 priority imaging")).toBe("other than in the scenarios specified above under priority imaging");
+    expect(stripMidstringPriority("Urgent (P2) imaging")).toBe("Urgent imaging");
+    for (const keep of ["L5-S1 disc", "L5/S1 disc", "S3 gallop and S2 heart sound", "P2Y12 inhibitor", "P3-4 weeks", "line one\n\nline two"]) {
+      expect(stripMidstringPriority(keep)).toBe(keep);
+    }
   });
   it("groups the P2 pathways by indication-theme", () => {
     expect(html).toContain("Suspected occult malignancy");

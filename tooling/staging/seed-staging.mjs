@@ -20,7 +20,8 @@
 //   2. The active system prompt: copied from production's public
 //      /api/system-prompt, created then activated through the prompt admin
 //      routes (activation is what updates KV).
-//   3. The latest bundle of national-redflags, CT CAP and CT Colonography from
+//   3. The latest bundle of each key in BUNDLES (national-redflags, CT CAP, CT
+//      Colonography and the seven slice 7 W1 sites) from
 //      tooling/criteria-bundle/registry, through /api/admin/bundles/publish, in
 //      their real state (transcribed). With --demo-published they are then moved
 //      transcribed -> signed-off -> published with a sign-off reference that says
@@ -306,7 +307,10 @@ try {
   if (demoPublished) {
     const keys = d1(remote, "SELECT exam_site FROM bundles WHERE state = 'published'").map((b) => b.exam_site);
     if (keys.length) {
-      d1(remote, `UPDATE exam_sites SET live = 1 WHERE bundle_key IN (${keys.map(q).join(", ")})`);
+      const inKeys = `bundle_key IN (${keys.map(q).join(", ")})`;
+      d1(remote, `UPDATE exam_sites SET live = 1 WHERE ${inKeys}`);
+      const notLive = d1(remote, `SELECT id FROM exam_sites WHERE ${inKeys} AND live = 0`).map((r) => r.id);
+      if (notLive.length) fail(`exam/site ids still not live after the update: ${notLive.join(", ")}`);
       const live = d1(remote, "SELECT id FROM exam_sites WHERE live = 1 ORDER BY id").map((r) => r.id);
       console.log(`✓ staging exam/site ids live: ${live.join(", ")}`);
     }

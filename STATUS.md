@@ -40,13 +40,12 @@ days after their date. [U] = inferred, not found.
 - 2026-10-11 Remote D1 checked (Gary): no bundle-registry or assessment tables; Bundles tab errors — documents/arch-mig-known-issues.md KI-68, KI-69
 - 2026-10-11 Unreachable `cf-access-authenticated-user-email` fallbacks dropped from the API worker's assess routes (performedBy); built, not deployed — SECURITY_DECISIONS.md SD-15
 - 2026-10-14 Viewer source line shows an approved draft's date, not its repo path; built, not deployed — documents/arch-mig-known-issues.md KI-66; CL-54
-- 2026-10-16 W1 second-session review done (all quotes verbatim); review fixes merged; seven sites published to the local registry as `transcribed` — documents/arch-mig-plan.md §Slice 7; AD-37; CL-60
-- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest); vocabulary 1.3.0; gates green; not reviewed, not published — documents/arch-mig-plan.md §Slice 7; CL-58
-- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36 (Proposed); CL-57
-- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
-- 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
-- 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
 - 2026-10-15 PR #47 merged (KI-66 fix; KI-71 design note) — merge commit 2de4283 — documents/arch-mig-known-issues.md KI-66, KI-71
+- 2026-10-15 AD-35 amendment Accepted (Gary): staging seed marks demo-published exam sites live — ARCHITECTURE_DECISIONS.md AD-35; CL-55
+- 2026-10-15 Account moved to Workers Paid (Gary); staging re-run: no CPU-limit failures in 10 runs — documents/arch-mig-known-issues.md KI-72
+- 2026-10-16 Referrer views hide S-codes and code ranges as well as P1–P4; built, not deployed — documents/arch-mig-known-issues.md KI-76; CL-56
+- 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36 (Proposed); CL-57
+- 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; on PR #48, not merged — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -70,6 +69,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
+- @gary Accept or reject AD-38 (two W1 indicators join the attestation category) — ARCHITECTURE_DECISIONS.md AD-38; CL-58
 - @gary Accept or reject AD-37 (W1: not funded never pre-empts a met or undetermined timeframe row) — ARCHITECTURE_DECISIONS.md AD-37; CL-60
 - @gary Re-seed staging with the W1 bundles: empty remote staging, then `node tooling/staging/seed-staging.mjs --demo-published` — tooling/staging/seed-staging.mjs; AD-35; documents/CRR-admin-reference.md §Staging
 - @gary Vocabulary review of the W1 additions (smoking, lung-cancer list shape, history group, attestation candidates, stale attributions) before any W1 sign-off — documents/arch-mig-known-issues.md KI-78
@@ -109,7 +109,7 @@ Production-readiness decisions, gated at the pre-pilot review, not at slice comp
 - @blocked CT Colonography clinical sign-off of REVIEW Q1-Q5 (SOURCE quotes reviewed verbatim 2026-10-04) — sites/ct-colonography-adult/signoff.md; documents/arch-mig-plan.md §Slice 7 step 4; AD-33
 - @blocked Clinical rulings AD-03/AD-04 (review pack D4/D5), AD-16 equivalence list, AD-23 wordings — ARCHITECTURE_DECISIONS.md
 - @blocked Vocabulary v1 clinical review — documents/arch-mig-plan.md §Slice 1
-- @blocked W1 clinical sign-off per site: each `sites/<bundleKey>/signoff.md` lists its REVIEW questions (CT Chest 16, CT Head 18, US Abdomen 24, US DVT 15, US Pelvis 25, US Renal 20, X-ray Chest 23) — waits on a clinical reviewer — documents/arch-mig-plan.md §Slice 7 step 4
+- @blocked W1 clinical sign-off per site: each `sites/<bundleKey>/signoff.md` lists its REVIEW questions — waits on a clinical reviewer — documents/arch-mig-plan.md §Slice 7 step 4
 - @blocked Clinician labelling of 37 matrix cases — documents/arch-mig-plan.md §Slice 9
 - @blocked Creatinine unit erratum (review pack D3) — sent to James and Louise 2026-09-05, awaiting their answer; once answered, a published correction to the national document is still required before the bundle can cite it — KI stays open until then — KI-47
 - @blocked Slice 10 cut-over — on 5, 6, 7-W1, 9, SD-11/12 sign-off, remote national-redflags publish, ASSESS_INTERNAL_KEY secret, remote migrations 0008–0011 (KI-68, KI-69), prompt v3.0.0 activation — documents/arch-mig-plan.md §Slice 10

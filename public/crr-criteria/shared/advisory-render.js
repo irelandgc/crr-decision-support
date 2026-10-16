@@ -52,15 +52,16 @@ const DETERMINATION_TO_DEFINE = {
   NOT_ROUTINELY_FUNDED: "Not Routinely Funded",
 };
 
-// GEN-004: no priority token (P1-P4, S1-S4, A24/A48, or a range such as P3-P4)
-// in wording shown to referrers (KI-76): a leading token with its punctuation,
-// and any token inside published wording.
+// GEN-004: no priority token in wording shown to referrers (KI-76): a leading
+// token (P1-P4, S1-S4, or a range such as P3-P4) with its punctuation, and the
+// two mid-sentence forms published wording uses ("…under S2 priority imaging",
+// "(P2)"). Clinical text such as "L5-S1" or "S3 gallop" is left alone.
 function stripPriorityToken(s) {
-  return String(s)
-    .replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "")
-    .replace(/\s?\b(?:[PS][1-4]|A24|A48)(?:\s*[-–]\s*[PS][1-4])?\b/g, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  const lead = String(s).replace(/^[PS][1-4](?![0-9A-Za-z])(?:\s*[-–]\s*[PS][1-4](?![0-9A-Za-z]))?\s*[:\-–]?\s*/i, "");
+  const out = lead
+    .replace(/[ \t]*\((?:[PS][1-4]|A24|A48)\)/g, "")
+    .replace(/(^|[^\w/-])(?:[PS][1-4]|A24|A48)[ \t]+(?=priority\b)/g, "$1");
+  return out === lead ? lead : out.replace(/[ \t]{2,}/g, " ");
 }
 
 function esc(s) {
@@ -230,7 +231,7 @@ export function resolveAdvisory(response, view, opts) {
     page: action ? action.page : null,
     // referrer-safe timeframe language (GEN-004: the code is triager-only, the
     // timeframe words are for both)
-    priorityTimeframe: (exam && exam.priorityTimeframe) || (action && action.priorityDisplay) || null,
+    priorityTimeframe: ((t) => (t && !isTriager ? stripPriorityToken(t) : t))((exam && exam.priorityTimeframe) || (action && action.priorityDisplay) || null),
     priorityCode: isTriager ? ((exam && exam.priorityCode) || (action && action.priorityCode) || null) : null,
   };
 
@@ -240,7 +241,7 @@ export function resolveAdvisory(response, view, opts) {
     stopped: !!agg.stoppedAtNational,
     determination: agg.stoppedAtNational ? nat.determination || null : null,
     determinationPlain: agg.stoppedAtNational ? humanizeCode(nat.determination) : null,
-    firedRedFlags: Array.isArray(nat.firedRedFlags) ? nat.firedRedFlags.slice() : [],
+    firedRedFlags: Array.isArray(nat.firedRedFlags) ? nat.firedRedFlags.map((f) => (isTriager ? f : stripPriorityToken(f))) : [],
     indeterminateRedFlags: Array.isArray(nat.indeterminateRedFlags) ? nat.indeterminateRedFlags.slice() : [],
   };
 
@@ -257,7 +258,7 @@ export function resolveAdvisory(response, view, opts) {
     const p = pathways.find((pw) => pw.linkIds.has(linkId));
     return {
       linkId,
-      text: qText.get(linkId) || linkId,
+      text: isTriager ? (qText.get(linkId) || linkId) : stripPriorityToken(qText.get(linkId) || linkId),
       pathway: p ? (isTriager ? p.title : stripPriorityToken(p.title)) : null,
       pathwayKey: p ? p.key : "_none",
     };
@@ -298,7 +299,7 @@ export function resolveAdvisory(response, view, opts) {
           // one wording per view — the renderer never shows both
           text: (q.wording && (isTriager ? q.wording.triager : q.wording.referrer)) || q.text,
           // the plain published item text (used for "Because you indicated: …")
-          canonicalText: q.text || (q.wording && q.wording.referrer) || q.linkId,
+          canonicalText: isTriager ? (q.text || (q.wording && q.wording.referrer) || q.linkId) : stripPriorityToken(q.text || (q.wording && q.wording.referrer) || q.linkId),
           sourcePages: q.sourcePages || [],
           answer: raw,                                   // 'yes' | 'no' | 'not-assessed' | null
           answerLabel: raw ? ANSWER_LABEL[raw] || raw : null,

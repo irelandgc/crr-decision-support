@@ -209,6 +209,18 @@ describe("resolveAdvisory — W1 timeframe codes resolve their row wording (AD-3
   });
 });
 
+describe("resolveAdvisory — referrer strings beyond the determination line (KI-76 review)", () => {
+  const res: any = insufficientResponse(["patient.age"]);
+  res.advisory.requestedExam.advisory.activeRedirects = ["Routine follow-up, other than under S2 priority imaging", "L5-S1 disc symptoms - see the spine HealthPathway"];
+  it("referrer redirects lose a mid-sentence code but keep clinical text", () => {
+    const m = resolveAdvisory(res, "referrer");
+    expect(m.redirects).toEqual(["Routine follow-up, other than under priority imaging", "L5-S1 disc symptoms - see the spine HealthPathway"]);
+  });
+  it("triager redirects are verbatim", () => {
+    expect(resolveAdvisory(res, "triager").redirects[0]).toContain("under S2 priority imaging");
+  });
+});
+
 describe("resolveAdvisory — attestation answers in the Advisory (browser findings)", () => {
   const ATT_Q = [
     {

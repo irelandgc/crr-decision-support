@@ -285,7 +285,7 @@ export function resolveCriteria(bundle, opts) {
         description: r.description,
         priority: isTriager ? r.priority : null,
         // referrer-safe: strip a leading "P<n>" token from the title (the code is triager-only, GEN-004)
-        titleForContext: isTriager ? r.text : r.text.replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, ""),
+        titleForContext: isTriager ? r.text : r.text.replace(/^[PS][1-4](?![0-9A-Za-z])(?:\s*[-–]\s*[PS][1-4](?![0-9A-Za-z]))?\s*[:\-–]?\s*/i, ""),
         page: r.page,
         selection: r.selection,
         notes: r.notes,
@@ -326,13 +326,20 @@ export function resolveCriteria(bundle, opts) {
 }
 
 // GEN-004 / KI-76: no priority code in anything a referrer sees. Leading codes
-// are already stripped from block titles; this also removes a code that sits
-// inside published wording (e.g. "…under S2 priority imaging", X-ray Chest p64)
-// from every displayed string. Ids and linkIds are left alone.
-const PRIORITY_TOKEN_MIDSTRING = /\s?\b(?:[PS][1-4]|A24|A48)(?:\s*[-–]\s*[PS][1-4])?\b/g;
+// are already stripped from block titles. Published wording can also carry a
+// code mid-sentence ("…under S2 priority imaging", X-ray Chest p64) or in
+// brackets ("(P2)"); only those two forms are removed, so clinical text such as
+// "L5-S1" or "S3 gallop" is untouched. Line breaks are kept. Ids and linkIds
+// are left alone.
+export function stripMidstringPriority(s) {
+  const out = String(s)
+    .replace(/[ \t]*\((?:[PS][1-4]|A24|A48)\)/g, "")
+    .replace(/(^|[^\w/-])(?:[PS][1-4]|A24|A48)[ \t]+(?=priority\b)/g, "$1");
+  return out === s ? s : out.replace(/[ \t]{2,}/g, " ");
+}
 const DISPLAY_KEYS = new Set(["text", "title", "titleForContext", "description", "notes", "display"]);
 function referrerSafe(node, key) {
-  if (typeof node === "string") return DISPLAY_KEYS.has(key) ? node.replace(PRIORITY_TOKEN_MIDSTRING, "").replace(/\s{2,}/g, " ").trim() : node;
+  if (typeof node === "string") return DISPLAY_KEYS.has(key) ? stripMidstringPriority(node) : node;
   if (Array.isArray(node)) return node.map((x) => referrerSafe(x, key));
   if (node && typeof node === "object") {
     const out = {};
