@@ -73,7 +73,8 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary After PR #51 merges, redeploy the staging API worker from `main` (it runs the PR #51 branch until then) — documents/CRR_Release_Log.md 2026-10-16; CL-63
+- @gary Accept or reject the AD-34 amendment (staging deployed by Workers Builds on merge to `main`); if accepted, do the one-time Builds setup for both staging workers — ARCHITECTURE_DECISIONS.md AD-34 (amendment 2026-10-16)
+- @gary Redeploy the staging API worker from `main` (PR #51 merged; staging still serves prompt 3.0.3) — documents/CRR_Release_Log.md 2026-10-16; CL-63
 - @gary Rule on how note 4's localising features (jaundice, palpable liver) can count: reviewed equivalence, extraction hint, or documentation-standard parameter — documents/arch-mig-known-issues.md KI-74
 - @gary Decide how an inference that only combines stated facts is treated under the strict standard (test-pack case 10) — documents/arch-mig-known-issues.md KI-82
 - @gary Decide whether the bundle logic hash should exclude ELM annotations (a comment-only CQL change otherwise forces a major version) — documents/arch-mig-known-issues.md KI-81
