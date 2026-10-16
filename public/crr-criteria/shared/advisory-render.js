@@ -64,6 +64,17 @@ function stripPriorityToken(s) {
   return out === lead ? lead : out.replace(/[ \t]{2,}/g, " ");
 }
 
+// Two wordings are "the same" when their word sets overlap by at least 80%
+// (Jaccard), ignoring case and punctuation.
+function sameWording(a, b) {
+  const words = (s) => new Set(String(s).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
+  const A = words(a), B = words(b);
+  if (!A.size || !B.size) return false;
+  let both = 0;
+  for (const w of A) if (B.has(w)) both++;
+  return both / (A.size + B.size - both) >= 0.8;
+}
+
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
@@ -264,7 +275,10 @@ export function resolveAdvisory(response, view, opts) {
       pathwayKey: p ? p.key : "_none",
     };
   });
-  const whatToAddGroups = groupWhatToAdd(whatToAdd, missing, pathways);
+  // A pathway whose only missing line restates its own heading shows the line
+  // alone (KI-75: e.g. the specialist-advice heading and its one item).
+  const whatToAddGroups = groupWhatToAdd(whatToAdd, missing, pathways).map((g) =>
+    g.pathway && g.items.length === 1 && sameWording(g.pathway, g.items[0].text) ? { ...g, pathway: null } : g);
 
   // Cross-exam recommendations
   const alternatives = Array.isArray(agg.alternatives)

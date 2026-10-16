@@ -48,6 +48,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe), staging not yet re-seeded — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
 - 2026-10-16 AD-36, AD-37 and AD-38 Accepted (Gary) — ARCHITECTURE_DECISIONS.md AD-36, AD-37, AD-38
 - 2026-10-16 Lab quantities reach the rules as values (were silently dropped; non-UCUM units no longer crash); built, not deployed — documents/arch-mig-known-issues.md KI-77; CL-61
+- 2026-10-16 "What to add" no longer repeats a heading as its only line; built, not deployed — documents/arch-mig-known-issues.md KI-75; CL-62
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -58,7 +59,6 @@ days after their date. [U] = inferred, not found.
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
 - @claude Stop the gate rejecting a whole extraction over an unrequired quote on the requested exam — documents/arch-mig-known-issues.md KI-73
 - @claude Extraction misses localising features in the note-4 jaundice case; add it to the benchmark — documents/arch-mig-known-issues.md KI-74
-- @claude Referrer view: duplicated "What to add" lines; page reference run onto the determination — documents/arch-mig-known-issues.md KI-75
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
 - @claude Draft BRD v3.3 redline from CL rows tagged BRD (due after slice 5) — documents/DOCUMENTATION-PLAN.md

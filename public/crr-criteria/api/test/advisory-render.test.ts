@@ -89,12 +89,15 @@ describe("resolveAdvisory / advisoryHtml — referrer view", () => {
     // b3 is 1 fact short (advice.urgentCTRecommended); criterion A is 2 short -> b3 first
     const m2 = resolveAdvisory(insufficientResponse(["advice.urgentCTRecommended", "workup.bloods", "workup.cxr"]), "referrer");
     const keys = m2.whatToAddGroups.map((g: any) => g.pathway);
-    expect(keys[0]).toContain("advises referral for urgent CT Chest, Abdomen and Pelvis"); // b3 title
+    // b3 first; its heading restates its one line, so it shows the line alone (KI-75)
+    expect(keys[0]).toBeNull();
+    expect(m2.whatToAddGroups[0].items.map((i: any) => i.linkId)).toEqual(["advice.urgentCTRecommended"]);
     expect(keys[1]).toContain("Following full clinical assessment and examination"); // criterion A title
     const h2 = advisoryHtml(m2);
     expect(h2.indexOf("advises referral for urgent CT Chest")).toBeLessThan(h2.indexOf("Following full clinical assessment"));
     // headings render as headings, lines as lines
-    expect(h2).toMatch(/<div class="adv-wta-pathway">[^<]*advises referral for urgent CT Chest/);
+    expect(h2).toContain(`<li data-linkid="advice.urgentCTRecommended">${Q.get("advice.urgentCTRecommended")}</li>`);
+    expect(h2).toMatch(/<div class="adv-wta-pathway">[^<]*Following full clinical assessment/);
     expect(h2).toContain(`<li data-linkid="workup.bloods">${Q.get("workup.bloods")}</li>`);
   });
 
@@ -218,6 +221,20 @@ describe("resolveAdvisory — referrer strings beyond the determination line (KI
   });
   it("triager redirects are verbatim", () => {
     expect(resolveAdvisory(res, "triager").redirects[0]).toContain("under S2 priority imaging");
+  });
+});
+
+describe("resolveAdvisory — What to add does not repeat a heading as its only line (KI-75)", () => {
+  it("the specialist-advice pathway with one missing item shows the item without the near-identical heading", () => {
+    const m = resolveAdvisory(insufficientResponse(["advice.urgentCTRecommended"]), "referrer");
+    const g = m.whatToAddGroups.find((x: any) => x.items.some((i: any) => i.linkId === "advice.urgentCTRecommended"));
+    expect(g.pathway).toBeNull();
+    const h = advisoryHtml(m);
+    expect((h.match(/radiologist advises referral for urgent CT Chest, Abdomen and Pelvis/g) || []).length).toBe(1);
+  });
+  it("a pathway with several missing items keeps its heading", () => {
+    const m = resolveAdvisory(insufficientResponse(["patient.age", "patient.sex", "weightloss.percent", "weightloss.periodMonths"]), "referrer");
+    expect(m.whatToAddGroups[0].pathway).toContain("Male over 50 years of age");
   });
 });
 
