@@ -251,16 +251,12 @@
                   "valueInteger": 20
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "REVIEW Q2: 'within 7 days' encoded as 7 days or fewer since the episode."
             }
           ],
           "action": [
             {
               "id": "a-tia-within-7d",
-              "title": "TIA, within 7 days of the TIA episode",
+              "title": "TIA, where it is within 7 days of the TIA episode",
               "code": [
                 {
                   "coding": [
@@ -325,7 +321,7 @@
             },
             {
               "id": "a-tia-routes",
-              "title": "AND one of the following",
+              "title": "One of the following (printed as three alternatives separated by \"OR\")",
               "selectionBehavior": "any",
               "action": [
                 {
@@ -450,64 +446,16 @@
                     {
                       "type": "documentation",
                       "display": "*1 High risk features for TIA: Less than 59 years old; ABCD2 greater than 4; Crescendo TIAs; Atrial fibrillation; On anticoagulants; Severe or prolonged deficit (hemiparesis longer than 60 minutes); Known carotid artery stenosis."
-                    },
-                    {
-                      "type": "documentation",
-                      "display": "REVIEW Q1: 'Less than 59 years old' is encoded literally (age under 59 is a high-risk feature)."
                     }
                   ],
                   "action": [
                     {
                       "id": "a-tia-r2-no-high-risk",
-                      "title": "No high-risk features *1",
-                      "input": [
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#patient.age"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#workup.abcd2Score"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.crescendoTIA"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.atrialFibrillation"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.anticoagulantTherapy"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.tiaSevereOrProlongedDeficit"
-                          ]
-                        },
-                        {
-                          "type": "QuestionnaireResponse",
-                          "profile": [
-                            "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#history.carotidStenosis"
-                          ]
-                        }
-                      ]
+                      "title": "Patient has no high-risk features *1"
                     },
                     {
                       "id": "a-tia-r2-community",
-                      "title": "Assessed as suitable for being managed in the community",
+                      "title": "assessed as suitable for being managed in the community",
                       "input": [
                         {
                           "type": "QuestionnaireResponse",
@@ -519,7 +467,7 @@
                     },
                     {
                       "id": "a-tia-r2-bpac",
-                      "title": "Completion of the BPAC TIA decision support tool indicates CT head +/- carotid imaging is appropriate",
+                      "title": "completion of the BPAC TIA decision support tool indicates CT head +/- carotid imaging is appropriate.",
                       "code": [
                         {
                           "coding": [
@@ -566,14 +514,6 @@
                         "language": "text/cql-identifier",
                         "expression": "TIA Route 3: Unable To Access Rapid Specialist Care"
                       }
-                    }
-                  ],
-                  "input": [
-                    {
-                      "type": "QuestionnaireResponse",
-                      "profile": [
-                        "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.rapidSpecialistCareAccessible"
-                      ]
                     }
                   ],
                   "documentation": [
@@ -639,10 +579,6 @@
                   "valueInteger": 20
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "REVIEW Q16: 'consider seeking neurologist advice first' is advice, not a condition."
             }
           ]
         },
@@ -704,10 +640,6 @@
                   "valueInteger": 20
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "REVIEW Q4: a seizure with a *4 risk factor (e.g. aged older than 40) is redirected to Neurology phone advice before this row is reached."
             }
           ]
         },
@@ -867,10 +799,6 @@
                   "valueInteger": 20
                 }
               ]
-            },
-            {
-              "type": "documentation",
-              "display": "'especially in patients aged 50 years and older' and 'especially malignancy' are modifiers, not conditions (KI-05; matrix RP-000)."
             }
           ],
           "action": [
@@ -1043,10 +971,6 @@
             {
               "type": "documentation",
               "display": "*2 Features suggestive of underlying SOL, bleed, or hydrocephalus: Rapid cognitive decline over weeks; Presence of focal neurological signs; History of falls; Anticoagulant therapy; Gait ataxia or incontinence.; History of cancers with propensity to brain metastases (e.g. lung, melanoma, breast)"
-            },
-            {
-              "type": "documentation",
-              "display": "REVIEW Q7: the cancer list reads '– lung, melanoma, breast' here and '(e.g. lung, melanoma, breast)' in footnote *2."
             }
           ],
           "action": [
@@ -1258,12 +1182,6 @@
               "profile": [
                 "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#symptom.returnedToNormalHealth"
               ]
-            },
-            {
-              "type": "QuestionnaireResponse",
-              "profile": [
-                "http://crr.health.nz/fhir/Questionnaire/CRR-CT-Head-Adult#advice.mriAvailable"
-              ]
             }
           ],
           "documentation": [
@@ -1292,10 +1210,6 @@
             {
               "type": "documentation",
               "display": "*3 Criteria for low-risk first seizure – all of the following must apply: Single seizure which is unprovoked, or provoked by a known substance (e.g. drug or alcohol use); Patient has since returned to normal health; There are none of the following risk factors for intracranial pathology: Head injury; Aged older than 40; Fever, systemic symptoms; History of anticoagulation, malignancy; New focal neurologic deficit; Focal seizure; Persistent altered mental state; Persistent headache"
-            },
-            {
-              "type": "documentation",
-              "display": "REVIEW Q3: the printed bullet repeats a clause; encoded as the union of the printed clauses: (clear history and low risk) or MRI not available."
             }
           ]
         },

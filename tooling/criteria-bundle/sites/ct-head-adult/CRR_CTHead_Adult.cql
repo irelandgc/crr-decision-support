@@ -43,11 +43,10 @@
         as the union of every printed clause: (clear history AND low risk) OR
         (MRI not available AND clear history AND low risk) OR MRI not available.
         Alternative: CT only where MRI is not available.
-    Q4  Determination precedence: not funded -> alternative management -> paediatric
-        -> Acute -> P2 -> P4. A redirect outranks a met criterion (CT CAP Q5
-        convention). Consequence: every seizure in a patient older than 40 (a *4
-        risk factor) is redirected, including "Seizure in palliative care setting"
-        (Acute) - see scenarios CTH-S31/S32.
+    Q4  A redirect outranks a met timeframe row (BRD TA-013; CT CAP convention).
+        Consequence: every seizure in a patient older than 40 (a *4 risk factor) is
+        redirected, including "Seizure in palliative care setting" (Acute) - see
+        scenarios CTH-S15/S16.
     Q5  Highest tier met wins even when a higher tier is still unknown (P2 met with
         Acute unanswered returns P2, not insufficient information).
     Q6  "History of anticoagulation" (*3/*4) vs "Anticoagulant therapy" (*2) and
@@ -75,10 +74,13 @@
     Q14 "Suspected Prolactinoma" redirect is not listed as an unconfirmed exclusion
         when unanswered (it is a presentation, not a general exclusion); the seizure
         redirects are listed only when a seizure is present.
-    Q15 The TIA high-risk footnote *1 and national RF-10 ("a high seven day stroke
-        risk*", US Carotid p34, which points at *1) overlap: a TIA with high-risk
-        features may stop at the national layer if redflag.highSevenDayStrokeRisk
-        is answered.
+    Q15 The TIA high-risk footnote *1 overlaps national RF-10 ("a high seven day
+        stroke risk*", US Carotid p34). RF-10's asterisk points at US Carotid's own
+        p35 footnote ("*High seven-day stroke risk: Seven days or less since episode
+        plus one or more of: ABCD2 score of 4 or higher / Anticoagulant use / ... /
+        Unilateral arm weakness"), which differs from CT Head *1 (e.g. ABCD2 4 or
+        higher vs greater than 4; no age feature). A TIA may stop at the national
+        layer if redflag.highSevenDayStrokeRisk is answered.
     Q16 "consider seeking neurologist advice first" (focal neurologic signs) is
         advice, not a condition: not encoded.
     Q17 The printed stem "TIA" (p20) is read through the national indicator
@@ -88,6 +90,19 @@
         symptom.seizureClearHistory, workup.suitableForCommunityManagement,
         workup.resultMayChangeManagement, workup.subtypeDiagnosisAltersManagement.
         Not added to the vocabulary's attestationIndicators here.
+    Q19 TIA route 1 ("CT +/-CTA recommended by HNZ neurologist / stroke specialist
+        or physician") is treated as an endorsement under Overview p5, so the
+        adviser's name and role (advice.adviserNameRole) are asked for when it is
+        met. Overview p5 names "secondary care clinician, radiologist, or primary
+        care radiology liaison"; an HNZ neurologist / stroke specialist / physician
+        is read as a secondary care clinician.
+    Q20 Not-funded precedence (coordinator rule R1): redirect -> paediatric -> most
+        urgent MET timeframe row -> INSUFFICIENT_INFORMATION while any timeframe row
+        is undetermined -> not routinely funded (only when every timeframe row is
+        definitively not met) -> criteria not met. Alternative reading: not funded
+        first, as CT CAP does for its patient-level "unfit for treatment" row.
+        Scenarios CTH-S36 (all rows not met), CTH-S43 (row met), CTH-S44 (row
+        undetermined).
 */
 
 library CRR_CTHead_Adult version '1.0.0'
@@ -603,26 +618,26 @@ define "Not Routinely Funded":
 // ---------------------------------------------------------------------------
 
 /*
-  Precedence (REVIEW Q4, Q5 - confirm):
-    1. Not routinely funded
-    2. Alternative management / redirect
-    3. Paediatric patient - the adult criteria do not apply (BRD TA-003)
-    4. Acute criteria met (highest timeframe met wins; P1 > Acute > P2 > P3 > P4)
-    5. P2 criteria met
-    6. P4 criteria met
-    7. Every timeframe definitively not met
-    8. Insufficient information
+  Precedence (REVIEW Q4, Q5, Q20 - confirm):
+    1. Alternative management / redirect (BRD TA-013)
+    2. Paediatric patient - the adult criteria do not apply (BRD TA-003)
+    3. Acute 48h criteria met (most urgent timeframe met wins; Acute > P2 > P4)
+    4. P2 criteria met
+    5. P4 criteria met
+    6. Insufficient information while any timeframe row is undetermined
+    7. Not routinely funded (only when every timeframe row is definitively not met)
+    8. Criteria not met
 */
 define "Determination":
   case
-    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
     when "Alternative Management Recommended" then 'ALTERNATIVE_MANAGEMENT'
     when "Is Adult" is false then 'PAEDIATRIC_CRITERIA_APPLY'
     when "Meets Acute 48h Criteria" is true then 'ACUTE_48H'
     when "Meets P2 Criteria" is true then 'P2_URGENT'
     when "Meets P4 Criteria" is true then 'P4_DEFERRABLE'
-    when "Meets Acute 48h Criteria" is false and "Meets P2 Criteria" is false and "Meets P4 Criteria" is false then 'CRITERIA_NOT_MET'
-    else 'INSUFFICIENT_INFORMATION'
+    when "Meets Acute 48h Criteria" is null or "Meets P2 Criteria" is null or "Meets P4 Criteria" is null then 'INSUFFICIENT_INFORMATION'
+    when "Not Routinely Funded" then 'NOT_ROUTINELY_FUNDED'
+    else 'CRITERIA_NOT_MET'
   end
 
 define "Priority Code":

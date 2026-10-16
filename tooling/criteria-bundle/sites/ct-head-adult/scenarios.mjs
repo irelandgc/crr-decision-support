@@ -49,6 +49,13 @@ const SOL_FEATURES_NO = {
   "symptom.gaitAtaxia": false, "redflag.bowelOrBladderIncontinence": false, "history.cancerWithBrainMetastasisPropensity": false,
 };
 
+// Not-funded row fully met, with every timeframe row answered "no".
+const ADVANCED_DEMENTIA = {
+  ...STEMS_NO, ...SOL_FEATURES_NO, "patient.age": 84, "symptom.cognitiveImpairment": true,
+  "history.dementiaEstablishedAdvanced": true, "history.dementiaDurationYears": 3,
+  "symptom.dementiaUnexpectedChange": false, "workup.subtypeDiagnosisAltersManagement": false,
+};
+
 const R_SEIZURE_RISK = "Seizures with risk factors for intracranial pathology – seek Neurology phone advice";
 const R_POORLY_CONTROLLED = "Poorly controlled or recurrent seizures – follow the appropriate pathway: Epilepsy in Adults; Epilepsy in Women; First Seizure in Adults; Seizure in Palliative Care";
 const R_PROLACTINOMA = "Suspected Prolactinoma – request non-acute assessment by the appropriate secondary care specialist.";
@@ -269,9 +276,8 @@ export const scenarios = [
     expect: { determination: "ALTERNATIVE_MANAGEMENT", priorityCode: null, missing: [], redirects: [R_PROLACTINOMA] } },
 
   // Not routinely funded
-  { id: "CTH-S36-advanced-dementia", title: "Established advanced dementia, 3 years, no unexpected change, subtype will not alter management: not routinely funded",
-    answers: { ...STEMS_NO, "patient.age": 84, "symptom.cognitiveImpairment": true, "history.dementiaEstablishedAdvanced": true, "history.dementiaDurationYears": 3, "symptom.dementiaUnexpectedChange": false, "workup.subtypeDiagnosisAltersManagement": false },
-    expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] } },
+  { id: "CTH-S36-advanced-dementia", title: "Established advanced dementia, 3 years, no unexpected change, subtype will not alter management, every timeframe row not met: not routinely funded (R1, REVIEW Q20)",
+    answers: ADVANCED_DEMENTIA, expect: { determination: "NOT_ROUTINELY_FUNDED", priorityCode: null, missing: [], redirects: [] } },
   { id: "CTH-S37-dementia-2-years", title: "Boundary (REVIEW Q13): 2 years is not 'more than 2 years' - not the not-funded row; no other pathway met",
     answers: { ...STEMS_NO, ...SOL_FEATURES_NO, "patient.age": 84, "symptom.cognitiveImpairment": true, "history.dementiaEstablishedAdvanced": true, "history.dementiaDurationYears": 2, "symptom.dementiaUnexpectedChange": false, "workup.subtypeDiagnosisAltersManagement": false },
     expect: NOT_MET },
@@ -289,6 +295,14 @@ export const scenarios = [
   { id: "CTH-S41-p2-with-acute-unknown", title: "P2 headache met, every Acute presentation unanswered: P2 (highest tier met wins, REVIEW Q5)",
     answers: { "patient.age": 55, "symptom.headachePatternChangeProgressive": true, "symptom.headacheWorseOnCoughSneezeValsalva": true },
     expect: P2 },
+  // R1 not-funded precedence (REVIEW Q20)
+  { id: "CTH-S43-not-funded-and-row-met", title: "R1: not-funded row met but a timeframe row is also met (urgent CT advised): the met row wins",
+    answers: { ...ADVANCED_DEMENTIA, "advice.urgentImagingRecommended": true, "advice.adviserNameRole": "Geriatrician (name supplied)" },
+    expect: P2 },
+  { id: "CTH-S44-not-funded-and-row-undetermined", title: "R1: not-funded row met but the cognitive-impairment rows are undetermined (*2 features unanswered): insufficient information",
+    answers: { ...STEMS_NO, "patient.age": 84, "symptom.cognitiveImpairment": true, "history.dementiaEstablishedAdvanced": true, "history.dementiaDurationYears": 3, "symptom.dementiaUnexpectedChange": false, "workup.subtypeDiagnosisAltersManagement": false },
+    expect: { determination: "INSUFFICIENT_INFORMATION", priorityCode: null, redirects: [], missing: ["symptom.rapidCognitiveDecline", "history.falls", "history.anticoagulantTherapy", "symptom.gaitAtaxia", "redflag.bowelOrBladderIncontinence", "history.cancerWithBrainMetastasisPropensity"] } },
+  // (all rows false + not funded: CTH-S36)
   { id: "CTH-S42-age-unknown", title: "Focal signs but age unknown: insufficient, asks only for age",
     answers: { ...STEMS_NO, "symptom.focalNeurologicalSigns": true },
     expect: { determination: "INSUFFICIENT_INFORMATION", redirects: [], missing: ["patient.age"] } },

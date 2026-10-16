@@ -52,4 +52,6 @@
 | CTH-S39-non-urgent-advice-no-name | strict | P4_DEFERRABLE (P4) | advice.adviserNameRole | PASS |
 | CTH-S40-paediatric | strict | PAEDIATRIC_CRITERIA_APPLY | - | PASS |
 | CTH-S41-p2-with-acute-unknown | strict | P2_URGENT (P2) | - | PASS |
+| CTH-S43-not-funded-and-row-met | strict | P2_URGENT (P2) | - | PASS |
+| CTH-S44-not-funded-and-row-undetermined | strict | INSUFFICIENT_INFORMATION | symptom.rapidCognitiveDecline, history.falls, history.anticoagulantTherapy, symptom.gaitAtaxia, redflag.bowelOrBladderIncontinence, history.cancerWithBrainMetastasisPropensity | PASS |
 | CTH-S42-age-unknown | strict | INSUFFICIENT_INFORMATION | patient.age | PASS |

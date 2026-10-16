@@ -72,16 +72,19 @@ AD-17 column: **A** = rests on the referrer's judgement (attestation candidate, 
 
 ## 2. Modelling decisions
 
-- **Timeframes.** Three indication blocks: Acute (`ACUTE_48H`, priority code `ACUTE-48H`), P2 (`P2_URGENT`), P4 (`P4_DEFERRABLE`). The highest timeframe met wins (Q5). Every tier requires an adult (over 15).
-- **Precedence** follows CT CAP: not funded → alternative management → paediatric → Acute → P2 → P4 → not met → insufficient (Q4).
+- **Timeframes.** Three indication blocks, named per AD-36: `Meets Acute 48h Criteria` (`ACUTE_48H`, priority code `A48`), `Meets P2 Criteria` (`P2_URGENT`, `P2`), `Meets P4 Criteria` (`P4_DEFERRABLE`, `P4`). The most urgent timeframe met wins (Q5). Every tier requires an adult (over 15).
+- **Precedence** (coordinator rule R1, 2026-10-16): alternative management → paediatric → Acute 48h → P2 → P4 → insufficient information while any timeframe row is undetermined → not routinely funded (only when every timeframe row is definitively not met) → criteria not met (Q4, Q20). The first transcription put not funded first, as CT CAP does; R1 moved it so the advanced-dementia row can never pre-empt a met or undetermined row (CTH-S36, S43, S44).
 - **Shared indicators across tiers.** `symptom.focalNeurologicalSigns` is both an Acute criterion and a *2 feature, so cognitive impairment with focal signs lands in Acute (CTH-S22). `workup.subtypeDiagnosisAltersManagement` makes P4 cognitive and the not-funded row mutually exclusive.
 - **Definitional implications** (not clinical inference): current anticoagulant therapy satisfies "history of anticoagulation"; a cancer with brain-metastasis propensity satisfies "history of malignancy"; a first seizure is a seizure.
 - **First-seizure bullet** encoded as the union of its three printed clauses (Q3); the CQL keeps all three so a reviewer can read it against the text.
-- **Redirects** are active only when known true. The seizure redirects are surfaced as unconfirmed exclusions only when a seizure is present; prolactinoma never (Q14).
+- **Redirects** are active only when known true. The seizure redirects are surfaced as unconfirmed exclusions only when a seizure is present; prolactinoma never (Q14). The "Poorly controlled or recurrent seizures" redirect string joins the four printed HealthPathway sub-bullets with "; " (one string per redirect in the Advisory); the PlanDefinition keeps them as four sub-actions.
 - **Not funded** uses `Coalesce(…, false)` like CT CAP: it applies only when every part is known. The not-funded item has no `input`, so the Viewer cannot offer it as a tick (CLAUDE.md: not-funded items are never tickable).
 - **Missing information.** A pathway's sub-indicators are asked for only once its presentation is known to be present; until then the presentation (stem) is asked for. Single-indicator pathways (focal signs, the three advice gateways) are their own stems. When a determination is reached, only the adviser name/role is asked for (CT CAP pattern).
 - **Headache stem** is one indicator for "a change in the pattern of headaches, with a progressive increase in frequency or severity": "progressive headache" answers it (prompt decomposition rule 14, RP-004); "different to usual" does not state a progressive increase (DG-002).
-- **Determination codes** `ACUTE_48H` and `P4_DEFERRABLE` are new to the bundle set (CT CAP emits only `P2_URGENT`). See §6.
+- **Determination and priority codes** follow AD-36 (normalised at the W1 merge).
+- **Viewer tick boxes (coordinator rule R2).** The Viewer renders a row's boolean input as a tick box that sends `true` (KI-65). Three PlanDefinition rows had inputs the CQL reads negated, so a tick would have recorded the opposite of the row wording; their inputs were removed from the PlanDefinition (CQL unchanged; the indicators stay in the Questionnaire for extraction and forms): `a-tia-r3` ("Patient is unable to access rapid specialist care" — `advice.rapidSpecialistCareAccessible`), `a-tia-r2-no-high-risk` ("Patient has no high-risk features *1" — the seven *1 features, each a high-risk feature when true), and `advice.mriAvailable` on `p2-first-seizure` ("MRI … is not available"). Effect: the Advisory's "what to add" no longer groups those linkIds under the TIA / first-seizure pathway headings.
+- **Referrer-visible notes (rule R3).** The PlanDefinition carries no engineering notes: the REVIEW Q1/Q2/Q3/Q4/Q7/Q16 and KI-05 modifier notes that were `documentation.display` entries are recorded here and in `signoff.md` only. Remaining displays are published wording (footnotes *1–*4, Overview p5 adviser sentence).
+- **Structural label.** One PlanDefinition title is a label, not printed wording, and says so: `a-tia-routes` ("One of the following (printed as three alternatives separated by \"OR\")"). The other decomposition rows (`a-tia-within-7d`, `a-tia-r2-no-high-risk`, `a-tia-r2-community`, `a-tia-r2-bpac`, the headache and cognitive sub-rows) use printed fragments.
 
 ## 3. Modifiers and wording deliberately not encoded
 
@@ -114,12 +117,10 @@ AD-17 column: **A** = rests on the referrer's judgement (attestation candidate, 
 - `instructions/archive/indication-groupings.md` uses different item ids (`cth_a1..a4`) for the same rows; its themes (TIA / stroke, Headache, Cognitive impairment, Seizure, Specialist-endorsed referral) are used for `indication-theme`.
 - Census rows 19–22: `cth_a48_1` B(3) nested, `cth_p2_1` C(1+4), `cth_p2_2` C(1+6), `cth_p2_3` M — all match the encoded structure.
 
-## 6. Engineering notes for the coordinator (not fixed here: outside this brief)
+## 6. Engineering notes
 
-- **Renderer:** `public/crr-criteria/shared/advisory-render.js` `DETERMINATION_TO_DEFINE` maps only `P2_URGENT`, `ALTERNATIVE_MANAGEMENT`, `NOT_ROUTINELY_FUNDED` to PlanDefinition wording. `ACUTE_48H` and `P4_DEFERRABLE` fall back to `humanizeCode` ("Acute 48h", "P4 deferrable"); the referrer view strips a leading `P4`, so no priority code reaches the referrer, but the published row wording is not shown.
-- **Engine:** `public/crr-criteria/api/engine.ts` `isPriorityDetermination` matches `/^P\d/`, so `ACUTE_48H` does not trigger a cross-exam recommendation; its comment says Acute only comes from the national library, which CT Head (and other sites with an "Acute: Within 48 hours" row) contradicts.
-- Other W1 sites with Acute or P4 rows should agree the determination and priority codes (`ACUTE_48H` / `ACUTE-48H`, `P4_DEFERRABLE` / `P4` here).
-- Reading `redflag.suspectedTIA` as true at this site also makes the national library report RF-10 as indeterminate (stem true, qualifiers unanswered) — existing national behaviour (vocabulary Q20, Q23).
+- The renderer and engine gaps recorded at first transcription (determination codes other than `P2_URGENT` had no row wording; `ACUTE_48H` did not count as a priority) are fixed by AD-36, KI-76 and CL-57.
+- Reading `redflag.suspectedTIA` as true at this site also makes the national library report RF-10 as indeterminate (stem true, qualifiers unanswered) — existing national behaviour (vocabulary Q20, Q23). RF-10's asterisk refers to US Carotid's own p35 footnote, not to CT Head *1 (Q15); `cql/CRR_RedFlags.cql` comment at RF-10 says otherwise (logged by the coordinator, not edited here).
 
 ## 7. Matrix cases found
 
@@ -138,4 +139,4 @@ STEP-3 worked example (prompt decomposition §3, "CT Head focal neuro vs TIA gat
 
 ## 8. Build gates
 
-`npm run build && npm test && npm run check` green on 2026-10-15/16: 51 scenarios (`Sites: 54/54` with CT Colonography's 3), every Rule Trace define reaches true in at least one scenario, every scenario quote is a verbatim span of its note.
+`npm run build && npm test && npm run check` green on 2026-10-15 (first transcription) and again on 2026-10-16 after the review fixes (53 CT Head scenarios). Every Rule Trace define reaches true in at least one scenario; every scenario quote is a verbatim span of its note.
