@@ -52,10 +52,15 @@ const DETERMINATION_TO_DEFINE = {
   NOT_ROUTINELY_FUNDED: "Not Routinely Funded",
 };
 
-// GEN-004: a leading priority token (P1-P4, S1-S4, or a range such as P3-P4) is
-// stripped from wording shown to referrers (KI-76).
+// GEN-004: no priority token (P1-P4, S1-S4, A24/A48, or a range such as P3-P4)
+// in wording shown to referrers (KI-76): a leading token with its punctuation,
+// and any token inside published wording.
 function stripPriorityToken(s) {
-  return String(s).replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "");
+  return String(s)
+    .replace(/^[PS][1-4](?:\s*[-–]\s*[PS][1-4])?\s*[:\-–]?\s*/i, "")
+    .replace(/\s?\b(?:[PS][1-4]|A24|A48)(?:\s*[-–]\s*[PS][1-4])?\b/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
 }
 
 function esc(s) {
@@ -240,7 +245,7 @@ export function resolveAdvisory(response, view, opts) {
   };
 
   // Redirects (published wording, already strings in the Advisory)
-  const redirects = exam && Array.isArray(exam.activeRedirects) ? exam.activeRedirects.slice() : [];
+  const redirects = exam && Array.isArray(exam.activeRedirects) ? exam.activeRedirects.map((r) => (isTriager ? r : stripPriorityToken(r))) : [];
 
   // "What to add" — one line per missing indicator, the published Questionnaire
   // item text (no prose, no action title as the line — D6). Grouped under its
@@ -253,7 +258,7 @@ export function resolveAdvisory(response, view, opts) {
     return {
       linkId,
       text: qText.get(linkId) || linkId,
-      pathway: p ? p.title : null,
+      pathway: p ? (isTriager ? p.title : stripPriorityToken(p.title)) : null,
       pathwayKey: p ? p.key : "_none",
     };
   });
