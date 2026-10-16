@@ -64,6 +64,22 @@ function stripPriorityToken(s) {
   return out === lead ? lead : out.replace(/[ \t]{2,}/g, " ");
 }
 
+// Two wordings are "the same" when their word sets overlap by at least 80%
+// (Jaccard), ignoring case and punctuation.
+function sameWording(a, b) {
+  const words = (s) => new Set(String(s).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
+  const A = words(a), B = words(b);
+  if (!A.size || !B.size) return false;
+  let both = 0;
+  for (const w of A) if (B.has(w)) both++;
+  return both / (A.size + B.size - both) >= 0.8;
+}
+
+// A quantity value ({ value, unit }) shown as its number.
+function scalar(v) {
+  return v && typeof v === "object" && "value" in v ? v.value : v;
+}
+
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
@@ -182,7 +198,8 @@ function evidenceRows(mergedResponse) {
       const ans = i.answer[0] || {};
       const vk = Object.keys(ans).find((k) => k.startsWith("value"));
       let value = vk ? ans[vk] : undefined;
-      if (value && typeof value === "object" && "code" in value) value = value.code;
+      if (vk === "valueQuantity" && value && typeof value === "object") value = value.value;
+      else if (value && typeof value === "object" && "code" in value) value = value.code;
       const ev = (ans.extension || []).find((e) => e.url === EVIDENCE_URL);
       const sub = {};
       for (const s of (ev && ev.extension) || []) {
@@ -263,7 +280,12 @@ export function resolveAdvisory(response, view, opts) {
       pathwayKey: p ? p.key : "_none",
     };
   });
-  const whatToAddGroups = groupWhatToAdd(whatToAdd, missing, pathways);
+  // A pathway whose only missing line restates its own heading shows the line
+  // alone (KI-75: e.g. the specialist-advice heading and its one item) — but only
+  // as the first group, so a heading-less line can never read as part of the
+  // group above it.
+  const whatToAddGroups = groupWhatToAdd(whatToAdd, missing, pathways).map((g, i) =>
+    i === 0 && g.pathway && g.items.length === 1 && sameWording(g.pathway, g.items[0].text) ? { ...g, pathway: null } : g);
 
   // Cross-exam recommendations
   const alternatives = Array.isArray(agg.alternatives)
@@ -419,7 +441,7 @@ export function advisoryHtml(model) {
       section(
         "Discrepancies",
         `<ul>${model.discrepancies
-          .map((d) => `<li>${esc(d.linkId)}: kept ${esc(d.kept.value)} (${esc(d.kept.provenance)}), superseded ${esc(d.superseded.value)} (${esc(d.superseded.provenance)})${d.valuesMatch ? " — values agree" : ""}</li>`)
+          .map((d) => `<li>${esc(d.linkId)}: kept ${esc(scalar(d.kept.value))} (${esc(d.kept.provenance)}), superseded ${esc(scalar(d.superseded.value))} (${esc(d.superseded.provenance)})${d.valuesMatch ? " — values agree" : ""}</li>`)
           .join("")}</ul>`,
       );
     }

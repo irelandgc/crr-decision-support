@@ -548,11 +548,17 @@ define "RF-22 Paediatric Acutely Unwell Gynaecological Cause":
      o Suspected TIA with associated neck pain or headache (may indicate an underlying
        arterial dissection)"
 
-  "*" refers to the CT Head - Adult p21 footnote "*1 High risk features for TIA".
-  That footnote list is NOT transcribed here: it belongs to the CT Head and US
-  Carotid site transcriptions, which own the definition of "high risk". This
-  library takes redflag.highSevenDayStrokeRisk as a single extracted judgement.
-  REVIEW Q23 - confirm, or require the footnote's five features as sub-indicators.
+  "*" refers to US Carotid's own footnote (p35): "*High seven-day stroke risk:
+   Seven days or less since episode plus one or more of: ABCD2 score of 4 or
+   higher / Anticoagulant use / New or pre-existing atrial fibrillation or
+   paroxysmal atrial fibrillation / Carotid stenosis on the affected side (known) /
+   Crescendo TIA e.g., two or more suspected TIAs within the last seven days /
+   Unilateral arm weakness". (Corrected 2026-10-16, KI-79: this comment
+   previously said the asterisk pointed at CT Head p21 footnote *1, which differs:
+   ABCD2 over 4, an age item, no arm weakness.) The footnote list is NOT
+   transcribed here: it belongs to the US Carotid site transcription. This
+   library takes redflag.highSevenDayStrokeRisk as a single extracted judgement.
+  REVIEW Q23 - confirm, or require the p35 footnote's features as sub-indicators.
 */
 define "RF-10 Suspected TIA With High Risk Or Dissection":
   "Bool"('redflag.suspectedTIA')

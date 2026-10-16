@@ -229,3 +229,54 @@ describe("merge — context labs", () => {
     expect(r.unmappedContext).toEqual([{ name: "Ferritin", reason: expect.stringContaining("no linkId") }]);
   });
 });
+
+describe("merge — quantity answers reach the engine as valueQuantity.value (KI-77)", () => {
+  const qtyQr = (vq: any) => ({
+    resourceType: "QuestionnaireResponse", status: "completed",
+    item: [{ linkId: "lab", item: [{ linkId: "lab.crp.value", answer: [{ valueQuantity: vq, extension: [{ url: ANSWER_EVIDENCE_EXT_URL, extension: [{ url: "status", valueCode: "documented" }, { url: "quote", valueString: "CRP 12" }] }] }] }] }],
+  });
+  const vqOf = (qr: any) => {
+    let out: any;
+    const walk = (items: any[]) => { for (const i of items || []) { if (Array.isArray(i.item)) walk(i.item); if (i.linkId === "lab.crp.value") out = i.answer[0].valueQuantity; } };
+    walk(qr.item);
+    return out;
+  };
+  it("wraps a bare number", () => {
+    expect(vqOf(run({ extractedResponse: qtyQr(12) }).questionnaireResponse)).toEqual({ value: 12 });
+  });
+  it("drops a UCUM-system code that is not valid UCUM (FHIRHelpers would throw) and converts a numeric string", () => {
+    const r = run({ extractedResponse: extractedQr({}), context: { labs: [{ linkId: "lab.crp.value", value: { value: 12, system: "http://unitsofmeasure.org", code: "IU/L" } }] } });
+    expect(vqOf(r.questionnaireResponse)).toEqual({ value: 12 });
+    expect(vqOf(run({ extractedResponse: qtyQr("12") }).questionnaireResponse)).toEqual({ value: 12 });
+  });
+  it("keeps a full UCUM quantity's value (was: reduced to its code string)", () => {
+    const got = vqOf(run({ extractedResponse: qtyQr({ value: 12, unit: "mg/L", system: "http://unitsofmeasure.org", code: "mg/L" }) }).questionnaireResponse);
+    expect(got).toEqual({ value: 12 });
+  });
+  it("reduces a context quantity with a non-UCUM unit to its value (FHIRHelpers would throw)", () => {
+    const r = run({ extractedResponse: extractedQr({}), context: { labs: [{ linkId: "lab.crp.value", value: { value: 12, unit: "IU/L" } }] } });
+    expect(vqOf(r.questionnaireResponse)).toEqual({ value: 12 });
+  });
+});
+
+describe("engine — a merged quantity is read by a real site library (KI-77)", () => {
+  it("US Abdomen reads lab.alt.value from merge output; the old bare-number shape was treated as missing", async () => {
+    const { evaluateExam } = await import("../engine");
+    const usAbdomenElm = (await import("../../../../tooling/criteria-bundle/elm/CRR_USAbdomen_Adult.json")).default;
+    const ev = (q: string) => [{ url: ANSWER_EVIDENCE_EXT_URL, extension: [{ url: "status", valueCode: "documented" }, { url: "quote", valueString: q }] }];
+    const qr = (vq: any) => ({
+      resourceType: "QuestionnaireResponse", status: "completed", subject: { reference: "Patient/p" },
+      item: [
+        { linkId: "patient", item: [{ linkId: "patient.age", answer: [{ valueInteger: 60, extension: ev("60") }] }] },
+        { linkId: "lab", item: [{ linkId: "lab.alt.value", answer: [{ valueQuantity: vq, extension: ev("ALT 150") }] }] },
+      ],
+    });
+    const usAbdomenQ = (await import("../../../../tooling/criteria-bundle/sites/us-abdomen-adult/Questionnaire-us-abdomen-adult.json")).default;
+    const idx = buildItemIndex([nationalQ as any, usAbdomenQ as any]);
+    const merged = run({ extractedResponse: qr(150), itemIndex: idx }).questionnaireResponse; // the route's bare number, merged
+    const good: any = await evaluateExam(usAbdomenElm, merged, "strict");
+    expect(good.missingInformation ?? []).not.toContain("lab.alt.value");
+    const old: any = await evaluateExam(usAbdomenElm, qr(150), "strict"); // bare number, unmerged
+    expect(old.missingInformation ?? []).toContain("lab.alt.value");
+  });
+});

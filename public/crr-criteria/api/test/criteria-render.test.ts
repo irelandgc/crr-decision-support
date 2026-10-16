@@ -69,6 +69,15 @@ describe("criteria-render — every displayed string traces to a bundle artefact
   }
 });
 
+describe("criteria-render — quantity values (KI-77)", () => {
+  it("buildQuestionnaireResponse wraps a quantity tick as valueQuantity.value, and flattenQrValues reads it back", () => {
+    const qr = buildQuestionnaireResponse(ctCapQ, { "lab.crp.value": 12 });
+    const item = qr.item.flatMap((g: any) => g.item).find((i: any) => i.linkId === "lab.crp.value");
+    expect(item.answer[0].valueQuantity).toEqual({ value: 12 });
+    expect(flattenQrValues(qr, "strict")["lab.crp.value"]).toBe(12);
+  });
+});
+
 describe("criteria-render — referrer view (GEN-004)", () => {
   const html = criteriaHtml(resolveCriteria(bundle, { context: "referrer", layout: "indication" }));
   it("shows no priority code", () => {

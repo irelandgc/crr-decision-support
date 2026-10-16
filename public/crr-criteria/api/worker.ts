@@ -1957,9 +1957,14 @@ export function buildQuestionnaireResponse(
     if (!a || typeof a.linkId !== 'string' || !a.linkId) continue;
     const itemType = itemIndex.get(a.linkId);
     const valueKey = (itemType && typeToValueKey[itemType]) || 'valueString';
+    // A quantity item's answer is a bare number (or numeric string) from the
+    // model; the engine reads `valueQuantity.value`, so wrap it (KI-77: a bare
+    // number was silently dropped). Mirrors merge.ts quantityOf.
     const answerObj: any = valueKey === 'valueCoding'
       ? { valueCoding: { system: 'http://hl7.org/fhir/administrative-gender', code: String(a.value) } }
-      : { [valueKey]: a.value };
+      : valueKey === 'valueQuantity' && (typeof a.value === 'number' || (typeof a.value === 'string' && a.value.trim() !== '')) && Number.isFinite(Number(a.value))
+        ? { valueQuantity: { value: Number(a.value) } }
+        : { [valueKey]: a.value };
     answerObj.extension = [{
       url: ANSWER_EVIDENCE_EXT_URL,
       extension: [

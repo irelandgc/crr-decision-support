@@ -567,7 +567,9 @@ export function buildQuestionnaireResponse(questionnaire, ticks) {
     const key = KEY[t] || "valueBoolean";
     const answer = key === "valueCoding"
       ? { valueCoding: { system: "http://hl7.org/fhir/administrative-gender", code: String(value) } }
-      : { [key]: t === "boolean" ? true : value };
+      : key === "valueQuantity"
+        ? { valueQuantity: { value: Number(value) } } // the engine reads .value (KI-77)
+        : { [key]: t === "boolean" ? true : value };
     const g = linkId.split(".")[0];
     if (!groups.has(g)) groups.set(g, []);
     groups.get(g).push({ linkId, answer: [answer] });
@@ -602,7 +604,8 @@ export function flattenQrValues(qr, documentationStandard) {
       }
       const vk = Object.keys(a).find((k) => k.startsWith('value'));
       let v = vk ? a[vk] : undefined;
-      if (v && typeof v === 'object' && 'code' in v) v = v.code;
+      if (vk === 'valueQuantity' && v && typeof v === 'object') v = v.value;
+      else if (v && typeof v === 'object' && 'code' in v) v = v.code;
       out[i.linkId] = v;
     }
   })(qr.item);
