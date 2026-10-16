@@ -5,8 +5,9 @@
 - **EXAM/SITE and OUTPUT — no quote on the requested entry when the note does not name the exam.**
   v3.0.3 said "every entry carries a quote copied from the note". On a note that names no exam
   (comparison note 3, requested as CT CAP by the calling application) the model obeyed by quoting
-  the requested exam's title from the supplied list — "CT Chest, Abdomen and Pelvis" on 15 October,
-  "CT — Chest/Abdomen/Pelvis" on 16 October. That text is not in the note, so the gate (rule 5: a
+  an exam title it had been given rather than the note — "CT Chest, Abdomen and Pelvis" (the CT CAP
+  Questionnaire's title) on 15 October, "CT — Chest/Abdomen/Pelvis" (the exam/site list title) on
+  16 October. That text is not in the note, so the gate (rule 5: a
   quote present must be verbatim) rejected the whole response with a 422 and the referrer got no
   result. v3.0.4: the requested entry's quote is null when the note does not name the exam, and a
   quote is only ever copied from the note, never from the exam/site list, a Questionnaire or the
@@ -26,7 +27,8 @@ rendering of it; `npm run check` fails if the two drift.
 The prompt never tells the model which exam the calling application requested; the model infers
 it from the exam/site Questionnaire it is given. v3.0.3's unconditional "every entry carries a
 quote" then left it two choices on a note that names no exam: break the instruction, or find
-words to quote. It found the title in the published exam/site list. v3.0.4 states the null case
+words to quote. It found a title in what it had been given: the exam's Questionnaire title on one run, the
+published exam/site list title on another. v3.0.4 states the null case
 in both places the quote rule appears.
 
 On the no-exam path (`/api/assess/propose`) nothing changes in effect: a requested entry with a
