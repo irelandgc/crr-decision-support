@@ -47,7 +47,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-16 Timeframe outcome convention (Acute/P/S): Advisory shows row wording, cross-exam recommendations include Acute and S outcomes; built, not deployed — AD-36; CL-57
 - 2026-10-16 Seven W1 sites transcribed (CT Chest, CT Head, US Abdomen, US DVT, US Pelvis, US Renal, X-ray Chest), second-session reviewed, published to the local registry as `transcribed`; vocabulary 1.3.0; PR #48 merged (b9bebfe), staging not yet re-seeded — documents/arch-mig-plan.md §Slice 7; AD-37; AD-38; CL-58; CL-60
 - 2026-10-16 AD-36, AD-37 and AD-38 Accepted (Gary) — ARCHITECTURE_DECISIONS.md AD-36, AD-37, AD-38
-- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; non-UCUM units no longer crash); built, not deployed — documents/arch-mig-known-issues.md KI-77; CL-61
+- 2026-10-16 Lab quantities reach the rules as values (were silently dropped; units dropped, so FHIRHelpers cannot throw); built, not deployed — documents/arch-mig-known-issues.md KI-77; CL-61
 - 2026-10-16 "What to add" no longer repeats a heading as its only line; built, not deployed — documents/arch-mig-known-issues.md KI-75; CL-62
 - 2026-10-16 CRR_RedFlags RF-10 comment / REVIEW Q23 corrected to the US Carotid p35 footnote (no logic change, national bundle not republished) — documents/arch-mig-known-issues.md KI-79
 
@@ -70,7 +70,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary Decide whether the bundle logic hash should exclude ELM annotations (a comment-only CQL change otherwise forces a major version) — documents/arch-mig-known-issues.md KI-79
+- @gary Decide whether the bundle logic hash should exclude ELM annotations (a comment-only CQL change otherwise forces a major version) — documents/arch-mig-known-issues.md KI-81
 - @gary Re-seed staging with the W1 bundles: empty remote staging, then `node tooling/staging/seed-staging.mjs --demo-published` — tooling/staging/seed-staging.mjs; AD-35; documents/CRR-admin-reference.md §Staging
 - @gary Vocabulary review of the W1 additions (smoking, lung-cancer list shape, history group, attestation candidates, stale attributions) before any W1 sign-off — documents/arch-mig-known-issues.md KI-78
 - @gary Decide what the new Triage Send to Form sends and which origins may receive it (cut-over gap) — instructions/arch-mig-send-to-form-design.md; documents/arch-mig-known-issues.md KI-71; SECURITY_DECISIONS.md SR-17

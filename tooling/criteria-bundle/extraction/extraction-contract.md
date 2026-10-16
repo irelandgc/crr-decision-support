@@ -196,7 +196,7 @@ QuestionnaireResponse inside it is what the engine consumes (slice 3's
 }
 ```
 
-Value types follow the Questionnaire item type: `boolean → valueBoolean`, `integer → valueInteger`, `decimal → valueDecimal`, `quantity → valueQuantity`, `string → valueString`, `choice → valueCoding` (system `http://hl7.org/fhir/administrative-gender` for `patient.sex`).
+Value types follow the Questionnaire item type: `boolean → valueBoolean`, `integer → valueInteger`, `decimal → valueDecimal`, `quantity → valueQuantity` (the model supplies a number; the pipeline emits `{ value: n }` and the libraries compare the number only, KI-77), `string → valueString`, `choice → valueCoding` (system `http://hl7.org/fhir/administrative-gender` for `patient.sex`).
 
 Group items are nesting only and carry no answer. A compound red flag's stem is an answerable
 item that *also* has children (national Questionnaire): answer the stem and, separately, any

@@ -124,6 +124,11 @@ describe("buildQuestionnaireResponse — flat answers -> FHIR (v3.0.1)", () => {
       idx, TYPE_TO_VALUE_KEY,
     );
     expect(qr.item[0].item[0].answer[0].valueQuantity).toEqual({ value: 12 });
+    const qs = buildQuestionnaireResponse(
+      [{ linkId: "lab.crp.value", value: "12", status: "documented", quote: "CRP 12" }],
+      idx, TYPE_TO_VALUE_KEY,
+    );
+    expect(qs.item[0].item[0].answer[0].valueQuantity).toEqual({ value: 12 });
   });
 
   it("an unknown linkId falls through as valueString (the gate then rejects it)", () => {

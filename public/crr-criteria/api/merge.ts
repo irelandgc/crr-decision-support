@@ -208,20 +208,20 @@ function candidatesFromAttestations(
   return out;
 }
 
-// KI-77: the engine reads `valueQuantity.value`. A bare number is wrapped; a
-// quantity whose unit has no UCUM code (e.g. unit "IU/L" alone) is reduced to
-// its value, because FHIRHelpers throws on a non-UCUM unit and the libraries
-// compare the number only.
+// KI-77: the engine reads `valueQuantity.value`, and the libraries compare the
+// number only (units are not checked; e.g. KI-47, transcription REVIEW Qs). So
+// every quantity is emitted as `{ value: n }`: a bare number is wrapped, a
+// numeric string is converted, and any unit/system/code is dropped, because
+// FHIRHelpers throws on a unit that is not valid UCUM. A value that is not a
+// number is passed on unchanged and the engine treats it as missing.
 function scalarOf(v: unknown): unknown {
   return v && typeof v === "object" && "value" in (v as any) ? (v as any).value : v;
 }
 
-function quantityOf(v: unknown): unknown {
-  if (typeof v === "number") return { value: v };
-  if (v && typeof v === "object" && typeof (v as any).value === "number") {
-    const q = v as any;
-    return q.system && q.code ? q : { value: q.value };
-  }
+export function quantityOf(v: unknown): unknown {
+  const n = scalarOf(v);
+  if (typeof n === "number" && Number.isFinite(n)) return { value: n };
+  if (typeof n === "string" && n.trim() !== "" && Number.isFinite(Number(n))) return { value: Number(n) };
   return v;
 }
 

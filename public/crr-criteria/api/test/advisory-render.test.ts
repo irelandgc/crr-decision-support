@@ -238,6 +238,17 @@ describe("resolveAdvisory — What to add does not repeat a heading as its only 
   });
 });
 
+describe("resolveAdvisory — heading drop never orphans a line under another heading (KI-75 review)", () => {
+  it("a restated single line that is not the first group keeps its heading", () => {
+    const m = resolveAdvisory(insufficientResponse(["patient.age", "advice.urgentCTRecommended"]), "referrer");
+    const g = m.whatToAddGroups.find((x: any) => x.items.some((i: any) => i.linkId === "advice.urgentCTRecommended"));
+    expect(m.whatToAddGroups.indexOf(g)).toBeGreaterThan(0);
+    expect(g.pathway).toContain("advises referral for urgent CT");
+    // every heading-less group is the first group
+    m.whatToAddGroups.forEach((x: any, i: number) => { if (!x.pathway) expect(i).toBe(0); });
+  });
+});
+
 describe("resolveAdvisory — attestation answers in the Advisory (browser findings)", () => {
   const ATT_Q = [
     {
