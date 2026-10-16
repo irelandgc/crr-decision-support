@@ -248,8 +248,8 @@
       "status": "active",
       "code": "PLACEHOLDER",
       "attestationWording": {
-        "referrer": "Does the patient have persistent, non-specific, non-localising symptoms or signs that you are concerned are due to an underlying cancer?",
-        "triager": "Does the referral describe persistent, non-specific, non-localising symptoms or signs concerning for underlying cancer?"
+        "referrer": "Does the patient have persistent, non-specific, non-localising symptoms and signs that you are concerned are due to an underlying cancer?",
+        "triager": "Does the referral describe persistent, non-specific, non-localising symptoms and signs concerning for underlying cancer?"
       },
       "sites": [
         {
