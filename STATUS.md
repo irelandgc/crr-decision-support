@@ -93,6 +93,7 @@ Governance posture that must be visibly correct before the tabletop runs — eve
 Production-readiness decisions, gated at the pre-pilot review, not at slice completion — not blockers for slice work (AD-30).
 - @gary Rename the production main worker (`vite-react-template`, a template-derived name) together with the host decision: move routes, Workers Builds, secrets and the Access hostnames/AUD — KI-44; AD-34
 - @gary Production publish policy for criteria updates (e.g. the CT AP revision, approved draft 27/08/26) — open item, no register entry yet — AD-30
+- @gary Decide whether to adopt a DCB0129-style clinical safety case (hazard log, named clinical safety officer, safety case report) before pilot — open item, no register entry yet — AD-30
 - @gary Decide AD-17 (ask attestation questions at all?) — AD-17 (review pack D6)
 - @gary Overlay authoring granularity — AD-29
 - @gary HNZ branding / iteratio.nz host (GEN-010) — KI-44
