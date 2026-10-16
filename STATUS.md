@@ -59,6 +59,7 @@ days after their date. [U] = inferred, not found.
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
+- @claude Extraction gives a documented false from wording that does not negate the item (over-inference case 19); benchmark it, then propose a rule or gate change — documents/arch-mig-known-issues.md KI-83
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
 - @claude Draft BRD v3.3 redline from CL rows tagged BRD (due after slice 5) — documents/DOCUMENTATION-PLAN.md
