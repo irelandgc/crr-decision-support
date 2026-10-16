@@ -1,0 +1,13 @@
+{
+  "examSite": "us-pelvis-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:07.615Z",
+      "logicHash": "sha256:f479ce4512d8faf49868d904a60d22f28eb0a9ac3bb7a5e95543d17ea9d3aabb",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

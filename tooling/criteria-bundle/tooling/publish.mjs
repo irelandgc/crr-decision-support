@@ -291,7 +291,8 @@ const logicHash = crypto.createHash("sha256")
 // that must already be green, per the plan's own gate ordering).
 function summariseResults(rel) {
   if (!fs.existsSync(path.join(root, rel))) return { file: rel, summary: "not found - run npm test first" };
-  const rows = readText(rel).split("\n").filter((l) => /^\|\s*(?:S\d|RM-|[A-Z]+-S\d)/.test(l));
+  // Every data row of the generated table (not the header or separator rows).
+  const rows = readText(rel).split("\n").filter((l) => /^\|\s*[A-Za-z0-9]/.test(l) && !/^\|\s*(?:Scenario|ID)\s*\|/i.test(l));
   const pass = rows.filter((l) => / PASS \|$/.test(l)).length;
   return { file: rel, summary: rows.length ? `${pass}/${rows.length} passed` : "see file" };
 }

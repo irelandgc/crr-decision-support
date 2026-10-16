@@ -1,0 +1,13 @@
+{
+  "examSite": "us-abdomen-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:07.184Z",
+      "logicHash": "sha256:018fa56dfeb4a18957c201a593b46e826a4594cf1ce15e04a1d0bb25d8f9aea6",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

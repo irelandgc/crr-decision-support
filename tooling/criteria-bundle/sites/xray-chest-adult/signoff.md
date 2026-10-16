@@ -1,7 +1,7 @@
 # Clinical sign-off — X-ray Chest - Adult (xray-chest-adult) — bundle 1.0.0
 
 Source: National Community Referral Criteria for Imaging (Part I), National ID 15372 v2.0, published 09/04/2026 — X-ray Chest - Adult, pp.62-65 (`documents/reference/National Primary Care Referral Criteria for Imaging.pdf`)
-Transcribed by: Claude Code, 2026-10-15 (W1, staging demo only under AD-35 — NOT CLINICALLY REVIEWED)   Engineering review of SOURCE quotes by: pending
+Transcribed by: Claude Code, 2026-10-15 (W1, staging demo only under AD-35 — NOT CLINICALLY REVIEWED)   Engineering review of SOURCE quotes by: second Claude Code session (non-authoring), 2026-10-16 — 75/75 quotes verbatim against the PDF; blocking findings fixed in the review-fix round (PR #48)
 
 ## Reading each define against the source
 [ ] Every SOURCE quote matches the source document verbatim

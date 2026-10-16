@@ -1,7 +1,7 @@
 # Clinical sign-off — US Pelvis - Adult (us-pelvis-adult) — bundle 1.0.0
 
 Source: National Community Referral Criteria for Imaging (Part I), National ID 15372 v2.0, published 09/04/2026 — "US Pelvis -Adult", pp.44-51 (footnotes *1-*5 on pp.49-51)
-Transcribed by: Claude Code, 2026-10-15 (W1 demo transcription for staging, AD-35 — NOT CLINICALLY REVIEWED)   Engineering review of SOURCE quotes by: pending
+Transcribed by: Claude Code, 2026-10-15 (W1 demo transcription for staging, AD-35 — NOT CLINICALLY REVIEWED)   Engineering review of SOURCE quotes by: second Claude Code session (non-authoring), 2026-10-16 — 82/82 quotes verbatim against the PDF; blocking findings fixed in the review-fix round (PR #48)
 
 ## Reading each define against the source
 [ ] Every SOURCE quote matches the source document verbatim

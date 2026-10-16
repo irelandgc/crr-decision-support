@@ -1,0 +1,13 @@
+{
+  "examSite": "us-dvt-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:07.398Z",
+      "logicHash": "sha256:8387eed557084bf9961383a4f2cb6309b502cf97028e53e6be975e48433f66dd",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

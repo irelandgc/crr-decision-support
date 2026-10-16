@@ -1,7 +1,7 @@
 # Clinical sign-off — CT Head - Adult (ct-head-adult) — bundle 1.0.0
 
 Source: National Community Referral Criteria for Imaging (Part I), National ID 15372 v2.0, published 09/04/2026 — CT Head - Adult, pp.20–22 (footnotes *1–*4 on pp.21–22)
-Transcribed by: Claude Code, 2026-10-15 (W1; staging demo only under AD-35, not clinically signed off)   Engineering review of SOURCE quotes by: pending
+Transcribed by: Claude Code, 2026-10-15 (W1; staging demo only under AD-35, not clinically signed off)   Engineering review of SOURCE quotes by: second Claude Code session (non-authoring), 2026-10-16 — 69/69 quotes verbatim against the PDF; blocking findings fixed in the review-fix round (PR #48)
 
 ## Reading each define against the source
 [ ] Every SOURCE quote matches the source document verbatim

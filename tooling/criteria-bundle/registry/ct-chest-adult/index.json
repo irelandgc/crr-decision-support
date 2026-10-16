@@ -1,0 +1,13 @@
+{
+  "examSite": "ct-chest-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:06.663Z",
+      "logicHash": "sha256:0e84c980756b863e0d1761b6e5b2f8eb55b713821d68a89fff56d689d8cc1435",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

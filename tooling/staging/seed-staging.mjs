@@ -45,7 +45,9 @@ const CONFIG = "public/crr-criteria/wrangler.json";
 const PORT = 8799;
 const BASE = `http://127.0.0.1:${PORT}`;
 const ACTOR = "seed-staging@local";
-const BUNDLES = ["national-redflags", "ct-chest-abdomen-pelvis-adult", "ct-colonography-adult"];
+const BUNDLES = ["national-redflags", "ct-chest-abdomen-pelvis-adult", "ct-colonography-adult",
+  // Slice 7 W1 (2026-10-16): transcribed, staging demo only (AD-35).
+  "ct-chest-adult", "ct-head-adult", "us-abdomen-adult", "us-dvt-adult", "us-pelvis-adult", "us-renal-adult", "xray-chest-adult"];
 const TABLES = ["versions", "audit_log", "system_prompts", "system_prompt_audit", "bundles"]; // what the routes write
 const DEMO_SIGNOFF = "STAGING DEMO ONLY: not clinically signed off (AD-10, AD-34)";
 const demoPublished = process.argv.includes("--demo-published");

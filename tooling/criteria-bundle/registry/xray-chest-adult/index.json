@@ -1,0 +1,13 @@
+{
+  "examSite": "xray-chest-adult",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "state": "transcribed",
+      "publishedAt": "2026-10-16T00:55:08.082Z",
+      "logicHash": "sha256:ad0c031a91d9b27cdab724a9cd5958eb53adc41ae0052fb8fa864d9f8d4391d6",
+      "dependencies": []
+    }
+  ],
+  "latestPublished": "1.0.0"
+}

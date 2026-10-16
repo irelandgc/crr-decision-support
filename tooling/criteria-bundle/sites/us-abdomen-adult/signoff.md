@@ -1,7 +1,7 @@
 # Clinical sign-off — US Abdomen - Adult (us-abdomen-adult) — bundle 1.0.0
 
 Source: National Community Referral Criteria for Imaging (Part I), National ID 15372 v2.0, published 09/04/2026 — "US Abdomen - Adult", pp.30–33
-Transcribed by: Claude Code, 2026-10-15 (W1 demo transcription, AD-35: staging only, not clinically signed off)   Engineering review of SOURCE quotes by: second Claude Code session, 2026-10-16 (APPROVE WITH NITS; 62/62 quotes and 63 PlanDefinition strings verbatim; findings applied in the W1 review-fix round)
+Transcribed by: Claude Code, 2026-10-15 (W1 demo transcription, AD-35: staging only, not clinically signed off)   Engineering review of SOURCE quotes by: second Claude Code session (non-authoring), 2026-10-16 — 62/62 quotes verbatim against the PDF; blocking findings fixed in the review-fix round (PR #48)
 
 ## Reading each define against the source
 [ ] Every SOURCE quote matches the source document verbatim
