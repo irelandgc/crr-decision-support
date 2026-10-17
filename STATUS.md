@@ -53,6 +53,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-16 Staging redeployed from main and re-seeded: 10 bundles published as a staging demo, 9 exam/site ids live; 22 synthetic runs, no 500/502 — AD-35; documents/arch-mig-known-issues.md KI-72
 - 2026-10-16 Extraction prompt v3.0.4 (KI-73) verified on staging: note 3 returns 200 on 3/3 runs; staging API worker runs PR #51's branch until merge — documents/arch-mig-known-issues.md KI-73; CL-63
 
+- 2026-10-17 AD-34 amendment Accepted (Gary): staging deployed by Workers Builds on merge to `main` — ARCHITECTURE_DECISIONS.md AD-34
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
@@ -73,7 +74,7 @@ days after their date. [U] = inferred, not found.
 - @claude Viewer self-check: let a yes/no item be answered No (three states), so CT CAP P2 is reachable — design note against AD-27 first (control shape is Gary's call) — documents/arch-mig-known-issues.md KI-65; AD-27
 
 ## Needs Gary
-- @gary Accept or reject the AD-34 amendment (staging deployed by Workers Builds on merge to `main`); if accepted, do the one-time Builds setup for both staging workers — ARCHITECTURE_DECISIONS.md AD-34 (amendment 2026-10-16)
+- @gary One-time Workers Builds setup for both staging workers (deploy on merge to `main`), then tell Claude to verify on the next merge — ARCHITECTURE_DECISIONS.md AD-34 (amendment 2026-10-16)
 - @gary Redeploy the staging API worker from `main` (PR #51 merged; staging still serves prompt 3.0.3) — documents/CRR_Release_Log.md 2026-10-16; CL-63
 - @gary Rule on how note 4's localising features (jaundice, palpable liver) can count: reviewed equivalence, extraction hint, or documentation-standard parameter — documents/arch-mig-known-issues.md KI-74
 - @gary Decide how an inference that only combines stated facts is treated under the strict standard (test-pack case 10) — documents/arch-mig-known-issues.md KI-82
