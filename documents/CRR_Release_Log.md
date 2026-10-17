@@ -6,7 +6,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ## 2026-10-16 — Staging: seven more demo exams; extraction prompt v3.0.4 (staging only)
 
-**Status:** Deployed by Gary. In the morning, both staging workers were deployed from `main` (API worker version `7694b210`, main worker `71f5aa1a`). Remote staging D1 and KV were then emptied and re-seeded with `tooling/staging/seed-staging.mjs --demo-published`. In the evening, the staging API worker was redeployed from the PR #51 branch (prompt v3.0.4, KI-73). It stays on that branch until PR #51 merges.
+**Status:** Deployed by Gary. In the morning, both staging workers were deployed from `main` (API worker version `7694b210`, main worker `71f5aa1a`). Remote staging D1 and KV were then emptied and re-seeded with `tooling/staging/seed-staging.mjs --demo-published`. In the evening, the staging API worker was redeployed from the PR #51 branch (prompt v3.0.4, KI-73). At about 21:36 UTC Gary redeployed it from `main` before PR #51 had merged, so staging went back to prompt 3.0.3 (observed in a staging assessment's `versions.prompt`). It needs one more redeploy from `main` now that PR #51 is merged (merge commit `e224243`).
 
 **Workers:** `crr-tools-staging` and `crr-criteria-api-staging` only. Production is unchanged.
 
