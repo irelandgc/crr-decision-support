@@ -18,9 +18,9 @@ notes. This file records only what v1.3 changes.
 - **E-07** (v1.2): negative examination shorthand ⇒ an examination-findings item such as
   `workup.localisingFeatures`. That item is in the CT CAP Questionnaire only.
 - **E-08** (v1.2): "on scales" / "weighed" / two recorded weights ⇒ `weightloss.measured`. That item
-  is in the CT CAP Questionnaire only (the national, CT Chest, US Abdomen and X-ray Chest
-  Questionnaires carry `weightloss.present` but not `weightloss.measured`), so a weight-loss note on
-  those exams is the same failure path.
+  is in the CT CAP Questionnaire only (the US Abdomen and X-ray Chest Questionnaires carry
+  `weightloss.present` but not `weightloss.measured`; the national and CT Chest Questionnaires carry
+  neither), so a weight-loss note on those exams is the same failure path.
 
 On an exam whose Questionnaires lack the item, the model still answered it. On a synthetic US
 Abdomen note ("64M, abnormal LFTs on routine bloods. Feels well.") it answered `workup.bloods` in
