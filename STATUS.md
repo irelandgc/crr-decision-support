@@ -55,6 +55,7 @@ days after their date. [U] = inferred, not found.
 - 2026-10-17 AD-34 amendment Accepted (Gary): staging deployed by Workers Builds on merge to `main` — ARCHITECTURE_DECISIONS.md AD-34 (amendment 2026-10-16); SECURITY_DECISIONS.md SD-16
 - 2026-10-17 Staging API worker redeployed from `main` (version a35dd0db); prompt 3.0.4 live on staging, note 3 returns 200 on 2/2 runs — documents/CRR_Release_Log.md 2026-10-17; CL-63
 - 2026-10-17 Workers Builds set up for both staging workers; first automatic deploy on the PR #53 merge, note 3 returns 200 on 3.0.4 — ARCHITECTURE_DECISIONS.md AD-34 (amendment 2026-10-16); SECURITY_DECISIONS.md SD-16; CL-64
+- 2026-10-17 Extraction prompt v3.0.5 merged (PR #56) and verified on staging: case 21 assessed 3/3 (KI-84), case 19 no documented false 3/3 (KI-83), CT CAP note 1 unchanged — documents/arch-mig-known-issues.md KI-83, KI-84; CL-65
 
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
@@ -62,7 +63,6 @@ days after their date. [U] = inferred, not found.
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
-- @blocked Re-run cases 19 and 21 (and a CT CAP note) on staging, 3 runs each, after the v3.0.5 PR merges (staging deploys on merge, AD-34); needs a staging login from Gary for the session — documents/arch-mig-known-issues.md KI-84, KI-83; CL-65
 - @claude Relabel KI-73/75/76/77/79/80 from "RESOLVED on branch" (PRs #48, #50 and #51 merged; changes on staging) and split that bucket in the counts line — documents/arch-mig-known-issues.md Counts
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
