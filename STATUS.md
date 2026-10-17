@@ -51,9 +51,9 @@ days after their date. [U] = inferred, not found.
 - 2026-10-16 "What to add" no longer repeats a heading as its only line; on staging (2026-10-16), not in production — documents/arch-mig-known-issues.md KI-75; CL-62
 - 2026-10-16 CRR_RedFlags RF-10 comment / REVIEW Q23 corrected to the US Carotid p35 footnote (no logic change, national bundle not republished) — documents/arch-mig-known-issues.md KI-79
 - 2026-10-16 Staging redeployed from main and re-seeded: 10 bundles published as a staging demo, 9 exam/site ids live; 22 synthetic runs, no 500/502 — AD-35; documents/arch-mig-known-issues.md KI-72
-- 2026-10-16 Extraction prompt v3.0.4 (KI-73) verified on staging: note 3 returns 200 on 3/3 runs; staging API worker runs PR #51's branch until merge — documents/arch-mig-known-issues.md KI-73; CL-63
-
+- 2026-10-16 Extraction prompt v3.0.4 (KI-73) verified on staging: note 3 returns 200 on 3/3 runs (PR #51, merged) — documents/arch-mig-known-issues.md KI-73; CL-63
 - 2026-10-17 AD-34 amendment Accepted (Gary): staging deployed by Workers Builds on merge to `main` — ARCHITECTURE_DECISIONS.md AD-34
+
 ## Queued
 - @claude E6 terminology validation against NZHTS, incl. refusal of unvalidated codes at the admin publish route — after credentials are loaded — SR-11; documents/arch-mig-plan.md §Slice 1, E6; CL-19
 - @claude Correct register: NZHTS access now held (OAuth2 client-credentials via NZHTS Keycloak) — documents/arch-mig-plan.md E6 (line 7)
