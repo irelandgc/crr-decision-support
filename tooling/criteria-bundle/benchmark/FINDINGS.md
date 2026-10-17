@@ -129,6 +129,8 @@ absent other features, a localising sign for CT CAP redirect (CT CAP p10)?
 
 **Status.** **Ground-truth question.** MW-009 is the only case still diverging after v1.1.
 
+**2026-10-15/16: reproduced on staging** (prompt 3.0.3/3.0.4, comparison note 4 = this note): `workup.localisingFeatures` unanswered again. Tracked as **KI-74** (`documents/arch-mig-known-issues.md`), which also records the open status question.
+
 ---
 
 ## 6. `workup.localisingFeatures` extraction reliability (15 cm mass) · **open (engineering)**
