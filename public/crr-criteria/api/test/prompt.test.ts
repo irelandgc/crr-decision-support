@@ -12,6 +12,7 @@ import {
   findCriteriaLeaks,
 } from "../prompt";
 import promptV3 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.5.json";
+import promptV304 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.4.json";
 import nationalQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-National.json";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
@@ -56,12 +57,22 @@ describe("prompt — versions and assembly", () => {
     expect(a).toContain("Each line applies only to an item in a supplied Questionnaire");
     expect(a).toContain("-> workup.bloods where a supplied Questionnaire has it");
     expect(a).not.toContain("-> workup.bloods, documented");
+    expect(a).toContain("-> an examination-findings item in a supplied Questionnaire");
+    expect(a).toContain("-> weightloss.measured where a supplied Questionnaire has it");
+    expect(a).not.toContain("-> weightloss.measured, documented");
   });
 
-  it("documents a false only on the note's own negation (KI-83)", () => {
+  it("documents a false only on the note's own negation or an equivalence (KI-83)", () => {
     const a = assembleSystemPrompt();
     expect(a).toContain("Negation is documented when the note's own words negate that item");
+    expect(a).toContain("or an equivalence below makes it a negation");
     expect(a).toContain("A false reasoned from other wording is inferred");
+  });
+
+  it("keeps the output tool unchanged from v3.0.4 across the prompt bump", () => {
+    // An earlier test sorts `required` in place, so compare with `required` order normalised.
+    const norm = (t: unknown) => JSON.parse(JSON.stringify(t), (k: string, v: unknown) => (k === "required" && Array.isArray(v) ? [...v].sort() : v));
+    expect(norm(OUTPUT_TOOL)).toEqual(norm((promptV304 as { outputTool: unknown }).outputTool));
   });
 });
 

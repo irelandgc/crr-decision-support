@@ -4,17 +4,18 @@
 synthetic notes; `documents/arch-mig-known-issues.md` KI-83, KI-84):
 
 - **EQUIVALENCE — lines apply only to items in a supplied Questionnaire (KI-84).** v3.0.4 named
-  `workup.bloods` (E-05) and `workup.localisingFeatures` (E-07) outright. Both are site-specific:
-  `workup.bloods` is in the CT CAP and CT Chest Questionnaires, `workup.localisingFeatures` in CT
-  CAP only. On a US Abdomen note ("abnormal LFTs on routine bloods") the model answered
+  `workup.bloods` (E-05), `workup.localisingFeatures` (E-07) and `weightloss.measured` (E-08)
+  outright. All three are site-specific: `workup.bloods` is in the CT CAP and CT Chest
+  Questionnaires, `workup.localisingFeatures` and `weightloss.measured` in CT CAP only. On a US Abdomen note ("abnormal LFTs on routine bloods") the model answered
   `workup.bloods` in 2 of 3 runs and the gate rejected the whole response (unknown linkId, contract
   rule 2). v3.0.5 adds one line at the head of the block, "Each line applies only to an item in a
   supplied Questionnaire; never answer a linkId the supplied Questionnaires do not contain", and
-  scopes the two lines. Equivalence list v1.3 records the same scoping; no entry changes meaning.
+  scopes the three lines. Equivalence list v1.3 records the same scoping; no entry changes meaning.
 - **EVIDENCE 7 — a documented false needs the note's own negation (KI-83).** v3.0.4 said only
   "Negation is documented". On "cough for a few weeks, not settling" the model answered
   `symptom.coughWorsening = false / documented`. v3.0.5: a false is documented only when the note's
-  own words negate that item; a false reasoned from other wording is inferred; an item the note
+  own words negate that item, or an equivalence makes it a negation (E-07's "exam NAD" stays
+  documented); a false reasoned from other wording is inferred; an item the note
   does not address is omitted (rule 1). Inferred falses stay possible ("Hb 140" →
   `lab.hb.low = false`, inferred) and are surfaced, not used, under the strict standard. Contract
   rule 6 is clarified to match.
@@ -52,7 +53,7 @@ EVIDENCE
 4. Clinical interpretation is inferred. Only the equivalences below earn documented.
 5. Numbers and dates as written: no correcting typos, guessing durations, converting units or rounding. Ambiguous -> omit.
 6. A qualitative abnormal lab statement ("Hb mildly low") answers that lab's boolean flag, documented; it gives no number.
-7. Negation is documented when the note's own words negate that item ("no masses" answers false). A false reasoned from other wording is inferred ("not settling" does not negate "worsening"); if the note does not address the item, omit it (rule 1).
+7. Negation is documented when the note's own words negate that item ("no masses" answers false) or an equivalence below makes it a negation. A false reasoned from other wording is inferred ("not settling" does not negate "worsening"); if the note does not address the item, omit it (rule 1).
 8. Answer a demographic item (age, sex, ageMonths) from the note - documented, with a quote - unless the context block already supplies that item, in which case do not answer it. Age in years as written; ageMonths only if the note gives months.
 9. A linkId shared by several Questionnaires is answered once.
 
@@ -64,7 +65,7 @@ Each line applies only to an item in a supplied Questionnaire; never answer a li
 "n/12" is n months, "n/52" is n weeks, "n/7" is n days -> a duration item, the number in the item's unit, documented; still omit if the note does not attach the period to that concept.
 a reported blood result ("Hb 120", "bloods normal", "FBC done") -> workup.bloods where a supplied Questionnaire has it, documented; the result value or flag, if any, is a separate answer.
 "NAD"/"SNT"/"unremarkable"/"O/E normal" written against an examination -> an examination-findings item in a supplied Questionnaire (such as workup.localisingFeatures), false, documented; not a finding the examination did not cover.
-"on scales"/"weighed"/two recorded weights -> weightloss.measured, documented; the weights, percentage and period are separate answers.
+"on scales"/"weighed"/two recorded weights -> weightloss.measured where a supplied Questionnaire has it, documented; the weights, percentage and period are separate answers.
 Other rephrasings needing a clinical step are inferred.
 
 EXAM/SITE
