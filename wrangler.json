@@ -18,7 +18,7 @@
 	"upload_source_maps": true,
 	"preview_urls": false,
 	"env": {
-		// AD-34 staging: deployed by hand (`CLOUDFLARE_ENV=staging npm run build && npx wrangler deploy`), never by Workers Builds.
+		// AD-34 staging: deployed by Workers Builds on merge to main (build `CLOUDFLARE_ENV=staging npm run build`, deploy `npx wrangler deploy`); by hand only to test a branch.
 		"staging": {
 			"name": "crr-tools-staging",
 			"vars": {

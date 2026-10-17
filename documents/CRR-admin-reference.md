@@ -320,7 +320,7 @@ The main site build uploads all static files under `public/crr-criteria/` as Clo
 3. Either way, redeploy the API worker (step 1) so its allowed-origins list has the new host, then step 3.
 4. Remove the old `/crr-criteria/admin` row for `vite-react-template-staging` from the production Access application as part of the rename. Left in place, it sent production admin logins on workers.dev to the old hostname (KI-70; removed 2026-10-11).
 
-A second copy of both workers for side-by-side evaluation with synthetic cases only. It has its own D1 (`crr-criteria-staging`), KV and secrets. Workers Builds never deploys it; deploy it by hand from the repo root.
+A second copy of both workers for side-by-side evaluation with synthetic cases only. It has its own D1 (`crr-criteria-staging`), KV and secrets. Since 2026-10-17 both staging workers are deployed by Workers Builds on every merge to `main` (AD-34 amendment 2026-10-16, SD-16); see **Automatic deploys** below. The manual steps below are for first-time setup, secrets, migrations, seeding, and testing an unmerged branch.
 
 | | Production | Staging |
 |---|---|---|
@@ -390,7 +390,19 @@ Notes:
 - The staging API worker inherits the production cron (`0 3 * * *`, purging expired notes and stale proposals in the staging DB), which is intended.
 - With an `env` block defined, every production deploy prints "Multiple environments are defined … no target environment specified". It is a warning only; the production config is used.
 
-**Redeploy after a change:** step 1 and/or step 3 (with the production rebuild after it).
+**Automatic deploys (Workers Builds, since 2026-10-17).** Each staging worker is connected to `irelandgc/crr-decision-support`, production branch `main`, with **Enable Preview builds** unticked (no builds for PR branches):
+
+| Worker | Build command | Deploy command |
+|---|---|---|
+| `crr-criteria-api-staging` | `npm ci` | `npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging` |
+| `crr-tools-staging` | `CLOUDFLARE_ENV=staging npm run build` | `npx wrangler deploy` |
+
+- A merge to `main` deploys both, in separate builds. Each build reports as a "Workers Builds: <worker>" check on the merge commit.
+- Still manual: secrets, D1 migrations and resources (apply to staging **before** merging the PR that needs them; a migration applied early must suit the code still running), and seeding. Data does not follow code: bundles and criteria on staging change only by seeding or a staging publish.
+- The `crr-criteria-api-staging` Builds page shows "Update wrangler.json … `"name": "crr-criteria-api-staging"`", because Cloudflare reads the root `wrangler.json`, which names the production worker. Do **not** apply it, and close any pull request Cloudflare opens to change that name. The deploy command uses the staging config, so the build is correct.
+- A merge that changes what evaluators see (a CL row) carries its staging Release Log entry in the same PR.
+
+**Redeploy by hand** (to test an unmerged branch; the next merge overwrites it): step 1 and/or step 3 (with the production rebuild after it).
 
 **Do not** copy production D1 rows into staging: they include audit data (AD-34).
 
