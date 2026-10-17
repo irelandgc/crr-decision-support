@@ -4,6 +4,16 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-17 — Staging: extraction prompt v3.0.5 (deployed by Workers Builds on merge)
+
+**Status:** Deployed to staging by Workers Builds when this PR merges (AD-34 amendment). Production is unchanged (pipeline flag off).
+
+**Workers:** `crr-criteria-api-staging` (the prompt is bundled in the API worker). `crr-tools-staging` rebuilds with no page change.
+
+- **Referrers and triagers on staging:** CL-65. A non-CT-CAP note that mentions bloods should no longer be rejected (KI-84), and a "no" the note does not state is no longer counted as documented (KI-83). Verification on staging follows the deploy (STATUS).
+
+---
+
 ## 2026-10-17 — Staging now deployed by Workers Builds on merge (AD-34 amendment, SD-16)
 
 **Status:** Gary connected both staging workers to Workers Builds (production branch `main`, Preview builds off). The first automatic deploy ran on the PR #53 merge (`0e156b7`): `crr-criteria-api-staging` version `3cb8781e-2cdf-4616-a88f-5dcd7e019287`, `crr-tools-staging` version `277d46b2-fba2-4f5a-8158-a05139eb6fe4`. Production's `vite-react-template` build ran as usual. A staging assessment of note 3 afterwards returned 200 with prompt 3.0.4.
