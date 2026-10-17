@@ -129,6 +129,8 @@ absent other features, a localising sign for CT CAP redirect (CT CAP p10)?
 
 **Status.** **Ground-truth question.** MW-009 is the only case still diverging after v1.1.
 
+**2026-10-15/16: reproduced on staging** (prompt 3.0.3/3.0.4, comparison note 4 = this note): `workup.localisingFeatures` unanswered again. Tracked as **KI-74** (`documents/arch-mig-known-issues.md`), which also records the open status question.
+
 ---
 
 ## 6. `workup.localisingFeatures` extraction reliability (15 cm mass) · **open (engineering)**
@@ -277,3 +279,5 @@ one weight answers `weightloss.present` neither way, that a `false` here is rule
 clause scoping E-08 to a *pair* of weights is the candidate fix if a later run shows this rising.
 
 **Status.** **Open (low).** Contract rule 4 and E-09 name the case; watch the next run.
+
+**2026-10-17: second instance, another site.** On staging (prompt 3.0.4), synthetic X-ray Chest note "60M, cough for a few weeks, not settling." was answered `symptom.coughWorsening = false / documented` (quote "not settling") and `symptom.coughUnexplained = false / documented`. Tracked as **KI-83** (`documents/arch-mig-known-issues.md`), which holds the measurement plan and the proposed prompt clause.

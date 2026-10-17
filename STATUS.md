@@ -62,8 +62,8 @@ days after their date. [U] = inferred, not found.
 - @claude Resize slice 7 waves W1–W5 to 38 bundles — documents/arch-mig-plan.md §Slice 7 (AD-01)
 - @claude Remove or annotate the 5 stale vocabulary `sites[]` entries citing `ct-colonography-adult` p17/p18 (lab.hb.low, lab.ferritin.low, lab.unexplained, advice.urgentImagingRecommended, advice.nonUrgentImagingRecommended) — the 27/08/26 draft removes those criteria — vocabulary/indicators.json; sites/ct-colonography-adult/transcription-notes.md §1; AD-33
 - @claude Measure `/api/assess` CPU per stage; cache the compiled CQL library per isolate — documents/arch-mig-known-issues.md KI-72
-- @claude Extraction gives a documented false from wording that does not negate the item (over-inference case 19); benchmark it, then propose a rule or gate change — documents/arch-mig-known-issues.md KI-83
-- @claude Add comparison notes 3 and 4 to the extraction benchmark (no-exam-named quote; jaundice localising features) — documents/arch-mig-known-issues.md KI-73, KI-74
+- @claude Draft prompt v3.0.5 and the next equivalence list: scope site-specific equivalence lines to supplied Questionnaires (KI-84, intermittent 422 on exams without `workup.bloods`) and tighten EVIDENCE rule 7 / contract rule 6 on documented falses (KI-83) — documents/arch-mig-known-issues.md KI-84, KI-83
+- @blocked Re-run cases 19 and 21 on staging after v3.0.5 merges (staging deploys on merge, AD-34); needs a staging login from Gary for the session — documents/arch-mig-known-issues.md KI-84, KI-83
 - @claude Relabel KI-73/75/76/77/79/80 from "RESOLVED on branch" (PRs #48, #50 and #51 merged; changes on staging) and split that bucket in the counts line — documents/arch-mig-known-issues.md Counts
 - @claude Slice 8 population stage behind POPULATION_ENABLED — documents/arch-mig-plan.md §Slice 8
 - @claude Slice 9 benchmark harness: labelling page + runner — documents/arch-mig-plan.md §Slice 9
@@ -77,7 +77,7 @@ days after their date. [U] = inferred, not found.
 
 ## Needs Gary
 - @gary Decide whether production's `vite-react-template` Workers Builds should keep building non-production (PR) branches — SECURITY_DECISIONS.md SD-16
-- @gary Rule on how note 4's localising features (jaundice, palpable liver) can count: reviewed equivalence, extraction hint, or documentation-standard parameter — documents/arch-mig-known-issues.md KI-74
+- @gary Rule on how note 4's localising features (jaundice, palpable liver) can count: reviewed equivalence, extraction hint, or documentation-standard parameter — documents/arch-mig-known-issues.md KI-74; review pack 8b; tooling/criteria-bundle/benchmark/FINDINGS.md #5, #6
 - @gary Decide how an inference that only combines stated facts is treated under the strict standard (test-pack case 10) — documents/arch-mig-known-issues.md KI-82
 - @gary Decide whether the bundle logic hash should exclude ELM annotations (a comment-only CQL change otherwise forces a major version) — documents/arch-mig-known-issues.md KI-81
 - @gary Vocabulary review of the W1 additions (smoking, lung-cancer list shape, history group, attestation candidates, stale attributions) before any W1 sign-off — documents/arch-mig-known-issues.md KI-78
