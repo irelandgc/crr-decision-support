@@ -11,14 +11,14 @@ import {
   applyExtractionHints,
   findCriteriaLeaks,
 } from "../prompt";
-import promptV3 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.4.json";
+import promptV3 from "../../../../tooling/criteria-bundle/extraction/prompt-v3.0.5.json";
 import nationalQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-National.json";
 import ctCapQ from "../../../../tooling/criteria-bundle/fhir/Questionnaire-CRR-CT-CAP-Adult.json";
 import ctCapPd from "../../../../tooling/criteria-bundle/fhir/PlanDefinition-CRR-CT-CAP-Adult.json";
 
 describe("prompt — versions and assembly", () => {
-  it("version constants come from prompt-v3.0.4.json", () => {
-    expect(PROMPT_VERSION).toBe("3.0.4");
+  it("version constants come from prompt-v3.0.5.json", () => {
+    expect(PROMPT_VERSION).toBe("3.0.5");
     expect(PROMPT_VERSION).toBe((promptV3 as any).version);
     expect(EQUIVALENCE_LIST_VERSION).toBe((promptV3 as any).equivalenceListVersion);
   });
@@ -49,6 +49,19 @@ describe("prompt — versions and assembly", () => {
     expect(a).toContain("if it does not, that quote is null");
     expect(a).toContain("never from the exam/site list");
     expect(a).not.toContain("Every entry carries a quote");
+  });
+
+  it("scopes equivalence lines to supplied Questionnaires (KI-84)", () => {
+    const a = assembleSystemPrompt();
+    expect(a).toContain("Each line applies only to an item in a supplied Questionnaire");
+    expect(a).toContain("-> workup.bloods where a supplied Questionnaire has it");
+    expect(a).not.toContain("-> workup.bloods, documented");
+  });
+
+  it("documents a false only on the note's own negation (KI-83)", () => {
+    const a = assembleSystemPrompt();
+    expect(a).toContain("Negation is documented when the note's own words negate that item");
+    expect(a).toContain("A false reasoned from other wording is inferred");
   });
 });
 
