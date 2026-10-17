@@ -4,6 +4,17 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-17 — Staging API worker redeployed from `main` (prompt v3.0.4 back on staging)
+
+**Status:** Deployed by Gary from `main` after PR #51 and PR #52 merged (`479161d`), with `npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging` (version `a35dd0db-d17c-492c-81c7-c469bdf58bca`). An earlier attempt the same day deployed a local `main` that had not been pulled, and staging stayed on prompt 3.0.3 (note 3 returned 422 again, assessment `850179f5-…`). After the pull and redeploy, note 3 returned 200 on 2 of 2 runs with `versions.prompt = "3.0.4"`.
+
+**Workers:** `crr-criteria-api-staging` only. Production is unchanged.
+
+- **Referrers on staging:** CL-63 is live again: a note that does not name the selected exam gets an assessment instead of "Assessment not produced (422)".
+- Staging is not yet deployed by Workers Builds; the setup in AD-34 (amendment 2026-10-16) is still to do.
+
+---
+
 ## 2026-10-16 — Staging: seven more demo exams; extraction prompt v3.0.4 (staging only)
 
 **Status:** Deployed by Gary. In the morning, both staging workers were deployed from `main` (API worker version `7694b210`, main worker `71f5aa1a`). Remote staging D1 and KV were then emptied and re-seeded with `tooling/staging/seed-staging.mjs --demo-published`. In the evening, the staging API worker was redeployed from the PR #51 branch (prompt v3.0.4, KI-73). At about 21:36 UTC Gary redeployed it from `main` before PR #51 had merged, so staging went back to prompt 3.0.3 (observed in a staging assessment's `versions.prompt`). It needs one more redeploy from `main` now that PR #51 is merged (merge commit `e224243`).
