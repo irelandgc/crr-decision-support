@@ -4,6 +4,17 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 
 ---
 
+## 2026-10-17 — Staging now deployed by Workers Builds on merge (AD-34 amendment, SD-16)
+
+**Status:** Gary connected both staging workers to Workers Builds (production branch `main`, Preview builds off). The first automatic deploy ran on the PR #53 merge (`0e156b7`): `crr-criteria-api-staging` version `3cb8781e-2cdf-4616-a88f-5dcd7e019287`, `crr-tools-staging` version `277d46b2-fba2-4f5a-8158-a05139eb6fe4`. Production's `vite-react-template` build ran as usual. A staging assessment of note 3 afterwards returned 200 with prompt 3.0.4.
+
+**Workers:** `crr-criteria-api-staging` and `crr-tools-staging`. Production is unchanged.
+
+- **Operators and the programme:** staging follows `main` without a manual deploy (CL-64). Secrets, migrations and seeding are still done by hand.
+- No change for referrers, triagers or evaluators. `crr-criteria-api-staging`: no code change since the manual deploy from `479161d` earlier today (only records changed). `crr-tools-staging`: previously deployed by hand on 2026-10-16 (version `71f5aa1a`, from `main` at `17cf706`); nothing between `17cf706` and `0e156b7` touches the main worker or the pages (`src/`, `public/crr-criteria/` outside `api/`, `wrangler.json`, `vite.config.ts`, `package*.json`).
+
+---
+
 ## 2026-10-17 — Staging API worker redeployed from `main` (prompt v3.0.4 back on staging)
 
 **Status:** Deployed by Gary from `main` after PR #51 and PR #52 merged (`479161d`), with `npx wrangler deploy --config public/crr-criteria/wrangler.json --env staging` (version `a35dd0db-d17c-492c-81c7-c469bdf58bca`). An earlier attempt the same day (version id not captured) deployed a local `main` that had not been pulled, and staging stayed on prompt 3.0.3 (note 3 returned 422 again, assessment `850179f5-…`). After the pull and redeploy, note 3 returned 200 on 2 of 2 runs with `versions.prompt = "3.0.4"`.
