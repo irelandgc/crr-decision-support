@@ -399,7 +399,7 @@ Notes:
 
 - A merge to `main` deploys both, in separate builds. Each build reports as a "Workers Builds: <worker>" check on the merge commit.
 - Still manual: secrets, D1 migrations and resources (apply to staging **before** merging the PR that needs them; a migration applied early must suit the code still running), and seeding. Data does not follow code: bundles and criteria on staging change only by seeding or a staging publish.
-- The `crr-criteria-api-staging` Builds page shows "Update wrangler.json … `"name": "crr-criteria-api-staging"`", because Cloudflare reads the root `wrangler.json`, which names the production worker. Do **not** apply it, and close any pull request Cloudflare opens to change that name. The deploy command uses the staging config, so the build is correct.
+- The `crr-criteria-api-staging` Builds page shows "Update wrangler.json … `"name": "crr-criteria-api-staging"`", and `crr-tools-staging`'s may show the same with its own name, because Cloudflare reads the top-level name in the root `wrangler.json`, which names the production worker. Do **not** apply it on either, and close any pull request Cloudflare opens to change that name. The deploy commands use the staging config, so the builds are correct.
 - A merge that changes what evaluators see (a CL row) carries its staging Release Log entry in the same PR.
 
 **Redeploy by hand** (to test an unmerged branch; the next merge overwrites it): step 1 and/or step 3 (with the production rebuild after it).

@@ -11,7 +11,7 @@ Changes are listed newest-first. Each entry covers one deployment cycle.
 **Workers:** `crr-criteria-api-staging` and `crr-tools-staging`. Production is unchanged.
 
 - **Operators and the programme:** staging follows `main` without a manual deploy (CL-64). Secrets, migrations and seeding are still done by hand.
-- No change for referrers, triagers or evaluators; the code deployed is the same as the manual deploy earlier today.
+- No change for referrers, triagers or evaluators. `crr-criteria-api-staging`: no code change since the manual deploy from `479161d` earlier today (only records changed). `crr-tools-staging`: previously deployed by hand on 2026-10-16 (version `71f5aa1a`, from `main` at `17cf706`); nothing between `17cf706` and `0e156b7` touches the main worker or the pages (`src/`, `public/crr-criteria/` outside `api/`, `wrangler.json`, `vite.config.ts`, `package*.json`).
 
 ---
 
